@@ -5,13 +5,15 @@ import '../node_modules/react-grid-layout/css/styles.css';
 import '../node_modules/react-resizable/css/styles.css';
 
 import { Grid } from './components/Grid';
-import { TaskBar } from './components/TaskBar';
+import { MenuBar } from './components/MenuBar';
+import { UtilityBar } from './components/UtilityBar';
 
 function App() {
   return (
     <div className="App">
       <Grid></Grid>
-      <TaskBar></TaskBar>
+      <UtilityBar></UtilityBar>
+      <MenuBar></MenuBar>
      
     </div>
   );

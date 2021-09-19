@@ -3,12 +3,17 @@ import GridLayout from 'react-grid-layout';
 import { WidgetFrame } from "./WidgetFrame";
 import styled from "styled-components";
 
-const Div = styled.div`
-	display: flex;
-`
-
 
 export function Grid() {
+	const Div = styled.div`
+	display: flex;
+	`
+
+	const Widget = styled(WidgetFrame)`
+	width: 100%;
+	height: 100%;
+	`
+
 
 	const layout = [
 		{ i: 'a', x: 0, y: 0, w: 1, h: 2 },
@@ -16,12 +21,12 @@ export function Grid() {
 	];
 
 	return (
-		<GridLayout layout={layout} cols={10} rowHeight={50} width={1200} margin={[10,10]}>
+		<GridLayout layout={layout} cols={10} rowHeight={50} width={1200} margin={[10, 10]}>
 			<Div key="a">
-				<WidgetFrame ></WidgetFrame>
+				<Widget ></Widget>
 			</Div>
 			<Div key="b">
-				<WidgetFrame ></WidgetFrame>
+				<Widget ></Widget>
 			</Div>
 		</GridLayout>
 	)
