@@ -1,15 +1,15 @@
-import { Button, IconButton } from "@mui/material"
+import { Box, Button, ClickAwayListener, IconButton, Popper } from "@mui/material"
 import AddIcon from '@mui/icons-material/Add';
 import ColorLensTwoToneIcon from '@mui/icons-material/ColorLensTwoTone';
 import HelpTwoToneIcon from '@mui/icons-material/HelpTwoTone';
 import AccountCircleTwoToneIcon from '@mui/icons-material/AccountCircleTwoTone';
+
 import styled from "styled-components"
 import { WidgetFrame } from "./WidgetFrame";
+import { useState } from "react";
+import { WidgetPicker } from "./WidgetPicker";
 
-
-
-export function MenuBar() {
-	const MenuLayout = styled(WidgetFrame)`
+const MenuLayout = styled(WidgetFrame)`
 		position: absolute;
 		bottom: 1rem;
 		right: 1rem;
@@ -18,14 +18,27 @@ export function MenuBar() {
 		height: 2.5rem;
 	`
 
-	const MenuItems = styled.div`
+const MenuItems = styled.div`
 		display: flex;
 		align-items: center;
 		margin-left: auto;
 	`
+
+
+console.log('THIS IS CALLED');
+
+export function MenuBar() {
+	const [anchorEl, setAnchorEl] = useState(null);
+
+	const handleClick = (event: any) => {
+		setAnchorEl(anchorEl ? null : event.target);
+	};
+	const open = Boolean(anchorEl);
+	const id = open ? 'simple-popper' : undefined;
+
 	return (
 		<MenuLayout>
-			<Button startIcon={<AddIcon></AddIcon>}>New Widget</Button>
+			<Button startIcon={<AddIcon></AddIcon>} onClick={handleClick}>New Widget</Button>
 			<MenuItems>
 				<IconButton>
 					<ColorLensTwoToneIcon></ColorLensTwoToneIcon>
@@ -37,6 +50,14 @@ export function MenuBar() {
 					<AccountCircleTwoToneIcon></AccountCircleTwoToneIcon>
 				</IconButton>
 			</MenuItems>
+
+
+
+			<Popper id={id} open={open} anchorEl={anchorEl}>
+				{/* <Box> */}
+				<WidgetPicker></WidgetPicker>
+				{/* </Box> */}
+			</Popper>
 		</MenuLayout>
 	)
 
