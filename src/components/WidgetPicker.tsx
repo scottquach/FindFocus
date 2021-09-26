@@ -43,5 +43,4 @@ export function WidgetPicker(close: any) {
 			</MenuHeader>
 		</WidgetLayout>
 	)
-
 }
