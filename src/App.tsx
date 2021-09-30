@@ -7,15 +7,18 @@ import '../node_modules/react-resizable/css/styles.css';
 import { Grid } from './components/Grid';
 import { MenuBar } from './components/MenuBar';
 import { UtilityBar } from './components/UtilityBar';
+import { RecoilRoot } from 'recoil';
 
 function App() {
   return (
-    <div className="App">
-      <Grid></Grid>
-      <UtilityBar></UtilityBar>
-      <MenuBar></MenuBar>
-     
-    </div>
+    <RecoilRoot>
+      <div className="App">
+        <Grid></Grid>
+        <UtilityBar></UtilityBar>
+        <MenuBar></MenuBar>
+
+      </div>
+    </RecoilRoot>
   );
 }
 

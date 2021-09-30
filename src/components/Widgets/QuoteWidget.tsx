@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import axios from 'axios';
-import { WidgetFrame } from "./WidgetFrame";
+import { WidgetFrame } from "../WidgetFrame";
 import styled from "styled-components";
 import LoopIcon from '@mui/icons-material/Loop';
 import { IconButton } from "@mui/material";
 
-const QuoteLayout = styled(WidgetFrame)`
+const Frame = styled(WidgetFrame)`
 	display: grid;
 	grid-template-rows: 1fr 2.5rem;
 	align-items: center;
@@ -47,7 +47,7 @@ export function QuoteWidget() {
 	}
 
 	return (
-		<QuoteLayout>
+		<Frame>
 			<div>
 				<Quote>"{quote}"</Quote>
 				<Author>- {author}</Author>
@@ -55,7 +55,7 @@ export function QuoteWidget() {
 			<RefreshButton onClick={loadQuote}>
 				<LoopIcon></LoopIcon>
 			</RefreshButton>
-		</QuoteLayout>
+		</Frame>
 	)
 }
 
