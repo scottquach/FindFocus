@@ -1,4 +1,4 @@
-export enum WidgetTypes {
+export enum WidgetType {
 	Spotify = 'spotify',
 	SoundCloud = 'soundcloud',
 	YouTube = 'youtube',

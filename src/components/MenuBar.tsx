@@ -25,9 +25,6 @@ const MenuItems = styled.div`
 	`
 
 
-console.log('THIS IS CALLED');
-
-
 export function MenuBar() {
 	// const [anchorEl, setAnchorEl] = useState(null);
 

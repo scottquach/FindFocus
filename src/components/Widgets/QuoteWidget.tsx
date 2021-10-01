@@ -40,7 +40,7 @@ export function QuoteWidget() {
 	function loadQuote() {
 		axios.get("https://api.quotable.io/random")
 			.then(response => {
-				console.log(response);
+				// console.log(response);
 				setQuote(response.data.content)
 				setAuthor(response.data.author)
 			})
