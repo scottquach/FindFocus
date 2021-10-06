@@ -1,7 +1,9 @@
 import styled from 'styled-components'
+import { WidgetHeader } from './WidgetHeader'
 
 const Frame = styled.div`
-	display: flex;
+	display: grid;
+	grid-template-rows: 2.5rem auto;
 	padding: .5rem;
 	background-color: var(--widget-background-color);
 	border: 2px solid #000000;

@@ -8,7 +8,6 @@ import { activeWidgetsMapState, gridLayoutState } from "../stores/store";
 import { WidgetType } from "../models/widget-types.enum";
 import useUpdateLogger from '../hooks/useUpdateLogger';
 import useLocalStorage from '../hooks/useLocalStorage';
-import useLoadApp from '../hooks/useLoadApp';
 
 const Div = styled.div`
 	display: flex;
@@ -56,14 +55,14 @@ export function Grid() {
 			>
 				{
 					widgetsMap && gridLayout.map((item: Layout) => {
-						switch (widgetsMap[item.i].type) {
+						switch (widgetsMap[item.i]?.type) {
 							case WidgetType.Quote:
 								return <Div key={item.i}>
-									<div>{item.i}</div>
-									<QuoteWidget></QuoteWidget>
+									{/* <div>{item.i}</div> */}
+									<QuoteWidget widgetId={item.i}></QuoteWidget>
 								</Div>
 							case WidgetType.Weather:
-								<div>{item.i}</div>
+								// <div>{item.i}</div>
 								return <Div key={item.i}>
 									<EmbedWidget ></EmbedWidget>
 								</Div>

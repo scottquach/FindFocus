@@ -4,10 +4,11 @@ import { WidgetFrame } from "../WidgetFrame";
 import styled from "styled-components";
 import LoopIcon from '@mui/icons-material/Loop';
 import { IconButton } from "@mui/material";
+import { WidgetHeader } from "../WidgetHeader";
 
 const Frame = styled(WidgetFrame)`
 	display: grid;
-	grid-template-rows: 1fr 2.5rem;
+	/* grid-template-rows: 1fr 2.5rem; */
 	align-items: center;
 	width: 100%;
 	padding: .25rem .75rem;
@@ -26,9 +27,11 @@ const Author = styled.div`
 
 const RefreshButton = styled(IconButton)`
 	justify-self: end;
+	align-self: end;
 
 `
-export function QuoteWidget() {
+export function QuoteWidget({ widgetId }: { widgetId: string }) {
+	console.log('QUOTE WIDGET')
 
 	const [quote, setQuote] = useState('');
 	const [author, setAuthor] = useState('')
@@ -40,7 +43,7 @@ export function QuoteWidget() {
 	function loadQuote() {
 		axios.get("https://api.quotable.io/random")
 			.then(response => {
-				// console.log(response);
+				console.log(response);
 				setQuote(response.data.content)
 				setAuthor(response.data.author)
 			})
@@ -48,6 +51,7 @@ export function QuoteWidget() {
 
 	return (
 		<Frame>
+			<WidgetHeader widgetId={widgetId}></WidgetHeader>
 			<div>
 				<Quote>"{quote}"</Quote>
 				<Author>- {author}</Author>
