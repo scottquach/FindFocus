@@ -14,7 +14,8 @@ export const WidgetPreview = styled.div`
 	transition: all 75ms;
 
 	:hover {
-		box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 18px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+		transform: translateY(-5px);
+		/* box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 18px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px; */
 	}
 `
 

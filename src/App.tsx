@@ -6,6 +6,7 @@ import { Grid } from './components/Grid';
 import { MenuBar } from './components/MenuBar';
 import { UtilityBar } from './components/UtilityBar';
 import useLoadApp from './hooks/useLoadApp';
+import { Background } from './components/Background';
 
 function App() {
 
@@ -16,6 +17,7 @@ function App() {
       <Grid></Grid>
       <UtilityBar></UtilityBar>
       <MenuBar></MenuBar>
+      <Background></Background>
     </div>
   );
 }

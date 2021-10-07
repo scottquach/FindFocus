@@ -14,9 +14,10 @@ const UtilityBarLayout = styled.div`
 	`
 
 const BarButton = styled.div`
-		border: 1px solid lightgray;
+		border: 1px solid black;
 		border-radius: 24px;
 		margin-right: .5rem;
+		background-color: var(--widget-background-color);
 
 		:last-child {
 			margin-right: 0rem;
