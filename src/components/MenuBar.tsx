@@ -9,7 +9,7 @@ import { WidgetFrame } from "./WidgetFrame";
 import { useState } from "react";
 import { WidgetPicker } from "./WidgetPicker";
 
-const MenuLayout = styled(WidgetFrame)`
+const MenuLayout = styled.div`
 		position: absolute;
 		bottom: 1rem;
 		right: 1rem;

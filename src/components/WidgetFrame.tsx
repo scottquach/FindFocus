@@ -4,17 +4,35 @@ import { WidgetHeader } from './WidgetHeader'
 const Frame = styled.div`
 	display: grid;
 	grid-template-rows: 2.5rem auto;
-	padding: .5rem;
 	background-color: var(--widget-background-color);
 	border: 2px solid #000000;
 	border-radius: 8px;
+	height: 100%;
+	width: 100%;
 `
 
-export function WidgetFrame({ className, children }: any) {
+const WidgetContent = styled.div`
+	padding: .25rem;
+`
 
+// export function WidgetFrame({ className, children, header }: any) {
+
+// 	return (
+// 		<Frame className={className}>
+// 			{
+// 				header
+// 			}
+// 		</Frame>
+// 	)
+// }
+
+export function WidgetFrame({ className, widgetId, children }: any) {
 	return (
 		<Frame className={className}>
-			{children}
+			<WidgetHeader widgetId={widgetId}></WidgetHeader>
+			<WidgetContent>
+				{children}
+			</WidgetContent>
 		</Frame>
 	)
 }

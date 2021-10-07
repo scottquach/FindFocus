@@ -6,12 +6,20 @@ import LoopIcon from '@mui/icons-material/Loop';
 import { IconButton } from "@mui/material";
 import { WidgetHeader } from "../WidgetHeader";
 
-const Frame = styled(WidgetFrame)`
+// const Frame = styled(WidgetFrame)`
+// 	display: grid;
+// 	/* grid-template-rows: 1fr 2.5rem; */
+// 	align-items: center;
+// 	width: 100%;
+// 	padding: .25rem .75rem;
+// `
+
+const Content = styled.div`
 	display: grid;
-	/* grid-template-rows: 1fr 2.5rem; */
+	grid-template-rows: 1fr 2.5rem;
 	align-items: center;
+	height: 100%;
 	width: 100%;
-	padding: .25rem .75rem;
 `
 
 const Quote = styled.div`
@@ -50,16 +58,17 @@ export function QuoteWidget({ widgetId }: { widgetId: string }) {
 	}
 
 	return (
-		<Frame>
-			<WidgetHeader widgetId={widgetId}></WidgetHeader>
-			<div>
-				<Quote>"{quote}"</Quote>
-				<Author>- {author}</Author>
-			</div>
-			<RefreshButton onClick={loadQuote}>
-				<LoopIcon></LoopIcon>
-			</RefreshButton>
-		</Frame>
+		<WidgetFrame widgetId={widgetId}>
+			<Content>
+				<div>
+					<Quote>"{quote}"</Quote>
+					<Author>- {author}</Author>
+				</div>
+				<RefreshButton onClick={loadQuote}>
+					<LoopIcon></LoopIcon>
+				</RefreshButton>
+			</Content>
+		</WidgetFrame>
 	)
 }
 
