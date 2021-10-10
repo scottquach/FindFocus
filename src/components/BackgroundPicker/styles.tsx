@@ -28,7 +28,7 @@ export const PresetGrid = styled.div`
 	margin-bottom: 1.5rem;
 `
 
-export const Preset = styled.div`
+export const VideoPreset = styled.div`
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -74,10 +74,28 @@ export const ImagePreset = styled.img`
 	height: 100%;
 	width: 100%;
 	border-radius: 6px;
-	object-fit: none;
+	object-fit: cover;
 	cursor: pointer;
 	box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
 `
+
+export const ColorPresetContainer = styled(ImagePresetContainer)`
+	height: 3.5rem;
+	width: 3.5rem;
+`
+
+export const ColorPreset = styled.div`
+	height: 100%;
+	width: 100%;
+	box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+	border-radius: 8px;
+	background-color: ${props => props.color};
+	cursor: pointer;
+	border: 1px solid #9E9E9E;
+`
+
+
+
 
 export const CustomGrid = styled.div`
 	display: grid;

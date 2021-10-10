@@ -3,6 +3,7 @@ import AddIcon from '@mui/icons-material/Add';
 import ColorLensTwoToneIcon from '@mui/icons-material/ColorLensTwoTone';
 import HelpTwoToneIcon from '@mui/icons-material/HelpTwoTone';
 import AccountCircleTwoToneIcon from '@mui/icons-material/AccountCircleTwoTone';
+import ImageIcon from '@mui/icons-material/Image';
 
 import styled from "styled-components"
 import { WidgetFrame } from "./WidgetFrame";
@@ -41,6 +42,9 @@ export function MenuBar() {
 		<MenuLayout>
 			<Button startIcon={<AddIcon></AddIcon>} onClick={() => setOpen(true)}>New Widget</Button>
 			<MenuItems>
+				<IconButton>
+					<ImageIcon></ImageIcon>
+				</IconButton>
 				<IconButton>
 					<ColorLensTwoToneIcon></ColorLensTwoToneIcon>
 				</IconButton>

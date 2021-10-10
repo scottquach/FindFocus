@@ -22,7 +22,7 @@ const ImageBackground = styled.img`
 const ColorBackground = styled.div`
 	height: 100%;
 	width: 100%;
-	background-color: var(--background-color);
+	background-color: ${props => props.color};
 `
 
 const VideoBackground = styled.iframe`
@@ -45,8 +45,8 @@ export function Background() {
 		<BackgroundWrapper>
 			{background.type === BackgroundType.Image && <ImageBackground src={background.value} />}
 			{background.type === BackgroundType.Video && <VideoBackground allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" src={buildYouTubeUrl(background.value)}> </VideoBackground>}
+			{background.type === BackgroundType.Color && <ColorBackground color={background.value} />}
 			{/* {background.type === BackgroundType.Video && <VideoBackground allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" src="https://www.youtube.com/embed/eZe4Q_58UTU?autoplay=1&mute=1&controls=0&start=15&origin=https%3A%2F%2Flifeat.io&playsinline=1&showinfo=0&rel=0&iv_load_policy=3&modestbranding=1&enablejsapi=1"> </VideoBackground>} */}
-			{/* <ColorBackground></ColorBackground> */}
 		</BackgroundWrapper>
 	)
 }
