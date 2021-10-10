@@ -8,6 +8,7 @@ import styled from "styled-components"
 import { WidgetFrame } from "./WidgetFrame";
 import { useState } from "react";
 import { WidgetPicker } from "./WidgetPicker";
+import { BackgroundPicker } from "./BackgroundPicker";
 
 const MenuLayout = styled.div`
 		position: absolute;
@@ -16,6 +17,7 @@ const MenuLayout = styled.div`
 		display: flex;
 		width: 25rem;
 		height: 2.5rem;
+		background-color: gray;
 	`
 
 const MenuItems = styled.div`
@@ -43,6 +45,9 @@ export function MenuBar() {
 					<ColorLensTwoToneIcon></ColorLensTwoToneIcon>
 				</IconButton>
 				<IconButton>
+					<ColorLensTwoToneIcon></ColorLensTwoToneIcon>
+				</IconButton>
+				<IconButton>
 					<HelpTwoToneIcon></HelpTwoToneIcon>
 				</IconButton>
 				<IconButton>
@@ -50,8 +55,9 @@ export function MenuBar() {
 				</IconButton>
 			</MenuItems>
 
-			<Dialog maxWidth="lg"  open={open}>
-				<WidgetPicker close={() => setOpen(false)}></WidgetPicker>
+			<Dialog maxWidth="lg"  open={open} onClose={() => setOpen(false)}>
+				{/* <WidgetPicker close={() => setOpen(false)}></WidgetPicker> */}
+				<BackgroundPicker close={() => setOpen(false)}></BackgroundPicker>
 			</Dialog>
 
 			{/* <Popper id={id} open={open} anchorEl={anchorEl}>

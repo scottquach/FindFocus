@@ -15,9 +15,14 @@
 
   /* base theme colors */
   --background-color: #F8EDEB;
-  --widget-background-color: #FFE5D9
+  --widget-background-color: #FFE5D9;
+  --border-color: black;
 
 
+  --color-primary: #FAFAFA;
+  --color-primary-light: #9E9E9E;
 
-
+  /* --color-gray: #BDBDBD; */
+  --color-gray: #E0E0E0;
+  --color-gray-light: #F5F5F5;
 }
