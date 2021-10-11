@@ -30,10 +30,15 @@ const MenuItems = styled.div`
 		align-items: center;
 		margin-left: auto;
 	`
-
+enum MenuId {
+	WidgetPicker = 'widget_picker',
+	BackgroundPicker = 'background_picker',
+}
 
 export function MenuBar() {
 	// const [anchorEl, setAnchorEl] = useState(null);
+
+	const [menu, setMenu] = useState<MenuId | null>(null);
 
 	// const handleClick = (event: any) => {
 	// 	setAnchorEl(anchorEl ? null : event.target);
@@ -42,11 +47,16 @@ export function MenuBar() {
 	const [open, setOpen] = useState(false);
 	const id = open ? 'simple-popper' : undefined;
 
+	const onMenuSelected = (menu: MenuId) => {
+		setMenu(menu);
+		setOpen(true);
+	}
+
 	return (
 		<MenuLayout>
-			<Button startIcon={<AddIcon></AddIcon>} onClick={() => setOpen(true)}>New Widget</Button>
+			<Button startIcon={<AddIcon></AddIcon>} onClick={() => onMenuSelected(MenuId.WidgetPicker)}>New Widget</Button>
 			<MenuItems>
-				<IconButton>
+				<IconButton onClick={() => onMenuSelected(MenuId.BackgroundPicker)}>
 					<ImageIcon></ImageIcon>
 				</IconButton>
 				<IconButton>
@@ -61,8 +71,8 @@ export function MenuBar() {
 			</MenuItems>
 
 			<Dialog maxWidth="lg" open={open} onClose={() => setOpen(false)}>
-				<WidgetPicker close={() => setOpen(false)}></WidgetPicker>
-				{/* <BackgroundPicker close={() => setOpen(false)}></BackgroundPicker> */}
+				{menu === MenuId.WidgetPicker && <WidgetPicker close={() => setOpen(false)}></WidgetPicker>}
+				{menu === MenuId.BackgroundPicker && <BackgroundPicker close={() => setOpen(false)}></BackgroundPicker>}
 			</Dialog>
 
 			{/* <Popper id={id} open={open} anchorEl={anchorEl}>

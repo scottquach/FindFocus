@@ -8,6 +8,7 @@ import classNames from 'classnames';
 import { useSetRecoilState } from 'recoil';
 import { backgroundState } from '../../stores/store';
 import { BackgroundType } from '../../models/background-types.enum';
+import useLocalStorage from '../../hooks/useLocalStorage';
 
 const cateredImages = [
 	'https://images.unsplash.com/photo-1475359524104-d101d02a042b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1594&q=80',
@@ -35,26 +36,34 @@ const cateredColors = [
 
 export function BackgroundPicker({ close }: any) {
 	const setBackground = useSetRecoilState(backgroundState);
+	const [_, saveBackground] = useLocalStorage('background', {});
 
 	const setImageBackground = (imageUrl: string) => {
-		setBackground((old) => ({
+		const background = {
 			type: BackgroundType.Image,
 			value: imageUrl
-		}));
+		}
+		setBackground((old) => (background));
+		saveBackground(background);
 	}
 
 	const setVideoBackground = (videoUrl: string) => {
-		setBackground((old) => ({
+		const background = {
+
 			type: BackgroundType.Video,
 			value: videoUrl
-		}));
+		}
+		setBackground((old) => (background));
+		saveBackground(background);
 	}
 
 	const setColorBackground = (color: string) => {
-		setBackground((old) => ({
+		const background = {
 			type: BackgroundType.Color,
 			value: color
-		}));
+		}
+		setBackground((old) => (background));
+		saveBackground(background);
 	}
 
 	const onClose = () => {

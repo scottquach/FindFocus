@@ -3,6 +3,7 @@ import styled from "styled-components"
 import { BackgroundType } from "../models/background-types.enum"
 import { backgroundState } from "../stores/store"
 import Url from 'url-parse';
+import useLocalStorage from "../hooks/useLocalStorage";
 
 const BackgroundWrapper = styled.div`
 	position: fixed;
@@ -33,6 +34,7 @@ const VideoBackground = styled.iframe`
 `
 
 export function Background() {
+
 	const background = useRecoilValue(backgroundState);
 	// console.log('Background', background)
 
