@@ -4,5 +4,6 @@ export enum WidgetType {
 	YouTube = 'youtube',
 	Weather = 'weather',
 	Ambient = 'ambient',
-	Quote = 'quote'
+	Quote = 'quote',
+	Clock = 'clock'
 }

@@ -18,7 +18,11 @@ const MenuLayout = styled.div`
 		display: flex;
 		width: 25rem;
 		height: 2.5rem;
-		background-color: gray;
+		padding: .5rem .75rem;
+		border-radius: 8px;
+		border: 2px solid black;
+		background-color: var(--widget-background-color);
+		box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 	`
 
 const MenuItems = styled.div`
@@ -49,9 +53,6 @@ export function MenuBar() {
 					<ColorLensTwoToneIcon></ColorLensTwoToneIcon>
 				</IconButton>
 				<IconButton>
-					<ColorLensTwoToneIcon></ColorLensTwoToneIcon>
-				</IconButton>
-				<IconButton>
 					<HelpTwoToneIcon></HelpTwoToneIcon>
 				</IconButton>
 				<IconButton>
@@ -59,9 +60,9 @@ export function MenuBar() {
 				</IconButton>
 			</MenuItems>
 
-			<Dialog maxWidth="lg"  open={open} onClose={() => setOpen(false)}>
-				{/* <WidgetPicker close={() => setOpen(false)}></WidgetPicker> */}
-				<BackgroundPicker close={() => setOpen(false)}></BackgroundPicker>
+			<Dialog maxWidth="lg" open={open} onClose={() => setOpen(false)}>
+				<WidgetPicker close={() => setOpen(false)}></WidgetPicker>
+				{/* <BackgroundPicker close={() => setOpen(false)}></BackgroundPicker> */}
 			</Dialog>
 
 			{/* <Popper id={id} open={open} anchorEl={anchorEl}>

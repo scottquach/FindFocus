@@ -11,29 +11,39 @@ enum WidgetCategories {
 	Embed = 'embed'
 }
 
-const WidgetList =
-	[
-		{
-			title: 'Spotify',
-			description: 'Embed a spotify playlist or song',
-			type: WidgetType.Spotify
-		},
-		{
-			title: 'SoundCloud',
-			description: 'Play SoundlCloud playlists',
-			type: WidgetType.SoundCloud
-		},
-		{
-			title: 'Youtube Embed',
-			description: 'Embed a youtube video',
-			type: WidgetType.YouTube
-		},
-		{
-			title: 'Quote',
-			description: 'See a new quote every day!',
-			type: WidgetType.Quote
-		}
-	]
+const AudioWidgets = [
+	{
+		title: 'Spotify',
+		description: 'Embed a spotify playlist or song',
+		type: WidgetType.Spotify
+	},
+	{
+		title: 'SoundCloud',
+		description: 'Play SoundlCloud playlists',
+		type: WidgetType.SoundCloud
+	},
+]
+
+const ProductivityWidgets = [
+	{
+		title: 'Clock',
+		description: 'Display the time',
+		type: WidgetType.Clock
+	},
+	{
+		title: 'Youtube Embed',
+		description: 'Embed a youtube video',
+		type: WidgetType.YouTube
+	},
+];
+const InspirationWidgets = [
+	{
+		title: 'Quote',
+		description: 'See a new quote every day!',
+		type: WidgetType.Quote
+	}
+];
+
 
 
 export function WidgetPicker({ close }: any) {
@@ -56,22 +66,28 @@ export function WidgetPicker({ close }: any) {
 				</IconButton>
 			</S.MenuHeader>
 			<S.Categories>
+				<S.SectionTitle>AUDIO</S.SectionTitle>
 				<S.WidgetCategory>
-					{/* <S.WidgetCategoryHeader>Audio</S.WidgetCategoryHeader> */}
 					<S.WidgetCategoryList>
-						{WidgetList.map((widget) => {
+						{AudioWidgets.map((widget) => {
 							return <WidgetPreview key={widget.type} type={widget.type} title={widget.title} description={widget.description}></WidgetPreview>
 						})}
 					</S.WidgetCategoryList>
 				</S.WidgetCategory>
-				{/* <S.WidgetCategory>
-					<S.WidgetCategoryHeader>Embed</S.WidgetCategoryHeader>
-					<S.WidgetCategoryList>
-						{WidgetList.embed.map((widget) => {
-							return <WidgetPreview key={widget.id} title={widget.title} description={widget.description}></WidgetPreview>
-						})}
-					</S.WidgetCategoryList>
-				</S.WidgetCategory> */}
+				<S.SectionTitle>PRODUCTIVITY</S.SectionTitle>
+				<S.WidgetCategoryList>
+					{ProductivityWidgets.map((widget) => {
+						return <WidgetPreview key={widget.type} type={widget.type} title={widget.title} description={widget.description}></WidgetPreview>
+					})}
+				</S.WidgetCategoryList>
+
+				<S.SectionTitle>INSPIRATION</S.SectionTitle>
+				<S.WidgetCategoryList>
+					{InspirationWidgets.map((widget) => {
+						return <WidgetPreview key={widget.type} type={widget.type} title={widget.title} description={widget.description}></WidgetPreview>
+					})}
+				</S.WidgetCategoryList>
+				{/* <S.SectionTitle>EMBEDS</S.SectionTitle> */}
 			</S.Categories>
 		</S.Wrapper>
 	)

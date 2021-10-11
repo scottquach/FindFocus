@@ -8,6 +8,9 @@ import { activeWidgetsMapState, gridLayoutState } from "../stores/store";
 import { WidgetType } from "../models/widget-types.enum";
 import useUpdateLogger from '../hooks/useUpdateLogger';
 import useLocalStorage from '../hooks/useLocalStorage';
+import { SpotifyWidget } from './Widgets/SpotifyWidget';
+import { SoundCloudWidget } from './Widgets/SoundCloudWidget';
+import { ClockWidget } from './Widgets/ClockWidget';
 
 const Div = styled.div`
 	display: flex;
@@ -66,7 +69,18 @@ export function Grid() {
 								return <Div key={item.i}>
 									<EmbedWidget ></EmbedWidget>
 								</Div>
-
+							case WidgetType.Spotify:
+								return <Div key={item.i}>
+									<SpotifyWidget widgetId={item.i}></SpotifyWidget>
+								</Div>
+							case WidgetType.SoundCloud:
+								return <Div key={item.i}>
+									<SoundCloudWidget widgetId={item.i}></SoundCloudWidget>
+								</Div>
+							case WidgetType.Clock:
+								return <Div key={item.i}>
+									<ClockWidget widgetId={item.i}></ClockWidget>
+								</Div>
 							default:
 								<Div key={item.i}>
 									<Widget></Widget>
