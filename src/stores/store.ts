@@ -1,5 +1,5 @@
 import { Layout } from 'react-grid-layout';
-import { atom, selector } from 'recoil';
+import { atom, selector, selectorFamily } from 'recoil';
 import { BackgroundType } from '../models/background-types.enum';
 import { Widget } from '../models/widget.interface';
 
@@ -31,6 +31,13 @@ export const activeWidgetsMapState = selector({
         }, {});
     },
 });
+
+export const widgetById = selectorFamily({
+    key: 'widgetById',
+    get: (widgetId: string) => ({get}) => {
+        return get(activeWidgetsMapState)?.[widgetId];
+    }
+})
 
 export const backgroundState = atom({
     key: 'backgroundState',

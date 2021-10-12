@@ -1,7 +1,5 @@
 import { IconButton } from "@mui/material";
 import CloseIcon from '@mui/icons-material/Close';
-import styled from "styled-components";
-import { WidgetFrame } from "./WidgetFrame";
 import { WidgetPreview } from "./WidgetPreview";
 import * as S from "./WidgetPicker.styles";
 import { WidgetType } from "../models/widget-types.enum";

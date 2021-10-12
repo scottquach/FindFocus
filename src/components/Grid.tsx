@@ -4,13 +4,14 @@ import styled from "styled-components";
 import { QuoteWidget } from "./Widgets/QuoteWidget";
 import { EmbedWidget } from "./Widgets/EmbedWidget";
 import { useRecoilState, useRecoilValue } from "recoil";
-import { activeWidgetsMapState, gridLayoutState } from "../stores/store";
+import { activeWidgetsMapState, activeWidgetsState, gridLayoutState } from "../stores/store";
 import { WidgetType } from "../models/widget-types.enum";
 import useUpdateLogger from '../hooks/useUpdateLogger';
 import useLocalStorage from '../hooks/useLocalStorage';
-import { SpotifyWidget } from './Widgets/SpotifyWidget';
 import { SoundCloudWidget } from './Widgets/SoundCloudWidget';
 import { ClockWidget } from './Widgets/ClockWidget';
+import { SpotifyWidget } from './Widgets/SpotifyWidget';
+import useSyncLocalStorage from '../hooks/useSyncLocalStorage';
 
 const Div = styled.div`
 	display: flex;
@@ -32,9 +33,13 @@ export function Grid() {
 	console.log('GRID REBUILD')
 	const [gridLayout] = useRecoilState(gridLayoutState)
 	const widgetsMap = useRecoilValue(activeWidgetsMapState);
+	const activeWidgets = useRecoilValue(activeWidgetsState);
 	const [savedLayout, setSavedLayout] = useLocalStorage('grid-layout', '');
 
-	useUpdateLogger(gridLayout, 'grid layout state');
+	// useUpdateLogger(gridLayout, 'grid layout state');
+	useUpdateLogger(activeWidgets, 'active widgets state');
+	useSyncLocalStorage('active-widgets', activeWidgets)
+	// useUpdateLogger(widgetsMap, 'widget map');
 
 	const layouts = {
 		lg: gridLayout,

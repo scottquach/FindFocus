@@ -7,11 +7,11 @@ export const Wrapper = styled.div`
 
 `
 
-export const MenuTitle = styled.div`
-	font-size: 24px;
-	font-weight: 600;
-	margin-bottom: 1rem;
-`
+// export const MenuTitle = styled.div`
+// 	font-size: 24px;
+// 	font-weight: 600;
+// 	margin-bottom: 1rem;
+// `
 
 export const SectionTitle = styled.div`
 	font-size: 14px;

@@ -3,6 +3,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import OpenInFullIcon from '@mui/icons-material/OpenInFull';
 import styled from "styled-components";
 import useDeleteWidget from "../hooks/useDeleteWidget";
+import SettingsIcon from '@mui/icons-material/Settings';
 
 const HeaderWrapper = styled.div`
 `
@@ -37,6 +38,9 @@ export function WidgetHeader({ widgetId }: any) {
 				<div>
 					<IconButton size="small">
 						<OpenInFullIcon fontSize="small" />
+					</IconButton>
+					<IconButton size="small" onClick={onCloseClick}>
+						<SettingsIcon fontSize="small" />
 					</IconButton>
 					<IconButton size="small" onClick={onCloseClick}>
 						<CloseIcon fontSize="small" />

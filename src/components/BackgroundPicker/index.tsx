@@ -9,6 +9,7 @@ import { useSetRecoilState } from 'recoil';
 import { backgroundState } from '../../stores/store';
 import { BackgroundType } from '../../models/background-types.enum';
 import useLocalStorage from '../../hooks/useLocalStorage';
+import { MenuHeader } from '../../GlobalStyles';
 
 const cateredImages = [
 	'https://images.unsplash.com/photo-1475359524104-d101d02a042b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1594&q=80',
@@ -73,7 +74,7 @@ export function BackgroundPicker({ close }: any) {
 
 	return (
 		<S.Wrapper>
-			<S.MenuTitle>Backgrounds</S.MenuTitle>
+			<MenuHeader>Backgrounds</MenuHeader>
 
 			<S.SectionTitle>CATERED VIDEOS</S.SectionTitle>
 			<S.PresetGrid>

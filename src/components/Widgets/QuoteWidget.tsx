@@ -39,7 +39,7 @@ const RefreshButton = styled(IconButton)`
 
 `
 export function QuoteWidget({ widgetId }: { widgetId: string }) {
-	console.log('QUOTE WIDGET')
+	// console.log('QUOTE WIDGET')
 
 	const [quote, setQuote] = useState('');
 	const [author, setAuthor] = useState('')
