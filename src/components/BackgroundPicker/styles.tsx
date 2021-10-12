@@ -4,20 +4,27 @@ export const Wrapper = styled.div`
 	padding: 1rem;
 	width: 50rem;
 	height: 40rem;
-
 `
 
-// export const MenuTitle = styled.div`
-// 	font-size: 24px;
-// 	font-weight: 600;
-// 	margin-bottom: 1rem;
-// `
+export const MenuHeaderLayout = styled.div`
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 1rem;
+`
+
+export const SectionLayout = styled.div`
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	margin-bottom: 1rem;
+`
 
 export const SectionTitle = styled.div`
 	font-size: 14px;
 	font-weight: 500;
-	margin-bottom: .25rem;
 	opacity: .75;
+	margin-left: .25rem;
 `
 
 export const PresetGrid = styled.div`

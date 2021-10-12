@@ -3,7 +3,13 @@ import CoffeeIcon from '@mui/icons-material/Coffee';
 import DirectionsWalkIcon from '@mui/icons-material/DirectionsWalk';
 import LocationCityIcon from '@mui/icons-material/LocationCity';
 import BeachAccessIcon from '@mui/icons-material/BeachAccess';
-import { TextField, Tooltip } from '@mui/material';
+
+import VideoLibraryIcon from '@mui/icons-material/VideoLibrary';
+import ImageIcon from '@mui/icons-material/Image';
+import PaletteIcon from '@mui/icons-material/Palette';
+import CloseIcon from '@mui/icons-material/Close';
+
+import { IconButton, Tooltip } from '@mui/material';
 import classNames from 'classnames';
 import { useSetRecoilState } from 'recoil';
 import { backgroundState } from '../../stores/store';
@@ -74,9 +80,17 @@ export function BackgroundPicker({ close }: any) {
 
 	return (
 		<S.Wrapper>
-			<MenuHeader>Backgrounds</MenuHeader>
+			<S.MenuHeaderLayout>
+				<MenuHeader>Backgrounds</MenuHeader>
+				<IconButton onClick={onClose}>
+					<CloseIcon></CloseIcon>
+				</IconButton>
+			</S.MenuHeaderLayout>
 
-			<S.SectionTitle>CATERED VIDEOS</S.SectionTitle>
+			<S.SectionLayout>
+				<VideoLibraryIcon></VideoLibraryIcon>
+				<S.SectionTitle>CATERED VIDEOS</S.SectionTitle>
+			</S.SectionLayout>
 			<S.PresetGrid>
 				<Tooltip title="Cafe">
 					<S.VideoPreset className={classNames({ 'selected': false })} onClick={() => setVideoBackground('https://www.youtube.com/watch?v=3nyuWu7dnTM&ab_channel=LauraAngelia')}>
@@ -100,7 +114,10 @@ export function BackgroundPicker({ close }: any) {
 				</Tooltip>
 			</S.PresetGrid>
 
-			<S.SectionTitle>CATERED IMAGES</S.SectionTitle>
+			<S.SectionLayout>
+				<ImageIcon></ImageIcon>
+				<S.SectionTitle>CATERED IMAGES</S.SectionTitle>
+			</S.SectionLayout>
 
 			<S.ImagePresetGrid>
 				{cateredImages.map((url) => {
@@ -110,7 +127,10 @@ export function BackgroundPicker({ close }: any) {
 				})}
 			</S.ImagePresetGrid>
 
-			<S.SectionTitle>CATERED COLORS</S.SectionTitle>
+			<S.SectionLayout>
+				<PaletteIcon></PaletteIcon>
+				<S.SectionTitle>CATERED COLORS</S.SectionTitle>
+			</S.SectionLayout>
 			<S.PresetGrid>
 				{cateredColors.map((color) => {
 					return (
