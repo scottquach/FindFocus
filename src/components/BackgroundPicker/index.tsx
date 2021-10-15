@@ -8,6 +8,7 @@ import VideoLibraryIcon from '@mui/icons-material/VideoLibrary';
 import ImageIcon from '@mui/icons-material/Image';
 import PaletteIcon from '@mui/icons-material/Palette';
 import CloseIcon from '@mui/icons-material/Close';
+import WindowIcon from '@mui/icons-material/Window';
 
 import { IconButton, Tooltip } from '@mui/material';
 import classNames from 'classnames';
@@ -15,7 +16,7 @@ import { useSetRecoilState } from 'recoil';
 import { backgroundState } from '../../stores/store';
 import { BackgroundType } from '../../models/background-types.enum';
 import useLocalStorage from '../../hooks/useLocalStorage';
-import { MenuHeader } from '../../GlobalStyles';
+import { MenuHeader, MenuHeaderLayout } from '../../GlobalStyles';
 
 const cateredImages = [
 	'https://images.unsplash.com/photo-1475359524104-d101d02a042b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1594&q=80',
@@ -77,15 +78,14 @@ export function BackgroundPicker({ close }: any) {
 		close();
 	}
 
-
 	return (
 		<S.Wrapper>
-			<S.MenuHeaderLayout>
+			<MenuHeaderLayout>
 				<MenuHeader>Backgrounds</MenuHeader>
 				<IconButton onClick={onClose}>
 					<CloseIcon></CloseIcon>
 				</IconButton>
-			</S.MenuHeaderLayout>
+			</MenuHeaderLayout>
 
 			<S.SectionLayout>
 				<VideoLibraryIcon></VideoLibraryIcon>
@@ -110,6 +110,11 @@ export function BackgroundPicker({ close }: any) {
 				<Tooltip title="City">
 					<S.VideoPreset className={classNames({ 'selected': false })} onClick={() => setVideoBackground('https://www.youtube.com/watch?v=AdUw5RdyZxI&ab_channel=EarthCam')}>
 						<LocationCityIcon></LocationCityIcon>
+					</S.VideoPreset>
+				</Tooltip>
+				<Tooltip title="Windows">
+					<S.VideoPreset className={classNames({ 'selected': false })} onClick={() => setVideoBackground('https://www.youtube.com/watch?v=iLs04Z6uBqU&t=21s&ab_channel=RelaxationWindows4KNature')}>
+						<WindowIcon></WindowIcon>
 					</S.VideoPreset>
 				</Tooltip>
 			</S.PresetGrid>

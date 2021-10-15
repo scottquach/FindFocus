@@ -10,6 +10,7 @@ import { WidgetFrame } from "./WidgetFrame";
 import { useState } from "react";
 import { WidgetPicker } from "./WidgetPicker";
 import { BackgroundPicker } from "./BackgroundPicker";
+import { ThemePicker } from "./ThemePicker";
 
 const MenuLayout = styled.div`
 		position: absolute;
@@ -33,6 +34,7 @@ const MenuItems = styled.div`
 enum MenuId {
 	WidgetPicker = 'widget_picker',
 	BackgroundPicker = 'background_picker',
+	ThemePicker = 'theme_picker',
 }
 
 export function MenuBar() {
@@ -59,7 +61,7 @@ export function MenuBar() {
 				<IconButton onClick={() => onMenuSelected(MenuId.BackgroundPicker)}>
 					<ImageIcon></ImageIcon>
 				</IconButton>
-				<IconButton>
+				<IconButton onClick={() => onMenuSelected(MenuId.ThemePicker)}>
 					<ColorLensTwoToneIcon></ColorLensTwoToneIcon>
 				</IconButton>
 				<IconButton>
@@ -73,6 +75,7 @@ export function MenuBar() {
 			<Dialog maxWidth="lg" open={open} onClose={() => setOpen(false)}>
 				{menu === MenuId.WidgetPicker && <WidgetPicker close={() => setOpen(false)}></WidgetPicker>}
 				{menu === MenuId.BackgroundPicker && <BackgroundPicker close={() => setOpen(false)}></BackgroundPicker>}
+				{menu === MenuId.ThemePicker && <ThemePicker></ThemePicker>}
 			</Dialog>
 
 			{/* <Popper id={id} open={open} anchorEl={anchorEl}>

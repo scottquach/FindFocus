@@ -1,16 +1,9 @@
 import styled from "styled-components";
+import { MenuWrapper } from "../../GlobalStyles";
 
-export const Wrapper = styled.div`
-	padding: 1rem;
+export const Wrapper = styled(MenuWrapper)`
 	width: 50rem;
 	height: 40rem;
-`
-
-export const MenuHeaderLayout = styled.div`
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	margin-bottom: 1rem;
 `
 
 export const SectionLayout = styled.div`
