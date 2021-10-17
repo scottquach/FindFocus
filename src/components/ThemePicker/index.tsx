@@ -7,10 +7,10 @@ import { MenuHeader } from "../../GlobalStyles";
 import * as S from './styles';
 
 
-export function ThemePicker() {
+export function ThemePicker({ close }: any) {
 
 	const onClose = () => {
-
+		close();
 	}
 
 	return (
@@ -32,7 +32,7 @@ export function ThemePicker() {
 					<S.ThemeContainer></S.ThemeContainer>
 					<S.ThemeName>OCTANE</S.ThemeName>
 				</S.Theme>
-		<S.Theme>
+				<S.Theme>
 					<S.ThemeContainer></S.ThemeContainer>
 					<S.ThemeName>RED OCTOBER</S.ThemeName>
 				</S.Theme>

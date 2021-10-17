@@ -75,7 +75,7 @@ export function MenuBar() {
 			<Dialog maxWidth="lg" open={open} onClose={() => setOpen(false)}>
 				{menu === MenuId.WidgetPicker && <WidgetPicker close={() => setOpen(false)}></WidgetPicker>}
 				{menu === MenuId.BackgroundPicker && <BackgroundPicker close={() => setOpen(false)}></BackgroundPicker>}
-				{menu === MenuId.ThemePicker && <ThemePicker></ThemePicker>}
+				{menu === MenuId.ThemePicker && <ThemePicker close={() => setOpen(false)}></ThemePicker>}
 			</Dialog>
 
 			{/* <Popper id={id} open={open} anchorEl={anchorEl}>
