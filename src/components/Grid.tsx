@@ -12,6 +12,7 @@ import { SoundCloudWidget } from './Widgets/SoundCloudWidget';
 import { ClockWidget } from './Widgets/ClockWidget';
 import { SpotifyWidget } from './Widgets/SpotifyWidget';
 import useSyncLocalStorage from '../hooks/useSyncLocalStorage';
+import { AmbientNoiseWidget } from './Widgets/AmbientNoiseWidget';
 
 const Div = styled.div`
 	display: flex;
@@ -59,6 +60,7 @@ export function Grid() {
 				breakpoints={{ lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0 }}
 				cols={{ lg: 14, md: 12, sm: 8, xs: 6, xxs: 4 }}
 				onLayoutChange={onLayoutChange}
+				draggableCancel=".NonDraggable"
 			// onResizeStop={(item: ItemCallback) => onLayoutChange(item)}
 			>
 				{
@@ -86,6 +88,11 @@ export function Grid() {
 								return <Div key={item.i}>
 									<ClockWidget widgetId={item.i}></ClockWidget>
 								</Div>
+							case WidgetType.Ambient:
+								return <Div key={item.i}>
+									<AmbientNoiseWidget></AmbientNoiseWidget>
+								</Div>
+
 							default:
 								<Div key={item.i}>
 									<Widget></Widget>

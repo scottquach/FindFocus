@@ -16,6 +16,11 @@ const AudioWidgets = [
 		type: WidgetType.Spotify
 	},
 	{
+		title: 'Ambient',
+		description: 'Ambient',
+		type: WidgetType.Ambient
+	},
+	{
 		title: 'SoundCloud',
 		description: 'Play SoundlCloud playlists',
 		type: WidgetType.SoundCloud

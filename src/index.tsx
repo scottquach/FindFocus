@@ -4,6 +4,15 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { RecoilRoot } from 'recoil';
+import './firebase'
+import { getAuth, signInAnonymously } from 'firebase/auth';
+
+const auth = getAuth();
+signInAnonymously(auth)
+  .then(() => {
+    console.log('Signedin')
+  })
+  .catch(console.error)
 
 ReactDOM.render(
   <React.StrictMode>

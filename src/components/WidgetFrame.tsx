@@ -10,6 +10,7 @@ const Frame = styled.div`
 	border-radius: 8px;
 	height: 100%;
 	width: 100%;
+
 `
 
 const WidgetContent = styled.div`
@@ -31,7 +32,7 @@ export function WidgetFrame({ className, widgetId, children }: any) {
 	return (
 		<Frame className={className}>
 			<WidgetHeader widgetId={widgetId}></WidgetHeader>
-			<WidgetContent>
+			<WidgetContent className="NonDraggable">
 				{children}
 			</WidgetContent>
 		</Frame>
