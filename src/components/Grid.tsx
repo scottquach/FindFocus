@@ -9,10 +9,10 @@ import { WidgetType } from "../models/widget-types.enum";
 import useUpdateLogger from '../hooks/useUpdateLogger';
 import useLocalStorage from '../hooks/useLocalStorage';
 import { SoundCloudWidget } from './Widgets/SoundCloudWidget';
-import { ClockWidget } from './Widgets/ClockWidget';
 import { SpotifyWidget } from './Widgets/SpotifyWidget';
 import useSyncLocalStorage from '../hooks/useSyncLocalStorage';
 import { AmbientNoiseWidget } from './Widgets/AmbientNoiseWidget';
+import ClockWidget from './Widgets/ClockWidget';
 
 const Div = styled.div`
 	display: flex;
