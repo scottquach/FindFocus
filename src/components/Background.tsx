@@ -40,7 +40,7 @@ export function Background() {
 
 	const buildYouTubeUrl = (youtubeUrl: string) => {
 		const parsed = Url(youtubeUrl, true);
-		return `https://www.youtube.com/embed/${parsed.query?.v}?autoplay=1&mute=1&controls=0&start=15&origin=https%3A%2F%2Flifeat.io&playsinline=1&showinfo=0&rel=0&iv_load_policy=3&modestbranding=1&enablejsapi=1`
+		return `https://www.youtube.com/embed/${parsed.query?.v}?autoplay=1&mute=1&loop=1&controls=0&start=15&origin=https%3A%2F%2Flifeat.io&playsinline=1&showinfo=0&rel=0&iv_load_policy=3&modestbranding=1&enablejsapi=1`
 	}
 
 	return (

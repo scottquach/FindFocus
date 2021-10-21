@@ -1,6 +1,7 @@
 import axios from "axios"
 import { useEffect } from "react"
 import styled from "styled-components"
+import useCurrentLocation from "../../hooks/useCurrentLocation"
 import { WidgetFrame } from "../WidgetFrame"
 
 
@@ -9,6 +10,8 @@ const Frame = styled(WidgetFrame)`
 `
 
 export function WeatherWidget() {
+
+	const [location] = useCurrentLocation();
 
 	useEffect(() => {
 		loadCurrentWeather();

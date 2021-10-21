@@ -4,7 +4,8 @@
   height: 100vh;
   text-align: center;
   /* background-color: var(--background-color); */
-  font-family: 'Noto Sans', sans-serif !important;
+/* font-family: 'Raleway', sans-serif; */
+font-family: 'Work Sans', sans-serif;
 }
 
 .test-widget {
@@ -16,7 +17,7 @@
 
   /* base theme colors */
   --background-color: #F8EDEB;
-  --widget-background-color: #FFE5D9;
+  --widget-background-color: #F8EDEB;
   --border-color: black;
 
 

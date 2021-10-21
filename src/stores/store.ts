@@ -46,3 +46,11 @@ export const backgroundState = atom({
         value: 'https://images.unsplash.com/photo-1619199748576-75ae8022c73f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2070&q=80'
     }
 });
+
+export const globalConfigState = atom({
+    key: 'globalConfigState',
+    default: {
+        gridVisible: true,
+        backgroundAudio: true
+    }
+});
