@@ -20,7 +20,7 @@ export function SpotifyWidget({ widgetId }: { widgetId: string }) {
 
 	return (
 		<WidgetFrame widgetId={widgetId}>
-			<button onClick={() => setSettingsOpen(!settingsOpen)}>Test</button>
+			{/* <button onClick={() => setSettingsOpen(!settingsOpen)}>Test</button> */}
 			{ data?.link && <Content src={data.link} frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></Content>}
 			{!data?.link && <div>Click the settings to enter a Spotify playlist</div>}
 			<Dialog open={settingsOpen} onClose={() => setSettingsOpen(false)}>

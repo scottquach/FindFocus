@@ -4,15 +4,6 @@ import { WidgetFrame } from "../WidgetFrame";
 import styled from "styled-components";
 import LoopIcon from '@mui/icons-material/Loop';
 import { IconButton } from "@mui/material";
-import { WidgetHeader } from "../WidgetHeader";
-
-// const Frame = styled(WidgetFrame)`
-// 	display: grid;
-// 	/* grid-template-rows: 1fr 2.5rem; */
-// 	align-items: center;
-// 	width: 100%;
-// 	padding: .25rem .75rem;
-// `
 
 const Content = styled.div`
 	display: grid;
@@ -29,7 +20,7 @@ const Quote = styled.div`
 
 const Author = styled.div`
 	text-align: center;
-	font-weight: 500;
+	font-weight: 600;
 	margin-top: .25rem;
 `
 
@@ -49,7 +40,7 @@ export function QuoteWidget({ widgetId }: { widgetId: string }) {
 	}, [])
 
 	function loadQuote() {
-		axios.get("https://api.quotable.io/random")
+		axios.get("https://api.quotable.io/random?maxLength=120")
 			.then(response => {
 				console.log(response);
 				setQuote(response.data.content)

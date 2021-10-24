@@ -16,6 +16,6 @@ export const Frame = styled.div`
 
 
 	/* color: white; */
-	background-color: rgba(248, 237, 235, .80);
+	background-color: #ffffffd8;
 	backdrop-filter: saturate(50%) blur(15px) brightness(90%);
 `

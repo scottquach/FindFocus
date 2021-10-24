@@ -1,5 +1,6 @@
 import { DateTime } from "luxon";
 import { useEffect, useState } from "react";
+import { WidgetFrame } from "../../WidgetFrame";
 import ClockOne from "./ClockOne";
 import ClockTwo from "./ClockTwo";
 import { Frame } from "./styles";
