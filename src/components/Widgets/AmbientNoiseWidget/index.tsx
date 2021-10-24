@@ -51,7 +51,7 @@ function Noise({ noiseId, icon }: { noiseId: NoiseId, icon: IconDefinition }) {
 
 	return (
 		<S.Noise>
-			<S.NoiseIcon icon={icon} size="2x" onClick={() => toggle()} active={playing as boolean}></S.NoiseIcon>
+			<S.NoiseIcon icon={icon} size="2x" onClick={() => toggle()} active={playing ? 1 : 0}></S.NoiseIcon>
 			{playing && <Slider size="small" value={volume} step={0.01} min={0} max={1} onChange={onVolumeSliderChange}></Slider>}
 		</S.Noise>
 	)
@@ -81,18 +81,6 @@ export function AmbientNoiseWidget({ widgetId }: any) {
 				<Noise noiseId={NoiseId.Water} icon={faWater}></Noise>
 				<Noise noiseId={NoiseId.Bird} icon={faDove}></Noise>
 				<Noise noiseId={NoiseId.Cafe} icon={faCoffee}></Noise>
-				{/* <S.Noise>
-					<S.NoiseIcon active={active[NoiseId.Rain]} icon={faCloudRain} size="2x" onClick={() => toggleNoise(NoiseId.Rain)}></S.NoiseIcon>
-					{active[NoiseId.Rain] && <Slider size="small"></Slider>}
-				</S.Noise>
-				<S.Noise>
-					<S.NoiseIcon active={active[NoiseId.Thunder]} icon={faPooStorm} size="2x" onClick={() => toggleNoise(NoiseId.Thunder)}></S.NoiseIcon>
-					{active[NoiseId.Thunder] && <Slider size="small"></Slider>}
-				</S.Noise>
-				<S.Noise>
-					<S.NoiseIcon active={active[NoiseId.Wind]} icon={faWind} size="2x" onClick={() => toggleNoise(NoiseId.Wind)}></S.NoiseIcon>
-					{active[NoiseId.Wind] && <Slider size="small"></Slider>}
-				</S.Noise> */}
 				{/* <S.Noise>
 					<FontAwesomeIcon icon={faFire} size="2x"></FontAwesomeIcon>
 					<Slider size="small"></Slider>

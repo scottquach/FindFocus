@@ -16,7 +16,7 @@ export const Noise = styled.div`
 `
 
 export const NoiseIcon = styled(FontAwesomeIcon).attrs((props: any) => ({
-	active: props.active
+	active: props.active 
 }))`
 	cursor: pointer;
 	color: ${({ active }) => active ? 'black' : 'gray'};

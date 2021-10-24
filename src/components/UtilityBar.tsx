@@ -1,17 +1,16 @@
 import { ClickAwayListener, IconButton, Slider, Tooltip } from "@mui/material"
 import FullscreenIcon from '@mui/icons-material/Fullscreen';
-import ShareTwoToneIcon from '@mui/icons-material/ShareTwoTone';
-import FileDownloadTwoToneIcon from '@mui/icons-material/FileDownloadTwoTone';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import VolumeUpIcon from '@mui/icons-material/VolumeUp';
 import VolumeDownIcon from '@mui/icons-material/VolumeDown';
+import HideSourceIcon from '@mui/icons-material/HideSource';
+import VolumeMuteIcon from '@mui/icons-material/VolumeMute';
 import VolumeOffIcon from '@mui/icons-material/VolumeOff';
 import WidgetsIcon from '@mui/icons-material/Widgets';
 import styled from "styled-components"
 import { useEffect, useState } from "react";
-import { TimerOutlined, VolumeMute } from "@mui/icons-material";
 import { useRecoilState } from "recoil";
-import { globalVolumeState } from "../stores/store";
+import { globalConfigState, globalVolumeState } from "../stores/store";
 
 const UtilityBarLayout = styled.div`
 		display: flex;
@@ -21,26 +20,13 @@ const UtilityBarLayout = styled.div`
 		position: absolute;
 		top: 1rem;
 		right: 1rem;
-		/* height: 2.5rem; */
 	`
 
 const Frame = styled.div`
 	border-radius: 8px;
-	/* color: white; */
 	background-color: #ffffffd8;
 	backdrop-filter: saturate(50%) blur(15px);
 `
-
-const BarButton = styled.div`
-		border: 1px solid black;
-		border-radius: 24px;
-		margin-right: .5rem;
-		background-color: var(--widget-background-color);
-
-		:last-child {
-			margin-right: 0rem;
-		}
-	`
 
 export function UtilityBar() {
 	function triggerFullscreen() {
@@ -49,11 +35,7 @@ export function UtilityBar() {
 
 	return (
 		<UtilityBarLayout>
-			<Frame>
-				<IconButton>
-					<WidgetsIcon></WidgetsIcon>
-				</IconButton>
-			</Frame>
+			<GridToggle></GridToggle>
 			<VolumeSlider></VolumeSlider>
 			<Frame>
 				<IconButton>
@@ -65,6 +47,36 @@ export function UtilityBar() {
 
 			</Frame>
 		</UtilityBarLayout>
+	)
+}
+
+const GridToggleDescription = styled.span`
+	font-size: 14px;
+	margin-left: .25rem;
+
+`
+
+function GridToggle() {
+
+	const [state, setState] = useRecoilState(globalConfigState);
+
+	const onGridToggle = () => {
+		setState((old) => {
+			return {
+				...old,
+				gridVisible: !old.gridVisible
+			}
+		});
+	}
+
+	return (
+		<Frame>
+			<IconButton onClick={onGridToggle}>
+				{state.gridVisible && <WidgetsIcon></WidgetsIcon>}
+				{!state.gridVisible && <HideSourceIcon></HideSourceIcon>}
+				{!state.gridVisible && <GridToggleDescription>Hiding widgets</GridToggleDescription>}
+			</IconButton>
+		</Frame>
 	)
 }
 
@@ -106,8 +118,9 @@ function VolumeSlider() {
 			<Frame>
 				<VolumeMenu active={toggle}>
 					<IconButton onClick={() => setToggle(!toggle)}>
-						{volume >= 50 && <VolumeUpIcon></VolumeUpIcon>}
-						{volume != 0 && volume < 50 && <VolumeDownIcon></VolumeDownIcon>}
+						{volume >= 60 && <VolumeUpIcon></VolumeUpIcon>}
+						{volume > 25 && volume < 60 && <VolumeDownIcon></VolumeDownIcon>}
+						{volume > 0 && volume <= 25 && <VolumeMuteIcon></VolumeMuteIcon>}
 						{volume == 0 && <VolumeOffIcon></VolumeOffIcon>}
 					</IconButton>
 					{toggle && <Slider orientation="vertical" value={volume} onChange={handleVolumeChange}></Slider>}
