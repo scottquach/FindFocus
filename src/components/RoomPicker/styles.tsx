@@ -2,8 +2,13 @@ import styled from "styled-components";
 import { MenuWrapper } from "../../GlobalStyles";
 
 export const Wrapper = styled(MenuWrapper)`
+	/* background-color: var(--background-color); */
+	background-color: #ffffffc0;
+	backdrop-filter: saturate(50%) blur(15px);
 	width: 50rem;
-	height: 40rem;
+	height: 20rem;
+	border-radius: 16px;
+	margin-bottom: 1rem;
 `
 
 export const SectionLayout = styled.div`
@@ -22,32 +27,10 @@ export const SectionTitle = styled.div`
 
 export const PresetGrid = styled.div`
 	display: grid;
-    grid-template-columns: repeat(auto-fill, 4rem);
+    grid-template-columns: repeat(auto-fill, 9rem);
 	grid-gap: 1rem;
 	width: 100%;
 	margin-bottom: 1.5rem;
-`
-
-export const VideoPreset = styled.div`
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	width: 4rem;
-	height: 4rem;
-	border-radius: 8px;
-	border: 1px solid var(--color-gray);
-	cursor: pointer;
-	transition: all .1s;
-
-	:hover {
-		background-color: var(--color-gray-light);
-	}
-
-	&.selected {
-		border: 2px solid var(--color-primary);
-		background-color: var(--color-primary-light);
-		color: var(--color-primary)
-	}
 `
 
 export const ImagePresetGrid = styled(PresetGrid)`
@@ -95,8 +78,6 @@ export const ColorPreset = styled.div`
 `
 
 
-
-
 export const CustomGrid = styled.div`
 	display: grid;
 	grid-template-columns: 1fr 1fr;
@@ -119,4 +100,69 @@ export const CustomHeader = styled.div`
 export const CustomDescription = styled.div`
 	font-size: 16px;
 	margin-bottom: 1rem;
+`
+
+export const VideoName = styled.div`
+	transition: all .2s;
+	position: absolute;
+	bottom: 0;
+	display: flex;
+	align-items: center;
+	border-top-left-radius: 12px;
+	border-top-right-radius: 4px;
+	/* padding: 0 .5rem; */
+	font-size: 18px;
+	font-weight: 600;
+	width: 10rem;
+	height: 3rem;
+	z-index: 2;
+	background: white;
+	/* transform: translateY(20px); */
+
+	span:first-child {
+		margin-right: .5rem;
+		margin-left: .5rem;
+	}
+
+	span:last-child {
+	}
+`
+
+export const VideoRoom = styled.div< { selected?: boolean }>`
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+	width: 9rem;
+	height: 12rem;
+	border-radius: 12px;
+	background-color: lightgray;
+	cursor: pointer;
+	z-index: 0;
+	border: 1px solid #9A9A9A;
+	overflow: hidden;
+	transition: all .2s;
+	transform: ${props => props.selected ? 'translateY(-6px)' : ''};
+
+	${VideoName} {
+		height: ${props => props.selected ? '5rem' : ''};
+
+	}
+
+	:hover ${VideoName} {
+		/* transform: translateY(-10px) */
+		height: 5rem;
+	}
+
+	:hover {
+		transform: translateY(-6px);
+	}
+`
+
+export const VideoImage = styled.img`
+	width: 100%;
+	height: 100%;
+	/* height: calc(100% - 2.75rem); */
+	object-fit: cover;
+	border-radius: 8px;
 `
