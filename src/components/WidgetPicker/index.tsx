@@ -1,8 +1,8 @@
 import { IconButton } from "@mui/material";
 import CloseIcon from '@mui/icons-material/Close';
-import { WidgetPreview } from "./WidgetPreview";
-import * as S from "./WidgetPicker.styles";
-import { WidgetType } from "../models/widget-types.enum";
+import { WidgetPreview } from "../WidgetPreview";
+import * as S from "./styles";
+import { WidgetType } from "../../models/widget-types.enum";
 
 enum WidgetCategories {
 	Audio = 'audio',
@@ -20,11 +20,11 @@ const AudioWidgets = [
 		description: 'Ambient',
 		type: WidgetType.Ambient
 	},
-	{
-		title: 'SoundCloud',
-		description: 'Play SoundlCloud playlists',
-		type: WidgetType.SoundCloud
-	},
+	// {
+	// 	title: 'SoundCloud',
+	// 	description: 'Play SoundlCloud playlists',
+	// 	type: WidgetType.SoundCloud
+	// },
 ]
 
 const ProductivityWidgets = [
@@ -33,11 +33,11 @@ const ProductivityWidgets = [
 		description: 'Display the time',
 		type: WidgetType.Clock
 	},
-	{
-		title: 'Youtube Embed',
-		description: 'Embed a youtube video',
-		type: WidgetType.YouTube
-	},
+	// {
+	// 	title: 'Youtube Embed',
+	// 	description: 'Embed a youtube video',
+	// 	type: WidgetType.YouTube
+	// },
 ];
 const InspirationWidgets = [
 	{

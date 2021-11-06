@@ -110,36 +110,36 @@ export function BackgroundPicker({ close }: any) {
 				<S.SectionTitle>VIDEO ROOMS</S.SectionTitle>
 			</S.SectionLayout>
 			<S.PresetGrid>
-				<S.VideoRoom selected={background.roomId == VideoRoom.Cafe}>
-					<S.VideoImage onClick={() => joinVideoRoom(VideoRoom.Cafe)} src={videoRoomBackgrounds[VideoRoom.Cafe]} ></S.VideoImage>
+				<S.VideoRoom selected={background.roomId == VideoRoom.Cafe}  onClick={() => joinVideoRoom(VideoRoom.Cafe)}>
+					<S.VideoImage src={videoRoomBackgrounds[VideoRoom.Cafe]} ></S.VideoImage>
 					<S.VideoName className="">
 						<span>☕️</span>
 						<span>Cafe</span>
 					</S.VideoName>
 				</S.VideoRoom>
-				<S.VideoRoom selected={background.roomId == VideoRoom.City}>
-					<S.VideoImage onClick={() => joinVideoRoom(VideoRoom.City)} src={videoRoomBackgrounds[VideoRoom.City]}></S.VideoImage>
+				<S.VideoRoom selected={background.roomId == VideoRoom.City} onClick={() => joinVideoRoom(VideoRoom.City)}>
+					<S.VideoImage  src={videoRoomBackgrounds[VideoRoom.City]}></S.VideoImage>
 					<S.VideoName >
 						<span>🏙️</span>
 						<span>City</span>
 					</S.VideoName>
 				</S.VideoRoom>
-				<S.VideoRoom selected={background.roomId == VideoRoom.Beach}>
-					<S.VideoImage onClick={() => joinVideoRoom(VideoRoom.Beach)} src={videoRoomBackgrounds[VideoRoom.Beach]}></S.VideoImage>
+				<S.VideoRoom selected={background.roomId == VideoRoom.Beach} onClick={() => joinVideoRoom(VideoRoom.Beach)}>
+					<S.VideoImage  src={videoRoomBackgrounds[VideoRoom.Beach]}></S.VideoImage>
 					<S.VideoName >
 						<span>🏖️️</span>
 						<span>Beach</span>
 					</S.VideoName>
 				</S.VideoRoom>
-				<S.VideoRoom selected={background.roomId == VideoRoom.Walk}>
-					<S.VideoImage onClick={() => joinVideoRoom(VideoRoom.Walk)} src={videoRoomBackgrounds[VideoRoom.Walk]}></S.VideoImage>
+				<S.VideoRoom selected={background.roomId == VideoRoom.Walk} onClick={() => joinVideoRoom(VideoRoom.Walk)}>
+					<S.VideoImage  src={videoRoomBackgrounds[VideoRoom.Walk]}></S.VideoImage>
 					<S.VideoName >
 						<span>🚶‍♀️️</span>
 						<span>Walk</span>
 					</S.VideoName>
 				</S.VideoRoom>
-				<S.VideoRoom selected={background.roomId == VideoRoom.Window}>
-					<S.VideoImage onClick={() => joinVideoRoom(VideoRoom.Window)} src={videoRoomBackgrounds[VideoRoom.Window]}></S.VideoImage>
+				<S.VideoRoom selected={background.roomId == VideoRoom.Window} onClick={() => joinVideoRoom(VideoRoom.Window)}>
+					<S.VideoImage  src={videoRoomBackgrounds[VideoRoom.Window]}></S.VideoImage>
 					<S.VideoName >
 						<span>🪟</span>
 						<span>Window</span>

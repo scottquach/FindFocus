@@ -139,19 +139,18 @@ export const VideoRoom = styled.div< { selected?: boolean }>`
 	background-color: lightgray;
 	cursor: pointer;
 	z-index: 0;
-	border: 1px solid #9A9A9A;
+	/* border: 2px solid black; */
 	overflow: hidden;
 	transition: all .2s;
 	transform: ${props => props.selected ? 'translateY(-6px)' : ''};
 
 	${VideoName} {
-		height: ${props => props.selected ? '5rem' : ''};
-
+		height: ${props => props.selected ? '3rem' : ''};
 	}
 
 	:hover ${VideoName} {
 		/* transform: translateY(-10px) */
-		height: 5rem;
+		height: 4rem;
 	}
 
 	:hover {

@@ -4,11 +4,9 @@ import WidgetsIcon from '@mui/icons-material/Widgets';
 import ImageIcon from '@mui/icons-material/Image';
 
 import styled from "styled-components"
-import { WidgetFrame } from "./WidgetFrame";
 import { useState } from "react";
 import { WidgetPicker } from "./WidgetPicker";
 import { BackgroundPicker } from "./RoomPicker";
-import { ThemePicker } from "./ThemePicker";
 
 const PositionContainer = styled.div`
 	display: flex;
@@ -55,9 +53,7 @@ export function MenuBar() {
 	const [menu, setMenu] = useState<MenuId | null>(null);
 
 	const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-	const handleClick = (event: React.MouseEvent<HTMLElement>) => {
-		setAnchorEl(anchorEl ? null : event.currentTarget);
-	};
+
 	const open = Boolean(anchorEl);
 	const id = open ? 'transition-popper' : undefined;
 
@@ -65,9 +61,15 @@ export function MenuBar() {
 	// const [open, setOpen] = useState(false);
 	// const id = open ? 'simple-popper' : undefined;
 
-	const onMenuSelected = (menu: MenuId) => {
+	const onMenuSelected = (event: React.MouseEvent<HTMLElement>, menu: MenuId) => {
+		setAnchorEl(anchorEl ? null : event.currentTarget);
 		setMenu(menu);
 		// setOpen(true);
+	}
+
+	const onClose = (menu: MenuId) => {
+		setAnchorEl(null);
+		setMenu(null);
 	}
 
 	return (
@@ -75,25 +77,19 @@ export function MenuBar() {
 			<MenuLayout>
 				<MenuItems>
 					<Item>
-						<IconButton onClick={() => onMenuSelected(MenuId.WidgetPicker)} size="small">
+						<IconButton onClick={(e) => onMenuSelected(e, MenuId.WidgetPicker)} size="small">
 							<WidgetsIcon></WidgetsIcon>
 						</IconButton>
 						<div>Widgets</div>
 					</Item>
 					<Item>
-						<IconButton onClick={handleClick} size="small">
+						<IconButton onClick={(e) => onMenuSelected(e, MenuId.BackgroundPicker)} size="small">
 							<ImageIcon></ImageIcon>
 						</IconButton>
 						<div>Rooms</div>
 					</Item>
-					{/* <Item>
-						<IconButton onClick={() => onMenuSelected(MenuId.BackgroundPicker)} size="small">
-							<ImageIcon></ImageIcon>
-						</IconButton>
-						<div>Rooms</div>
-					</Item> */}
 					<Item>
-						<IconButton onClick={() => onMenuSelected(MenuId.ThemePicker)} size="small">
+						<IconButton onClick={(e) => onMenuSelected(e, MenuId.ThemePicker)} size="small">
 							<ColorLensTwoToneIcon></ColorLensTwoToneIcon>
 						</IconButton>
 						<div>Theme</div>
@@ -105,12 +101,9 @@ export function MenuBar() {
 					{({ TransitionProps }) => (
 						<ClickAwayListener onClickAway={() => setAnchorEl(null)}>
 							<Zoom {...TransitionProps} timeout={100}>
-								{/* {menu === MenuId.WidgetPicker && <WidgetPicker ></WidgetPicker>} */}
-
 								<Box>
-									<div>
-										<BackgroundPicker close={() => setAnchorEl(null)}></BackgroundPicker>
-									</div>
+									{menu === MenuId.WidgetPicker && <WidgetPicker close={() => onClose(MenuId.WidgetPicker)}></WidgetPicker>}
+									{menu === MenuId.BackgroundPicker && <BackgroundPicker close={() => onClose(MenuId.BackgroundPicker)}></BackgroundPicker>}
 								</Box>
 								{/* {menu === MenuId.ThemePicker && <ThemePicker ></ThemePicker>} */}
 							</Zoom>
