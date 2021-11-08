@@ -69,14 +69,14 @@ export function WidgetPicker({ close }: any) {
 				</IconButton>
 			</S.MenuHeader>
 			<S.Categories>
-				<S.SectionTitle>AUDIO</S.SectionTitle>
+				{/* <S.SectionTitle>AUDIO</S.SectionTitle>
 				<S.WidgetCategory>
 					<S.WidgetCategoryList>
 						{AudioWidgets.map((widget) => {
 							return <WidgetPreview key={widget.type} type={widget.type} title={widget.title} description={widget.description}></WidgetPreview>
 						})}
 					</S.WidgetCategoryList>
-				</S.WidgetCategory>
+				</S.WidgetCategory> */}
 				<S.SectionTitle>PRODUCTIVITY</S.SectionTitle>
 				<S.WidgetCategoryList>
 					{ProductivityWidgets.map((widget) => {

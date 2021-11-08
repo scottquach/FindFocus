@@ -9,6 +9,7 @@ const base = (type: WidgetType): Widget => ({
         title: getTitle(type),
         created: new Date().toISOString(),
     },
+    data: {}
 });
 
 const getTitle = (type: WidgetType) => {
@@ -29,17 +30,22 @@ const getTitle = (type: WidgetType) => {
 };
 
 export function createWidget(type: WidgetType): Widget {
+    const baseWidget = base(type);
     switch (type) {
         case WidgetType.Spotify:
-            return base(type);
+            return baseWidget;
         case WidgetType.Quote:
-            return base(type);
+            return baseWidget;
         case WidgetType.Weather:
-            return base(type);
+            return baseWidget;
         case WidgetType.Ambient:
-            return base(type);
+            return baseWidget;
         case WidgetType.YouTube:
-            return base(type);
+            return baseWidget;
+        case WidgetType.Clock:
+            baseWidget.data.clockType = 'clockOne';
+            // baseWidget.data.clockType = 'clockTwo';
+            return baseWidget;
         default:
             return base(type);
     }
