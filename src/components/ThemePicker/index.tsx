@@ -15,57 +15,60 @@ export function ThemePicker({ close }: any) {
 
 	return (
 		<S.Wrapper>
-			<S.MenuHeaderLayout>
-				<MenuHeader>Themes</MenuHeader>
-				<IconButton onClick={onClose}>
-					<CloseIcon></CloseIcon>
-				</IconButton>
-			</S.MenuHeaderLayout>
-			<S.MenuDescription>Everyday colors for you</S.MenuDescription>
 
-			<S.SectionHeaderLayout>
-				<LightbulbIcon></LightbulbIcon>
-				<div>Featured</div>
-			</S.SectionHeaderLayout>
-			<S.Section>
-				<S.Theme>
-					<S.ThemeContainer></S.ThemeContainer>
-					<S.ThemeName>OCTANE</S.ThemeName>
-				</S.Theme>
-				<S.Theme>
-					<S.ThemeContainer></S.ThemeContainer>
-					<S.ThemeName>RED OCTOBER</S.ThemeName>
-				</S.Theme>
+			<S.Themes>
+				<S.ThemePalette></S.ThemePalette>
+				<S.ThemePalette></S.ThemePalette>
+				<S.ThemePalette></S.ThemePalette>
 
-
-
-			</S.Section>
-
-			<S.SectionHeaderLayout>
-				<LightModeIcon></LightModeIcon>
-				<div>Light themes</div>
-			</S.SectionHeaderLayout>
-			<S.Section>
-				<S.Theme>
-					<S.ThemeContainer></S.ThemeContainer>
-					<S.ThemeName>OCTANE</S.ThemeName>
-				</S.Theme>
-			</S.Section>
-
-			<S.SectionHeaderLayout>
-				<NightlightIcon></NightlightIcon>
-				<div>Dark themes</div>
-			</S.SectionHeaderLayout>
-
-			<S.Section>
-				<S.Theme>
-					<S.ThemeContainer></S.ThemeContainer>
-					<S.ThemeName>OCTANE</S.ThemeName>
-				</S.Theme>
-			</S.Section>
-
-
+			</S.Themes>
 
 		</S.Wrapper>
+		// <S.Wrapper>
+		// 	<S.MenuHeaderLayout>
+		// 		<MenuHeader>Themes</MenuHeader>
+		// 		<IconButton onClick={onClose}>
+		// 			<CloseIcon></CloseIcon>
+		// 		</IconButton>
+		// 	</S.MenuHeaderLayout>
+		// 	<S.MenuDescription>Everyday colors for you</S.MenuDescription>
+
+		// 	<S.SectionHeaderLayout>
+		// 		<LightbulbIcon></LightbulbIcon>
+		// 		<div>Featured</div>
+		// 	</S.SectionHeaderLayout>
+		// 	<S.Section>
+		// 		<S.Theme>
+		// 			<S.ThemeContainer></S.ThemeContainer>
+		// 			<S.ThemeName>OCTANE</S.ThemeName>
+		// 		</S.Theme>
+		// 		<S.Theme>
+		// 			<S.ThemeContainer></S.ThemeContainer>
+		// 			<S.ThemeName>RED OCTOBER</S.ThemeName>
+		// 		</S.Theme>
+		// 	</S.Section>
+		// 	<S.SectionHeaderLayout>
+		// 		<LightModeIcon></LightModeIcon>
+		// 		<div>Light themes</div>
+		// 	</S.SectionHeaderLayout>
+		// 	<S.Section>
+		// 		<S.Theme>
+		// 			<S.ThemeContainer></S.ThemeContainer>
+		// 			<S.ThemeName>OCTANE</S.ThemeName>
+		// 		</S.Theme>
+		// 	</S.Section>
+
+		// 	<S.SectionHeaderLayout>
+		// 		<NightlightIcon></NightlightIcon>
+		// 		<div>Dark themes</div>
+		// 	</S.SectionHeaderLayout>
+
+		// 	<S.Section>
+		// 		<S.Theme>
+		// 			<S.ThemeContainer></S.ThemeContainer>
+		// 			<S.ThemeName>OCTANE</S.ThemeName>
+		// 		</S.Theme>
+		// 	</S.Section>
+		// </S.Wrapper>
 	)
 }

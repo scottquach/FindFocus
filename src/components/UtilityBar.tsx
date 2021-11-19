@@ -110,7 +110,16 @@ function VolumeSlider() {
 	const handleVolumeChange = (event: any, newValue: number | number[]) => {
 		// console.log('on Change', newValue)
 		setVolume(newValue as number);
+	}
 
+	const toggleVolume = () => {
+		if (volume != 50) {
+			console.log('hi')
+			setVolume(50);
+		} else {
+			setVolume(0);
+			console.log('by');
+		}
 	}
 
 	return (
@@ -118,6 +127,7 @@ function VolumeSlider() {
 			<Frame>
 				<VolumeMenu active={toggle}>
 					<IconButton onClick={() => setToggle(!toggle)}>
+					{/* <IconButton onClick={() => toggleVolume()}> */}
 						{volume >= 60 && <VolumeUpIcon></VolumeUpIcon>}
 						{volume > 25 && volume < 60 && <VolumeDownIcon></VolumeDownIcon>}
 						{volume > 0 && volume <= 25 && <VolumeMuteIcon></VolumeMuteIcon>}

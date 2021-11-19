@@ -27,6 +27,12 @@ body {
     --color-primary: #fafafa;
     --color-primary-light: #9e9e9e;
 
+    --color-primary: black;
+    --color-secondary: black;
+    --color-tertiary: black;
+    --color-neutral: black;
+    --color-neutral-variant: black;
+
 
     --color-primary: white;
     --color-primary-dark: gray;

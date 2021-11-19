@@ -7,6 +7,7 @@ import styled from "styled-components"
 import { useState } from "react";
 import { WidgetPicker } from "./WidgetPicker";
 import { BackgroundPicker } from "./RoomPicker";
+import { ThemePicker } from "./ThemePicker";
 
 const PositionContainer = styled.div`
 	display: flex;
@@ -62,7 +63,8 @@ export function MenuBar() {
 	// const id = open ? 'simple-popper' : undefined;
 
 	const onMenuSelected = (event: React.MouseEvent<HTMLElement>, menu: MenuId) => {
-		setAnchorEl(anchorEl ? null : event.currentTarget);
+		// setAnchorEl(anchorEl ? null : event.currentTarget);
+		setAnchorEl(event.currentTarget);
 		setMenu(menu);
 		// setOpen(true);
 	}
@@ -104,8 +106,8 @@ export function MenuBar() {
 								<Box>
 									{menu === MenuId.WidgetPicker && <WidgetPicker close={() => onClose(MenuId.WidgetPicker)}></WidgetPicker>}
 									{menu === MenuId.BackgroundPicker && <BackgroundPicker close={() => onClose(MenuId.BackgroundPicker)}></BackgroundPicker>}
+									{menu === MenuId.ThemePicker && <ThemePicker close={() => onClose(MenuId.ThemePicker)}></ThemePicker>}
 								</Box>
-								{/* {menu === MenuId.ThemePicker && <ThemePicker ></ThemePicker>} */}
 							</Zoom>
 						</ClickAwayListener>
 					)}

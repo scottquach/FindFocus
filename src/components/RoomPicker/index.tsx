@@ -141,7 +141,7 @@ export function BackgroundPicker({ close }: any) {
 				<S.VideoRoom selected={background.roomId == VideoRoom.Window} onClick={() => joinVideoRoom(VideoRoom.Window)}>
 					<S.VideoImage  src={videoRoomBackgrounds[VideoRoom.Window]}></S.VideoImage>
 					<S.VideoName >
-						<span>🪟</span>
+						<span>⬜</span>
 						<span>Window</span>
 					</S.VideoName>
 				</S.VideoRoom>
