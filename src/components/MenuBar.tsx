@@ -113,12 +113,6 @@ export function MenuBar() {
 						</ClickAwayListener>
 					)}
 				</Popper>
-
-				{/* <Dialog maxWidth="lg" open={open} onClose={() => setOpen(false)}>
-					{menu === MenuId.WidgetPicker && <WidgetPicker close={() => setOpen(false)}></WidgetPicker>}
-					{menu === MenuId.BackgroundPicker && <BackgroundPicker close={() => setOpen(false)}></BackgroundPicker>}
-					{menu === MenuId.ThemePicker && <ThemePicker close={() => setOpen(false)}></ThemePicker>}
-				</Dialog> */}
 			</MenuLayout>
 		</PositionContainer >
 	)

@@ -29,8 +29,22 @@ const Frame = styled.div`
 `
 
 export function UtilityBar() {
+
 	function triggerFullscreen() {
 		console.log('trigger overall fullscreen')
+		// https://developers.google.com/web/fundamentals/native-hardware/fullscreen
+		var doc = window.document as any;
+		var docEl = doc.documentElement as any;
+
+		var requestFullScreen = docEl.requestFullscreen || docEl.mozRequestFullScreen || docEl.webkitRequestFullScreen || docEl.msRequestFullscreen;
+		var cancelFullScreen = doc.exitFullscreen || doc.mozCancelFullScreen || doc.webkitExitFullscreen || doc.msExitFullscreen;
+
+		if (!doc.fullscreenElement && !doc.mozFullScreenElement && !doc.webkitFullscreenElement && !doc.msFullscreenElement) {
+			requestFullScreen.call(docEl);
+		}
+		else {
+			cancelFullScreen.call(doc);
+		}
 	}
 
 	return (
@@ -38,13 +52,12 @@ export function UtilityBar() {
 			<GridToggle></GridToggle>
 			<VolumeSlider></VolumeSlider>
 			<Frame>
-				<IconButton>
-					<FullscreenIcon></FullscreenIcon>
+				<IconButton onClick={triggerFullscreen}>
+				<FullscreenIcon></FullscreenIcon>
 				</IconButton>
 				<IconButton>
 					<AccountCircleIcon></AccountCircleIcon>
 				</IconButton>
-
 			</Frame>
 		</UtilityBarLayout>
 	)
@@ -127,7 +140,7 @@ function VolumeSlider() {
 			<Frame>
 				<VolumeMenu active={toggle}>
 					<IconButton onClick={() => setToggle(!toggle)}>
-					{/* <IconButton onClick={() => toggleVolume()}> */}
+						{/* <IconButton onClick={() => toggleVolume()}> */}
 						{volume >= 60 && <VolumeUpIcon></VolumeUpIcon>}
 						{volume > 25 && volume < 60 && <VolumeDownIcon></VolumeDownIcon>}
 						{volume > 0 && volume <= 25 && <VolumeMuteIcon></VolumeMuteIcon>}
