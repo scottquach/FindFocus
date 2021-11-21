@@ -4,11 +4,13 @@ import { WidgetFrame } from '../WidgetFrame';
 export const Wrapper = styled.div`
     display: grid;
     grid-template-rows: 2.5rem 1fr;
-    width: 70rem;
+    width: 30rem;
     padding: 1rem;
     border-radius: 16px;
-    background-color: #ffffffc0;
-    backdrop-filter: saturate(50%) blur(15px);
+    background-color: white;
+    /* background-color: #ffffffc0;
+    backdrop-filter: saturate(50%) blur(15px); */
+    margin-bottom: 1rem;
     /* background-color: #f7f7f7; */
     font-family: 'Noto Sans', sans-serif !important;
 `;
@@ -22,8 +24,34 @@ export const MenuHeader = styled.div`
 `;
 
 export const MenuTitle = styled.div`
-    font-size: 24px;
+    font-size: 18px;
     font-weight: bold;
+`;
+
+export const Widgets = styled.div`
+    display: flex;
+    gap: .5rem;
+`;
+
+export const Widget = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    border-radius: 8px;
+    padding: 0.25rem 0.75rem;
+    border: 1px solid white;
+    transition: all 50ms;
+    width: 3rem;
+
+    &:hover {
+        background-color: #eeeeee;
+        border: 1px solid #9e9e9e;
+    }
+
+    &:active {
+        transform: scale(.95);
+    }
 `;
 
 export const SectionTitle = styled.div`

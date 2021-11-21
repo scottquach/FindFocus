@@ -1,8 +1,13 @@
-import { IconButton } from "@mui/material";
+import { IconButton, Menu, MenuItem } from "@mui/material";
 import CloseIcon from '@mui/icons-material/Close';
-import { WidgetPreview } from "../WidgetPreview";
+import AccessTimeIcon from '@mui/icons-material/AccessTime';
+import FormatQuoteIcon from '@mui/icons-material/FormatQuote';
 import * as S from "./styles";
 import { WidgetType } from "../../models/widget-types.enum";
+import { QueueMusicOutlined } from "@mui/icons-material";
+import useAddWidget from "../../hooks/useAddWidget";
+import { useState } from "react";
+import { createWidget } from "../../models/widget.model";
 
 enum WidgetCategories {
 	Audio = 'audio',
@@ -20,11 +25,6 @@ const AudioWidgets = [
 		description: 'Ambient',
 		type: WidgetType.Ambient
 	},
-	// {
-	// 	title: 'SoundCloud',
-	// 	description: 'Play SoundlCloud playlists',
-	// 	type: WidgetType.SoundCloud
-	// },
 ]
 
 const ProductivityWidgets = [
@@ -33,11 +33,6 @@ const ProductivityWidgets = [
 		description: 'Display the time',
 		type: WidgetType.Clock
 	},
-	// {
-	// 	title: 'Youtube Embed',
-	// 	description: 'Embed a youtube video',
-	// 	type: WidgetType.YouTube
-	// },
 ];
 const InspirationWidgets = [
 	{
@@ -50,48 +45,78 @@ const InspirationWidgets = [
 
 
 export function WidgetPicker({ close }: any) {
+	const addWidget = useAddWidget();
 
 	function closePicker() {
 		console.log('closed called')
 		close()
 	}
 
-	function addWidget() {
-
+	const create = (type: WidgetType) => {
+		const newWidget = createWidget(type);
+		addWidget(newWidget);
 	}
 
 	return (
 		<S.Wrapper>
 			<S.MenuHeader>
-				<S.MenuTitle>Explore Widgets</S.MenuTitle>
+				<S.MenuTitle>Widgets</S.MenuTitle>
 				<IconButton onClick={closePicker}>
 					<CloseIcon></CloseIcon>
 				</IconButton>
 			</S.MenuHeader>
-			<S.Categories>
-				{/* <S.SectionTitle>AUDIO</S.SectionTitle>
-				<S.WidgetCategory>
-					<S.WidgetCategoryList>
-						{AudioWidgets.map((widget) => {
-							return <WidgetPreview key={widget.type} type={widget.type} title={widget.title} description={widget.description}></WidgetPreview>
-						})}
-					</S.WidgetCategoryList>
-				</S.WidgetCategory> */}
-				<S.SectionTitle>PRODUCTIVITY</S.SectionTitle>
-				<S.WidgetCategoryList>
-					{ProductivityWidgets.map((widget) => {
-						return <WidgetPreview key={widget.type} type={widget.type} title={widget.title} description={widget.description}></WidgetPreview>
-					})}
-				</S.WidgetCategoryList>
 
-				<S.SectionTitle>INSPIRATION</S.SectionTitle>
-				<S.WidgetCategoryList>
-					{InspirationWidgets.map((widget) => {
-						return <WidgetPreview key={widget.type} type={widget.type} title={widget.title} description={widget.description}></WidgetPreview>
-					})}
-				</S.WidgetCategoryList>
-				{/* <S.SectionTitle>EMBEDS</S.SectionTitle> */}
-			</S.Categories>
+			<S.Widgets>
+				<ClockWidget></ClockWidget>
+				<S.Widget onClick={() => create(WidgetType.Quote)}>
+					<FormatQuoteIcon></FormatQuoteIcon>
+					<div>Quote</div>
+				</S.Widget>
+				<S.Widget>
+					<QueueMusicOutlined></QueueMusicOutlined>
+					<div>Spotify</div>
+				</S.Widget>
+			</S.Widgets>
 		</S.Wrapper>
+	)
+}
+
+function ClockWidget() {
+	const addWidget = useAddWidget();
+	const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+	const open = Boolean(anchorEl);
+
+	const handleClick = (event: any) => {
+		setAnchorEl(event.currentTarget);
+	};
+	const handleClose = () => {
+		setAnchorEl(null);
+	};
+
+	const create = (clockType: string) => {
+		const newWidget = createWidget(WidgetType.Clock, { clockType: clockType });
+		addWidget(newWidget);
+		handleClose();
+	}
+
+	return (
+		<div>
+			<S.Widget onClick={handleClick}>
+				<AccessTimeIcon></AccessTimeIcon>
+				<div>Clock</div>
+			</S.Widget>
+			<Menu
+				id="basic-menu"
+				anchorEl={anchorEl}
+				open={open}
+				onClose={handleClose}
+				MenuListProps={{
+					'aria-labelledby': 'basic-button',
+				}}
+			>
+				<MenuItem onClick={() => create('clockOne')}>Clock V1</MenuItem>
+				<MenuItem onClick={() => create('clockTwo')}>Clock V2</MenuItem>
+			</Menu>
+		</div>
 	)
 }

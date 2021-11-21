@@ -5,5 +5,5 @@ export enum WidgetType {
 	Weather = 'weather',
 	Ambient = 'ambient',
 	Quote = 'quote',
-	Clock = 'clock'
+	Clock = 'clock',
 }
