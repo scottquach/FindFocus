@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { QuoteWidget } from "./Widgets/QuoteWidget";
 import { EmbedWidget } from "./Widgets/EmbedWidget";
 import { useRecoilState, useRecoilValue } from "recoil";
-import { activeWidgetsMapState, activeWidgetsState, gridLayoutState } from "../stores/store";
+import { activeWidgetsMapState, activeWidgetsState, globalGridVisibleState, gridLayoutState } from "../stores/store";
 import { WidgetType } from "../models/widget-types.enum";
 import useUpdateLogger from '../hooks/useUpdateLogger';
 import useLocalStorage from '../hooks/useLocalStorage';
@@ -34,6 +34,9 @@ export function Grid() {
 	console.log('GRID REBUILD')
 	const [gridLayout] = useRecoilState(gridLayoutState)
 	const widgetsMap = useRecoilValue(activeWidgetsMapState);
+	const gridVisible = useRecoilValue(globalGridVisibleState);
+
+
 	const activeWidgets = useRecoilValue(activeWidgetsState);
 	const [savedLayout, setSavedLayout] = useLocalStorage('grid-layout', '');
 
@@ -61,6 +64,7 @@ export function Grid() {
 				cols={{ lg: 14, md: 12, sm: 8, xs: 6, xxs: 4 }}
 				onLayoutChange={onLayoutChange}
 				draggableCancel=".NonDraggable"
+				style={{display: gridVisible ? 'block' : 'none'}}
 			// onResizeStop={(item: ItemCallback) => onLayoutChange(item)}
 			>
 				{

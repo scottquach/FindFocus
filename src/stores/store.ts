@@ -58,6 +58,11 @@ export const globalConfigState = atom({
     },
 });
 
+export const globalGridVisibleState = atom({
+    key: 'globalGridVisibleState',
+    default: true,
+})
+
 export const globalVolumeState = atom({
     key: 'globalVolumeState',
     default: 50

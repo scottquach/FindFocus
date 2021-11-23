@@ -10,7 +10,7 @@ import WidgetsIcon from '@mui/icons-material/Widgets';
 import styled from "styled-components"
 import { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
-import { globalConfigState, globalVolumeState } from "../stores/store";
+import { globalConfigState, globalGridVisibleState, globalVolumeState } from "../stores/store";
 
 const UtilityBarLayout = styled.div`
 		display: flex;
@@ -71,23 +71,20 @@ const GridToggleDescription = styled.span`
 
 function GridToggle() {
 
-	const [state, setState] = useRecoilState(globalConfigState);
+	const [state, setState] = useRecoilState(globalGridVisibleState);
 
 	const onGridToggle = () => {
 		setState((old) => {
-			return {
-				...old,
-				gridVisible: !old.gridVisible
-			}
+			return !old;
 		});
 	}
 
 	return (
 		<Frame>
 			<IconButton onClick={onGridToggle}>
-				{state.gridVisible && <WidgetsIcon></WidgetsIcon>}
-				{!state.gridVisible && <HideSourceIcon></HideSourceIcon>}
-				{!state.gridVisible && <GridToggleDescription>Hiding widgets</GridToggleDescription>}
+				{state && <WidgetsIcon></WidgetsIcon>}
+				{!state && <HideSourceIcon></HideSourceIcon>}
+				{!state && <GridToggleDescription>Hiding widgets</GridToggleDescription>}
 			</IconButton>
 		</Frame>
 	)
