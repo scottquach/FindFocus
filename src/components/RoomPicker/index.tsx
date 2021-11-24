@@ -2,21 +2,20 @@ import * as S from './styles'
 
 import CloseIcon from '@mui/icons-material/Close';
 
-import { IconButton, Tooltip } from '@mui/material';
-import classNames from 'classnames';
-import { useRecoilState, useSetRecoilState } from 'recoil';
+import { IconButton } from '@mui/material';
+import { useRecoilState } from 'recoil';
 import { backgroundState } from '../../stores/store';
 import { BackgroundType } from '../../models/background-types.enum';
 import useLocalStorage from '../../hooks/useLocalStorage';
 import { MenuHeader, MenuHeaderLayout } from '../../GlobalStyles';
 
-const cateredImages = [
-	'https://images.unsplash.com/photo-1475359524104-d101d02a042b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1594&q=80',
-	'https://images.unsplash.com/photo-1484291470158-b8f8d608850d?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2070&q=80',
-	'https://images.unsplash.com/photo-1517757910079-f57fd7f49a91?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2068&q=80',
-	'https://images.unsplash.com/photo-1524778153300-4c80b64c322e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2070&q=80',
-	'https://images.unsplash.com/photo-1619199748576-75ae8022c73f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2070&q=80'
-]
+// const cateredImages = [
+// 	'https://images.unsplash.com/photo-1475359524104-d101d02a042b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1594&q=80',
+// 	'https://images.unsplash.com/photo-1484291470158-b8f8d608850d?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2070&q=80',
+// 	'https://images.unsplash.com/photo-1517757910079-f57fd7f49a91?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2068&q=80',
+// 	'https://images.unsplash.com/photo-1524778153300-4c80b64c322e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2070&q=80',
+// 	'https://images.unsplash.com/photo-1619199748576-75ae8022c73f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2070&q=80'
+// ]
 
 const videoRooms: { [key: string]: string[] } = {
 	cafe: ['https://www.youtube.com/watch?v=3nyuWu7dnTM&ab_channel=LauraAngelia'],
@@ -42,13 +41,13 @@ enum VideoRoom {
 	Window = 'window',
 }
 
-const cateredColors = [
-	'#DAF7DC',
-	'#BEE7E8',
-	'#EBBAB9',
-	'#FFE4FA',
-	'#212121'
-]
+// const cateredColors = [
+// 	'#DAF7DC',
+// 	'#BEE7E8',
+// 	'#EBBAB9',
+// 	'#FFE4FA',
+// 	'#212121'
+// ]
 
 export function BackgroundPicker({ close }: any) {
 	const [background, setBackground] = useRecoilState(backgroundState);

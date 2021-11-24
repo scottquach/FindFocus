@@ -67,7 +67,7 @@ export function SpotifySettings({ widgetId }: { widgetId: string }) {
 			}}
 				onChange={handleChange}
 				size="small"></TextField>
-			<button onClick={onSave}>Save stuff</button>
+			{/* <button onClick={onSave}>Save stuff</button> */}
 
 		</Wrapper>
 	)
