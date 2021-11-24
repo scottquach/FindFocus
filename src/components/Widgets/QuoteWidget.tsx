@@ -52,7 +52,7 @@ export function QuoteWidget({ widgetId }: { widgetId: string }) {
 		<WidgetFrame widgetId={widgetId}>
 			<Content>
 				<div>
-					<Quote>"{quote}"</Quote>
+					<Quote>`&quote;`{quote}`&quote;`</Quote>
 					<Author>- {author}</Author>
 				</div>
 				<RefreshButton onClick={loadQuote}>

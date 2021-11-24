@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
  * @param url
  * @returns playing, toggle, setAudio
  */
-export default function useAudio(url: string = ''): [boolean, () => void, (audio: string) => void, number, (x: number) => void] {
+export default function useAudio(url = ''): [boolean, () => void, (audio: string) => void, number, (x: number) => void] {
     const [audio] = useState(new Audio(url));
     const [playing, setPlaying] = useState(false);
     const [volume, setVolume] = useState(0.5);
