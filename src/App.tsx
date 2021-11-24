@@ -7,8 +7,6 @@ import { MenuBar } from './components/MenuBar';
 import { UtilityBar } from './components/UtilityBar';
 import useLoadApp from './hooks/useLoadApp';
 import { Background } from './components/Background';
-import { useRecoilValue } from 'recoil';
-import { activeWidgetsState } from './stores/store';
 
 function App() {
 

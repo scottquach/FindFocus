@@ -1,4 +1,4 @@
-import { Button, Dialog, IconButton } from "@mui/material";
+import { Button, Dialog } from "@mui/material";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import * as S from './styles';
 import { useEffect, useState } from "react";

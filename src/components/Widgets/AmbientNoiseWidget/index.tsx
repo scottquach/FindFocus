@@ -1,5 +1,4 @@
-import { faCloudRain, faCoffee, faDove, faFire, faPoo, faPooStorm, faWater, faWind, IconDefinition } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon, FontAwesomeIconProps } from "@fortawesome/react-fontawesome";
+import { faCloudRain, faCoffee, faDove, faFire, faPooStorm, faWater, faWind, IconDefinition } from "@fortawesome/free-solid-svg-icons";
 import { Slider } from "@mui/material";
 import { useEffect, useState } from "react";
 import { WidgetFrame } from "../../WidgetFrame";
@@ -59,16 +58,16 @@ function Noise({ noiseId, icon }: { noiseId: NoiseId, icon: IconDefinition }) {
 
 
 export function AmbientNoiseWidget({ widgetId }: any) {
-	const [audio] = useState(new Audio());
+	// const [_] = useState(new Audio());
 
-	const [active, setActive] = useState({
-		[NoiseId.Rain]: false,
-		[NoiseId.Thunder]: false,
-		[NoiseId.Wind]: false,
-		[NoiseId.Fire]: false,
-		[NoiseId.Water]: false,
-		[NoiseId.Bird]: false
-	});
+	// const [active, setActive] = useState({
+	// 	[NoiseId.Rain]: false,
+	// 	[NoiseId.Thunder]: false,
+	// 	[NoiseId.Wind]: false,
+	// 	[NoiseId.Fire]: false,
+	// 	[NoiseId.Water]: false,
+	// 	[NoiseId.Bird]: false
+	// });
 
 	return (
 		<WidgetFrame>

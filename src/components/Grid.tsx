@@ -38,7 +38,7 @@ export function Grid() {
 
 
 	const activeWidgets = useRecoilValue(activeWidgetsState);
-	const [savedLayout, setSavedLayout] = useLocalStorage('grid-layout', '');
+	const [_, setSavedLayout] = useLocalStorage('grid-layout', '');
 
 	// useUpdateLogger(gridLayout, 'grid layout state');
 	useUpdateLogger(activeWidgets, 'active widgets state');
