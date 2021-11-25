@@ -11,15 +11,29 @@ import { MenuHeaderLayout as GlobalHeaderLayout, MenuWrapper } from "../../Globa
 // `
 
 export const Wrapper = styled(MenuWrapper)`
-	/* background-color: var(--background-color); */
-	background-color: #ffffffc0;
-	backdrop-filter: saturate(50%) blur(15px);
+	background-color: var(--color-background);
+	/* background-color: #ffffffc0; */
+	/* backdrop-filter: saturate(50%) blur(15px); */
 	width: 30rem;
-	height: 3rem;
+	height: 6rem;
 	border-radius: 16px;
 	margin-bottom: 1rem;
 
 `
+
+export const MenuHeader = styled.div`
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+    margin-bottom: 0.5rem;
+`;
+
+
+export const MenuTitle = styled.div`
+    font-size: 18px;
+    font-weight: bold;
+`;
 
 export const Themes = styled.div`
 	display: flex;

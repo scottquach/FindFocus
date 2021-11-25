@@ -8,6 +8,7 @@ const HeaderWrapper = styled.div`
 	border-top-left-radius: var(--widget-border-radius);
 	border-top-right-radius: var(--widget-border-radius);
 	padding: 0 .5rem;
+	cursor: move;
 `
 
 const Header = styled.div`

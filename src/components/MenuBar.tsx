@@ -62,14 +62,20 @@ export function MenuBar() {
 
 	const onMenuSelected = (event: React.MouseEvent<HTMLElement>, menu: MenuId) => {
 		// setAnchorEl(anchorEl ? null : event.currentTarget);
+		// console.log('open', menu)
 		setAnchorEl(event.currentTarget);
 		setMenu(menu);
 		// setOpen(true);
 	}
 
-	const onClose = (menu: MenuId) => {
+	const onClose = () => {
+		// console.log('close', menu)
 		setAnchorEl(null);
 		setMenu(null);
+	}
+
+	const onClickAway = (menu: MenuId | null) => {
+		onClose();
 	}
 
 	return (
@@ -99,15 +105,31 @@ export function MenuBar() {
 
 				<Popper id={id} open={open} anchorEl={anchorEl} transition>
 					{({ TransitionProps }) => (
-						<ClickAwayListener onClickAway={() => setAnchorEl(null)}>
-							<Zoom {...TransitionProps} timeout={100}>
-								<Box>
-									{menu === MenuId.WidgetPicker && <WidgetPicker close={() => onClose(MenuId.WidgetPicker)}></WidgetPicker>}
-									{menu === MenuId.BackgroundPicker && <BackgroundPicker close={() => onClose(MenuId.BackgroundPicker)}></BackgroundPicker>}
-									{menu === MenuId.ThemePicker && <ThemePicker close={() => onClose(MenuId.ThemePicker)}></ThemePicker>}
-								</Box>
-							</Zoom>
-						</ClickAwayListener>
+						<Zoom {...TransitionProps} timeout={100}>
+							<Box>
+								{menu === MenuId.WidgetPicker &&
+									<ClickAwayListener onClickAway={() => onClickAway(menu)}>
+										<Box>
+											<WidgetPicker close={() => onClose()}></WidgetPicker>
+										</Box>
+									</ClickAwayListener>
+								}
+								{menu === MenuId.BackgroundPicker &&
+									<ClickAwayListener onClickAway={() => onClickAway(menu)}>
+										<Box>
+											<BackgroundPicker close={() => onClose()}></BackgroundPicker>
+										</Box>
+									</ClickAwayListener>
+								}
+								{menu === MenuId.ThemePicker &&
+									<ClickAwayListener onClickAway={() => onClickAway(menu)}>
+										<Box>
+											<ThemePicker close={() => onClose()}></ThemePicker>
+										</Box>
+									</ClickAwayListener>
+								}
+							</Box>
+						</Zoom>
 					)}
 				</Popper>
 			</MenuLayout>

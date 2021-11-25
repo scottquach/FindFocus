@@ -7,7 +7,7 @@ export const Wrapper = styled.div`
     width: 30rem;
     padding: 1rem;
     border-radius: 16px;
-    background-color: white;
+    background-color: var(--color-background);
     /* background-color: #ffffffc0;
     backdrop-filter: saturate(50%) blur(15px); */
     margin-bottom: 1rem;
