@@ -5,10 +5,10 @@ import { WidgetFrame } from "../../WidgetFrame";
 import ClockOne from "./ClockOne";
 import ClockTwo from "./ClockTwo";
 import SettingsIcon from '@mui/icons-material/Settings';
-import { Frame } from "./styles";
 import { WidgetSettings } from "../../WidgetSettings";
 import { widgetById } from "../../../stores/store";
 import { useRecoilValue } from "recoil";
+import { ClockContent } from "./styles";
 
 export default function ClockWidget({ widgetId }: { widgetId: string }) {
 	const [dt, setDt] = useState(DateTime.local());
@@ -27,18 +27,20 @@ export default function ClockWidget({ widgetId }: { widgetId: string }) {
 	}, [])
 
 	return (
-		<Frame>
-			{widgetData.data.clockType === 'clockOne' && <ClockOne dt={dt}></ClockOne>}
-			{widgetData.data.clockType === 'clockTwo' && <ClockTwo dt={dt}></ClockTwo>}
-			<IconButton onClick={() => setOpen(!open)}>
+		<WidgetFrame widgetId={widgetId}>
+			<ClockContent>
+				{widgetData.data.clockType === 'clockOne' && <ClockOne dt={dt}></ClockOne>}
+				{widgetData.data.clockType === 'clockTwo' && <ClockTwo dt={dt}></ClockTwo>}
+			</ClockContent>
+			{/* <IconButton onClick={() => setOpen(!open)}>
 				<SettingsIcon></SettingsIcon>
-			</IconButton>
-			<WidgetSettings
+			</IconButton> */}
+			{/* <WidgetSettings
 				widgetId={widgetId}
 				settingsUI={ClockSettings}
 				originalSettings={widgetData.data}
-				open={open} close={() => setOpen(false)}></WidgetSettings>
-		</Frame>
+				open={open} close={() => setOpen(false)}></WidgetSettings> */}
+		</WidgetFrame>
 	)
 }
 
@@ -47,7 +49,7 @@ function ClockSettings(originalSettings: any, stageUpdate: (data: any) => void) 
 
 	const handleChange = (event: SelectChangeEvent) => {
 		setClockType(event.target.value as string);
-		stageUpdate({clockType: event.target.value as string});
+		stageUpdate({ clockType: event.target.value as string });
 	};
 
 	return (

@@ -2,35 +2,32 @@ import styled from 'styled-components'
 import { WidgetHeader } from './WidgetHeader'
 
 const Frame = styled.div`
-	/* display: grid; */
-	/* grid-template-rows: 2.5rem auto; */
-	background-color: var(--widget-background-color);
-	/* border: 2px solid #000000; */
+	background-color: var(--color-background);
 	/* border: 2px solid white; */
 
-	border-radius: 20px;
-	/* background-color: var(--widget-background-color);
-	opacity: .95; */
+	border-radius: var(--widget-border-radius);
+	display: flex;
+	flex-direction: column;
 	width: 100%;
 	height: 100%;
 
-
 	/* color: white; */
-	background-color: #ffffffd8;
-	backdrop-filter: saturate(50%) blur(15px);
+	/* background-color: #ffffffd8;
+	backdrop-filter: saturate(50%) blur(15px); */
 `
 
 const WidgetContent = styled.div`
+	display: flex;
 	max-width: 100%;
 	max-height: 100%;
 	width: 100%;
-	height: 100%;
+	flex: 1;
 `
 
 export function WidgetFrame({ className, widgetId, children }: any) {
 	return (
 		<Frame className={className}>
-			{/* <WidgetHeader widgetId={widgetId}></WidgetHeader> */}
+			<WidgetHeader widgetId={widgetId}></WidgetHeader>
 			<WidgetContent className="NonDraggable">
 				{children}
 			</WidgetContent>

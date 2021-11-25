@@ -21,11 +21,7 @@ const PositionContainer = styled.div`
 const MenuLayout = styled.div`
 	height: 3.5rem;
 	padding: .25rem 1rem;
-	border-radius: 8px;
-	/* background-color: var(--widget-background-color);
-	box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; */
-	/* background-color: #ffffffe2;
-	backdrop-filter: saturate(50%) blur(15px); */
+	border-radius: var(--widget-border-radius);
 	background-color: white;
 `
 

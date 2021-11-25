@@ -16,12 +16,15 @@ import ClockWidget from './Widgets/ClockWidget';
 
 const Div = styled.div`
 	display: flex;
-	`
+	overflow: hidden;
+	height: 100%;
+	width: 100%;
+`
 
 const Widget = styled(WidgetFrame)`
 	width: 100%;
 	height: 100%;
-	`
+`
 
 const StyledGrid = styled.div`
 	padding: 4rem 2rem;

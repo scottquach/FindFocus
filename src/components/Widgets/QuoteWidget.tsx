@@ -16,17 +16,20 @@ const Content = styled.div`
 const Quote = styled.div`
 	text-align: center;
 	font-size: 18px;
+	color: var(--color-on-background);
 `
 
 const Author = styled.div`
 	text-align: center;
 	font-weight: 600;
 	margin-top: .25rem;
+	color: var(--color-on-background);
 `
 
 const RefreshButton = styled(IconButton)`
 	justify-self: end;
 	align-self: end;
+	/* color: blue; */
 
 `
 export function QuoteWidget({ widgetId }: { widgetId: string }) {
@@ -52,7 +55,7 @@ export function QuoteWidget({ widgetId }: { widgetId: string }) {
 		<WidgetFrame widgetId={widgetId}>
 			<Content>
 				<div>
-					<Quote>`&quote;`{quote}`&quote;`</Quote>
+					<Quote>"{quote}"</Quote>
 					<Author>- {author}</Author>
 				</div>
 				<RefreshButton onClick={loadQuote}>

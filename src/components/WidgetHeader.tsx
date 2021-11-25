@@ -1,23 +1,19 @@
-import { Divider, IconButton } from "@mui/material";
+import { IconButton } from "@mui/material";
 import CloseIcon from '@mui/icons-material/Close';
-import OpenInFullIcon from '@mui/icons-material/OpenInFull';
 import styled from "styled-components";
 import useDeleteWidget from "../hooks/useDeleteWidget";
-import SettingsIcon from '@mui/icons-material/Settings';
 
 const HeaderWrapper = styled.div`
+	background-color: var(--color-primary);
+	border-top-left-radius: var(--widget-border-radius);
+	border-top-right-radius: var(--widget-border-radius);
+	padding: 0 .5rem;
 `
 
 const Header = styled.div`
 	display: flex;
 	justify-content: flex-end;
 	align-items: center;
-	padding: 0 .5rem .20rem .75rem;
-`
-
-const WidgetTitle = styled.div`
-	margin-right: auto;
-	font-weight: 500;
 `
 
 export function WidgetHeader({ widgetId }: any) {
@@ -25,7 +21,7 @@ export function WidgetHeader({ widgetId }: any) {
 
 
 	const onCloseClick = () => {
-		console.log('clicked');
+		// console.log('clicked', widgetId);
 		deleteWidget(widgetId);
 	}
 
@@ -34,20 +30,10 @@ export function WidgetHeader({ widgetId }: any) {
 	return (
 		<HeaderWrapper>
 			<Header>
-				<WidgetTitle>Quote</WidgetTitle>
-				<div>
-					<IconButton size="small">
-						<OpenInFullIcon fontSize="small" />
-					</IconButton>
-					<IconButton size="small" onClick={onCloseClick}>
-						<SettingsIcon fontSize="small" />
-					</IconButton>
-					<IconButton size="small" onClick={onCloseClick}>
-						<CloseIcon fontSize="small" />
-					</IconButton>
-				</div>
+				<IconButton size="small" onClick={onCloseClick}>
+					<CloseIcon fontSize="small" />
+				</IconButton>
 			</Header>
-			<Divider />
 		</HeaderWrapper>
 	)
 }

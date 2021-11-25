@@ -14,7 +14,6 @@ const Month = styled.div`
 `
 
 const Time = styled.div`
-	margin-top: 1.25rem;
 	font-size: 64px;
 	font-weight: 600;
 `
@@ -24,6 +23,7 @@ const Content = styled.div`
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
+	color: var(--color-on-background);
 `
 
 export default function ClockTwo({ dt }: { dt: DateTime }) {
