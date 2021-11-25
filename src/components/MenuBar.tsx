@@ -60,11 +60,15 @@ export function MenuBar() {
 	// const [open, setOpen] = useState(false);
 	// const id = open ? 'simple-popper' : undefined;
 
-	const onMenuSelected = (event: React.MouseEvent<HTMLElement>, menu: MenuId) => {
+	const onMenuSelected = (event: React.MouseEvent<HTMLElement>, selectedMenu: MenuId) => {
 		// setAnchorEl(anchorEl ? null : event.currentTarget);
 		// console.log('open', menu)
-		setAnchorEl(event.currentTarget);
-		setMenu(menu);
+		if (menu === selectedMenu) {
+			onClose();
+		} else {
+			setAnchorEl(event.currentTarget);
+			setMenu(selectedMenu);
+		}
 		// setOpen(true);
 	}
 
