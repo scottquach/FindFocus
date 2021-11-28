@@ -26,6 +26,7 @@ export const MenuHeader = styled.div`
 export const MenuTitle = styled.div`
     font-size: 18px;
     font-weight: bold;
+    color: var(--color-on-background)
 `;
 
 export const Widgets = styled.div`
@@ -43,6 +44,9 @@ export const Widget = styled.div`
     border: 1px solid white;
     transition: all 50ms;
     width: 3rem;
+    background-color: var(--color-primary);
+    color: var(--color-on-primary);
+    fill: var(--color-on-primary);
 
     &:hover {
         background-color: #eeeeee;
@@ -54,36 +58,36 @@ export const Widget = styled.div`
     }
 `;
 
-export const SectionTitle = styled.div`
-    font-size: 14px;
-    font-weight: 500;
-    margin-bottom: 0.5rem;
-    opacity: 0.75;
-`;
+// export const SectionTitle = styled.div`
+//     font-size: 14px;
+//     font-weight: 500;
+//     margin-bottom: 0.5rem;
+//     opacity: 0.75;
+// `;
 
-export const Categories = styled.div`
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-`;
-export const WidgetCategory = styled.div`
-    display: flex;
-    flex-direction: column;
-    /* padding: 1rem; */
-    border-radius: 8px;
-    margin-bottom: 1rem;
-`;
+// export const Categories = styled.div`
+//     display: flex;
+//     flex-direction: column;
+//     justify-content: flex-start;
+// `;
+// export const WidgetCategory = styled.div`
+//     display: flex;
+//     flex-direction: column;
+//     /* padding: 1rem; */
+//     border-radius: 8px;
+//     margin-bottom: 1rem;
+// `;
 
-export const WidgetCategoryHeader = styled.div`
-    font-size: 20px;
-    font-weight: 500;
-    margin-bottom: 0.5rem;
-`;
+// export const WidgetCategoryHeader = styled.div`
+//     font-size: 20px;
+//     font-weight: 500;
+//     margin-bottom: 0.5rem;
+// `;
 
-export const WidgetCategoryList = styled.div`
-    display: grid;
-    width: 100%;
-    grid-template-columns: repeat(auto-fill, 12rem);
-    grid-gap: 1.25rem;
-    margin-bottom: 1.25rem;
-`;
+// export const WidgetCategoryList = styled.div`
+//     display: grid;
+//     width: 100%;
+//     grid-template-columns: repeat(auto-fill, 12rem);
+//     grid-gap: 1.25rem;
+//     margin-bottom: 1.25rem;
+// `;

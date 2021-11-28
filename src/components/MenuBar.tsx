@@ -22,7 +22,8 @@ const MenuLayout = styled.div`
 	height: 3.5rem;
 	padding: .25rem 1rem;
 	border-radius: var(--widget-border-radius);
-	background-color: white;
+	background-color: var(--color-background);
+	color: var(--color-on-background);
 `
 
 const MenuItems = styled.div`
@@ -34,6 +35,8 @@ const Item = styled.div`
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	color: var(--color-on-background);
+	fill: var(--color-on-background);
 
 	div {
 		font-size: 14px;
@@ -88,19 +91,19 @@ export function MenuBar() {
 				<MenuItems>
 					<Item>
 						<IconButton onClick={(e) => onMenuSelected(e, MenuId.WidgetPicker)} size="small">
-							<WidgetsIcon></WidgetsIcon>
+							<WidgetsIcon style={{fill: "var(--color-on-background)"}}></WidgetsIcon>
 						</IconButton>
 						<div>Widgets</div>
 					</Item>
 					<Item>
 						<IconButton onClick={(e) => onMenuSelected(e, MenuId.BackgroundPicker)} size="small">
-							<ImageIcon></ImageIcon>
+							<ImageIcon style={{fill: "var(--color-on-background)"}}></ImageIcon>
 						</IconButton>
 						<div>Rooms</div>
 					</Item>
 					<Item>
 						<IconButton onClick={(e) => onMenuSelected(e, MenuId.ThemePicker)} size="small">
-							<ColorLensTwoToneIcon></ColorLensTwoToneIcon>
+							<ColorLensTwoToneIcon style={{fill: "var(--color-on-background)"}}></ColorLensTwoToneIcon>
 						</IconButton>
 						<div>Theme</div>
 					</Item>

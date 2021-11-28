@@ -62,12 +62,12 @@ export function WidgetPicker({ close }: any) {
 			<S.MenuHeader>
 				<S.MenuTitle>Widgets</S.MenuTitle>
 				<IconButton onClick={closePicker}>
-					<CloseIcon></CloseIcon>
+					<CloseIcon style={{fill: "var(--color-on-background)"}}></CloseIcon>
 				</IconButton>
 			</S.MenuHeader>
 
 			<S.Widgets>
-				<ClockWidget></ClockWidget>
+				<ClockWidget ></ClockWidget>
 				<S.Widget onClick={() => create(WidgetType.Quote)}>
 					<FormatQuoteIcon></FormatQuoteIcon>
 					<div>Quote</div>

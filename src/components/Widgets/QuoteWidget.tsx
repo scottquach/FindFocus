@@ -59,7 +59,7 @@ export function QuoteWidget({ widgetId }: { widgetId: string }) {
 					<Author>- {author}</Author>
 				</div>
 				<RefreshButton onClick={loadQuote}>
-					<LoopIcon></LoopIcon>
+					<LoopIcon style={{fill: "var(--color-on-background)"}}></LoopIcon>
 				</RefreshButton>
 			</Content>
 		</WidgetFrame>

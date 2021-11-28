@@ -5,6 +5,7 @@ import useDeleteWidget from "../hooks/useDeleteWidget";
 
 const HeaderWrapper = styled.div`
 	background-color: var(--color-primary);
+	fill: var(--color-on-primary);
 	border-top-left-radius: var(--widget-border-radius);
 	border-top-right-radius: var(--widget-border-radius);
 	padding: 0 .5rem;
@@ -32,7 +33,7 @@ export function WidgetHeader({ widgetId }: any) {
 		<HeaderWrapper>
 			<Header>
 				<IconButton size="small" onClick={onCloseClick}>
-					<CloseIcon fontSize="small" />
+					<CloseIcon fontSize="small" style={{ fill: "var(--color-on-primary)"}}/>
 				</IconButton>
 			</Header>
 		</HeaderWrapper>

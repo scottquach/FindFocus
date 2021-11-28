@@ -33,6 +33,7 @@ export const MenuHeader = styled.div`
 export const MenuTitle = styled.div`
     font-size: 18px;
     font-weight: bold;
+	color: var(--color-on-background);
 `;
 
 export const Themes = styled.div`
@@ -47,7 +48,13 @@ export const ThemePalette = styled.div`
 	height: 35px;
 	width: 35px;
 	border-radius: 50%;
-	background-color: gray;
+	background-color: ${(props) => props.theme.colorOnPrimary};
+	border: 2px solid ${(props) => props.theme.colorPrimary};
+	cursor: pointer;
+
+    &:active {
+        transform: scale(.95);
+    }
 `
 
 // export const SectionHeaderLayout = styled.div`
