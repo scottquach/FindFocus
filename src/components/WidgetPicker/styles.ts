@@ -49,8 +49,8 @@ export const Widget = styled.div`
     fill: var(--color-on-primary);
 
     &:hover {
-        background-color: #eeeeee;
-        border: 1px solid #9e9e9e;
+        background-color: var(--color-secondary);
+        border: 1px solid var(--color-on-secondary);
     }
 
     &:active {
