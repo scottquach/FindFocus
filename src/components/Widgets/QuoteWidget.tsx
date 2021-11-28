@@ -45,7 +45,7 @@ export function QuoteWidget({ widgetId }: { widgetId: string }) {
 	function loadQuote() {
 		axios.get("https://api.quotable.io/random?maxLength=120")
 			.then(response => {
-				console.log(response);
+				// console.log(response);
 				setQuote(response.data.content)
 				setAuthor(response.data.author)
 			})

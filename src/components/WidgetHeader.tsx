@@ -30,7 +30,7 @@ export function WidgetHeader({ widgetId }: any) {
 	const onFullScreenClick = () => { }
 
 	return (
-		<HeaderWrapper>
+		<HeaderWrapper className="WidgetHeader">
 			<Header>
 				<IconButton size="small" onClick={onCloseClick}>
 					<CloseIcon fontSize="small" style={{ fill: "var(--color-on-primary)"}}/>

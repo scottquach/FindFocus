@@ -2,7 +2,6 @@ import { useSetRecoilState } from 'recoil';
 import useAddWidget from '../hooks/useAddWidget';
 import { WidgetType } from '../models/widget-types.enum';
 import { createWidget } from '../models/widget.model';
-import { gridLayoutState } from '../stores/store';
 import * as S from './WidgetPreview.styles';
 
 

@@ -1,25 +1,28 @@
 import { useSetRecoilState } from 'recoil';
 import { Widget } from '../models/widget.interface';
-import { activeWidgetsState, gridLayoutState } from '../stores/store';
+import { activeWidgetsState, layoutState } from '../stores/store';
 import useLocalStorage from './useLocalStorage';
 
 export default function useAddWidget() {
-    const setGridLayout = useSetRecoilState(gridLayoutState);
+    // const setGridLayout = useSetRecoilState(gridLayoutState);
     const setActiveWidgets = useSetRecoilState(activeWidgetsState);
+    const setLayout = useSetRecoilState(layoutState);
     const [savedWidgets, setSavedWidgets] = useLocalStorage('active-widgets', JSON.stringify([]));
+    const [savedLayout, setSavedLayout] = useLocalStorage('layout', {});
 
     function addWidget(widget: Widget) {
-        setGridLayout((old) => [
-            ...old,
-            {
-                i: widget.id,
-                x: 0,
-                y: 0,
-                w: 2,
-                h: 2,
-                widget: widget,
-            },
-        ]);
+        setLayout((old: any) => {
+            const newLayout = {
+                ...old,
+                [widget.id]: {
+                    id: widget.id
+                }
+            };
+
+            setSavedLayout(newLayout);
+            return newLayout;
+        });
+
         setActiveWidgets((old: Widget[]) => {
             const newWidgets = [...old, widget];
             setSavedWidgets(newWidgets);

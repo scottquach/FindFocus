@@ -1,23 +1,29 @@
 import { cloneDeep } from 'lodash';
 import { useSetRecoilState } from 'recoil';
 import { Widget } from '../models/widget.interface';
-import { activeWidgetsState, gridLayoutState } from '../stores/store';
+import { activeWidgetsState, layoutState } from '../stores/store';
 import useLocalStorage from './useLocalStorage';
 
 export default function useDeleteWidget() {
-    const setGridLayout = useSetRecoilState(gridLayoutState);
     const setActiveWidgets = useSetRecoilState(activeWidgetsState);
+    const setLayout = useSetRecoilState(layoutState);
     const [savedWidgets, setSavedWidgets] = useLocalStorage('active-widgets', JSON.stringify([]));
+    const [savedLayout, setSavedLayout] = useLocalStorage('layout', {});
 
     function deleteWidget(widgetId: string) {
-        setGridLayout((old) => {
-            const index = old.findIndex((x) => x.i === widgetId);
-            // console.log(index);
-			const newState = cloneDeep(old);
-            newState.splice(index, 1);
-			// console.log('new state', newState);
-            return newState;
-        });
+        setLayout((old) => {
+            const newLayout: any = {}
+            console.log('delete', old)
+            Object.values(old).forEach((item: any) => {
+                console.log(item);
+                if (item.id !== widgetId) {
+                    newLayout[item.id] = item;
+                }
+            });
+
+            setSavedLayout(newLayout);
+            return newLayout;
+        })
 
         setActiveWidgets((old: Widget[]) => {
             const index = old.findIndex((x) => x.id === widgetId);

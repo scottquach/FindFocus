@@ -1,16 +1,22 @@
-import { Layout } from 'react-grid-layout';
+// import { Layout } from 'react-grid-layout';
 import { atom, selector, selectorFamily } from 'recoil';
 import { BackgroundType } from '../models/background-types.enum';
+import { Layout } from '../models/layout.interface';
 import { Widget } from '../models/widget.interface';
 
-export const gridLayoutState = atom({
-    key: 'gridLayout',
-    default: [
-        // { i: 'a', x: 0, y: 0, w: 2, h: 2 },
-        // { i: 'b', x: 0, y: 0, w: 2, h: 2, widget: createWidget(WidgetType.Quote) },
-        // { i: 'c', x: 4, y: 0, w: 3, h: 3, widget: createWidget(WidgetType.Quote) },
-        // { i: 'd', x: 7, y: 0, w: 2, h: 2  },
-    ] as Layout[],
+// export const gridLayoutState = atom({
+//     key: 'gridLayout',
+//     default: [
+//         // { i: 'a', x: 0, y: 0, w: 2, h: 2 },
+//         // { i: 'b', x: 0, y: 0, w: 2, h: 2, widget: createWidget(WidgetType.Quote) },
+//         // { i: 'c', x: 4, y: 0, w: 3, h: 3, widget: createWidget(WidgetType.Quote) },
+//         // { i: 'd', x: 7, y: 0, w: 2, h: 2  },
+//     ] as Layout[],
+// });
+
+export const layoutState = atom({
+    key: 'layout',
+    default: {} as Layout,
 });
 
 export const activeWidgetsState = atom({
@@ -61,9 +67,9 @@ export const globalConfigState = atom({
 export const globalGridVisibleState = atom({
     key: 'globalGridVisibleState',
     default: true,
-})
+});
 
 export const globalVolumeState = atom({
     key: 'globalVolumeState',
-    default: 50
+    default: 50,
 });
