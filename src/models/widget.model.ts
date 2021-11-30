@@ -34,7 +34,7 @@ export function createWidget(type: WidgetType, data?: any): Widget {
     switch (type) {
         case WidgetType.Spotify:
             baseWidget.data = {
-                link: 'https://open.spotify.com/embed/playlist/0vvXsWCC9xrXsKd4FyS8kM?utm_source=generator'
+                link: 'https://open.spotify.com/embed/playlist/0vvXsWCC9xrXsKd4FyS8kM'
             };
             return baseWidget;
 
