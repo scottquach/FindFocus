@@ -13,7 +13,10 @@ const Content = styled.div`
 	width: 100%;
 `
 
+
 const Quote = styled.div`
+	grid-row: 1 / 3;
+	grid-column: 1;
 	text-align: center;
 	font-size: 18px;
 	color: var(--color-on-background);
@@ -28,8 +31,11 @@ const Author = styled.div`
 `
 
 const RefreshButton = styled(IconButton)`
+	bottom: 5px;
+	right: 5px;
 	justify-self: end;
-	align-self: end;
+	grid-row: 2;
+	grid-column: 1;
 	/* color: blue; */
 
 `
@@ -55,11 +61,11 @@ export function QuoteWidget({ widgetId }: { widgetId: string }) {
 	return (
 		<WidgetFrame widgetId={widgetId}>
 			<Content>
-				<div>
-					<Quote>"{quote}"</Quote>
+				<Quote>
+					<div>"{quote}"</div>
 					<Author>- {author}</Author>
-				</div>
-				<RefreshButton onClick={loadQuote}>
+				</Quote>
+				<RefreshButton onClick={loadQuote} size="small">
 					<LoopIcon style={{fill: "var(--color-on-background)"}}></LoopIcon>
 				</RefreshButton>
 			</Content>
