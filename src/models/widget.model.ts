@@ -33,7 +33,11 @@ export function createWidget(type: WidgetType, data?: any): Widget {
     const baseWidget = base(type);
     switch (type) {
         case WidgetType.Spotify:
+            baseWidget.data = {
+                link: 'https://open.spotify.com/embed/playlist/0vvXsWCC9xrXsKd4FyS8kM?utm_source=generator'
+            };
             return baseWidget;
+
         case WidgetType.Quote:
             return baseWidget;
         case WidgetType.Weather:

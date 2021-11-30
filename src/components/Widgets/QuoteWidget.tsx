@@ -17,6 +17,7 @@ const Quote = styled.div`
 	text-align: center;
 	font-size: 18px;
 	color: var(--color-on-background);
+	padding: 0 1rem;
 `
 
 const Author = styled.div`

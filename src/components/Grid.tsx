@@ -10,6 +10,7 @@ import useSyncLocalStorage from '../hooks/useSyncLocalStorage';
 import ClockWidget from './Widgets/ClockWidget';
 import { Rnd } from 'react-rnd';
 import { Layout } from "../models/layout.interface";
+import { SpotifyWidget } from "./Widgets/SpotifyWidget";
 
 const Div = styled.div`
 	display: flex;
@@ -86,6 +87,10 @@ export function Grid() {
 							return <ResizeBox key={item.id} index={index} id={item.id} size={item.size} position={item.position} updateSize={updateSize} updatePosition={updatePosition}>
 								<ClockWidget widgetId={item.id}></ClockWidget>
 							</ResizeBox>
+						case WidgetType.Spotify:
+							return <ResizeBox key={item.id} index={index} id={item.id} size={item.size} position={item.position} updateSize={updateSize} updatePosition={updatePosition}>
+								<SpotifyWidget widgetId={item.id}></SpotifyWidget>
+							</ResizeBox>
 						// return <Div key={item.i}>
 						// 	<ClockWidget widgetId={item.i}></ClockWidget>
 						// </Div>
@@ -96,10 +101,6 @@ export function Grid() {
 						// case WidgetType.Weather:
 						// 	return <Div key={item.i}>
 						// 		<EmbedWidget ></EmbedWidget>
-						// 	</Div>
-						// case WidgetType.Spotify:
-						// 	return <Div key={item.i}>
-						// 		<SpotifyWidget widgetId={item.i}></SpotifyWidget>
 						// 	</Div>
 						// case WidgetType.SoundCloud:
 						// 	return <Div key={item.i}>

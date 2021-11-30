@@ -72,7 +72,7 @@ export function WidgetPicker({ close }: any) {
 					<FormatQuoteIcon></FormatQuoteIcon>
 					<div>Quote</div>
 				</S.Widget>
-				<S.Widget>
+				<S.Widget onClick={() => create(WidgetType.Spotify)}>
 					<QueueMusicOutlined></QueueMusicOutlined>
 					<div>Spotify</div>
 				</S.Widget>

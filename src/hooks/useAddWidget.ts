@@ -11,6 +11,7 @@ export default function useAddWidget() {
     const [savedLayout, setSavedLayout] = useLocalStorage('layout', {});
 
     function addWidget(widget: Widget) {
+        console.log('creating widget', widget);
         setLayout((old: any) => {
             const newLayout = {
                 ...old,
