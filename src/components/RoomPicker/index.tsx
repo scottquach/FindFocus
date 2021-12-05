@@ -2,20 +2,60 @@ import * as S from './styles'
 
 import CloseIcon from '@mui/icons-material/Close';
 
-import { IconButton } from '@mui/material';
+import { IconButton, Slider } from '@mui/material';
 import { useRecoilState } from 'recoil';
 import { backgroundState } from '../../stores/store';
 import { BackgroundType } from '../../models/background-types.enum';
 import useLocalStorage from '../../hooks/useLocalStorage';
 import { MenuHeader, MenuHeaderLayout } from '../../GlobalStyles';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import PlayCircleIcon from '@mui/icons-material/PlayCircle';
+import { useState } from 'react';
 
-// const cateredImages = [
-// 	'https://images.unsplash.com/photo-1475359524104-d101d02a042b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1594&q=80',
-// 	'https://images.unsplash.com/photo-1484291470158-b8f8d608850d?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2070&q=80',
-// 	'https://images.unsplash.com/photo-1517757910079-f57fd7f49a91?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2068&q=80',
-// 	'https://images.unsplash.com/photo-1524778153300-4c80b64c322e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2070&q=80',
-// 	'https://images.unsplash.com/photo-1619199748576-75ae8022c73f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2070&q=80'
-// ]
+enum RoomId {
+	Cafe = 'cafe',
+	Walk = 'walk',
+	Beach = 'beach',
+	City = 'city',
+	Window = 'window',
+	Nature = 'nature',
+	Christmas = 'christmas',
+	Animated = 'animated',
+}
+
+const rooms = [
+	{
+		icon: '🎅',
+		name: 'Christmas',
+		id: RoomId.Christmas
+	},
+	{
+		icon: '☕',
+		name: 'Cafe',
+		id: RoomId.Cafe
+	},
+	{
+		icon: '🌲',
+		name: 'Nature',
+		id: RoomId.Nature
+	},
+	{
+		icon: '🏖️',
+		name: 'Beach',
+		id: RoomId.Beach
+	},
+	{
+		icon: '🏙️',
+		name: 'City',
+		id: RoomId.City
+	},
+	{
+		icon: '📺',
+		name: 'Animated',
+		id: RoomId.Animated
+	}
+]
+
 
 const videoRooms: { [key: string]: string[] } = {
 	cafe: ['https://www.youtube.com/watch?v=3nyuWu7dnTM&ab_channel=LauraAngelia'],
@@ -33,14 +73,6 @@ const videoRoomBackgrounds: { [key: string]: string } = {
 	window: 'https://images.unsplash.com/photo-1551524163-d00af9f12253?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1025&q=80'
 }
 
-enum VideoRoom {
-	Cafe = 'cafe',
-	Walk = 'walk',
-	Beach = 'beach',
-	City = 'city',
-	Window = 'window',
-}
-
 // const cateredColors = [
 // 	'#DAF7DC',
 // 	'#BEE7E8',
@@ -53,33 +85,19 @@ export function BackgroundPicker({ close }: any) {
 	const [background, setBackground] = useRecoilState(backgroundState);
 	const [_, saveBackground] = useLocalStorage('background', {});
 
-	// const setImageBackground = (imageUrl: string) => {
-	// 	const background = {
-	// 		type: BackgroundType.Image,
-	// 		value: imageUrl
-	// 	}
-	// 	setBackground((old) => (background));
-	// 	saveBackground(background);
-	// }
+	const [activeRoom, setActiveRoom] = useState<null | RoomId>(null);
 
-	// const setVideoBackground = (videoUrl: string) => {
-	// 	const background = {
-
-	// 		type: BackgroundType.Video,
-	// 		value: videoUrl
-	// 	}
-	// 	setBackground((old) => (background));
-	// 	saveBackground(background);
-	// }
-
-	const joinVideoRoom = (roomId: VideoRoom) => {
+	const joinRoom = (roomId: RoomId) => {
 		const background = {
 			type: BackgroundType.Video,
 			roomId: roomId,
-			value: videoRooms[roomId as any][0]
+			value: videoRooms[roomId as any]?.[0]
 		}
-		setBackground((old) => (background));
-		saveBackground(background);
+		if (background.value) {
+			setActiveRoom(roomId);
+			setBackground((old) => (background));
+			saveBackground(background)
+		}
 	}
 
 	// const setColorBackground = (color: string) => {
@@ -100,11 +118,44 @@ export function BackgroundPicker({ close }: any) {
 			<MenuHeaderLayout>
 				<MenuHeader>Rooms</MenuHeader>
 				<IconButton onClick={onClose}>
-					<CloseIcon></CloseIcon>
+					<CloseIcon style={{ fill: "var(--color-on-background)" }}></CloseIcon>
 				</IconButton>
 			</MenuHeaderLayout>
 
-			<S.SectionLayout>
+			<S.RoomList>
+				{rooms.map((room, index) => (
+					<S.Room key={index} onClick={() => joinRoom(room.id)} active={room.id === activeRoom}>
+						<S.RoomIcon>{room.icon}</S.RoomIcon>
+						<S.RoomName>{room.name}</S.RoomName>
+					</S.Room>
+				))}
+			</S.RoomList>
+
+			{
+				activeRoom &&
+				<S.ActiveContainer>
+					<S.ActiveRoom>
+						<S.RoomIcon>
+							📺
+						</S.RoomIcon>
+						<div>
+							<S.ActiveRoomName>Lo-Fi Girl</S.ActiveRoomName>
+							<S.ActiveRoomOriginal>View original</S.ActiveRoomOriginal>
+						</div>
+						{/* <div> */}
+						{/* <FavoriteBorderIcon></FavoriteBorderIcon> */}
+						{/* <PlayCircleIcon></PlayCircleIcon> */}
+						{/* </div> */}
+					</S.ActiveRoom>
+				</S.ActiveContainer>
+			}
+
+
+
+			{/* <Slider aria-label="Volume" /> */}
+
+
+			{/* <S.SectionLayout>
 				<span>🎥</span>
 				<S.SectionTitle>VIDEO ROOMS</S.SectionTitle>
 			</S.SectionLayout>
@@ -144,34 +195,8 @@ export function BackgroundPicker({ close }: any) {
 						<span>Window</span>
 					</S.VideoName>
 				</S.VideoRoom>
-			</S.PresetGrid>
-
-			{/* <S.SectionLayout>
-				<ImageIcon></ImageIcon>
-				<S.SectionTitle>CATERED IMAGES</S.SectionTitle>
-			</S.SectionLayout>
-
-			<S.ImagePresetGrid>
-				{cateredImages.map((url) => {
-					return <S.ImagePresetContainer key={url} onClick={() => setImageBackground(url)}>
-						<S.ImagePreset src={url} />
-					</S.ImagePresetContainer>
-				})}
-			</S.ImagePresetGrid>
-
-			<S.SectionLayout>
-				<PaletteIcon></PaletteIcon>
-				<S.SectionTitle>CATERED COLORS</S.SectionTitle>
-			</S.SectionLayout>
-			<S.PresetGrid>
-				{cateredColors.map((color) => {
-					return (
-						<S.ColorPresetContainer key={color} onClick={() => setColorBackground(color)}>
-							<S.ColorPreset color={color}></S.ColorPreset>
-						</S.ColorPresetContainer>
-					)
-				})}
 			</S.PresetGrid> */}
+
 		</S.Wrapper>
 	);
 }

@@ -21,13 +21,17 @@ body {
 :root {
     /* base theme colors */
     --widget-background-color: #f8edeb;
-    --border-color: black;
+    --color-border: #9e9e9e;
 
     --color-primary: #212121;
     --color-on-primary: #fafafa;
 
-    --color-secondary: #474554;
+    --color-secondary: #9e9e9e;
     --color-on-secondary: #212121;
+
+
+    --color-surface: #eeeeee;
+    --color-on-surface: #212121;
 
     --color-background: #fafafa;
     --color-on-background: #212121;
