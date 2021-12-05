@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Card } from '../styles/card';
 import { WidgetFrame } from '../WidgetFrame';
 
 export const Wrapper = styled.div`
@@ -34,28 +35,18 @@ export const Widgets = styled.div`
     gap: .5rem;
 `;
 
-export const Widget = styled.div`
+export const Widget = styled(Card)`
     display: flex;
     flex-direction: column;
     align-items: center;
     cursor: pointer;
     border-radius: 8px;
     padding: 0.25rem 0.75rem;
-    border: 1px solid white;
+    /* border: 1px solid white; */
     transition: all 50ms;
     width: 3rem;
-    background-color: var(--color-primary);
-    color: var(--color-on-primary);
-    fill: var(--color-on-primary);
-
-    &:hover {
-        background-color: var(--color-secondary);
-        border: 1px solid var(--color-on-secondary);
-    }
-
-    &:active {
-        transform: scale(.95);
-    }
+    /* color: var(--color-on-primary); */
+    /* fill: var(--color-on-primary); */
 `;
 
 // export const SectionTitle = styled.div`

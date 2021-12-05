@@ -11,48 +11,39 @@ import { MenuHeader, MenuHeaderLayout } from '../../GlobalStyles';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import PlayCircleIcon from '@mui/icons-material/PlayCircle';
 import { useState } from 'react';
+import { CategoryId } from '../../models/category.enum';
+import { Room } from '../../models/room.interface';
 
-enum RoomId {
-	Cafe = 'cafe',
-	Walk = 'walk',
-	Beach = 'beach',
-	City = 'city',
-	Window = 'window',
-	Nature = 'nature',
-	Christmas = 'christmas',
-	Animated = 'animated',
-}
-
-const rooms = [
+const categories = [
 	{
 		icon: '🎅',
 		name: 'Christmas',
-		id: RoomId.Christmas
+		id: CategoryId.Christmas
 	},
 	{
 		icon: '☕',
 		name: 'Cafe',
-		id: RoomId.Cafe
+		id: CategoryId.Cafe
 	},
 	{
 		icon: '🌲',
 		name: 'Nature',
-		id: RoomId.Nature
+		id: CategoryId.Nature
 	},
 	{
 		icon: '🏖️',
 		name: 'Beach',
-		id: RoomId.Beach
+		id: CategoryId.Beach
 	},
 	{
 		icon: '🏙️',
 		name: 'City',
-		id: RoomId.City
+		id: CategoryId.City
 	},
 	{
 		icon: '📺',
 		name: 'Animated',
-		id: RoomId.Animated
+		id: CategoryId.Animated
 	}
 ]
 
@@ -85,29 +76,21 @@ export function BackgroundPicker({ close }: any) {
 	const [background, setBackground] = useRecoilState(backgroundState);
 	const [_, saveBackground] = useLocalStorage('background', {});
 
-	const [activeRoom, setActiveRoom] = useState<null | RoomId>(null);
+	const [activeCategory, setActiveCategory] = useState<null | CategoryId>(null);
+	const [activeRoom, setActiveRoom] = useState<null | Room>(null);
 
-	const joinRoom = (roomId: RoomId) => {
+	const joinRoom = (categoryId: CategoryId) => {
 		const background = {
 			type: BackgroundType.Video,
-			roomId: roomId,
-			value: videoRooms[roomId as any]?.[0]
+			roomId: categoryId,
+			value: videoRooms[categoryId as any]?.[0]
 		}
 		if (background.value) {
-			setActiveRoom(roomId);
+			setActiveCategory(categoryId);
 			setBackground((old) => (background));
 			saveBackground(background)
 		}
 	}
-
-	// const setColorBackground = (color: string) => {
-	// 	const background = {
-	// 		type: BackgroundType.Color,
-	// 		value: color
-	// 	}
-	// 	setBackground((old) => (background));
-	// 	saveBackground(background);
-	// }
 
 	const onClose = () => {
 		close();
@@ -123,8 +106,8 @@ export function BackgroundPicker({ close }: any) {
 			</MenuHeaderLayout>
 
 			<S.RoomList>
-				{rooms.map((room, index) => (
-					<S.Room key={index} onClick={() => joinRoom(room.id)} active={room.id === activeRoom}>
+				{categories.map((room, index) => (
+					<S.Room key={index} onClick={() => joinRoom(room.id)} active={room.id === activeCategory}>
 						<S.RoomIcon>{room.icon}</S.RoomIcon>
 						<S.RoomName>{room.name}</S.RoomName>
 					</S.Room>
@@ -132,7 +115,7 @@ export function BackgroundPicker({ close }: any) {
 			</S.RoomList>
 
 			{
-				activeRoom &&
+				activeCategory &&
 				<S.ActiveContainer>
 					<S.ActiveRoom>
 						<S.RoomIcon>

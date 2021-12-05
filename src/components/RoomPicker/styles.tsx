@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { MenuWrapper } from "../../GlobalStyles";
+import { Card } from "../styles/card";
 
 export const Wrapper = styled(MenuWrapper)`
 	background-color: var(--color-background);
@@ -17,9 +18,7 @@ export const RoomList = styled.div`
 	gap: .75rem;
 `
 
-export const Room = styled.div<
-	{ active: boolean }
-	>`
+export const Room = styled(Card)`
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -29,14 +28,6 @@ export const Room = styled.div<
 	border-radius: 8px;
 	padding: .5rem;
 	cursor: pointer;
-	transition: all .1s ease-in-out;
-	box-shadow: ${props => props.active ? 'rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.50) 0px 0px 0px 2px' : ''};
-	transform: ${props => props.active ? 'translateY(-4px)' : ''};
-
-	&:hover {
-		box-shadow: ${props => props.active ? 'rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.50) 0px 0px 0px 2px' : 'rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.20) 0px 0px 0px 1px'};
-		transform: translateY(-4px);
-	}
 `;
 
 export const RoomIcon = styled.div`
