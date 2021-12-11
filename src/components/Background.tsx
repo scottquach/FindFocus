@@ -35,7 +35,7 @@ const VideoBackground = styled(ReactPlayer)`
 
 export function Background() {
 
-	const background = useRecoilValue(backgroundState);
+	const room = useRecoilValue(backgroundState);
 	const volume = useRecoilValue(globalVolumeState);
 	// console.log('Background', background)
 
@@ -46,10 +46,11 @@ export function Background() {
 
 	return (
 		<BackgroundWrapper>
-			{background.type === BackgroundType.Image && <ImageBackground src={background.value} />}
-			{background.type === BackgroundType.Video && <VideoBackground url={buildYouTubeUrl(background.value)}  playing={true} volume={volume / 100} width="100%" height="100%" />}
+			{/* {background.type === BackgroundType.Image && <ImageBackground src={background.value} />} */}
+			{/* {background.type === BackgroundType.Video && <VideoBackground url={buildYouTubeUrl(background.value)}  playing={true} volume={volume / 100} width="100%" height="100%" />} */}
+			{ room && <VideoBackground url={buildYouTubeUrl(room.link)}  playing={true} volume={volume / 100} width="100%" height="100%" /> }
 			{/* {background.type === BackgroundType.Video && <VideoBackground allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" src={buildYouTubeUrl(background.value)}> </VideoBackground>} */}
-			{background.type === BackgroundType.Color && <ColorBackground color={background.value} />}
+			{/* {background.type === BackgroundType.Color && <ColorBackground color={background.value} />} */}
 			{/* {background.type === BackgroundType.Video && <VideoBackground allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" src="https://www.youtube.com/embed/eZe4Q_58UTU?autoplay=1&mute=1&controls=0&start=15&origin=https%3A%2F%2Flifeat.io&playsinline=1&showinfo=0&rel=0&iv_load_policy=3&modestbranding=1&enablejsapi=1"> </VideoBackground>} */}
 		</BackgroundWrapper>
 	)

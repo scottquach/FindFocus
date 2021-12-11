@@ -2,6 +2,7 @@
 import { atom, selector, selectorFamily } from 'recoil';
 import { BackgroundType } from '../models/background-types.enum';
 import { Layout } from '../models/layout.interface';
+import { Room } from '../models/room.interface';
 import { Widget } from '../models/widget.interface';
 
 // export const gridLayoutState = atom({
@@ -50,10 +51,10 @@ export const widgetById = selectorFamily({
 export const backgroundState = atom({
     key: 'backgroundState',
     default: {
-        type: BackgroundType.Image,
-        roomId: 'city',
-        value: 'https://images.unsplash.com/photo-1619199748576-75ae8022c73f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2070&q=80',
-    },
+        // type: BackgroundType.Image,
+        // roomId: 'city',
+        // value: 'https://images.unsplash.com/photo-1619199748576-75ae8022c73f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2070&q=80',
+    } as Room | null,
 });
 
 export const globalConfigState = atom({
