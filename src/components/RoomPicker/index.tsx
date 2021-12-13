@@ -114,9 +114,7 @@ export function BackgroundPicker({ close }: any) {
 				activeCategory && room &&
 				<S.ActiveContainer>
 					<S.ActiveRoom>
-						<S.RoomIcon>
-							📺
-						</S.RoomIcon>
+						<S.RoomIcon>{categories.find((cat) => cat.id === activeCategory)?.icon}</S.RoomIcon>
 						<div>
 							<S.ActiveRoomName>{room?.name}</S.ActiveRoomName>
 							<S.ActiveRoomOriginal href={room.link} target="_blank">View original</S.ActiveRoomOriginal>

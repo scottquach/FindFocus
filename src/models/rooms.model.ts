@@ -16,20 +16,19 @@ export const Rooms = {
             link: 'https://www.youtube.com/watch?v=DDt9UV5SETo&ab_channel=HaraStudies',
             category: CategoryId.Cafe,
         },
-        {
-            id: '1GX7qQPB9P8',
-            name: 'Vancouver Cate Cafe',
-            creator: 'Catoro Cafe',
-            link: 'https://www.youtube.com/watch?v=1GX7qQPB9P8&ab_channel=CatoroCafe',
-            category: CategoryId.Cafe,
-        },
 		{
             id: 'gaGrHUekGrc',
             name: 'Coffe shop sounds',
             creator: 'Nomadic Ambience',
             link: 'https://www.youtube.com/watch?v=gaGrHUekGrc&t=13783s&ab_channel=NomadicAmbience',
             category: CategoryId.Cafe,
-
+		},
+		{
+            id: 'LUcdunOITak',
+            name: 'Study with me in Gangnam',
+            creator: 'K-study',
+            link: 'https://www.youtube.com/watch?v=LUcdunOITak&ab_channel=K-Study%EC%BC%80%EC%9D%B4%EC%8A%A4%ED%84%B0%EB%94%94',
+            category: CategoryId.Cafe,
 		}
     ],
     [CategoryId.Beach]: [
