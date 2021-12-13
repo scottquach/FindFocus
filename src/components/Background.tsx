@@ -50,6 +50,7 @@ export function Background() {
 		if (player) {
 			console.log('setting volume', volume);
 			player.setVolume(volume);
+			player.playVideo();
 		}
 	}, [volume]);
 
@@ -65,6 +66,7 @@ export function Background() {
 			autoplay: 1,
 			loop: 1,
 			modestbranding: 1,
+			mute: 1,
 			start: 20,
 		} as PlayerVars
 	}
