@@ -56,7 +56,7 @@ export function Background() {
 	const onReady = (event: any) => {
 		console.log(event.target);
 		setPlayer(event.target);
-		event.target.mute();
+		// event.target.mute();
 		event.target.playVideo();
 		setTimeout(() => {
 			console.log('attempting to play');
@@ -71,6 +71,7 @@ export function Background() {
 			autoplay: 1,
 			loop: 1,
 			modestbranding: 1,
+			mute: 1,
 			start: 20,
 		} as PlayerVars
 	}
