@@ -56,7 +56,9 @@ export function Background() {
 	const onReady = (event: any) => {
 		console.log(event.target);
 		setPlayer(event.target);
-		event.target.playVideo();
+		setTimeout(() => {
+			event.target.playVideo();
+		}, 1000);
 	}
 
 	const opts = {
