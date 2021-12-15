@@ -58,27 +58,31 @@ export function Background() {
 	useEffect(() => {
 		// if (player) {
 		console.log('setting volume', volume);
+		if (volume != 0) {
+			setMute(false);
+		}
 		// 	player.setVolume(volume);
 		// }
 	}, [volume]);
 
 	useEffect(() => {
-		setTimeout(() => {
-			setMute(false);
+		// setTimeout(() => {
+		// console.log('attempting to play');
+		// 	setMute(false);
 
-		}, 5000);
+		// }, 5000);
 	}, [0]);
 
-	const onReady = (event: any) => {
-		console.log(event.target);
-		setPlayer(event.target);
-		// event.target.mute();
-		// event.target.playVideo();
-		setTimeout(() => {
-			console.log('attempting to play');
-			event.target.unMute();
-		}, 5000);
-	}
+	// const onReady = (event: any) => {
+	// 	console.log(event.target);
+	// 	setPlayer(event.target);
+	// 	// event.target.mute();
+	// 	// event.target.playVideo();
+	// 	setTimeout(() => {
+	// 		console.log('attempting to play');
+	// 		event.target.unMute();
+	// 	}, 5000);
+	// }
 
 	return (
 		<BackgroundWrapper>
@@ -86,7 +90,7 @@ export function Background() {
 			{/* {background.type === BackgroundType.Video && <VideoBackground url={buildYouTubeUrl(background.value)}  playing={true} volume={volume / 100} width="100%" height="100%" />} */}
 			{/* { room && <VideoBackground url={buildYouTubeUrl(room.link)}  playing={true} volume={volume / 100} width="100%" height="100%" /> } */}
 			{/* {room && <VideoBackground videoId={room.id} opts={opts} onReady={onReady}></VideoBackground>} */}
-			{room && <VideoBackground url={`${room.link}`} width="100%" height="100%" volume={volume / 100} muted={mute} loop={true} playing={true} controls={false} />}
+			{room && <VideoBackground url={`${room.link}`} width="100%" height="100%" volume={volume / 100} muted={mute} loop={true} playsinline={true} playing={true} controls={false} />}
 			{/* {background.type === BackgroundType.Video && <VideoBackground allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" src={buildYouTubeUrl(background.value)}> </VideoBackground>} */}
 			{/* {background.type === BackgroundType.Color && <ColorBackground color={background.value} />} */}
 			{/* {background.type === BackgroundType.Video && <VideoBackground allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" src="https://www.youtube.com/embed/eZe4Q_58UTU?autoplay=1&mute=1&controls=0&start=15&origin=https%3A%2F%2Flifeat.io&playsinline=1&showinfo=0&rel=0&iv_load_policy=3&modestbranding=1&enablejsapi=1"> </VideoBackground>} */}
