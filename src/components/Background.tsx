@@ -39,50 +39,15 @@ export function Background() {
 	const room = useRecoilValue(backgroundState);
 	const volume = useRecoilValue(globalVolumeState);
 	const [mute, setMute] = useState(true);
-
-
-	// const [ops, setOps] = useState({
-	// 	height: '100vh',
-	// 	width: '100vw',
-	// 	playerVars: {
-	// 		autoplay: 1,
-	// 		loop: 1,
-	// 		modestbranding: 1,
-	// 		mute: 1,
-	// 		start: 20,
-	// 	} as PlayerVars
-	// })
-
-	const [player, setPlayer] = useState<null | any>(null);
 	// console.log('Background', background)
 	useEffect(() => {
-		// if (player) {
-		console.log('setting volume', volume);
 		if (volume != 0) {
 			setMute(false);
+		} else {
+			setMute(true);
 		}
-		// 	player.setVolume(volume);
-		// }
 	}, [volume]);
 
-	useEffect(() => {
-		// setTimeout(() => {
-		// console.log('attempting to play');
-		// 	setMute(false);
-
-		// }, 5000);
-	}, [0]);
-
-	// const onReady = (event: any) => {
-	// 	console.log(event.target);
-	// 	setPlayer(event.target);
-	// 	// event.target.mute();
-	// 	// event.target.playVideo();
-	// 	setTimeout(() => {
-	// 		console.log('attempting to play');
-	// 		event.target.unMute();
-	// 	}, 5000);
-	// }
 
 	return (
 		<BackgroundWrapper>
