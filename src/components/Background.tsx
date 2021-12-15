@@ -60,8 +60,8 @@ export function Background() {
 		// event.target.playVideo();
 		setTimeout(() => {
 			console.log('attempting to play');
-			// event.target.unMute();
-		}, 2000);
+			event.target.unMute();
+		}, 5000);
 	}
 
 	const opts = {
