@@ -57,10 +57,10 @@ export function Background() {
 		console.log(event.target);
 		setPlayer(event.target);
 		// event.target.mute();
-		event.target.playVideo();
+		// event.target.playVideo();
 		setTimeout(() => {
 			console.log('attempting to play');
-			event.target.unMute();
+			// event.target.unMute();
 		}, 2000);
 	}
 
