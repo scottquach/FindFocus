@@ -56,9 +56,12 @@ export function Background() {
 	const onReady = (event: any) => {
 		console.log(event.target);
 		setPlayer(event.target);
+		event.target.mute();
+		event.target.playVideo();
 		setTimeout(() => {
-			event.target.playVideo();
-		}, 1000);
+			console.log('attempting to play');
+			event.target.unMute();
+		}, 2000);
 	}
 
 	const opts = {
