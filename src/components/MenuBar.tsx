@@ -19,7 +19,7 @@ const PositionContainer = styled.div`
 `
 
 const MenuLayout = styled.div`
-	height: 3.5rem;
+	height: 4rem;
 	padding: .25rem 1rem;
 	border-radius: var(--widget-border-radius);
 	background-color: var(--color-background);
@@ -44,7 +44,6 @@ const Item = styled.div`
 
 `
 
-
 enum MenuId {
 	WidgetPicker = 'widget_picker',
 	BackgroundPicker = 'background_picker',
@@ -59,24 +58,16 @@ export function MenuBar() {
 	const open = Boolean(anchorEl);
 	const id = open ? 'transition-popper' : undefined;
 
-
-	// const [open, setOpen] = useState(false);
-	// const id = open ? 'simple-popper' : undefined;
-
 	const onMenuSelected = (event: React.MouseEvent<HTMLElement>, selectedMenu: MenuId) => {
-		// setAnchorEl(anchorEl ? null : event.currentTarget);
-		// console.log('open', menu)
 		if (menu === selectedMenu) {
 			onClose();
 		} else {
 			setAnchorEl(event.currentTarget);
 			setMenu(selectedMenu);
 		}
-		// setOpen(true);
 	}
 
 	const onClose = () => {
-		// console.log('close', menu)
 		setAnchorEl(null);
 		setMenu(null);
 	}

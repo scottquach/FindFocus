@@ -24,8 +24,8 @@ const UtilityBarLayout = styled.div`
 
 const Frame = styled.div`
 	border-radius: 8px;
-	background-color: #ffffffd8;
-	backdrop-filter: saturate(50%) blur(15px);
+	background-color: var(--color-background);
+	/* backdrop-filter: saturate(50%) blur(15px); */
 `
 
 export function UtilityBar() {
@@ -52,11 +52,11 @@ export function UtilityBar() {
 			<GridToggle></GridToggle>
 			<VolumeSlider></VolumeSlider>
 			<Frame>
-				<IconButton onClick={triggerFullscreen}>
-				<FullscreenIcon></FullscreenIcon>
+				<IconButton onClick={triggerFullscreen} style={{ fill: "var(--color-on-background)" }}>
+					<FullscreenIcon style={{ fill: "var(--color-on-background)" }}></FullscreenIcon>
 				</IconButton>
 				<IconButton>
-					<AccountCircleIcon></AccountCircleIcon>
+					<AccountCircleIcon style={{ fill: "var(--color-on-background)" }}></AccountCircleIcon>
 				</IconButton>
 			</Frame>
 		</UtilityBarLayout>
@@ -82,8 +82,8 @@ function GridToggle() {
 	return (
 		<Frame>
 			<IconButton onClick={onGridToggle}>
-				{state && <WidgetsIcon></WidgetsIcon>}
-				{!state && <HideSourceIcon></HideSourceIcon>}
+				{state && <WidgetsIcon style={{ fill: "var(--color-on-background)" }}></WidgetsIcon>}
+				{!state && <HideSourceIcon style={{ fill: "var(--color-on-background)" }}></HideSourceIcon>}
 				{!state && <GridToggleDescription>Hiding widgets</GridToggleDescription>}
 			</IconButton>
 		</Frame>
@@ -103,19 +103,6 @@ function VolumeSlider() {
 	const [volume, setVolume] = useRecoilState(globalVolumeState);
 	// console.log('volume', volume)
 
-	// useEffect(() => {
-	// 	let timeout: any;
-	// 	if (toggle) {
-	// 		timeout = setTimeout(() => {
-	// 			setToggle(false);
-	// 		}, 3000)
-	// 	}
-	// 	return function () {
-	// 		if (timeout) {
-	// 			clearTimeout(timeout);
-	// 		}
-	// 	}
-	// }, [toggle])
 
 	const handleVolumeChange = (event: any, newValue: number | number[]) => {
 		// console.log('on Change', newValue)
@@ -138,10 +125,10 @@ function VolumeSlider() {
 				<VolumeMenu active={toggle}>
 					<IconButton onClick={() => setToggle(!toggle)}>
 						{/* <IconButton onClick={() => toggleVolume()}> */}
-						{volume >= 60 && <VolumeUpIcon></VolumeUpIcon>}
-						{volume > 25 && volume < 60 && <VolumeDownIcon></VolumeDownIcon>}
-						{volume > 0 && volume <= 25 && <VolumeMuteIcon></VolumeMuteIcon>}
-						{volume == 0 && <VolumeOffIcon></VolumeOffIcon>}
+						{volume >= 60 && <VolumeUpIcon style={{ fill: "var(--color-on-background)" }}></VolumeUpIcon>}
+						{volume > 25 && volume < 60 && <VolumeDownIcon style={{ fill: "var(--color-on-background)" }}></VolumeDownIcon>}
+						{volume > 0 && volume <= 25 && <VolumeMuteIcon style={{ fill: "var(--color-on-background)" }}></VolumeMuteIcon>}
+						{volume == 0 && <VolumeOffIcon style={{ fill: "var(--color-on-background)" }}></VolumeOffIcon>}
 					</IconButton>
 					{toggle && <Slider orientation="vertical" value={volume} onChange={handleVolumeChange}></Slider>}
 				</VolumeMenu>

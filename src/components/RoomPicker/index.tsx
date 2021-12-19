@@ -2,7 +2,7 @@ import * as S from './styles'
 
 import CloseIcon from '@mui/icons-material/Close';
 
-import { IconButton, Slider, Stack } from '@mui/material';
+import { IconButton, Slider, Stack, Tooltip } from '@mui/material';
 import { useRecoilState } from 'recoil';
 import { backgroundState, globalVolumeState } from '../../stores/store';
 import { BackgroundType } from '../../models/background-types.enum';
@@ -10,6 +10,7 @@ import useLocalStorage from '../../hooks/useLocalStorage';
 import { MenuHeader, MenuHeaderLayout } from '../../GlobalStyles';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import PlayCircleIcon from '@mui/icons-material/PlayCircle';
+import RestartAltIcon from '@mui/icons-material/RestartAlt';
 import { useEffect, useState } from 'react';
 import { CategoryId } from '../../models/category.enum';
 import { Room } from '../../models/room.interface';
@@ -89,9 +90,24 @@ export function BackgroundPicker({ close }: any) {
 		setRoom((_) => newRoom);
 	}
 
+	const iterateRoom = () => {
+		if (activeCategory) {
+			let currIndex = Rooms[activeCategory].findIndex(x => x.id === room?.id);
+			let newRoom: Room;
+			if (currIndex === Rooms[activeCategory].length - 1) {
+				newRoom = Rooms[activeCategory][0];
+			} else {
+				const test = currIndex + 1;
+				newRoom = Rooms[activeCategory][test];
+			}
+			setActiveCategory(newRoom.category);
+			setRoom((_) => newRoom);
+		}
+	}
+
+
 	const handleVolumeChange = (event: Event, newValue: number | number[]) => {
 		setVolume(newValue as number);
-		// setValue(newValue as number);
 	};
 
 	const onClose = () => {
@@ -125,6 +141,13 @@ export function BackgroundPicker({ close }: any) {
 							<S.ActiveRoomName>{room?.name}</S.ActiveRoomName>
 							<S.ActiveRoomOriginal href={room.link} target="_blank">View original</S.ActiveRoomOriginal>
 						</div>
+						<div className="ml-auto mr-1">
+							<Tooltip title="Next room">
+								<IconButton onClick={iterateRoom}>
+									<RestartAltIcon style={{ fill: "var(--color-on-background)" }}></RestartAltIcon>
+								</IconButton>
+							</Tooltip>
+						</div>
 					</S.ActiveRoom>
 				</S.ActiveContainer>
 			}
@@ -136,55 +159,6 @@ export function BackgroundPicker({ close }: any) {
 					<VolumeUp />
 				</Stack>
 			</S.VolumeContainer>
-
-
-
-
-			{/* <Slider aria-label="Volume" /> */}
-
-
-			{/* <S.SectionLayout>
-				<span>🎥</span>
-				<S.SectionTitle>VIDEO ROOMS</S.SectionTitle>
-			</S.SectionLayout>
-			<S.PresetGrid>
-				<S.VideoRoom selected={background.roomId == VideoRoom.Cafe}  onClick={() => joinVideoRoom(VideoRoom.Cafe)}>
-					<S.VideoImage src={videoRoomBackgrounds[VideoRoom.Cafe]} ></S.VideoImage>
-					<S.VideoName className="">
-						<span>☕️</span>
-						<span>Cafe</span>
-					</S.VideoName>
-				</S.VideoRoom>
-				<S.VideoRoom selected={background.roomId == VideoRoom.City} onClick={() => joinVideoRoom(VideoRoom.City)}>
-					<S.VideoImage  src={videoRoomBackgrounds[VideoRoom.City]}></S.VideoImage>
-					<S.VideoName >
-						<span>🏙️</span>
-						<span>City</span>
-					</S.VideoName>
-				</S.VideoRoom>
-				<S.VideoRoom selected={background.roomId == VideoRoom.Beach} onClick={() => joinVideoRoom(VideoRoom.Beach)}>
-					<S.VideoImage  src={videoRoomBackgrounds[VideoRoom.Beach]}></S.VideoImage>
-					<S.VideoName >
-						<span>🏖️️</span>
-						<span>Beach</span>
-					</S.VideoName>
-				</S.VideoRoom>
-				<S.VideoRoom selected={background.roomId == VideoRoom.Walk} onClick={() => joinVideoRoom(VideoRoom.Walk)}>
-					<S.VideoImage  src={videoRoomBackgrounds[VideoRoom.Walk]}></S.VideoImage>
-					<S.VideoName >
-						<span>🚶‍♀️️</span>
-						<span>Walk</span>
-					</S.VideoName>
-				</S.VideoRoom>
-				<S.VideoRoom selected={background.roomId == VideoRoom.Window} onClick={() => joinVideoRoom(VideoRoom.Window)}>
-					<S.VideoImage  src={videoRoomBackgrounds[VideoRoom.Window]}></S.VideoImage>
-					<S.VideoName >
-						<span>⬜</span>
-						<span>Window</span>
-					</S.VideoName>
-				</S.VideoRoom>
-			</S.PresetGrid> */}
-
 		</S.Wrapper>
 	);
 }
