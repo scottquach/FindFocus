@@ -2,9 +2,9 @@ import * as S from './styles'
 
 import CloseIcon from '@mui/icons-material/Close';
 
-import { IconButton, Slider } from '@mui/material';
+import { IconButton, Slider, Stack } from '@mui/material';
 import { useRecoilState } from 'recoil';
-import { backgroundState } from '../../stores/store';
+import { backgroundState, globalVolumeState } from '../../stores/store';
 import { BackgroundType } from '../../models/background-types.enum';
 import useLocalStorage from '../../hooks/useLocalStorage';
 import { MenuHeader, MenuHeaderLayout } from '../../GlobalStyles';
@@ -15,6 +15,7 @@ import { CategoryId } from '../../models/category.enum';
 import { Room } from '../../models/room.interface';
 import { Rooms } from '../../models/rooms.model';
 import useSyncLocalStorage from '../../hooks/useSyncLocalStorage';
+import { VolumeDown, VolumeUp } from '@mui/icons-material';
 
 const categories = [
 	{
@@ -70,7 +71,7 @@ const videoRooms: { [key: string]: string[] } = {
 
 export function BackgroundPicker({ close }: any) {
 	const [room, setRoom] = useRecoilState(backgroundState);
-	// const [_, saveBackground] = useLocalStorage('background', {});
+	const [volume, setVolume] = useRecoilState(globalVolumeState);
 	useSyncLocalStorage('background', room);
 
 	const [activeCategory, setActiveCategory] = useState<null | CategoryId>(null);
@@ -87,6 +88,11 @@ export function BackgroundPicker({ close }: any) {
 		setActiveCategory(newRoom.category);
 		setRoom((_) => newRoom);
 	}
+
+	const handleVolumeChange = (event: Event, newValue: number | number[]) => {
+		setVolume(newValue as number);
+		// setValue(newValue as number);
+	};
 
 	const onClose = () => {
 		close();
@@ -122,6 +128,15 @@ export function BackgroundPicker({ close }: any) {
 					</S.ActiveRoom>
 				</S.ActiveContainer>
 			}
+
+			<S.VolumeContainer>
+				<Stack spacing={2} direction="row" sx={{ mb: 1, mt: 2, width: 300 }} alignItems="center">
+					<VolumeDown />
+					<Slider aria-label="Volume" value={volume} onChange={handleVolumeChange} />
+					<VolumeUp />
+				</Stack>
+			</S.VolumeContainer>
+
 
 
 
