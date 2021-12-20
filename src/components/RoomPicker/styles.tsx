@@ -59,7 +59,7 @@ export const ActiveRoom = styled.div`
 	justify-content: flex-start;
 	background-color: var(--color-surface);
 	border-radius: 8px;
-	width: 24rem;
+	width: 26rem;
 	height: 4rem;
 	cursor: default;
 	box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.20) 0px 0px 0px 1px;

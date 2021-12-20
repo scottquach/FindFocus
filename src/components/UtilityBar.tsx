@@ -49,7 +49,9 @@ export function UtilityBar() {
 
 	return (
 		<UtilityBarLayout>
-			<GridToggle></GridToggle>
+			<Tooltip title="Hide widgets">
+				<GridToggle></GridToggle>
+			</Tooltip>
 			<VolumeSlider></VolumeSlider>
 			<Frame>
 				<IconButton onClick={triggerFullscreen} style={{ fill: "var(--color-on-background)" }}>

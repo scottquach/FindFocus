@@ -28,7 +28,7 @@ const MenuLayout = styled.div`
 
 const MenuItems = styled.div`
 	display: grid;
-	grid-template-columns: repeat(3, 1fr);
+	grid-template-columns: repeat(2, 1fr);
 	grid-gap: 1.5rem;
 `
 const Item = styled.div`
@@ -92,12 +92,12 @@ export function MenuBar() {
 						</IconButton>
 						<div>Rooms</div>
 					</Item>
-					<Item>
+					{/* <Item>
 						<IconButton onClick={(e) => onMenuSelected(e, MenuId.ThemePicker)} size="small">
 							<ColorLensTwoToneIcon style={{fill: "var(--color-on-background)"}}></ColorLensTwoToneIcon>
 						</IconButton>
 						<div>Theme</div>
-					</Item>
+					</Item> */}
 				</MenuItems>
 
 
