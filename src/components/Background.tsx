@@ -5,6 +5,7 @@ import Url from 'url-parse';
 import YouTube, { PlayerVars } from 'react-youtube';
 import { useEffect, useState } from "react";
 import ReactPlayer from 'react-player'
+import { Loader } from "./Loader";
 
 
 const BackgroundWrapper = styled.div`
@@ -33,13 +34,16 @@ const VideoBackground = styled(ReactPlayer)`
 	width: 100vw;
 	height: 100vh;
 	transform: scale(1.1);
+	z-index: 0;
 `
 
 export function Background() {
 	const room = useRecoilValue(backgroundState);
 	const volume = useRecoilValue(globalVolumeState);
 	const [mute, setMute] = useState(true);
-	// console.log('Background', background)
+
+	const [loading, setLoading] = useState(true);
+
 	useEffect(() => {
 		if (volume != 0) {
 			setMute(false);
@@ -48,9 +52,17 @@ export function Background() {
 		}
 	}, [volume]);
 
+	useEffect(() => {
+		setLoading(true);
+		setTimeout(() => {
+			setLoading(false);
+		}, 1250);
+	}, [0, room]);
+
 
 	return (
 		<BackgroundWrapper>
+			{loading && <Loader></Loader>}
 			{/* {background.type === BackgroundType.Image && <ImageBackground src={background.value} />} */}
 			{/* {background.type === BackgroundType.Video && <VideoBackground url={buildYouTubeUrl(background.value)}  playing={true} volume={volume / 100} width="100%" height="100%" />} */}
 			{/* { room && <VideoBackground url={buildYouTubeUrl(room.link)}  playing={true} volume={volume / 100} width="100%" height="100%" /> } */}
