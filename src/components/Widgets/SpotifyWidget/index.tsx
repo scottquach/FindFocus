@@ -18,7 +18,7 @@ const SpotifyFrame = styled.iframe`
 const Content = styled.div`
 	display: flex;
 	flex-direction: column;
-	margin: .5rem;
+	margin: .25rem;
 	gap: .5rem;
 `
 

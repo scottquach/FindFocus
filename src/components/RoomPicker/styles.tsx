@@ -50,7 +50,7 @@ export const RoomName = styled.div`
 export const ActiveContainer = styled.div`
 	display: flex;
 	justify-content: center;
-	margin-top: 3rem;
+	margin-top: 2rem;
 `
 
 export const ActiveRoom = styled.div`

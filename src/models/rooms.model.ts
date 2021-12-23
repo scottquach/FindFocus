@@ -16,20 +16,48 @@ export const Rooms = {
             link: 'https://www.youtube.com/watch?v=DDt9UV5SETo&ab_channel=HaraStudies',
             category: CategoryId.Cafe,
         },
-		{
-            id: 'gaGrHUekGrc',
-            name: 'Coffe shop sounds',
-            creator: 'Nomadic Ambience',
-            link: 'https://www.youtube.com/watch?v=gaGrHUekGrc&t=13783s&ab_channel=NomadicAmbience',
-            category: CategoryId.Cafe,
-		},
-		{
+        {
             id: 'LUcdunOITak',
             name: 'Study with me in Gangnam',
             creator: 'K-study',
             link: 'https://www.youtube.com/watch?v=LUcdunOITak&ab_channel=K-Study%EC%BC%80%EC%9D%B4%EC%8A%A4%ED%84%B0%EB%94%94',
             category: CategoryId.Cafe,
-		}
+        },
+        {
+            id: 'NPQ6OLTCnLc',
+            name: 'Study with me at a cafe',
+            creator: 'Celine',
+            link: 'https://www.youtube.com/watch?v=NPQ6OLTCnLc&ab_channel=Celine',
+            category: CategoryId.Cafe,
+        },
+        {
+            id: '2XK0zoPWdi4',
+            name: 'Study with me cafe edition',
+            creator: 'Gutsy Studygirl',
+            link: 'https://www.youtube.com/watch?v=2XK0zoPWdi4&ab_channel=gutsystudygirl',
+            category: CategoryId.Cafe,
+        },
+        {
+            id: 'AVnfqiiyRK0',
+            name: 'Seoul cafe',
+            creator: 'Jun`s Cafe Stroll',
+            link: 'https://www.youtube.com/watch?v=AVnfqiiyRK0&ab_channel=Jun%27sCafeStroll',
+            category: CategoryId.Cafe,
+        },
+        {
+            id: 'qMHbh6XmgwM',
+            name: 'Tokyo coffee shop',
+            creator: 'Jun`s Cafe Stroll',
+            link: 'https://www.youtube.com/watch?v=qMHbh6XmgwM&ab_channel=Jun%27sCafeStroll',
+            category: CategoryId.Cafe,
+        },
+        {
+            id: 'PDDkze546nQ',
+            name: 'Seoul cafe 2',
+            creator: 'Jun`s Cafe Stroll',
+            link: 'https://www.youtube.com/watch?v=PDDkze546nQ&ab_channel=Jun%27sCafeStroll',
+            category: CategoryId.Cafe,
+        },
     ],
     [CategoryId.Beach]: [
         {
@@ -46,6 +74,20 @@ export const Rooms = {
             link: 'https://www.youtube.com/watch?v=UyZfCrrdbm8&ab_channel=TheSilentWatcher',
             category: CategoryId.Beach,
         },
+        {
+            id: 'vpqImH1jCCk',
+            name: 'Jeju Island',
+            creator: 'K-study',
+            link: 'https://www.youtube.com/watch?v=vpqImH1jCCk&ab_channel=K-Study%EC%BC%80%EC%9D%B4%EC%8A%A4%ED%84%B0%EB%94%94',
+            category: CategoryId.Beach,
+        },
+        {
+            id: 'B1T06UhcX0Q',
+            name: 'Tropics',
+            creator: 'LoungeV Films',
+            link: 'https://www.youtube.com/watch?v=B1T06UhcX0Q&ab_channel=LoungeVFilms-RelaxingMusicandNatureSounds',
+            category: CategoryId.Beach,
+        },
     ],
     [CategoryId.City]: [
         {
@@ -56,10 +98,24 @@ export const Rooms = {
             category: CategoryId.City,
         },
         {
+            id: 'lh8dNmneVyY',
+            name: 'Downtown Vancouver, Canada',
+            creator: '4K Urban Life',
+            link: 'https://www.youtube.com/watch?v=lh8dNmneVyY',
+            category: CategoryId.City,
+        },
+        {
             id: 'Vg1mpD1BICI',
             name: 'New York City open window',
             creator: 'Nomadic Ambience',
             link: 'https://www.youtube.com/watch?v=Vg1mpD1BICI&t=5774s&ab_channel=NomadicAmbience',
+            category: CategoryId.City,
+        },
+        {
+            id: '_dWyKj7I9JM',
+            name: 'Shibuya Crossing at Night',
+            creator: 'Nomadic Ambience',
+            link: 'https://www.youtube.com/watch?v=_dWyKj7I9JM&ab_channel=NomadicAmbience',
             category: CategoryId.City,
         },
         {
@@ -70,14 +126,21 @@ export const Rooms = {
             category: CategoryId.City,
         },
         {
-            id: '_dWyKj7I9JM',
-            name: 'Shibuya Crossing at Night',
-            creator: 'Nomadic Ambience',
-            link: 'https://www.youtube.com/watch?v=_dWyKj7I9JM&ab_channel=NomadicAmbience',
+            id: 'MGMqLGvtNpY',
+            name: 'London, Great Britain',
+            creator: '4K Urban Life',
+            link: 'https://www.youtube.com/watch?v=MGMqLGvtNpY',
             category: CategoryId.City,
         },
     ],
     [CategoryId.Nature]: [
+        {
+            id: '=VESwpRKuO7o',
+            name: 'Winter Mountain',
+            creator: 'Nature Soundscapes',
+            link: 'https://www.youtube.com/watch?v=VESwpRKuO7o&ab_channel=NatureSoundscapes',
+            category: CategoryId.Nature,
+        },
         {
             id: '6uhRxK_EOm4',
             name: 'Autumn River',
@@ -85,9 +148,58 @@ export const Rooms = {
             link: 'https://www.youtube.com/watch?v=6uhRxK_EOm4&ab_channel=TheSilentWatcher',
             category: CategoryId.Nature,
         },
-
-	],
-    [CategoryId.Christmas]: [],
+        {
+            id: 'qRTVg8HHzUo',
+            name: 'Mount Shuksan',
+            creator: 'Nature Soundscapes',
+            link: 'https://www.youtube.com/watch?v=qRTVg8HHzUo&ab_channel=NatureSoundscapes',
+            category: CategoryId.Nature,
+        },
+        {
+            id: 'Nmmsl2X_--U',
+            name: 'Birds Singing in the Forest',
+            creator: 'Nature Soundscapes',
+            link: 'https://www.youtube.com/watch?v=Nmmsl2X_--U&ab_channel=NatureSoundscapes',
+            category: CategoryId.Nature,
+        },
+        {
+            id: 'QQwyRqmIbzc',
+            name: 'Summer Meadow',
+            creator: 'Nature Soundscapes',
+            link: 'https://www.youtube.com/watch?v=QQwyRqmIbzc&ab_channel=NatureSoundscapes',
+            category: CategoryId.Nature,
+        },
+    ],
+    [CategoryId.Christmas]: [
+        {
+            id: 'EoeONBEd15g',
+            name: 'Santa`s Workshop',
+            creator: 'The Jazz Hop Cafe',
+            link: 'https://www.youtube.com/watch?v=EoeONBEd15g',
+            category: CategoryId.Christmas,
+        },
+        {
+            id: 'Rnx08JFs6nQ',
+            name: 'Snowy Christmas Days',
+            creator: 'Feardog',
+            link: 'https://www.youtube.com/watch?v=Rnx08JFs6nQ',
+            category: CategoryId.Christmas,
+        },
+        {
+            id: '9a9GixtqVP4',
+            name: 'Cozy Christmas Coffee Shop',
+            creator: 'Calmed by Nature',
+            link: 'https://www.youtube.com/watch?v=9a9GixtqVP4',
+            category: CategoryId.Christmas,
+        },
+        {
+            id: '12cMTeHHeic',
+            name: 'Heavenly Christmas Ambience',
+            creator: 'Cozy Corner',
+            link: 'https://www.youtube.com/watch?v=12cMTeHHeic',
+            category: CategoryId.Christmas,
+        },
+    ],
     [CategoryId.Walk]: [
         {
             id: '6uhRxK_EOm4',
@@ -96,8 +208,43 @@ export const Rooms = {
             link: 'https://www.youtube.com/watch?v=6uhRxK_EOm4&ab_channel=TheSilentWatcher',
             category: CategoryId.Nature,
         },
-
     ],
     [CategoryId.Window]: [],
-    [CategoryId.Animated]: []
+    [CategoryId.Animated]: [
+        {
+            id: 'LG9D9UtaDYw',
+            name: 'Study with Koya',
+            creator: 'BT21',
+            link: 'https://www.youtube.com/watch?v=LG9D9UtaDYw&ab_channel=BT21',
+            category: CategoryId.Animated,
+        },
+        {
+            id: 'DbuebKNKQsQ',
+            name: 'A Peaceful Place',
+            creator: 'The Jazz Hop Cafe',
+            link: 'https://www.youtube.com/watch?v=DbuebKNKQsQ',
+            category: CategoryId.Animated,
+        },
+        {
+            id: '0dN2BZjVUpY',
+            name: 'Season of Japan',
+            creator: 'The Jazz Hop Cafe',
+            link: 'https://www.youtube.com/watch?v=0dN2BZjVUpY',
+            category: CategoryId.Animated,
+        },
+        {
+            id: '5wRWniH7rt8',
+            name: 'Cherry Blossom',
+            creator: 'The Jazz Hop Cafe',
+            link: 'https://www.youtube.com/watch?v=5wRWniH7rt8',
+            category: CategoryId.Animated,
+        },
+        {
+            id: 'ALja3wAdQsM',
+            name: 'Side Streets',
+            creator: 'The Jazz Hop Cafe',
+            link: 'https://www.youtube.com/watch?v=ALja3wAdQsM',
+            category: CategoryId.Animated,
+        },
+    ],
 };
