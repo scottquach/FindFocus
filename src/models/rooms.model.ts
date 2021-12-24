@@ -132,6 +132,13 @@ export const Rooms = {
             link: 'https://www.youtube.com/watch?v=MGMqLGvtNpY',
             category: CategoryId.City,
         },
+        {
+            id: 'hBGbt2CRDpA',
+            name: 'Luxury Tokyo Hotel',
+            creator: 'Ambient Renders',
+            link: 'https://www.youtube.com/watch?v=hBGbt2CRDpA',
+            category: CategoryId.City,
+        },
     ],
     [CategoryId.Nature]: [
         {

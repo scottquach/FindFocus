@@ -16,7 +16,7 @@ import { CategoryId } from '../../models/category.enum';
 import { Room } from '../../models/room.interface';
 import { Rooms } from '../../models/rooms.model';
 import useSyncLocalStorage from '../../hooks/useSyncLocalStorage';
-import { VolumeDown, VolumeUp } from '@mui/icons-material';
+import { VolumeDown, VolumeUp, SkipNext } from '@mui/icons-material';
 
 const categories = [
 	{
@@ -144,7 +144,7 @@ export function BackgroundPicker({ close }: any) {
 						<div className="ml-auto mr-1">
 							<Tooltip title="Next room">
 								<IconButton onClick={iterateRoom}>
-									<RestartAltIcon style={{ fill: "var(--color-on-background)" }}></RestartAltIcon>
+									<SkipNext style={{ fill: "var(--color-on-background)" }}></SkipNext>
 								</IconButton>
 							</Tooltip>
 						</div>

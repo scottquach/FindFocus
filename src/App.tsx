@@ -7,6 +7,7 @@ import { MenuBar } from './components/MenuBar';
 import { UtilityBar } from './components/UtilityBar';
 import useLoadApp from './hooks/useLoadApp';
 import { Background } from './components/Background';
+import BrandLogo from './components/BrandLogo';
 
 function App() {
 
@@ -17,6 +18,7 @@ function App() {
 
   return (
     <div className="App">
+      <BrandLogo></BrandLogo>
       <Grid></Grid>
       <UtilityBar></UtilityBar>
       <MenuBar></MenuBar>

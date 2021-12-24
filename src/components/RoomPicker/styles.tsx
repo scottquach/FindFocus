@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { MenuWrapper } from "../../GlobalStyles";
-import { Card } from "../styles/card";
+import { Card } from "../../styles/card";
 
 export const Wrapper = styled(MenuWrapper)`
 	background-color: var(--color-background);

@@ -25,7 +25,7 @@ const Widget = styled(WidgetFrame)`
 `
 
 const StyledGrid = styled.div`
-	padding: 4rem 2rem;
+	margin: 4rem 1rem 6rem 1rem;
 	flex: 1;
 `
 
@@ -37,13 +37,8 @@ export function Grid() {
 
 
 	const activeWidgets = useRecoilValue(activeWidgetsState);
-	// const [_, setSavedLayout] = useLocalStorage('layout', {});
-
-	// useUpdateLogger(gridLayout, 'grid layout state');
-	// useUpdateLogger(activeWidgets, 'active widgets state');
 	useSyncLocalStorage('active-widgets', activeWidgets)
 	useSyncLocalStorage('layout', layout);
-	// useUpdateLogger(widgetsMap, 'widget map');
 
 	const updateSize = (widgetId: string, size: { x: number, y: number }) => {
 		console.log('update size', widgetId, size);
@@ -141,6 +136,7 @@ function ResizeBox({ children, index, position, size, id, updatePosition, update
 			size={{ width: size?.width ?? 'auto', height: size?.height ?? 'auto' }}
 			position={{ x: position?.x ?? 100 + ((index + 1) * 10), y: position?.y ?? 100 + ((index + 1) * 10) }}
 			dragHandleClassName="WidgetHeader"
+			bounds="parent"
 			onDragStop={onPositionChanged}
 			onResizeStop={onSizeChanged}>
 			{children}
