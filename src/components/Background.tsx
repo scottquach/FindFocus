@@ -62,16 +62,21 @@ export function Background() {
 
 	useEffect(() => {
 		setLoading(true);
-		setTimeout(() => {
-			setLoading(false);
-		}, 900);
+		// setTimeout(() => {
+		// 	setLoading(false);
+		// }, 900);
 	}, [0, room]);
+
+	const onStart = () => {
+		// console.log('Starting');
+		setLoading(false);
+	}
 
 
 	return (
 		<BackgroundWrapper>
 			{loading && <Loader></Loader>}
-			{room && <VideoBackground config={config} url={`${room.link}`} width="100%" height="100%" volume={volume / 100} muted={mute} loop={true} playsinline={true} playing={true} controls={false} />}
+			{room && <VideoBackground config={config} url={`${room.link}`} width="100%" height="100%" volume={volume / 100} muted={mute} loop={true} playsinline={true} playing={true} controls={false} onStart={onStart} />}
 		</BackgroundWrapper>
 	)
 }
