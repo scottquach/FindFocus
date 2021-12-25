@@ -7,14 +7,12 @@ const Frame = styled.div`
 	position: absolute;
 	top: 1rem;
 	left: 1rem;
-	padding: .5rem;
+	padding: .5rem .75rem;
 	font-weight: 600;
 `
 
 export default function BrandLogo() {
 	return (
-		<Frame>
-			StudyRoom.study
-		</Frame>
+		<Frame>MyRoom</Frame>
 	)
 }
