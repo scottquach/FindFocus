@@ -41,7 +41,7 @@ export const Widget = styled(Card)`
     align-items: center;
     cursor: pointer;
     border-radius: 8px;
-    padding: 0.25rem 0rem;
+    padding: 0.5rem 0rem;
     /* border: 1px solid white; */
     transition: all 50ms;
     width: 4.5rem;

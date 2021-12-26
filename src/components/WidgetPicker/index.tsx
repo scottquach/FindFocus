@@ -4,7 +4,7 @@ import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import FormatQuoteIcon from '@mui/icons-material/FormatQuote';
 import * as S from "./styles";
 import { WidgetType } from "../../models/widget-types.enum";
-import { QueueMusicOutlined } from "@mui/icons-material";
+import { QueueMusicOutlined, StickyNote2Outlined } from "@mui/icons-material";
 import useAddWidget from "../../hooks/useAddWidget";
 import { useState } from "react";
 import { createWidget } from "../../models/widget.model";
@@ -75,6 +75,10 @@ export function WidgetPicker({ close }: any) {
 				<S.Widget onClick={() => create(WidgetType.Spotify)}>
 					<QueueMusicOutlined></QueueMusicOutlined>
 					<div>Spotify</div>
+				</S.Widget>
+				<S.Widget onClick={() => create(WidgetType.StickyNote)}>
+					<StickyNote2Outlined></StickyNote2Outlined>
+					<div>Note</div>
 				</S.Widget>
 			</S.Widgets>
 		</S.Wrapper>

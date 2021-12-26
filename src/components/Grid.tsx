@@ -11,6 +11,7 @@ import ClockWidget from './Widgets/ClockWidget';
 import { Rnd } from 'react-rnd';
 import { Layout } from "../models/layout.interface";
 import { SpotifyWidget } from "./Widgets/SpotifyWidget";
+import StickyNoteWidget from "./Widgets/StickyNoteWidget";
 
 const Div = styled.div`
 	display: flex;
@@ -85,6 +86,10 @@ export function Grid() {
 						case WidgetType.Spotify:
 							return <ResizeBox key={item.id} index={index} id={item.id} size={item.size} position={item.position} updateSize={updateSize} updatePosition={updatePosition}>
 								<SpotifyWidget widgetId={item.id}></SpotifyWidget>
+							</ResizeBox>
+						case WidgetType.StickyNote:
+							return <ResizeBox key={item.id} index={index} id={item.id} size={item.size} position={item.position} updateSize={updateSize} updatePosition={updatePosition}>
+								<StickyNoteWidget widgetId={item.id}></StickyNoteWidget>
 							</ResizeBox>
 						// return <Div key={item.i}>
 						// 	<ClockWidget widgetId={item.i}></ClockWidget>
