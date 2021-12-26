@@ -7,4 +7,5 @@ export enum CategoryId {
 	Nature = 'nature',
 	Christmas = 'christmas',
 	Animated = 'animated',
+	NewYears = 'newyears'
 }

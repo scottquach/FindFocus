@@ -20,6 +20,11 @@ import { VolumeDown, VolumeUp, SkipNext } from '@mui/icons-material';
 
 const categories = [
 	{
+		icon: '🎆',
+		name: 'New Years',
+		id: CategoryId.NewYears
+	},
+	{
 		icon: '🎅',
 		name: 'Christmas',
 		id: CategoryId.Christmas
