@@ -62,15 +62,13 @@ export function Background() {
 
 	useEffect(() => {
 		setLoading(true);
-		// setTimeout(() => {
-		// 	setLoading(false);
-		// }, 900);
 	}, [0, room]);
 
 	const onStart = () => {
-		// console.log('Starting');
 		setLoading(false);
 	}
+
+	console.log('default', room)
 
 
 	return (

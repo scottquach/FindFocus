@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useSetRecoilState } from 'recoil';
 import { BackgroundType } from '../models/background-types.enum';
+import { Rooms } from '../models/rooms.model';
 import { activeWidgetsState, backgroundState, layoutState } from '../stores/store';
 import useLocalStorage from './useLocalStorage';
 
@@ -10,10 +11,7 @@ export default function useLoadApp() {
     // Initial load of central state
     const [savedWidgets] = useLocalStorage('active-widgets', []);
     const [savedLayout] = useLocalStorage('layout', {});
-    const [background] = useLocalStorage('background', {
-        type: BackgroundType.Image,
-        value: 'https://images.unsplash.com/photo-1619199748576-75ae8022c73f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2070&q=80',
-    });
+    const [background] = useLocalStorage('background', Rooms['cafe'][0]);
 
     const setLayout = useSetRecoilState(layoutState);
     const setWidgets = useSetRecoilState(activeWidgetsState);
@@ -22,8 +20,6 @@ export default function useLoadApp() {
     if (localStorage.getItem('grid-layout')) {
         localStorage.clear();
     }
-
-
 
     useEffect(() => {
         setLayout((old) => savedLayout);

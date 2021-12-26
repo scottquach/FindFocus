@@ -1,6 +1,7 @@
 // import { Layout } from 'react-grid-layout';
 import { atom, selector, selectorFamily } from 'recoil';
 import { BackgroundType } from '../models/background-types.enum';
+import { CategoryId } from '../models/category.enum';
 import { Layout } from '../models/layout.interface';
 import { Room } from '../models/room.interface';
 import { Widget } from '../models/widget.interface';
@@ -51,9 +52,11 @@ export const widgetById = selectorFamily({
 export const backgroundState = atom({
     key: 'backgroundState',
     default: {
-        // type: BackgroundType.Image,
-        // roomId: 'city',
-        // value: 'https://images.unsplash.com/photo-1619199748576-75ae8022c73f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2070&q=80',
+        id: 'LG9D9UtaDYw',
+        name: 'Study with Koya',
+        creator: 'BT21',
+        link: 'https://www.youtube.com/watch?v=LG9D9UtaDYw&ab_channel=BT21',
+        category: CategoryId.Animated,
     } as Room | null,
 });
 
