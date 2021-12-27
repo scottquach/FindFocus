@@ -80,6 +80,7 @@ export function BackgroundPicker({ close }: any) {
 	const [room, setRoom] = useRecoilState(backgroundState);
 	const [volume, setVolume] = useRecoilState(globalVolumeState);
 	const [favorites, setFavorites] = useRecoilState(favoritesState);
+	const [isFavorite, setIsFavorite] = useState(false);
 	useSyncLocalStorage('background', room);
 	useSyncLocalStorage('favorites', favorites);
 
@@ -88,6 +89,7 @@ export function BackgroundPicker({ close }: any) {
 	useEffect(() => {
 		if (room) {
 			setActiveCategory(room.category);
+			setIsFavorite(favorites.includes(room.id));
 		}
 	}, [room])
 
@@ -113,13 +115,13 @@ export function BackgroundPicker({ close }: any) {
 		}
 	}
 
-	const [test, setTest] = useState(false);
 	const onFavoriteToggle = () => {
-		setTest(!test);
 		if (room) {
+			const newState = !isFavorite;
+			setIsFavorite(newState);
 			setFavorites((old) => {
 				const set = new Set(old);
-				if (test) {
+				if (newState) {
 					set.add(room.id);
 				} else {
 					set.delete(room.id);
@@ -169,9 +171,9 @@ export function BackgroundPicker({ close }: any) {
 						</div>
 						<div className="ml-auto mr-1">
 							<IconButton onClick={onFavoriteToggle}>
-								{test ?
-									<FavoriteBorderIcon style={{ fill: "#fb7185" }}></FavoriteBorderIcon> :
-									<FavoriteIcon style={{ fill: "#fb7185" }}></FavoriteIcon>
+								{isFavorite ?
+									<FavoriteIcon style={{ fill: "#fb7185" }}></FavoriteIcon> :
+									<FavoriteBorderIcon style={{ fill: "#fb7185" }}></FavoriteBorderIcon>
 								}
 							</IconButton>
 							<Tooltip title="Next room">
