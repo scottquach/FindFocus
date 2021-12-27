@@ -6,9 +6,8 @@ import { useEffect } from 'react';
  * @param value
  */
 export default function useSyncLocalStorage(key: string, value: any) {
-    console.log('SAVING', key);
-
     useEffect(() => {
+        console.log('SAVING', key);
         localStorage.setItem(key, JSON.stringify(value));
     }, [value]);
 }

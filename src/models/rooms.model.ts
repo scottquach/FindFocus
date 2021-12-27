@@ -19,14 +19,14 @@ export const Rooms = {
         {
             id: 'PDDkze546nQ',
             name: 'Seoul cafe 2',
-            creator: 'Jun`s Cafe Stroll',
+            creator: 'Jun\'s Cafe Stroll',
             link: 'https://www.youtube.com/watch?v=PDDkze546nQ&ab_channel=Jun%27sCafeStroll',
             category: CategoryId.Cafe,
         },
         {
             id: 'ql32tlC7eqw',
             name: 'Patio',
-            creator: 'Ozz`s study corner',
+            creator: 'Ozz\'s study corner',
             link: 'https://www.youtube.com/watch?v=ql32tlC7eqw&ab_channel=ozz%27sstudycorner%F0%9F%93%9A%E2%98%95%EF%B8%8F',
             category: CategoryId.Cafe,
         },
@@ -40,14 +40,14 @@ export const Rooms = {
         {
             id: 'AVnfqiiyRK0',
             name: 'Seoul cafe',
-            creator: 'Jun`s Cafe Stroll',
+            creator: 'Jun\'s Cafe Stroll',
             link: 'https://www.youtube.com/watch?v=AVnfqiiyRK0&ab_channel=Jun%27sCafeStroll',
             category: CategoryId.Cafe,
         },
         {
             id: 'qMHbh6XmgwM',
             name: 'Tokyo coffee shop',
-            creator: 'Jun`s Cafe Stroll',
+            creator: 'Jun\'s Cafe Stroll',
             link: 'https://www.youtube.com/watch?v=qMHbh6XmgwM&ab_channel=Jun%27sCafeStroll',
             category: CategoryId.Cafe,
         },
@@ -265,14 +265,14 @@ export const Rooms = {
     [CategoryId.NewYears]: [
         {
             id: 'WgIsE3r5cuc',
-            name: 'Worldwide Cities New Year`s Eve',
+            name: 'Worldwide Cities New Year\'s Eve',
             creator: 'Fox Mooder AMBIENCE WORLDS',
             link: 'https://www.youtube.com/watch?v=WgIsE3r5cuc&ab_channel=ASMRWeekly',
             category: CategoryId.NewYears,
         },
         {
             id: 'CjfnP1Sds8o',
-            name: 'New Year`s Eve Fireworks',
+            name: 'New Year\'s Eve Fireworks',
             creator: 'ASMR Weekly',
             link: 'https://www.youtube.com/watch?v=CjfnP1Sds8o&ab_channel=ASMRWeekly',
             category: CategoryId.NewYears,

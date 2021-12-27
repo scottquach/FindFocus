@@ -15,6 +15,7 @@ export const Wrapper = styled(MenuWrapper)`
 export const RoomList = styled.div`
 	display: flex;
 	justify-content: center;
+	flex-wrap: wrap;
 	gap: .75rem;
 `
 
@@ -59,7 +60,7 @@ export const ActiveRoom = styled.div`
 	justify-content: flex-start;
 	background-color: var(--color-surface);
 	border-radius: 8px;
-	width: 26rem;
+	width: auto;
 	height: 4rem;
 	cursor: default;
 	box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.20) 0px 0px 0px 1px;
@@ -68,7 +69,7 @@ export const ActiveRoom = styled.div`
 export const ActiveRoomName = styled.div`
 	font-weight: bold;
 	font-size: 18px;
-	/* margin-top: .5rem; */
+	margin-right: 1.25rem;
 `
 
 export const ActiveRoomOriginal = styled.a`

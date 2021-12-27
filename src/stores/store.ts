@@ -1,20 +1,9 @@
-// import { Layout } from 'react-grid-layout';
 import { atom, selector, selectorFamily } from 'recoil';
 import { BackgroundType } from '../models/background-types.enum';
 import { CategoryId } from '../models/category.enum';
 import { Layout } from '../models/layout.interface';
 import { Room } from '../models/room.interface';
 import { Widget } from '../models/widget.interface';
-
-// export const gridLayoutState = atom({
-//     key: 'gridLayout',
-//     default: [
-//         // { i: 'a', x: 0, y: 0, w: 2, h: 2 },
-//         // { i: 'b', x: 0, y: 0, w: 2, h: 2, widget: createWidget(WidgetType.Quote) },
-//         // { i: 'c', x: 4, y: 0, w: 3, h: 3, widget: createWidget(WidgetType.Quote) },
-//         // { i: 'd', x: 7, y: 0, w: 2, h: 2  },
-//     ] as Layout[],
-// });
 
 export const layoutState = atom({
     key: 'layout',
@@ -58,6 +47,11 @@ export const backgroundState = atom({
         link: 'https://www.youtube.com/watch?v=LG9D9UtaDYw&ab_channel=BT21',
         category: CategoryId.Animated,
     } as Room | null,
+});
+
+export const favoritesState = atom({
+    key: 'favoritesState',
+    default: [] as string[],
 });
 
 export const globalConfigState = atom({
