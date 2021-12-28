@@ -241,14 +241,20 @@ export function Favorites({ joinRoom }: { joinRoom: (roomId: string) => boolean 
 					'aria-labelledby': 'favorite-room',
 				}}
 			>
-				{favoriteRooms.map((room) => {
-					return (
-						<MenuItem key={room.id} onClick={(event) => handleClose(room.id)}>
-							<span className="mr-2">{getCategoryById(room.category)?.icon}</span>
-							<span>{room.name}</span>
-						</MenuItem>
-					)
-				})}
+				{ favorites.length > 0 ?
+					favoriteRooms.map((room) => {
+						return (
+							<MenuItem key={room.id} onClick={(event) => handleClose(room.id)}>
+								<span className="mr-2">{getCategoryById(room.category)?.icon}</span>
+								<span>{room.name}</span>
+							</MenuItem>
+						)
+					}) :
+					<MenuItem onClick={() => setAnchorEl(null)}>
+						<span className="mr-2">😥</span>
+						<span>No favorites chosen</span>
+					</MenuItem>
+				}
 			</Menu>
 
 		</div>
