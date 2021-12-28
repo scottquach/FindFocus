@@ -12,7 +12,7 @@ const base = (type: WidgetType): Widget => ({
     data: {},
 });
 
-const getTitle = (type: WidgetType) => {
+export const getTitle = (type: WidgetType) => {
     switch (type) {
         case WidgetType.Spotify:
             return 'Spotify';
@@ -24,6 +24,10 @@ const getTitle = (type: WidgetType) => {
             return 'Ambient Music';
         case WidgetType.YouTube:
             return 'YouTube';
+        case WidgetType.StickyNote:
+            return 'Note';
+        case WidgetType.Clock:
+            return 'Clock';
         default:
             return 'Widget';
     }
@@ -34,10 +38,9 @@ export function createWidget(type: WidgetType, data?: any): Widget {
     switch (type) {
         case WidgetType.Spotify:
             baseWidget.data = {
-                link: 'https://open.spotify.com/embed/playlist/0vvXsWCC9xrXsKd4FyS8kM'
+                link: 'https://open.spotify.com/embed/playlist/0vvXsWCC9xrXsKd4FyS8kM',
             };
             return baseWidget;
-
         case WidgetType.Quote:
             return baseWidget;
         case WidgetType.Weather:

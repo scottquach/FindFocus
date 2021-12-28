@@ -1,6 +1,7 @@
 import styled from "styled-components";
-import { MenuWrapper } from "../../GlobalStyles";
-import { Card } from "../../styles/card";
+import { Button } from "../../styles/Button";
+import { Card } from "../../styles/Card";
+import { MenuWrapper } from "../../styles/MenuHeaders";
 
 export const Wrapper = styled(MenuWrapper)`
 	background-color: var(--color-background);
@@ -92,7 +93,7 @@ export const ActionsContainer = styled.div`
 	margin-left: auto;
 `
 
-export const FavoriteButton = styled(Card)`
+export const FavoriteButton = styled(Button)`
 	display: flex;
 	align-items: center;
 	gap: .25rem;

@@ -25,9 +25,9 @@ export default function StickyNoteWidget({ widgetId }: { widgetId: string }) {
 	}
 
 	return (
-		<WidgetFrame>
+		<WidgetFrame widgetId={widgetId}>
 			<S.Content>
-				<S.Note placeholder='Noted...' value={note} onChange={updateNote}></S.Note>
+				<S.Note placeholder='An idea...' value={note} onChange={updateNote}></S.Note>
 			</S.Content>
 		</WidgetFrame>
 	)

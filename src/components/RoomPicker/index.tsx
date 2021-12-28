@@ -5,7 +5,6 @@ import CloseIcon from '@mui/icons-material/Close';
 import { Button, IconButton, Menu, MenuItem, Slider, Stack, Tooltip } from '@mui/material';
 import { useRecoilState } from 'recoil';
 import { backgroundState, favoritesState, globalVolumeState } from '../../stores/store';
-import { MenuHeader, MenuHeaderLayout } from '../../GlobalStyles';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import { useEffect, useState } from 'react';
 import { CategoryId } from '../../models/category.enum';
@@ -15,6 +14,7 @@ import useSyncLocalStorage from '../../hooks/useSyncLocalStorage';
 import { VolumeDown, VolumeUp, SkipNext } from '@mui/icons-material';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShuffleIcon from '@mui/icons-material/Shuffle';
+import { MenuHeader, MenuHeaderLayout } from '../../styles/MenuHeaders';
 
 const categories = [
 	{
@@ -222,7 +222,7 @@ export function Favorites({ joinRoom }: { joinRoom: (roomId: string) => boolean 
 		setAnchorEl(null);
 	};
 
-	const favoriteRooms = favorites.map((roomId: string) => {
+	const favoriteRooms = favorites?.map((roomId: string) => {
 		const room = getRoomById(roomId);
 		return room;
 	}).filter(Boolean);

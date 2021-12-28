@@ -35,6 +35,7 @@ const RefreshButton = styled(IconButton)`
 	justify-self: end;
 	grid-row: 2;
 	grid-column: 1;
+	opacity: 70%;
 	/* color: blue; */
 
 `

@@ -1,6 +1,6 @@
 import { IconButton } from "@mui/material";
 import styled from "styled-components";
-import { MenuHeaderLayout as GlobalHeaderLayout, MenuWrapper } from "../../GlobalStyles";
+import { MenuWrapper } from "../../styles/MenuHeaders";
 
 // export const MenuHeaderLayout = styled(GlobalHeaderLayout)`
 // 	margin-bottom: 0rem;

@@ -14,7 +14,7 @@ const PositionContainer = styled.div`
 	display: flex;
 	justify-content: center;
 	position: absolute;
-	bottom: 1rem;
+	bottom: .75rem;
 	width: 100%;
 `
 

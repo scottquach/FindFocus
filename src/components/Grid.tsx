@@ -4,8 +4,6 @@ import { QuoteWidget } from "./Widgets/QuoteWidget";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { activeWidgetsMapState, activeWidgetsState, globalGridVisibleState, layoutState } from "../stores/store";
 import { WidgetType } from "../models/widget-types.enum";
-import useUpdateLogger from '../hooks/useUpdateLogger';
-import useLocalStorage from '../hooks/useLocalStorage';
 import useSyncLocalStorage from '../hooks/useSyncLocalStorage';
 import ClockWidget from './Widgets/ClockWidget';
 import { Rnd } from 'react-rnd';
@@ -116,6 +114,7 @@ export function Grid() {
 		</StyledGrid >
 	)
 }
+
 
 function ResizeBox({ children, index, position, size, id, updatePosition, updateSize }: any) {
 

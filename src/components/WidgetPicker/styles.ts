@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Card } from '../../styles/card';
+import { Card } from '../../styles/Card';
 import { WidgetFrame } from '../WidgetFrame';
 
 export const Wrapper = styled.div`

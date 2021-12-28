@@ -1,4 +1,8 @@
+import { useRecoilState, useRecoilValue } from 'recoil';
 import styled from 'styled-components'
+import useDeleteWidget from '../hooks/useDeleteWidget';
+import { getTitle } from '../models/widget.model';
+import { widgetById } from '../stores/store';
 import { WidgetHeader } from './WidgetHeader'
 
 const Frame = styled.div`
@@ -25,9 +29,13 @@ const WidgetContent = styled.div`
 `
 
 export function WidgetFrame({ className, widgetId, children }: any) {
+	const deleteWidget = useDeleteWidget();
+	const widget = useRecoilValue(widgetById(widgetId));
+	// console.log('widget', widgetId);
+	const typeName = getTitle(widget?.type) ?? 'n/a'
 	return (
 		<Frame className={className}>
-			<WidgetHeader widgetId={widgetId}></WidgetHeader>
+			<WidgetHeader widgetId={widgetId} title={ typeName } deleteWidget={deleteWidget}></WidgetHeader>
 			<WidgetContent className="NonDraggable">
 				{children}
 			</WidgetContent>
