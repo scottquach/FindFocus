@@ -12,7 +12,7 @@ export default function useLoadApp() {
     const [savedWidgets] = useLocalStorage('active-widgets', []);
     const [savedLayout] = useLocalStorage('layout', {});
     const [background] = useLocalStorage('background', Rooms['cafe'][0]);
-    const [favorites] = useLocalStorage('favorites');
+    const [favorites] = useLocalStorage('favorites', []);
 
     const setLayout = useSetRecoilState(layoutState);
     const setWidgets = useSetRecoilState(activeWidgetsState);

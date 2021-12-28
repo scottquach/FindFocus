@@ -7,4 +7,5 @@ export const ClockContent = styled.div`
 	justify-content: center;
 	align-items: center;
 	flex: 1;
+	padding: 1rem;
 `

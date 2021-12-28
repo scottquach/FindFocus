@@ -32,14 +32,6 @@ export default function ClockWidget({ widgetId }: { widgetId: string }) {
 				{widgetData.data.clockType === 'clockOne' && <ClockOne dt={dt}></ClockOne>}
 				{widgetData.data.clockType === 'clockTwo' && <ClockTwo dt={dt}></ClockTwo>}
 			</ClockContent>
-			{/* <IconButton onClick={() => setOpen(!open)}>
-				<SettingsIcon></SettingsIcon>
-			</IconButton> */}
-			{/* <WidgetSettings
-				widgetId={widgetId}
-				settingsUI={ClockSettings}
-				originalSettings={widgetData.data}
-				open={open} close={() => setOpen(false)}></WidgetSettings> */}
 		</WidgetFrame>
 	)
 }

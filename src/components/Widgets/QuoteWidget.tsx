@@ -13,14 +13,13 @@ const Content = styled.div`
 	width: 100%;
 `
 
-
 const Quote = styled.div`
 	grid-row: 1 / 3;
 	grid-column: 1;
 	text-align: center;
 	font-size: 18px;
 	color: var(--color-on-background);
-	padding: 0 1rem;
+	padding: .25rem 1rem;
 `
 
 const Author = styled.div`
