@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { Button } from "../../styles/Button";
-import { Card } from "../../styles/Card";
+import { Card } from "../../styles/HoverCard";
 import { MenuWrapper } from "../../styles/MenuHeaders";
 
 export const Wrapper = styled(MenuWrapper)`
