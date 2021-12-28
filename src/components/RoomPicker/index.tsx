@@ -2,22 +2,19 @@ import * as S from './styles'
 
 import CloseIcon from '@mui/icons-material/Close';
 
-import { IconButton, Slider, Stack, Tooltip } from '@mui/material';
+import { Button, IconButton, Menu, MenuItem, Slider, Stack, Tooltip } from '@mui/material';
 import { useRecoilState } from 'recoil';
 import { backgroundState, favoritesState, globalVolumeState } from '../../stores/store';
-import { BackgroundType } from '../../models/background-types.enum';
-import useLocalStorage from '../../hooks/useLocalStorage';
 import { MenuHeader, MenuHeaderLayout } from '../../GlobalStyles';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-import PlayCircleIcon from '@mui/icons-material/PlayCircle';
-import RestartAltIcon from '@mui/icons-material/RestartAlt';
 import { useEffect, useState } from 'react';
 import { CategoryId } from '../../models/category.enum';
 import { Room } from '../../models/room.interface';
-import { Rooms } from '../../models/rooms.model';
+import { getRoomById, Rooms } from '../../models/rooms.model';
 import useSyncLocalStorage from '../../hooks/useSyncLocalStorage';
 import { VolumeDown, VolumeUp, SkipNext } from '@mui/icons-material';
 import FavoriteIcon from '@mui/icons-material/Favorite';
+import ShuffleIcon from '@mui/icons-material/Shuffle';
 
 const categories = [
 	{
@@ -56,6 +53,9 @@ const categories = [
 		id: CategoryId.Animated
 	}
 ]
+const getCategoryById = (id: CategoryId) => {
+	return categories.find((category) => category.id === id);
+}
 
 
 
@@ -98,6 +98,16 @@ export function BackgroundPicker({ close }: any) {
 		const newRoom = filteredRooms[Math.floor(Math.random() * filteredRooms.length)];
 		setActiveCategory(newRoom.category);
 		setRoom((_) => newRoom);
+	}
+	const joinRoomById = (roomId: string) => {
+		const newRoom = getRoomById(roomId);
+		if (newRoom) {
+			setActiveCategory(newRoom.category);
+			setRoom((_) => newRoom);
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	const iterateRoom = () => {
@@ -178,21 +188,69 @@ export function BackgroundPicker({ close }: any) {
 							</IconButton>
 							<Tooltip title="Next room">
 								<IconButton onClick={iterateRoom}>
-									<SkipNext style={{ fill: "var(--color-on-background)" }}></SkipNext>
+									<ShuffleIcon style={{ fill: "var(--color-on-background)" }}></ShuffleIcon>
 								</IconButton>
 							</Tooltip>
 						</div>
 					</S.ActiveRoom>
+
 				</S.ActiveContainer>
 			}
 
-			<S.VolumeContainer>
-				<Stack spacing={2} direction="row" sx={{ mb: 1, mt: 2, width: 300 }} alignItems="center">
+			<S.ActionsContainer>
+				<Stack spacing={2} direction="row" sx={{ mb: 1, mt: 1, width: 300 }} alignItems="center">
 					<VolumeDown />
 					<Slider aria-label="Volume" value={volume} onChange={handleVolumeChange} />
 					<VolumeUp />
 				</Stack>
-			</S.VolumeContainer>
+				<Favorites joinRoom={joinRoomById}></Favorites>
+
+			</S.ActionsContainer>
 		</S.Wrapper>
 	);
+}
+
+export function Favorites({ joinRoom }: { joinRoom: (roomId: string) => boolean }) {
+	const [favorites] = useRecoilState(favoritesState);
+	const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+	const open = Boolean(anchorEl);
+	const handleClick = (event: any) => {
+		setAnchorEl(event.currentTarget);
+	};
+	const handleClose = (roomId: string) => {
+		joinRoom(roomId);
+		setAnchorEl(null);
+	};
+
+	const favoriteRooms = favorites.map((roomId: string) => {
+		const room = getRoomById(roomId);
+		return room;
+	}).filter(Boolean);
+
+	return (
+		<div>
+			<S.FavoriteButton onClick={handleClick}>
+				<div>💖</div>
+				<S.RoomName>Favorites</S.RoomName>
+			</S.FavoriteButton>
+			<Menu
+				anchorEl={anchorEl}
+				open={open}
+				onClose={handleClose}
+				MenuListProps={{
+					'aria-labelledby': 'favorite-room',
+				}}
+			>
+				{favoriteRooms.map((room) => {
+					return (
+						<MenuItem key={room.id} onClick={(event) => handleClose(room.id)}>
+							<span className="mr-2">{getCategoryById(room.category)?.icon}</span>
+							<span>{room.name}</span>
+						</MenuItem>
+					)
+				})}
+			</Menu>
+
+		</div>
+	)
 }

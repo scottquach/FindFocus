@@ -13,6 +13,6 @@ const Frame = styled.div`
 
 export default function BrandLogo() {
 	return (
-		<Frame>MyRoom</Frame>
+		<Frame>FindFocus</Frame>
 	)
 }

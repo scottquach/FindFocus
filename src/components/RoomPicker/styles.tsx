@@ -37,8 +37,8 @@ export const RoomIcon = styled.div`
 	align-items: center;
 	background-color: var(--color-secondary);
 	border-radius: 32px;
-	width: 24px;
-	height: 24px;
+	width: 36px;
+	height: 36px;
 	padding: .75rem;
 	margin: 1rem;
 `;
@@ -60,7 +60,7 @@ export const ActiveRoom = styled.div`
 	justify-content: flex-start;
 	background-color: var(--color-surface);
 	border-radius: 8px;
-	width: auto;
+	width: 30rem;
 	height: 4rem;
 	cursor: default;
 	box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.20) 0px 0px 0px 1px;
@@ -83,14 +83,26 @@ export const ActiveRoomOriginal = styled.a`
 	}
 `
 
-export const VolumeContainer = styled.div`
+export const ActionsContainer = styled.div`
 	display: flex;
 	justify-content: center;
+	align-items: center;
+	margin-top: .75rem;
 	margin-right: auto;
 	margin-left: auto;
 `
 
+export const FavoriteButton = styled(Card)`
+	display: flex;
+	align-items: center;
+	gap: .25rem;
+	padding: .25rem .5rem;
+	margin-left: .5rem;
+	border-radius: 8px;
+	cursor: pointer;
 
+	/* box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.20) 0px 0px 0px 1px; */
+`
 
 
 

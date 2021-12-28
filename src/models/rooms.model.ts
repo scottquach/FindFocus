@@ -1,5 +1,6 @@
 import { CategoryId } from './category.enum';
 
+
 export const Rooms = {
     [CategoryId.Cafe]: [
         {
@@ -279,3 +280,14 @@ export const Rooms = {
         },
     ],
 };
+
+const allRooms = Object.keys(Rooms).reduce((sum: any[], category: any) => {
+    sum = sum.concat(...Rooms[category as CategoryId]);
+    return sum;
+}, [])
+export const AllRooms = allRooms;
+
+export const getRoomById = (roomId: string) => {
+    const room = allRooms.find((room) => room.id === roomId);
+    return room ?? null;
+}
