@@ -68,7 +68,7 @@ export function Background() {
 		setLoading(false);
 	}
 
-	console.log('default', room)
+	// console.log('default', room)
 
 
 	return (

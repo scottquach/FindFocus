@@ -10,6 +10,7 @@ import { Rnd } from 'react-rnd';
 import { Layout } from "../models/layout.interface";
 import { SpotifyWidget } from "./Widgets/SpotifyWidget";
 import StickyNoteWidget from "./Widgets/StickyNoteWidget";
+import WeatherWidget from "./Widgets/WeatherWidget";
 
 const Div = styled.div`
 	display: flex;
@@ -88,6 +89,10 @@ export function Grid() {
 						case WidgetType.StickyNote:
 							return <ResizeBox key={item.id} index={index} id={item.id} size={item.size} position={item.position} updateSize={updateSize} updatePosition={updatePosition}>
 								<StickyNoteWidget widgetId={item.id}></StickyNoteWidget>
+							</ResizeBox>
+						case WidgetType.Weather:
+							return <ResizeBox key={item.id} index={index} id={item.id} size={item.size} position={item.position} updateSize={updateSize} updatePosition={updatePosition}>
+								<WeatherWidget widgetId={item.id}></WeatherWidget>
 							</ResizeBox>
 						// return <Div key={item.i}>
 						// 	<ClockWidget widgetId={item.i}></ClockWidget>
