@@ -28,6 +28,8 @@ export const getTitle = (type: WidgetType) => {
             return 'Note';
         case WidgetType.Clock:
             return 'Clock';
+        case WidgetType.Timer:
+            return 'Timer';
         default:
             return 'Widget';
     }

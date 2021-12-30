@@ -11,6 +11,7 @@ import { Layout } from "../models/layout.interface";
 import { SpotifyWidget } from "./Widgets/SpotifyWidget";
 import StickyNoteWidget from "./Widgets/StickyNoteWidget";
 import WeatherWidget from "./Widgets/WeatherWidget";
+import TimerWidget from "./Widgets/TimerWidget";
 
 const Div = styled.div`
 	display: flex;
@@ -93,6 +94,10 @@ export function Grid() {
 						case WidgetType.Weather:
 							return <ResizeBox key={item.id} index={index} id={item.id} size={item.size} position={item.position} updateSize={updateSize} updatePosition={updatePosition}>
 								<WeatherWidget widgetId={item.id}></WeatherWidget>
+							</ResizeBox>
+						case WidgetType.Timer:
+							return <ResizeBox key={item.id} index={index} id={item.id} size={item.size} position={item.position} updateSize={updateSize} updatePosition={updatePosition}>
+								<TimerWidget widgetId={item.id}></TimerWidget>
 							</ResizeBox>
 						// return <Div key={item.i}>
 						// 	<ClockWidget widgetId={item.i}></ClockWidget>

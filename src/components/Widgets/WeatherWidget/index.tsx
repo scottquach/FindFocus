@@ -13,7 +13,6 @@ const Content = styled.div`
 	height: 100%;
 	min-width: 5rem;
 	min-height: 5rem;
-
 `
 
 export default function WeatherWidget({ widgetId }: { widgetId: string }) {
