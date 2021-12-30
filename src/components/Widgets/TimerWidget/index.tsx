@@ -4,9 +4,11 @@ import { Content } from './styles'
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import PauseIcon from '@mui/icons-material/Pause';
 import StopIcon from '@mui/icons-material/Stop';
-import { IconButton } from '@mui/material';
+import { CircularProgress, IconButton } from '@mui/material';
 import { Duration } from 'luxon';
 import { setInterval } from 'timers';
+import { useRecoilValue } from 'recoil';
+import { widgetById } from '../../../stores/store';
 
 // const useTimer = (startTime) => {
 // 	const [time, setTime] = useState(startTime)
@@ -46,33 +48,32 @@ import { setInterval } from 'timers';
 
 export default function TimerWidget({ widgetId }: { widgetId: string }) {
 	const [active, setActive] = useState(false);
-	const [duration, setDuration] = useState(Duration.fromObject({ minutes: 1, seconds: 15 }))
-	const [intervalId, setIntervalId] = useState<any>(null)
+	const { data } = useRecoilValue(widgetById(widgetId));
+	const [duration, setDuration] = useState(Duration.fromMillis(data.time ?? 1000))
 
 	const start = () => {
 		setActive(true);
 	}
 
 	const pause = () => {
-		console.log('attempting to pause', intervalId);
 		setActive(false);
 	}
 
 	useEffect(() => {
-		console.log('playing toggled');
+		// console.log('playing toggled');
 		let timeoutId: any;
-		if (active) {
+		if (active && duration.toMillis() > 0) {
 			timeoutId = setTimeout(() => {
-				console.log('substracting', duration.toString());
+				// console.log('substracting', duration.toString());
 				setDuration((prev) => prev.minus(Duration.fromMillis(1000)));
 			}, 1000)
 		}
-		return () => { clearTimeout(timeoutId), console.log('clear interval due to unmount') }
+		return () => clearTimeout(timeoutId)
 	});
 
 	const reset = () => {
 		setActive(false);
-		setDuration(Duration.fromObject({ minutes: 1, seconds: 15 }));
+		setDuration(Duration.fromMillis(data.time));
 	}
 
 	const zeroPad = (num: number, places: number) => String(num).padStart(places, '0');
@@ -85,11 +86,17 @@ export default function TimerWidget({ widgetId }: { widgetId: string }) {
 		return zeroPad(duration.shiftTo('hours', 'minutes', 'seconds', 'milliseconds').toObject().minutes!, 2);
 	}
 
+	const progress = () => {
+		return duration.toMillis() != 0 ? (duration.toMillis() / data.time) * 100 : 100;
+	}
+
 	return (
 		<WidgetFrame widgetId={widgetId}>
 			<Content>
 				<div className="flex-col items-center">
-					<div>Pie chart </div>
+					<div>
+						<CircularProgress variant="determinate" thickness={6} size={34} value={progress()} />
+					</div>
 					<div>
 						{
 							active ?
