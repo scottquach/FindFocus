@@ -11,6 +11,7 @@ import { useRecoilValue } from 'recoil';
 import { widgetById } from '../../../stores/store';
 import SettingsIcon from '@mui/icons-material/Settings';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import RestartAltIcon from '@mui/icons-material/RestartAlt';
 
 // const useTimer = (startTime) => {
 // 	const [time, setTime] = useState(startTime)
@@ -124,9 +125,15 @@ export default function TimerWidget({ widgetId }: { widgetId: string }) {
 									</IconButton>
 								</div>
 								:
-								<IconButton onClick={start} sx={{ padding: 0 }}>
-									<PlayArrowIcon></PlayArrowIcon>
-								</IconButton>
+								<div>
+									<IconButton onClick={start} sx={{ padding: 0 }}>
+										<PlayArrowIcon></PlayArrowIcon>
+									</IconButton>
+									{data.time !== duration.toMillis() && <IconButton onClick={reset} sx={{ padding: 0 }}>
+										<RestartAltIcon></RestartAltIcon>
+									</IconButton>}
+								</div>
+
 						}
 						<IconButton onClick={start} sx={{ padding: 0 }}>
 							<SettingsIcon></SettingsIcon>

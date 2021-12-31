@@ -5,7 +5,7 @@ import { WidgetFrame } from '../WidgetFrame';
 export const Wrapper = styled.div`
     display: grid;
     grid-template-rows: 2.5rem 1fr;
-    width: 30rem;
+    width: 34rem;
     padding: 1rem;
     border-radius: 16px;
     background-color: var(--color-background);
