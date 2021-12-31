@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { WidgetFrame } from '../../WidgetFrame'
-import { Content } from './styles'
+import { Actions, Content, Display } from './styles'
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import PauseIcon from '@mui/icons-material/Pause';
 import StopIcon from '@mui/icons-material/Stop';
@@ -9,6 +9,8 @@ import { Duration } from 'luxon';
 import { setInterval } from 'timers';
 import { useRecoilValue } from 'recoil';
 import { widgetById } from '../../../stores/store';
+import SettingsIcon from '@mui/icons-material/Settings';
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 
 // const useTimer = (startTime) => {
 // 	const [time, setTime] = useState(startTime)
@@ -50,6 +52,7 @@ export default function TimerWidget({ widgetId }: { widgetId: string }) {
 	const [active, setActive] = useState(false);
 	const { data } = useRecoilValue(widgetById(widgetId));
 	const [duration, setDuration] = useState(Duration.fromMillis(data.time ?? 1000))
+	// const [duration, setDuration] = useState(Duration.fromMillis(1000))
 
 	const start = () => {
 		setActive(true);
@@ -74,6 +77,7 @@ export default function TimerWidget({ widgetId }: { widgetId: string }) {
 	const reset = () => {
 		setActive(false);
 		setDuration(Duration.fromMillis(data.time));
+		// setDuration(Duration.fromMillis(1000));
 	}
 
 	const zeroPad = (num: number, places: number) => String(num).padStart(places, '0');
@@ -93,36 +97,61 @@ export default function TimerWidget({ widgetId }: { widgetId: string }) {
 	return (
 		<WidgetFrame widgetId={widgetId}>
 			<Content>
-				<div className="flex-col items-center">
-					<div>
-						<CircularProgress variant="determinate" thickness={6} size={34} value={progress()} />
+				<Display>
+					<div className="flex-col items-center justify-center w-12">
+						{duration.toMillis() !== 0 ?
+							<CircularProgress className="mt-2" variant="determinate" thickness={22} size={42} value={progress()} sx={{ color: 'black' }} /> :
+							<CheckCircleIcon fontSize="large"></CheckCircleIcon>
+						}
 					</div>
-					<div>
+					<div className="flex-col items-center justify-center">
+						<div className="text-3xl font-bold flex gap-2 leading-7">
+							<span >{formatMinutes()}</span>
+							<span>:</span>
+							<span className="w-10 text-left">{formatSeconds()}</span>
+						</div>
+						<div className="text-sm font-semibold opacity-70">Time remaining</div>
+					</div>
+					<div className="ml-auto flex gap-2">
 						{
 							active ?
 								<div>
-									<IconButton onClick={pause}>
+									<IconButton onClick={pause} sx={{ padding: 0 }}>
 										<PauseIcon></PauseIcon>
 									</IconButton>
-									<IconButton onClick={reset}>
+									<IconButton onClick={reset} sx={{ padding: 0 }}>
 										<StopIcon></StopIcon>
 									</IconButton>
 								</div>
 								:
-								<IconButton onClick={start}>
+								<IconButton onClick={start} sx={{ padding: 0 }}>
+									<PlayArrowIcon></PlayArrowIcon>
+								</IconButton>
+						}
+						<IconButton onClick={start} sx={{ padding: 0 }}>
+							<SettingsIcon></SettingsIcon>
+						</IconButton>
+					</div>
+				</Display>
+				{/* <Actions>
+					<div>
+						{
+							active ?
+								<div>
+									<IconButton onClick={pause} sx={{ padding: 0 }}>
+										<PauseIcon></PauseIcon>
+									</IconButton>
+									<IconButton onClick={reset} sx={{ padding: 0 }}>
+										<StopIcon></StopIcon>
+									</IconButton>
+								</div>
+								:
+								<IconButton onClick={start} sx={{ padding: 0 }}>
 									<PlayArrowIcon></PlayArrowIcon>
 								</IconButton>
 						}
 					</div>
-				</div>
-				<div className="flex-col items-center">
-					<div className="text-4xl font-bold flex gap-2">
-						<span >{formatMinutes()}</span>
-						<span>:</span>
-						<span className="w-10 text-left">{formatSeconds()}</span>
-					</div>
-					<div className="text-sm font-semibold opacity-70">Time remaining</div>
-				</div>
+				</Actions> */}
 			</Content>
 		</WidgetFrame>
 	)
