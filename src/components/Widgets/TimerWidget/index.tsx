@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { WidgetFrame } from '../../WidgetFrame'
-import { Actions, Content, Display } from './styles'
+import { Actions, Content, Display, SettingsContainer } from './styles'
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import PauseIcon from '@mui/icons-material/Pause';
 import StopIcon from '@mui/icons-material/Stop';
-import { CircularProgress, IconButton } from '@mui/material';
+import { CircularProgress, IconButton, Popper, TextField, Zoom } from '@mui/material';
 import { Duration } from 'luxon';
 import { setInterval } from 'timers';
 import { useRecoilValue } from 'recoil';
@@ -12,6 +12,7 @@ import { widgetById } from '../../../stores/store';
 import SettingsIcon from '@mui/icons-material/Settings';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import RestartAltIcon from '@mui/icons-material/RestartAlt';
+import { Box } from '@mui/system';
 
 // const useTimer = (startTime) => {
 // 	const [time, setTime] = useState(startTime)
@@ -133,33 +134,63 @@ export default function TimerWidget({ widgetId }: { widgetId: string }) {
 										<RestartAltIcon></RestartAltIcon>
 									</IconButton>}
 								</div>
-
 						}
-						<IconButton onClick={start} sx={{ padding: 0 }}>
-							<SettingsIcon></SettingsIcon>
-						</IconButton>
+						<TimerSettings></TimerSettings>
 					</div>
 				</Display>
-				{/* <Actions>
-					<div>
-						{
-							active ?
-								<div>
-									<IconButton onClick={pause} sx={{ padding: 0 }}>
-										<PauseIcon></PauseIcon>
-									</IconButton>
-									<IconButton onClick={reset} sx={{ padding: 0 }}>
-										<StopIcon></StopIcon>
-									</IconButton>
-								</div>
-								:
-								<IconButton onClick={start} sx={{ padding: 0 }}>
-									<PlayArrowIcon></PlayArrowIcon>
-								</IconButton>
-						}
-					</div>
-				</Actions> */}
 			</Content>
 		</WidgetFrame>
 	)
+}
+
+function TimerSettings() {
+	const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+	const open = Boolean(anchorEl);
+
+	const handleClick = (event: any) => {
+		setAnchorEl(anchorEl ? null : event.currentTarget);
+	};
+
+	return (
+		<div>
+			<IconButton onClick={handleClick} sx={{ padding: 0 }}>
+				<SettingsIcon></SettingsIcon>
+			</IconButton>
+			<Popper id="timer-settings-popper" open={open} anchorEl={anchorEl} transition>
+				{({ TransitionProps }) => (
+					<Zoom {...TransitionProps} timeout={100}>
+						<SettingsContainer>
+							<div>Settings</div>
+							<div className="flex gap-1">
+								<span>Time</span>
+								<input className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" type="Number" />
+							</div>
+							<div className="flex gap-2">
+								<TextField
+									label="Minutes"
+									id="outlined-size-small"
+									defaultValue="Small"
+									variant="filled"
+									type="number"
+									size="small"
+								/>
+								<TextField
+									label="Seconds"
+									id="outlined-size-small"
+									defaultValue="Small"
+									variant="filled"
+									type="number"
+									size="small"
+								/>
+
+							</div>
+							<button>Save</button>
+						</SettingsContainer>
+					</Zoom>
+				)}
+			</Popper>
+
+		</div>
+	)
+
 }

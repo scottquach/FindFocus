@@ -22,3 +22,10 @@ export const Display = styled.div`
 export const Actions = styled.div`
 
 `
+
+export const SettingsContainer = styled.div`
+    background-color: var(--color-background);
+    border-radius: 12px;
+	padding: 1rem;
+	box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+`
