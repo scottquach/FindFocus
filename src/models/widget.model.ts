@@ -55,7 +55,10 @@ export function createWidget(type: WidgetType, data?: any): Widget {
             baseWidget.data = data ?? { clockType: 'clockOne' };
             return baseWidget;
         case WidgetType.Timer:
-            baseWidget.data = data ?? { time: 60000 }
+            baseWidget.data = data ?? {
+                minutes: 1,
+                seconds: 0,
+            };
             return baseWidget;
         default:
             return base(type);
