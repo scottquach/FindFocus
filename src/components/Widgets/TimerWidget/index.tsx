@@ -4,8 +4,9 @@ import { Actions, Content, Display, SettingsContainer } from './styles'
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import PauseIcon from '@mui/icons-material/Pause';
 import StopIcon from '@mui/icons-material/Stop';
-import { Button, CircularProgress, IconButton, Popper, TextField, Zoom } from '@mui/material';
+import { Button, CircularProgress, ClickAwayListener, IconButton, Popper, TextField, Zoom } from '@mui/material';
 import { Duration } from 'luxon';
+import CloseIcon from '@mui/icons-material/Close';
 import { setInterval } from 'timers';
 import { useRecoilValue } from 'recoil';
 import { widgetById } from '../../../stores/store';
@@ -15,22 +16,45 @@ import RestartAltIcon from '@mui/icons-material/RestartAlt';
 import { Box } from '@mui/system';
 import { Input } from '../../../styles/Input';
 import useUpdateWidget from '../../../hooks/useUpdateWidget';
+import { getDownloadURL, ref } from 'firebase/storage';
+import { storage } from '../../../firebase';
+import useAudio from '../../../hooks/useAudio';
 
 export default function TimerWidget({ widgetId }: { widgetId: string }) {
 	const [active, setActive] = useState(false);
 	const { data } = useRecoilValue(widgetById(widgetId));
 	const updateWidget = useUpdateWidget();
 	const [duration, setDuration] = useState(Duration.fromObject({ minutes: data.minutes, seconds: data.seconds }))
-	// const [duration, setDuration] = useState(Duration.fromMillis(1000))
+	const [alarmUrl, setAlarmUrl] = useState('');
+
 	useEffect(() => {
 		let timeoutId: any;
 		if (active && duration.toMillis() > 0) {
 			timeoutId = setTimeout(() => {
 				setDuration((prev) => prev.minus(Duration.fromMillis(1000)));
 			}, 1000)
+		} else {
+			// toggle();
+
 		}
 		return () => clearTimeout(timeoutId)
 	});
+
+	useEffect(() => {
+		if (duration.toMillis() === 0) {
+			console.log('alarm!');
+			(new Audio(alarmUrl)).play();
+			// toggle();
+		}
+	}, [duration])
+
+	useEffect(() => {
+		getDownloadURL(ref(storage, 'alarm.mp3'))
+			.then(url => {
+				console.log(url);
+				setAlarmUrl(url);
+			});
+	}, [])
 
 	const start = () => {
 		setActive(true);
@@ -90,10 +114,10 @@ export default function TimerWidget({ widgetId }: { widgetId: string }) {
 						{
 							active ?
 								<div>
-									<IconButton onClick={pause} sx={{ padding: 0 }}>
+									<IconButton onClick={pause} sx={{ padding: .25 }}>
 										<PauseIcon></PauseIcon>
 									</IconButton>
-									<IconButton onClick={reset} sx={{ padding: 0 }}>
+									<IconButton onClick={reset} sx={{ padding: .25 }}>
 										<StopIcon></StopIcon>
 									</IconButton>
 								</div>
@@ -158,7 +182,12 @@ function TimerSettings({ defaultMinutes, defaultSeconds, saveTime }: { defaultMi
 				{({ TransitionProps }) => (
 					<Zoom {...TransitionProps} timeout={100}>
 						<SettingsContainer>
-							<div className="font-bold mb-4">Settings</div>
+							<div className="flex items-center justify-between mb-4">
+								<div className="font-bold ">Settings</div>
+								<IconButton sx={{ padding: .5 }} onClick={() => setAnchorEl(null)}>
+									<CloseIcon fontSize="small"></CloseIcon>
+								</IconButton>
+							</div>
 							<div className="flex gap-2 justify-start">
 								<div className="w-32">
 									<div>Minutes</div>
