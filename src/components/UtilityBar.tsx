@@ -49,19 +49,19 @@ export function UtilityBar() {
 
 	return (
 		<UtilityBarLayout>
-			<Tooltip title="Hide widgets">
-				<GridToggle></GridToggle>
-			</Tooltip>
+			<GridToggle></GridToggle>
 			<VolumeSlider></VolumeSlider>
 			<Frame>
-				<IconButton onClick={triggerFullscreen} style={{ fill: "var(--color-on-background)" }}>
-					<FullscreenIcon style={{ fill: "var(--color-on-background)" }}></FullscreenIcon>
-				</IconButton>
+				<Tooltip title="Toggle fullscreen">
+					<IconButton onClick={triggerFullscreen} style={{ fill: "var(--color-on-background)" }}>
+						<FullscreenIcon style={{ fill: "var(--color-on-background)" }}></FullscreenIcon>
+					</IconButton>
+				</Tooltip>
 				<IconButton>
 					<AccountCircleIcon style={{ fill: "var(--color-on-background)" }}></AccountCircleIcon>
 				</IconButton>
 			</Frame>
-		</UtilityBarLayout>
+		</UtilityBarLayout >
 	)
 }
 
@@ -83,11 +83,14 @@ function GridToggle() {
 
 	return (
 		<Frame>
-			<IconButton onClick={onGridToggle}>
-				{state && <WidgetsIcon style={{ fill: "var(--color-on-background)" }}></WidgetsIcon>}
-				{!state && <HideSourceIcon style={{ fill: "var(--color-on-background)" }}></HideSourceIcon>}
-				{!state && <GridToggleDescription>Hiding widgets</GridToggleDescription>}
-			</IconButton>
+
+			<Tooltip title="Hide widgets">
+				<IconButton onClick={onGridToggle}>
+					{state && <WidgetsIcon style={{ fill: "var(--color-on-background)" }}></WidgetsIcon>}
+					{!state && <HideSourceIcon style={{ fill: "var(--color-on-background)" }}></HideSourceIcon>}
+					{!state && <GridToggleDescription>Hiding widgets</GridToggleDescription>}
+				</IconButton>
+			</Tooltip>
 		</Frame>
 	)
 }

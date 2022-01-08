@@ -2,6 +2,11 @@
   "name": "boards",
   "version": "0.1.0",
   "private": true,
+  "description": "FindFocus provides an array of dynamic widgets and study rooms in order to help find your productivity focus.",
+  "author": {
+    "name": "Scott Quach",
+    "url": "https://github.com/scottquach"
+  },
   "dependencies": {
     "@craco/craco": "^6.4.3",
     "@emotion/react": "^11.4.1",

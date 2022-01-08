@@ -7,7 +7,7 @@ import { WidgetHeader } from './WidgetHeader'
 
 const Frame = styled.div`
 	background-color: var(--color-background);
-	/* border: 2px solid white; */
+	/* border: 2px solid gray; */
 
 	border-radius: var(--widget-border-radius);
 	display: flex;
@@ -18,6 +18,7 @@ const Frame = styled.div`
 	/* color: white; */
 	/* background-color: #ffffffd8;
 	backdrop-filter: saturate(50%) blur(15px); */
+
 	box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 `
 
