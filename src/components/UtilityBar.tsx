@@ -25,7 +25,7 @@ const UtilityBarLayout = styled.div`
 const Frame = styled.div`
 	border-radius: 8px;
 	background-color: var(--color-background);
-	/* backdrop-filter: saturate(50%) blur(15px); */
+	box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 `
 
 export function UtilityBar() {

@@ -24,6 +24,7 @@ const MenuLayout = styled.div`
 	border-radius: var(--widget-border-radius);
 	background-color: var(--color-background);
 	color: var(--color-on-background);
+	box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 `
 
 const MenuItems = styled.div`

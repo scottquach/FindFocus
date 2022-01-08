@@ -1,6 +1,7 @@
-import { IconButton } from "@mui/material";
+import { IconButton, Tooltip } from "@mui/material";
 import CloseIcon from '@mui/icons-material/Close';
 import styled from "styled-components";
+import RemoveIcon from '@mui/icons-material/Remove';
 import useDeleteWidget from "../hooks/useDeleteWidget";
 
 const HeaderWrapper = styled.div`
@@ -25,9 +26,6 @@ const HeaderTitle = styled.div`
 
 const HeaderActions = styled.div`
 	margin-left: auto;
-	/* display: flex;
-	justify-content: flex-end;
-	align-items: center; */
 `
 
 export function WidgetHeader({ widgetId, title, deleteWidget }: any) {
@@ -42,10 +40,12 @@ export function WidgetHeader({ widgetId, title, deleteWidget }: any) {
 		<HeaderWrapper className="WidgetHeader shadow-sm">
 			<HeaderTitle>{title}</HeaderTitle>
 			<HeaderActions>
-				<IconButton size="small" onClick={onCloseClick}>
-					{/* <CloseIcon fontSize="small" style={{ fill: "var(--color-on-primary)"}}/> */}
-					<CloseIcon fontSize="small" />
-				</IconButton>
+				<Tooltip title="Remove">
+					<IconButton size="small" onClick={onCloseClick} >
+						{/* <CloseIcon fontSize="small" style={{ fill: "var(--color-on-primary)"}}/> */}
+						<RemoveIcon fontSize="inherit" />
+					</IconButton>
+				</Tooltip>
 			</HeaderActions>
 		</HeaderWrapper>
 	)
