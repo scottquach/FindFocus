@@ -3,6 +3,7 @@ import * as S from './styles'
 import CloseIcon from '@mui/icons-material/Close';
 
 import { Button, IconButton, Menu, MenuItem, Slider, Stack, Tooltip } from '@mui/material';
+import LinkIcon from '@mui/icons-material/Link';
 import { useRecoilState } from 'recoil';
 import { backgroundState, favoritesState, globalVolumeState } from '../../stores/store';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
@@ -15,6 +16,8 @@ import { VolumeDown, VolumeUp, SkipNext } from '@mui/icons-material';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShuffleIcon from '@mui/icons-material/Shuffle';
 import { MenuHeader, MenuHeaderLayout } from '../../styles/MenuHeaders';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
 
 const categories = [
 	{
@@ -159,6 +162,7 @@ export function BackgroundPicker({ close }: any) {
 				</IconButton>
 			</MenuHeaderLayout>
 
+
 			<S.RoomList>
 				{categories.map((room, index) => (
 					<Tooltip key={index} title="Click to reshuffle">
@@ -169,6 +173,11 @@ export function BackgroundPicker({ close }: any) {
 					</Tooltip>
 				))}
 			</S.RoomList>
+
+			<a className="text-sm opacity-70 ml-3 mt-1 cursor-pointer hover:underline" href="https://forms.gle/6w91DeiLotXakNMA6" target="_blank" rel="noreferrer">
+				<span>Suggest new rooms</span>
+				<FontAwesomeIcon icon={faExternalLinkAlt} className="opacity-70 ml-1" size="xs"></FontAwesomeIcon>
+			</a>
 
 			{
 				activeCategory && room &&
@@ -241,7 +250,7 @@ export function Favorites({ joinRoom }: { joinRoom: (roomId: string) => boolean 
 					'aria-labelledby': 'favorite-room',
 				}}
 			>
-				{ favorites.length > 0 ?
+				{favorites.length > 0 ?
 					favoriteRooms.map((room) => {
 						return (
 							<MenuItem key={room.id} onClick={(event) => handleClose(room.id)}>

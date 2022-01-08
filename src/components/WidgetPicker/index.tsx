@@ -10,6 +10,8 @@ import AccessAlarmIcon from '@mui/icons-material/AccessAlarm';
 import useAddWidget from "../../hooks/useAddWidget";
 import { useState } from "react";
 import { createWidget } from "../../models/widget.model";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faExternalLinkAlt } from "@fortawesome/free-solid-svg-icons";
 
 enum WidgetCategories {
 	Audio = 'audio',
@@ -64,7 +66,7 @@ export function WidgetPicker({ close }: any) {
 			<S.MenuHeader>
 				<S.MenuTitle>Widgets</S.MenuTitle>
 				<IconButton onClick={closePicker}>
-					<CloseIcon style={{fill: "var(--color-on-background)"}}></CloseIcon>
+					<CloseIcon style={{ fill: "var(--color-on-background)" }}></CloseIcon>
 				</IconButton>
 			</S.MenuHeader>
 
@@ -91,6 +93,11 @@ export function WidgetPicker({ close }: any) {
 					<div>Timer</div>
 				</S.Widget>
 			</S.Widgets>
+
+			<a className="text-sm opacity-70 ml-1 mt-1 cursor-pointer hover:underline" href="https://forms.gle/i9RJxQNyfVbYrM1M6" target="_blank" rel="noreferrer">
+				<span>Suggest new widgets</span>
+				<FontAwesomeIcon icon={faExternalLinkAlt} className="opacity-70 ml-1" size="xs"></FontAwesomeIcon>
+			</a>
 		</S.Wrapper>
 	)
 }
