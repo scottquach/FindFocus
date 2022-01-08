@@ -18,6 +18,7 @@ const Frame = styled.div`
 	/* color: white; */
 	/* background-color: #ffffffd8;
 	backdrop-filter: saturate(50%) blur(15px); */
+box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 `
 
 const WidgetContent = styled.div`
@@ -35,7 +36,7 @@ export function WidgetFrame({ className, widgetId, children }: any) {
 	const typeName = getTitle(widget?.type) ?? 'n/a'
 	return (
 		<Frame className={className}>
-			<WidgetHeader widgetId={widgetId} title={ typeName } deleteWidget={deleteWidget}></WidgetHeader>
+			<WidgetHeader widgetId={widgetId} title={typeName} deleteWidget={deleteWidget}></WidgetHeader>
 			<WidgetContent className="NonDraggable">
 				{children}
 			</WidgetContent>
