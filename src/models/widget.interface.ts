@@ -6,6 +6,7 @@ export interface Widget {
     properties: {
         title: string;
         created: string | Date;
+        // resizable: boolean;
     };
     data?: any;
 }

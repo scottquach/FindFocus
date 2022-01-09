@@ -8,6 +8,7 @@ const base = (type: WidgetType): Widget => ({
     properties: {
         title: getTitle(type),
         created: new Date().toISOString(),
+        resizable: true,
     },
     data: {},
 });
@@ -64,3 +65,36 @@ export function createWidget(type: WidgetType, data?: any): Widget {
             return base(type);
     }
 }
+
+export const getMinSize = (type: WidgetType) => {
+    switch (type) {
+        case WidgetType.Clock:
+            return {
+                minHeight: '250px',
+                minWidth: '250px',
+            };
+        case WidgetType.Spotify:
+            return {
+                minHeight: '250px',
+                minWidth: '150px',
+            };
+        case WidgetType.StickyNote:
+            return {
+                minHeight: '125px',
+                minWidth: '150px',
+            };
+        case WidgetType.Quote:
+            return {
+                minHeight: '175px',
+                minWidth: '300px',
+            }
+        case WidgetType.Timer:
+            return {
+                minHeight: '100px',
+                minWidth: '325px',
+            };
+
+        default:
+            return null;
+    }
+};

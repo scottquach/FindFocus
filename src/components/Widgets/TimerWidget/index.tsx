@@ -89,7 +89,7 @@ export default function TimerWidget({ widgetId }: { widgetId: string }) {
 	}
 
 	const progress = () => {
-		return duration.toMillis() != 0 ? (duration.toMillis() / data.time) * 100 : 100;
+		return duration.toMillis() != 0 ? (duration.toMillis() / Duration.fromObject({ minutes: data.minutes, seconds: data.seconds }).toMillis()) * 100 : 100;
 	}
 
 	return (

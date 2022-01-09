@@ -12,6 +12,7 @@ import { SpotifyWidget } from "./Widgets/SpotifyWidget";
 import StickyNoteWidget from "./Widgets/StickyNoteWidget";
 import WeatherWidget from "./Widgets/WeatherWidget";
 import TimerWidget from "./Widgets/TimerWidget";
+import { getMinSize } from "../models/widget.model";
 
 const Div = styled.div`
 	display: flex;
@@ -74,29 +75,30 @@ export function Grid() {
 			{
 				widgetsMap && gridVisible && Object.values(layout).map((item: any, index: number) => {
 					// console.log('item', item);
-					switch (widgetsMap[item.id]?.type) {
+					const type = widgetsMap[item.id]?.type
+					switch (type) {
 						case WidgetType.Quote:
-							return <ResizeBox key={item.id} index={index} id={item.id} size={item.size} position={item.position} updateSize={updateSize} updatePosition={updatePosition}>
+							return <ResizeBox key={item.id} index={index} item={item} widgetType={type} updateSize={updateSize} updatePosition={updatePosition}>
 								<QuoteWidget widgetId={item.id}></QuoteWidget>
 							</ResizeBox>
 						case WidgetType.Clock:
-							return <ResizeBox key={item.id} index={index} id={item.id} size={item.size} position={item.position} updateSize={updateSize} updatePosition={updatePosition}>
+							return <ResizeBox key={item.id} index={index} item={item} widgetType={type} updateSize={updateSize} updatePosition={updatePosition}>
 								<ClockWidget widgetId={item.id}></ClockWidget>
 							</ResizeBox>
 						case WidgetType.Spotify:
-							return <ResizeBox key={item.id} index={index} id={item.id} size={item.size} position={item.position} updateSize={updateSize} updatePosition={updatePosition}>
+							return <ResizeBox key={item.id} index={index} item={item} widgetType={type} updateSize={updateSize} updatePosition={updatePosition}>
 								<SpotifyWidget widgetId={item.id}></SpotifyWidget>
 							</ResizeBox>
 						case WidgetType.StickyNote:
-							return <ResizeBox key={item.id} index={index} id={item.id} size={item.size} position={item.position} updateSize={updateSize} updatePosition={updatePosition}>
+							return <ResizeBox key={item.id} index={index} item={item} widgetType={type} updateSize={updateSize} updatePosition={updatePosition}>
 								<StickyNoteWidget widgetId={item.id}></StickyNoteWidget>
 							</ResizeBox>
 						case WidgetType.Weather:
-							return <ResizeBox key={item.id} index={index} id={item.id} size={item.size} position={item.position} updateSize={updateSize} updatePosition={updatePosition}>
+							return <ResizeBox key={item.id} index={index} item={item} widgetType={type} updateSize={updateSize} updatePosition={updatePosition}>
 								<WeatherWidget widgetId={item.id}></WeatherWidget>
 							</ResizeBox>
 						case WidgetType.Timer:
-							return <ResizeBox key={item.id} index={index} id={item.id} size={item.size} position={item.position} updateSize={updateSize} updatePosition={updatePosition}>
+							return <ResizeBox key={item.id} index={index} item={item} widgetType={type} updateSize={updateSize} updatePosition={updatePosition}>
 								<TimerWidget widgetId={item.id}></TimerWidget>
 							</ResizeBox>
 						// return <Div key={item.i}>
@@ -126,7 +128,11 @@ export function Grid() {
 }
 
 
-function ResizeBox({ children, index, position, size, id, updatePosition, updateSize }: any) {
+function ResizeBox({ children, index, item, widgetType, updatePosition, updateSize }: any) {
+	const { id, size, position } = item;
+	const minSize = getMinSize(widgetType);
+	const minHeight = minSize ? minSize.minHeight : '25px';
+	const minWidth = minSize ? minSize.minWidth : '25px';
 
 	const onPositionChanged = (e: any, d: any) => {
 		// console.log('position', e, d);
@@ -147,6 +153,9 @@ function ResizeBox({ children, index, position, size, id, updatePosition, update
 
 	return (
 		<Rnd
+			// enableResizing={false}
+			minHeight={minHeight}
+			minWidth={minWidth}
 			size={{ width: size?.width ?? 'auto', height: size?.height ?? 'auto' }}
 			position={{ x: position?.x ?? 100 + ((index + 1) * 10), y: position?.y ?? 100 + ((index + 1) * 10) }}
 			dragHandleClassName="WidgetHeader"

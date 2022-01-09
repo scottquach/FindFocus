@@ -19,13 +19,15 @@ const Content = styled.div`
 	display: flex;
 	flex-direction: column;
 	margin: .25rem;
+	margin-bottom: .5rem;
 	gap: .5rem;
+	width: 100%;
+	height: 100%:
 `
 
 const WidgetActions = styled.div`
 	display: flex;
 	align-items: center;
-
 `
 
 export function SpotifyWidget({ widgetId }: { widgetId: string }) {
@@ -53,7 +55,7 @@ export function SpotifyWidget({ widgetId }: { widgetId: string }) {
 	return (
 		<WidgetFrame widgetId={widgetId}>
 			<Content>
-				{data?.link && <SpotifyFrame src={data.link} frameBorder="0" allow="autoplay; encrypted-media;"></SpotifyFrame>}
+				{data?.link && <SpotifyFrame src={data.link} frameBorder="0" width="100%" height="100%" allow="autoplay; encrypted-media;"></SpotifyFrame>}
 				{!data?.link && <div>Click the settings to enter a Spotify playlist</div>}
 				{/* <SpotifyFrame src={data.link} frameBorder="0"></SpotifyFrame> */}
 				<WidgetActions>

@@ -86,10 +86,10 @@ export function WidgetPicker({ close }: any) {
 					<StickyNote2Outlined></StickyNote2Outlined>
 					<div>Note</div>
 				</S.Widget>
-				<S.Widget onClick={() => create(WidgetType.Weather)}>
+				{/* <S.Widget onClick={() => create(WidgetType.Weather)}>
 					<CloudOutlinedIcon></CloudOutlinedIcon>
 					<div>Weather</div>
-				</S.Widget>
+				</S.Widget> */}
 				<S.Widget onClick={() => create(WidgetType.Timer)}>
 					<AccessAlarmIcon></AccessAlarmIcon>
 					<div>Timer</div>
