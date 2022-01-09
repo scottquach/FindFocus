@@ -11,6 +11,8 @@ import styled from "styled-components"
 import { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
 import { globalConfigState, globalGridVisibleState, globalVolumeState } from "../stores/store";
+import { logEvent } from "firebase/analytics";
+import { analytics } from "../firebase";
 
 const UtilityBarLayout = styled.div`
 		display: flex;
@@ -31,7 +33,8 @@ const Frame = styled.div`
 export function UtilityBar() {
 
 	function triggerFullscreen() {
-		console.log('trigger overall fullscreen')
+		// console.log('trigger overall fullscreen')
+		logEvent(analytics, 'trigger_fullscreen');
 		// https://developers.google.com/web/fundamentals/native-hardware/fullscreen
 		const doc = window.document as any;
 		const docEl = doc.documentElement as any;
@@ -79,6 +82,8 @@ function GridToggle() {
 		setState((old) => {
 			return !old;
 		});
+
+		logEvent(analytics, 'grid_toggle');
 	}
 
 	return (

@@ -18,6 +18,8 @@ import ShuffleIcon from '@mui/icons-material/Shuffle';
 import { MenuHeader, MenuHeaderLayout } from '../../styles/MenuHeaders';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
+import { logEvent } from 'firebase/analytics';
+import { analytics } from '../../firebase';
 
 const categories = [
 	{
@@ -101,6 +103,7 @@ export function BackgroundPicker({ close }: any) {
 		const newRoom = filteredRooms[Math.floor(Math.random() * filteredRooms.length)];
 		setActiveCategory(newRoom.category);
 		setRoom((_) => newRoom);
+		logEvent(analytics, `category_join_${categoryId}`)
 	}
 	const joinRoomById = (roomId: string) => {
 		const newRoom = getRoomById(roomId);
@@ -114,6 +117,7 @@ export function BackgroundPicker({ close }: any) {
 	}
 
 	const iterateRoom = () => {
+		logEvent(analytics, 'iterate_room');
 		if (activeCategory) {
 			let currIndex = Rooms[activeCategory].findIndex(x => x.id === room?.id);
 			let newRoom: Room;
@@ -141,6 +145,12 @@ export function BackgroundPicker({ close }: any) {
 				}
 				return Array.from(set);
 			})
+
+			if (newState) {
+				logEvent(analytics, 'favorite_true');
+			} else {
+				logEvent(analytics, 'favorite_false');
+			}
 		}
 	}
 

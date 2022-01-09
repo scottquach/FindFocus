@@ -12,6 +12,8 @@ import { useState } from "react";
 import { createWidget } from "../../models/widget.model";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faExternalLinkAlt } from "@fortawesome/free-solid-svg-icons";
+import { logEvent } from "firebase/analytics";
+import { analytics } from "../../firebase";
 
 enum WidgetCategories {
 	Audio = 'audio',
@@ -52,7 +54,7 @@ export function WidgetPicker({ close }: any) {
 	const addWidget = useAddWidget();
 
 	function closePicker() {
-		console.log('closed called')
+		// console.log('closed called')
 		close()
 	}
 
@@ -115,6 +117,7 @@ function ClockWidget() {
 	};
 
 	const create = (clockType: string) => {
+		logEvent(analytics, `create_${clockType}`)
 		const newWidget = createWidget(WidgetType.Clock, { clockType: clockType });
 		addWidget(newWidget);
 		handleClose();

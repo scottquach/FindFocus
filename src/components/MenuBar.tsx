@@ -9,6 +9,8 @@ import { useState } from "react";
 import { WidgetPicker } from "./WidgetPicker";
 import { BackgroundPicker } from "./RoomPicker";
 import { ThemePicker } from "./ThemePicker";
+import { analytics } from "../firebase";
+import { logEvent } from "firebase/analytics";
 
 const PositionContainer = styled.div`
 	display: flex;
@@ -63,6 +65,7 @@ export function MenuBar() {
 		if (menu === selectedMenu) {
 			onClose();
 		} else {
+			logEvent(analytics, selectedMenu);
 			setAnchorEl(event.currentTarget);
 			setMenu(selectedMenu);
 		}

@@ -12,7 +12,7 @@ export const Wrapper = styled.div`
     backdrop-filter: saturate(50%) blur(15px); */
     margin-bottom: 1rem;
     /* background-color: #f7f7f7; */
-    font-family: 'Noto Sans', sans-serif !important;
+    /* font-family: 'Noto Sans', sans-serif !important; */
 `;
 
 export const MenuHeader = styled.div`
