@@ -148,9 +148,6 @@ function ResizeBox({ children, index, item, widgetType, updatePosition, updateSi
 		updateSize(id, { width: width, height });
 	}
 
-	// console.log('position', position);
-	// console.log('size', size);
-
 	return (
 		<Rnd
 			// enableResizing={false}
