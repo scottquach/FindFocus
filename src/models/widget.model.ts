@@ -8,7 +8,6 @@ const base = (type: WidgetType): Widget => ({
     properties: {
         title: getTitle(type),
         created: new Date().toISOString(),
-        resizable: true,
     },
     data: {},
 });
