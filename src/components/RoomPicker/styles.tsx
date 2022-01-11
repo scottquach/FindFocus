@@ -11,6 +11,7 @@ export const Wrapper = styled(MenuWrapper)`
 	/* height: 20rem; */
 	border-radius: 16px;
 	margin-bottom: 1rem;
+	box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 `
 
 export const RoomList = styled.div`

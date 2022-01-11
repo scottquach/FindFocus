@@ -10,6 +10,7 @@ const Frame = styled.div`
 	/* border: 2px solid gray; */
 
 	border-radius: var(--widget-border-radius);
+	/* border-bottom-right-radius: 18px; */
 	display: flex;
 	flex-direction: column;
 	width: 100%;
