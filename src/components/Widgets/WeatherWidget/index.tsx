@@ -16,18 +16,28 @@ const Content = styled.div`
 `
 
 export default function WeatherWidget({ widgetId }: { widgetId: string }) {
-	const [location, error] = useCurrentLocation();
+	let options = {
+		enableHighAccuracy: true,
+		timeout: 6000,
+		maximumAge: 0,
+	}
+	const [location, error] = useCurrentLocation(options);
 	const [weather, setWeather] = useState<any>({});
-	const [city, setCity] = useState<any>();
+	const [place, setPlace] = useState<any>({});
+
+	console.log(`Location ${JSON.stringify(location)} | city ${JSON.stringify(place)} | navigator ${JSON.stringify(navigator)} else ${error}`)
 
 	useEffect(() => {
-		Axios.get(`https://api.weather.gov/points/47.8115879,-122.2973026`)
+		// `https://api.weather.gov/points/47.8115879,-122.2973026`
+		Axios.get(`https://api.weather.gov/points/${location?.latitude},${location?.longitude}`) // Only US | Research other apis
 			.then((response: any) => {
+				console.log(response)
 				const relativeLocation = response.data.properties.relativeLocation.properties;
-				setCity({
+				setPlace({
 					city: relativeLocation.city,
-				})
-				return Axios.get(response.data.properties.forecast)
+					state: relativeLocation.state,
+				});
+				return Axios.get(response.data.properties.forecast);
 			})
 			.then((response: any) => {
 				console.log(response.data);
@@ -37,7 +47,6 @@ export default function WeatherWidget({ widgetId }: { widgetId: string }) {
 				setWeather(weatherObject);
 			})
 	}, [location])
-	console.log('location', location);
 
 	return (
 		<WidgetFrame widgetId={widgetId}>
@@ -45,7 +54,7 @@ export default function WeatherWidget({ widgetId }: { widgetId: string }) {
 				<div className="flex justify-center">
 					<div className="text-5xl font-semibold">{weather.temperature}</div>
 				</div>
-				<div className="font-semibold">Chandler, Arizona</div>
+				<div className="font-semibold">{place.city}, {place.state}</div>
 			</Content>
 		</WidgetFrame>
 	)
