@@ -13,6 +13,7 @@ export const Wrapper = styled.div`
     margin-bottom: 1rem;
     /* background-color: #f7f7f7; */
     /* font-family: 'Noto Sans', sans-serif !important; */
+	box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 `;
 
 export const MenuHeader = styled.div`

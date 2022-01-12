@@ -33,7 +33,7 @@ const VideoBackground = styled(ReactPlayer)`
 	border: none;
 	width: 100vw;
 	height: 100vh;
-	transform: scale(1.1);
+	transform: scale(1.15);
 	z-index: 0;
 `
 
