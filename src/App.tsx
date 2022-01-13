@@ -8,6 +8,7 @@ import { UtilityBar } from './components/UtilityBar';
 import useLoadApp from './hooks/useLoadApp';
 import { Background } from './components/Background';
 import BrandLogo from './components/BrandLogo';
+import OnBoarding from './components/OnBoarding';
 
 function App() {
 
@@ -23,6 +24,7 @@ function App() {
       <UtilityBar></UtilityBar>
       <MenuBar></MenuBar>
       <Background></Background>
+      {/* <OnBoarding></OnBoarding> */}
     </div>
   );
 }
