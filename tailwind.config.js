@@ -5,7 +5,12 @@ module.exports = {
         extend: {},
         colors: {
             'on-background': 'var(--color-on-background)'
-        }
+        },
+        fontSize: {
+            '5xl': ['3rem', {
+                lineHeight: '3',
+            }]
+        },
         //     primary: 'var(--color-primary)',
         //     secondary: 'var(--color-secondary)'
         // }
