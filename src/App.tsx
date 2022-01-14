@@ -9,22 +9,34 @@ import useLoadApp from './hooks/useLoadApp';
 import { Background } from './components/Background';
 import BrandLogo from './components/BrandLogo';
 import OnBoarding from './components/OnBoarding';
+import { createTheme, ThemeProvider } from '@mui/system';
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: "#616161"
+    },
+    secondary: {
+      main: "#616161"
+    }
+  }
+});
 
 function App() {
-
   useLoadApp();
-
 
   console.log('APP REBUILT');
 
   return (
     <div className="App">
-      <BrandLogo></BrandLogo>
-      <Grid></Grid>
-      <UtilityBar></UtilityBar>
-      <MenuBar></MenuBar>
-      <Background></Background>
-      {/* <OnBoarding></OnBoarding> */}
+      {/* <ThemeProvider theme={theme}> */}
+        <BrandLogo></BrandLogo>
+        <Grid></Grid>
+        <UtilityBar></UtilityBar>
+        <MenuBar></MenuBar>
+        <Background></Background>
+        {/* <OnBoarding></OnBoarding> */}
+      {/* </ThemeProvider> */}
     </div>
   );
 }

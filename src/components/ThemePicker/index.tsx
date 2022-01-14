@@ -11,6 +11,8 @@ interface Theme {
 
 	colorBackground: string;
 	colorOnBackground: string;
+
+	colorButton: string;
 }
 
 
@@ -21,6 +23,7 @@ const lightTheme: Theme = {
 	colorOnSecondary: '#212121',
 	colorBackground: '#fafafa',
 	colorOnBackground: '#212121',
+	colorButton: '#616161'
 }
 
 const darkTheme: Theme = {
@@ -30,6 +33,7 @@ const darkTheme: Theme = {
 	colorOnSecondary: '#212121',
 	colorBackground: '#212121',
 	colorOnBackground: '#ffffff',
+	colorButton: '#eeeeee'
 }
 
 export function ThemePicker({ close }: any) {
@@ -46,6 +50,7 @@ export function ThemePicker({ close }: any) {
 		document.documentElement.style.setProperty('--color-on-secondary', theme.colorOnSecondary);
 		document.documentElement.style.setProperty('--color-background', theme.colorBackground);
 		document.documentElement.style.setProperty('--color-on-background', theme.colorOnBackground);
+		document.documentElement.style.setProperty('--color-button', theme.colorButton);
 	}
 
 	return (

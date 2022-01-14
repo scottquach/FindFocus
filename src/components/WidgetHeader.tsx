@@ -22,6 +22,7 @@ const HeaderTitle = styled.div`
 	opacity: 70%;
 	font-size: 14px;
 	margin-left: .25rem;
+	color: var(--color-on-background);
 `
 
 const HeaderActions = styled.div`
@@ -42,8 +43,7 @@ export function WidgetHeader({ widgetId, title, deleteWidget }: any) {
 			<HeaderActions>
 				<Tooltip title="Remove">
 					<IconButton size="small" onClick={onCloseClick} >
-						{/* <CloseIcon fontSize="small" style={{ fill: "var(--color-on-primary)"}}/> */}
-						<RemoveIcon fontSize="inherit" />
+						<RemoveIcon fontSize="inherit" style={{ fill: "var(--color-button)"}} />
 					</IconButton>
 				</Tooltip>
 			</HeaderActions>

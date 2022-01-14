@@ -25,10 +25,11 @@ body {
 
     --color-primary: #212121;
     --color-on-primary: #fafafa;
-
+/* 
     --color-secondary: #9e9e9e;
-    --color-on-secondary: #212121;
+    --color-on-secondary: #212121; */
 
+    --color-button: #616161;
 
     --color-surface: #eeeeee;
     --color-on-surface: #212121;

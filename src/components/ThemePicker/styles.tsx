@@ -15,7 +15,7 @@ export const Wrapper = styled(MenuWrapper)`
 	/* background-color: #ffffffc0; */
 	/* backdrop-filter: saturate(50%) blur(15px); */
 	width: 30rem;
-	height: 6rem;
+	height: 8rem;
 	border-radius: 16px;
 	margin-bottom: 1rem;
 	box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
