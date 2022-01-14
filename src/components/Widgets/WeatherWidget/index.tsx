@@ -25,36 +25,70 @@ export default function WeatherWidget({ widgetId }: { widgetId: string }) {
 	const [weather, setWeather] = useState<any>({});
 	const [place, setPlace] = useState<any>({});
 
-	console.log(`Location ${JSON.stringify(location)} | city ${JSON.stringify(place)} | navigator ${JSON.stringify(navigator)} else ${error}`)
+	// console.log(`Location ${JSON.stringify(location)} | city ${JSON.stringify(place)} | navigator ${JSON.stringify(navigator)} else ${error}`)
+
+	const params = {
+		lat: location?.latitude,
+		lon: location?.longitude,
+		units: "imperial",
+		appid: process.env.REACT_APP_WEATHER_API_KEY,
+	}
 
 	useEffect(() => {
-		// `https://api.weather.gov/points/47.8115879,-122.2973026`
-		Axios.get(`https://api.weather.gov/points/${location?.latitude},${location?.longitude}`) // Only US | Research other apis
+		//Axios.get("http://api.openweathermap.org/data/2.5/weather", { params }) // ?lat=${location?.latitude}&lon=${location?.longitude}&appid=${API_KEY}
+		Axios.get("http://api.openweathermap.org/data/2.5/weather", { params }) // https://openweathermap.org/current
 			.then((response: any) => {
-				console.log(response)
-				const relativeLocation = response.data.properties.relativeLocation.properties;
-				setPlace({
-					city: relativeLocation.city,
-					state: relativeLocation.state,
+				let data = response.data;
+				console.log(data);
+				setWeather({
+					...data.main,
+					...data.weather[0],
+					...data.wind,
+					iconLink: `http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`
 				});
-				return Axios.get(response.data.properties.forecast);
-			})
-			.then((response: any) => {
-				console.log(response.data);
-				const weatherObject = {
-					...response.data?.properties?.periods[0]
-				}
-				setWeather(weatherObject);
-			})
+				setPlace({
+					city: data.name,
+					country: data.sys.country,
+				});
+
+				console.log(place, weather);
+			});
+
+		// `https://api.weather.gov/points/47.8115879,-122.2973026`
+		// Axios.get(`https://api.weather.gov/points/${location?.latitude},${location?.longitude}`) // Only US | Research other apis
+		// 	.then((response: any) => {
+		// 		console.log(response)
+		// 		const relativeLocation = response.data.properties.relativeLocation.properties;
+		// 		setPlace({
+		// 			city: relativeLocation.city,
+		// 			state: relativeLocation.state,
+		// 		});
+		// 		return Axios.get(response.data.properties.forecast);
+		// 	})
+		// 	.then((response: any) => {
+		// 		console.log(response.data);
+		// 		const weatherObject = {
+		// 			...response.data?.properties?.periods[0]
+		// 		}
+		// 		setWeather(weatherObject);
+		// 	})
 	}, [location])
 
 	return (
 		<WidgetFrame widgetId={widgetId}>
 			<Content>
-				<div className="flex justify-center">
-					<div className="text-5xl font-semibold">{weather.temperature}</div>
+				<div className="flex flex-row justify-center">
+					<div className="text-5xl font-semibold">{Math.round(weather.temp)}°</div>
+					<div className="flex flex-col justify-center">
+						<img 
+							src={weather.iconLink}
+							alt={weather.main}
+							width={100}
+						/>
+						<div className="text-base italic font-light hover:font-bold">{weather.main}</div>
+					</div>
 				</div>
-				<div className="font-semibold">{place.city}, {place.state}</div>
+				<div className="font-semibold">{place.city}</div>
 			</Content>
 		</WidgetFrame>
 	)
