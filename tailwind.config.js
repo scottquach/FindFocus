@@ -8,11 +8,11 @@ module.exports = {
             'primary': 'var(--color-primary)',
             'interactive': 'var(--color-interactive)'
         },
-        fontSize: {
-            '5xl': ['3rem', {
-                lineHeight: '3',
-            }]
-        },
+        // fontSize: {
+        //     '5xl': ['3rem', {
+        //         lineHeight: '3',
+        //     }]
+        // },
         //     primary: 'var(--color-primary)',
         //     secondary: 'var(--color-secondary)'
         // }
