@@ -8,11 +8,7 @@ export const Wrapper = styled.div`
     padding: 1rem;
     border-radius: 16px;
     background-color: var(--color-background);
-    /* background-color: #ffffffc0;
-    backdrop-filter: saturate(50%) blur(15px); */
     margin-bottom: 1rem;
-    /* background-color: #f7f7f7; */
-    /* font-family: 'Noto Sans', sans-serif !important; */
 	box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 `;
 

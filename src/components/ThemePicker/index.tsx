@@ -1,22 +1,22 @@
 import CloseIcon from '@mui/icons-material/Close';
 import { IconButton, Tooltip } from '@mui/material';
+import { useTheme } from '@mui/system';
 import * as S from './styles';
 
 interface Theme {
+	mode: 'light' | 'dark';
 	colorPrimary: string;
 	colorOnPrimary: string;
-
 	colorSecondary: string;
 	colorOnSecondary: string;
-
 	colorBackground: string;
 	colorOnBackground: string;
-
 	colorButton: string;
 }
 
 
 const lightTheme: Theme = {
+	mode: 'light',
 	colorPrimary: '#212121',
 	colorOnPrimary: '#fafafa',
 	colorSecondary: '#474554',
@@ -27,6 +27,7 @@ const lightTheme: Theme = {
 }
 
 const darkTheme: Theme = {
+	mode: 'dark',
 	colorPrimary: '#fafafa',
 	colorOnPrimary: '#212121',
 	colorSecondary: '#9e9e9e',
@@ -38,19 +39,24 @@ const darkTheme: Theme = {
 
 export function ThemePicker({ close }: any) {
 
+	const theme = useTheme();
+
 	const onClose = () => {
 		close();
 	}
 
-	const setTheme = (theme: Theme) => {
-		console.log('setting theme', theme)
-		document.documentElement.style.setProperty('--color-primary', theme.colorPrimary);
-		document.documentElement.style.setProperty('--color-on-primary', theme.colorOnPrimary);
-		document.documentElement.style.setProperty('--color-secondary', theme.colorSecondary);
-		document.documentElement.style.setProperty('--color-on-secondary', theme.colorOnSecondary);
-		document.documentElement.style.setProperty('--color-background', theme.colorBackground);
-		document.documentElement.style.setProperty('--color-on-background', theme.colorOnBackground);
-		document.documentElement.style.setProperty('--color-button', theme.colorButton);
+	const setTheme = (setTheme: Theme) => {
+		console.log('setting theme', setTheme)
+		document.documentElement.style.setProperty('--color-primary', setTheme.colorPrimary);
+		document.documentElement.style.setProperty('--color-on-primary', setTheme.colorOnPrimary);
+		document.documentElement.style.setProperty('--color-secondary', setTheme.colorSecondary);
+		document.documentElement.style.setProperty('--color-on-secondary', setTheme.colorOnSecondary);
+		document.documentElement.style.setProperty('--color-background', setTheme.colorBackground);
+		document.documentElement.style.setProperty('--color-on-background', setTheme.colorOnBackground);
+		document.documentElement.style.setProperty('--color-button', setTheme.colorButton);
+
+		theme.palette.mode = setTheme.mode;
+		theme.palette.primary.main = setTheme.colorPrimary;
 	}
 
 	return (

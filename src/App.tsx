@@ -9,18 +9,10 @@ import useLoadApp from './hooks/useLoadApp';
 import { Background } from './components/Background';
 import BrandLogo from './components/BrandLogo';
 import OnBoarding from './components/OnBoarding';
-import { createTheme, ThemeProvider } from '@mui/system';
+// import { themeOptions } from './styles/MuiThemeOptions';
+import { ThemeProvider } from '@mui/material/styles';
+import { themeOptions } from './styles/MuiThemeOptions';
 
-const theme = createTheme({
-  palette: {
-    primary: {
-      main: "#616161"
-    },
-    secondary: {
-      main: "#616161"
-    }
-  }
-});
 
 function App() {
   useLoadApp();
@@ -29,14 +21,14 @@ function App() {
 
   return (
     <div className="App">
-      {/* <ThemeProvider theme={theme}> */}
+      <ThemeProvider theme={themeOptions}>
         <BrandLogo></BrandLogo>
         <Grid></Grid>
         <UtilityBar></UtilityBar>
         <MenuBar></MenuBar>
         <Background></Background>
         {/* <OnBoarding></OnBoarding> */}
-      {/* </ThemeProvider> */}
+      </ThemeProvider>
     </div>
   );
 }

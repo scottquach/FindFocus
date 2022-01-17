@@ -185,8 +185,8 @@ export function BackgroundPicker({ close }: any) {
 			</S.RoomList>
 
 			<a className="text-sm opacity-70 ml-3 mt-1 cursor-pointer hover:underline" href="https://forms.gle/6w91DeiLotXakNMA6" target="_blank" rel="noreferrer">
-				<span>Suggest new rooms</span>
-				<FontAwesomeIcon icon={faExternalLinkAlt} className="opacity-70 ml-1" size="xs"></FontAwesomeIcon>
+				<span className="text-on-background">Suggest new rooms</span>
+				<FontAwesomeIcon icon={faExternalLinkAlt} className="opacity-70 ml-1 text-on-background" size="xs"></FontAwesomeIcon>
 			</a>
 
 			{
@@ -207,7 +207,7 @@ export function BackgroundPicker({ close }: any) {
 							</IconButton>
 							<Tooltip title="Next room">
 								<IconButton onClick={iterateRoom}>
-									<ShuffleIcon style={{ fill: "var(--color-on-background)" }}></ShuffleIcon>
+									<ShuffleIcon style={{ fill: "var(--color-on-surface)" }}></ShuffleIcon>
 								</IconButton>
 							</Tooltip>
 						</div>
@@ -218,9 +218,9 @@ export function BackgroundPicker({ close }: any) {
 
 			<S.ActionsContainer>
 				<Stack spacing={2} direction="row" sx={{ mb: 1, mt: 1, width: 300 }} alignItems="center">
-					<VolumeDown />
+					<VolumeDown sx={{ fill: "var(--color-button)"}}/>
 					<Slider aria-label="Volume" value={volume} onChange={handleVolumeChange} />
-					<VolumeUp />
+					<VolumeUp sx={{ fill: "var(--color-button)"}} />
 				</Stack>
 				<Favorites joinRoom={joinRoomById}></Favorites>
 

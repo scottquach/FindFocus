@@ -4,7 +4,9 @@ module.exports = {
     theme: {
         extend: {},
         colors: {
-            'on-background': 'var(--color-on-background)'
+            'on-background': 'var(--color-on-background)',
+            'primary': 'var(--color-primary)',
+            'interactive': 'var(--color-interactive)'
         },
         fontSize: {
             '5xl': ['3rem', {
