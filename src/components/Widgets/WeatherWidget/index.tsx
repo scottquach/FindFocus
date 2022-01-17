@@ -15,6 +15,15 @@ const Content = styled.div`
 	min-height: 5rem;
 `
 
+const TempForecastContent = styled.div`
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	height: 100%;
+`
+
 export default function WeatherWidget({ widgetId }: { widgetId: string }) {
 	let options = {
 		enableHighAccuracy: true,
@@ -77,17 +86,18 @@ export default function WeatherWidget({ widgetId }: { widgetId: string }) {
 	return (
 		<WidgetFrame widgetId={widgetId}>
 			<Content>
-				<div className="flex flex-row justify-center">
-					<div className="text-5xl font-semibold">{Math.round(weather.temp)}°</div>
+				<TempForecastContent>
+					<div className="text-5xl font-semibold ml-4">{Math.round(weather.temp)}°</div>
 					<div className="flex flex-col justify-center">
 						<img 
 							src={weather.iconLink}
 							alt={weather.main}
-							width={100}
+							width="auto"
+							height="auto"
 						/>
 						<div className="text-base italic font-light hover:font-bold">{weather.main}</div>
 					</div>
-				</div>
+				</TempForecastContent>
 				<div className="font-semibold">{place.city}</div>
 			</Content>
 		</WidgetFrame>
