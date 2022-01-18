@@ -26,6 +26,17 @@ const lightTheme: Theme = {
 	colorButton: '#616161'
 }
 
+const pinkTheme: Theme = {
+	mode: 'light',
+	colorPrimary: '#f06292',
+	colorOnPrimary: '#212121',
+	colorSecondary: '#e57373',
+	colorOnSecondary: '#212121',
+	colorBackground: '#ffcdd2',
+	colorOnBackground: '#212121',
+	colorButton: '#616161'
+}
+
 const darkTheme: Theme = {
 	mode: 'dark',
 	colorPrimary: '#fafafa',
@@ -73,6 +84,9 @@ export function ThemePicker({ close }: any) {
 				</Tooltip>
 				<Tooltip title="Dark">
 					<S.ThemePalette theme={darkTheme} onClick={() => setTheme(darkTheme)}></S.ThemePalette>
+				</Tooltip>
+				<Tooltip title="Pink">
+					<S.ThemePalette theme={pinkTheme} onClick={() => setTheme(pinkTheme)}></S.ThemePalette>
 				</Tooltip>
 			</S.Themes>
 
