@@ -78,6 +78,10 @@ export function ThemePicker({ close }: any) {
 					<CloseIcon style={{fill: "var(--color-on-background)"}}></CloseIcon>
 				</IconButton>
 			</S.MenuHeader>
+
+			<div>Primary and accents</div>
+			<div>Background</div>
+
 			<S.Themes>
 				<Tooltip title="Light">
 					<S.ThemePalette theme={lightTheme} onClick={() => setTheme(lightTheme)}></S.ThemePalette>

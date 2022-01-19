@@ -28,7 +28,7 @@ const Widget = styled(WidgetFrame)`
 `
 
 const StyledGrid = styled.div`
-	margin: 4rem 1rem 6rem 1rem;
+	margin: 4rem 1rem 3rem 1rem;
 	flex: 1;
 `
 

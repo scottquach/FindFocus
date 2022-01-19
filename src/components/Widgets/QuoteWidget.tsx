@@ -25,7 +25,7 @@ const Quote = styled.div`
 const Author = styled.div`
 	text-align: center;
 	font-weight: 600;
-	margin-top: .25rem;
+	margin-top: .5rem;
 	color: var(--color-on-background);
 `
 

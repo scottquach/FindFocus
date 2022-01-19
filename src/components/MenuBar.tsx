@@ -1,5 +1,6 @@
 import { Box, ClickAwayListener, IconButton, Popper, Zoom } from "@mui/material"
 import ColorLensTwoToneIcon from '@mui/icons-material/ColorLensTwoTone';
+import MeetingRoomIcon from '@mui/icons-material/MeetingRoom';
 import WidgetsIcon from '@mui/icons-material/Widgets';
 import ImageIcon from '@mui/icons-material/Image';
 import React from 'react';
@@ -16,14 +17,17 @@ const PositionContainer = styled.div`
 	display: flex;
 	justify-content: center;
 	position: absolute;
-	bottom: .75rem;
+	/* bottom: .75rem; */
+	bottom: 0;
 	width: 100%;
 `
 
 const MenuLayout = styled.div`
-	height: 4rem;
+	/* height: 4rem; */
 	padding: .25rem 1rem;
-	border-radius: var(--widget-border-radius);
+	/* border-radius: var(--widget-border-radius); */
+	border-top-right-radius: var(--widget-border-radius);
+	border-top-left-radius: var(--widget-border-radius);
 	background-color: var(--color-background);
 	color: var(--color-on-background);
 	box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
@@ -34,9 +38,14 @@ const MenuItems = styled.div`
 	grid-template-columns: repeat(3, 1fr);
 	grid-gap: 1.5rem;
 `
+
+const ItemTitle = styled.div`
+	font-size: 12px;
+`
+
 const Item = styled.div`
 	display: flex;
-	flex-direction: column;
+	flex-direction: row;
 	align-items: center;
 	color: var(--color-on-background);
 	fill: var(--color-on-background);
@@ -45,6 +54,7 @@ const Item = styled.div`
 		font-size: 14px;
 	}
 
+	cursor: pointer;
 `
 
 enum MenuId {
@@ -84,23 +94,23 @@ export function MenuBar() {
 		<PositionContainer>
 			<MenuLayout>
 				<MenuItems>
-					<Item>
-						<IconButton onClick={(e) => onMenuSelected(e, MenuId.WidgetPicker)} size="small">
-							<WidgetsIcon style={{fill: "var(--color-on-background)"}}></WidgetsIcon>
+					<Item onClick={(e) => onMenuSelected(e, MenuId.WidgetPicker)}>
+						<IconButton size="small">
+							<WidgetsIcon style={{ fill: "var(--color-on-background)" }}></WidgetsIcon>
 						</IconButton>
-						<div>Widgets</div>
+						<ItemTitle>Widgets</ItemTitle>
 					</Item>
-					<Item>
-						<IconButton onClick={(e) => onMenuSelected(e, MenuId.BackgroundPicker)} size="small">
-							<ImageIcon style={{fill: "var(--color-on-background)"}}></ImageIcon>
+					<Item onClick={(e) => onMenuSelected(e, MenuId.BackgroundPicker)}>
+						<IconButton size="small">
+							<MeetingRoomIcon style={{ fill: "var(--color-on-background)" }}></MeetingRoomIcon>
 						</IconButton>
-						<div>Rooms</div>
+						<ItemTitle>Rooms</ItemTitle>
 					</Item>
-					<Item>
-						<IconButton onClick={(e) => onMenuSelected(e, MenuId.ThemePicker)} size="small">
-							<ColorLensTwoToneIcon style={{fill: "var(--color-on-background)"}}></ColorLensTwoToneIcon>
+					<Item onClick={(e) => onMenuSelected(e, MenuId.ThemePicker)} >
+						<IconButton size="small">
+							<ColorLensTwoToneIcon style={{ fill: "var(--color-on-background)" }}></ColorLensTwoToneIcon>
 						</IconButton>
-						<div>Theme</div>
+						<ItemTitle>Theme</ItemTitle>
 					</Item>
 				</MenuItems>
 
