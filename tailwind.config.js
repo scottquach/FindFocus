@@ -3,7 +3,16 @@ module.exports = {
     darkMode: false, // or 'media' or 'class'
     theme: {
         extend: {},
-        // colors: {
+        colors: {
+            'on-background': 'var(--color-on-background)',
+            'primary': 'var(--color-primary)',
+            'interactive': 'var(--color-interactive)'
+        },
+        // fontSize: {
+        //     '5xl': ['3rem', {
+        //         lineHeight: '3',
+        //     }]
+        // },
         //     primary: 'var(--color-primary)',
         //     secondary: 'var(--color-secondary)'
         // }

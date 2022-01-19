@@ -16,4 +16,5 @@ export const Note = styled.textarea`
 	border: none;
 	outline: none;
 	background-color: var(--color-background);
+	color: var(--color-on-background);
 `

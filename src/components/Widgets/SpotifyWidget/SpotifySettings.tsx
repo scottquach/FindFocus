@@ -1,75 +1,76 @@
-// import { TextField } from "@mui/material"
-// import styled from "styled-components"
-// import { MenuHeader } from "../../../GlobalStyles"
-// import LinkIcon from '@mui/icons-material/Link';
-// import { activeWidgetsState, widgetById } from "../../../stores/store";
-// import { useRecoilValue, useSetRecoilState } from "recoil";
-// // import { Widget } from "../../../models/widget.interface";
-// import { useState } from "react";
-// import { cloneDeep } from 'lodash';
+import { IconButton, Popper, Tooltip } from '@mui/material'
+import SettingsIcon from '@mui/icons-material/Settings';
+import React, { useState } from 'react'
+import styled from 'styled-components';
+import { Input } from '../../../styles/Input';
+import RestartAltIcon from '@mui/icons-material/RestartAlt';
+import SaveIcon from '@mui/icons-material/Save';
+import CloseIcon from '@mui/icons-material/Close';
 
-// const Wrapper = styled.div`
-// 	display: flex;
-// 	flex-direction: column;
-// 	width: 20rem;
-// 	height: 12rem;
-// 	padding: 1rem;
-// `
+export const SettingsContainer = styled.div`
+    background-color: var(--color-background);
+    border-radius: 12px;
+	padding: 1rem;
+	width: 20rem;
+	box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+`
 
-// const Description = styled.div`
-// 	margin-bottom: 1rem;;
-// `
+export default function SpotifySettings({ updateLink, currentLink }: { updateLink: (url: string) => void, currentLink: string }) {
+	const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+	const [link, setLink] = useState(currentLink);
+	const open = Boolean(anchorEl);
 
-export {}
-// export function SpotifySettings({ widgetId }: { widgetId: string }) {
-// 	const setWidgets = useSetRecoilState(activeWidgetsState);
-// 	const widget = useRecoilValue(widgetById(widgetId));
-// 	const [spotifyUrl, setSpotifyUrl] = useState(widget.data?.link ? widget.data.link : '');
-// 	const parser = new DOMParser()
+	const handleClick = (event: any) => {
+		setAnchorEl(anchorEl ? null : event.currentTarget);
+	};
 
-// 	const onSave = () => {
-// 		setWidgets((old: Widget[]) => {
-// 			const index = old.findIndex(x => x.id === widgetId);
-// 			const newState = cloneDeep(old);
-// 			if (index > -1) {
-// 				const widget = cloneDeep(old[index]);
-// 				console.log('spotify', widget);
-// 				widget['data'] = {
-// 					link: spotifyUrl
-// 				}
-// 				newState.splice(index, 1, widget);
-// 			}
-// 			return newState;
-// 		})
-// 	}
+	const handleLinkChange = (event: any) => {
+		setLink(event.target.value)
+	}
 
-// 	const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-// 		const value = event.target.value;
-// 		const htmlDoc = parser.parseFromString(value, 'text/html');
-// 		// console.log(htmlDoc);
-// 		const iframes = htmlDoc.getElementsByTagName('iframe');
-// 		if (iframes.length > 0) {
-// 			setSpotifyUrl(iframes[0].getAttribute('src'));
-// 		}
+	const saveCustomLink = () => {
+		const tokens = link.split('/')
+		const id = tokens[tokens.length - 1];
+		updateLink(`https://open.spotify.com/embed/playlist/${id}`);
+	}
 
-// 		// setSpotifyUrl(src);
-// 	};
+	const resetLink = () => {
+		setLink('https://open.spotify.com/embed/playlist/0vvXsWCC9xrXsKd4FyS8kM');
+		updateLink('https://open.spotify.com/embed/playlist/0vvXsWCC9xrXsKd4FyS8kM');
+	}
 
-// 	return (
-// 		<Wrapper>
-// 			<MenuHeader>Spotify settings</MenuHeader>
-// 			<Description>Use the share spotify link of any playlist to import into Boards.io</Description>
+	return (
+		<div>
+			<IconButton size="small" onClick={handleClick}>
+				<SettingsIcon sx={{ fill: "var(--color-button)"}}></SettingsIcon>
+			</IconButton>
+			<Popper open={open} anchorEl={anchorEl}>
+				<SettingsContainer>
+					<div className="flex items-center justify-between mb-4">
+						<div className="font-bold text-on-background">Settings</div>
+						<IconButton sx={{ padding: .5 }} onClick={() => setAnchorEl(null)}>
+							<CloseIcon fontSize="small" sx={{ fill: "var(--color-on-background)" }}></CloseIcon>
+						</IconButton>
+					</div>
 
-// 			<TextField InputProps={{
-// 				startAdornment: (
-// 					<LinkIcon></LinkIcon>
-// 				)
-// 			}}
-// 				onChange={handleChange}
-// 				size="small"></TextField>
-// 			{/* <button onClick={onSave}>Save stuff</button> */}
-
-// 		</Wrapper>
-// 	)
-
-// }
+					<div className="w-full mt-1">
+						<div className="text-sm text-on-background opacity-75 font-semibold mb-1">Playlist URL</div>
+						<Input placeholder="Spotify playlist URL" type="text" value={link} onChange={handleLinkChange}></Input>
+					</div>
+					<div className="flex justify-end">
+						<Tooltip title="Save URL">
+							<IconButton onClick={saveCustomLink}>
+								<SaveIcon sx={{ fill: "var(--color-on-background)" }}></SaveIcon>
+							</IconButton>
+						</Tooltip>
+						<Tooltip title="Reset">
+							<IconButton onClick={resetLink}>
+								<RestartAltIcon sx={{ fill: "var(--color-on-background)" }}></RestartAltIcon>
+							</IconButton>
+						</Tooltip>
+					</div>
+				</SettingsContainer>
+			</Popper>
+		</div>
+	)
+}

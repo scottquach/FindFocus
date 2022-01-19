@@ -1,18 +1,19 @@
-import { WidgetFrame } from "./WidgetFrame";
+import { WidgetFrame } from "../WidgetFrame";
 import styled from "styled-components";
-import { QuoteWidget } from "./Widgets/QuoteWidget";
+import { QuoteWidget } from "../Widgets/QuoteWidget";
 import { useRecoilState, useRecoilValue } from "recoil";
-import { activeWidgetsMapState, activeWidgetsState, globalGridVisibleState, layoutState } from "../stores/store";
-import { WidgetType } from "../models/widget-types.enum";
-import useSyncLocalStorage from '../hooks/useSyncLocalStorage';
-import ClockWidget from './Widgets/ClockWidget';
+import { activeWidgetsMapState, activeWidgetsState, globalGridVisibleState, layoutState } from "../../stores/store";
+import { WidgetType } from "../../models/widget-types.enum";
+import useSyncLocalStorage from '../../hooks/useSyncLocalStorage';
+import ClockWidget from '../Widgets/ClockWidget';
 import { Rnd } from 'react-rnd';
-import { Layout } from "../models/layout.interface";
-import { SpotifyWidget } from "./Widgets/SpotifyWidget";
-import StickyNoteWidget from "./Widgets/StickyNoteWidget";
-import WeatherWidget from "./Widgets/WeatherWidget";
-import TimerWidget from "./Widgets/TimerWidget";
-import { getMinSize } from "../models/widget.model";
+import { Layout } from "../../models/layout.interface";
+import { SpotifyWidget } from "../Widgets/SpotifyWidget";
+import StickyNoteWidget from "../Widgets/StickyNoteWidget";
+import WeatherWidget from "../Widgets/WeatherWidget";
+import TimerWidget from "../Widgets/TimerWidget";
+import { getMinSize } from "../../models/widget.model";
+import { ResizeHandle } from "./ResizeHandle";
 
 const Div = styled.div`
 	display: flex;
@@ -158,8 +159,11 @@ function ResizeBox({ children, index, item, widgetType, updatePosition, updateSi
 			dragHandleClassName="WidgetHeader"
 			bounds="parent"
 			onDragStop={onPositionChanged}
-			onResizeStop={onSizeChanged}>
+			onResizeStop={onSizeChanged}
+			// resizeHandleComponent={{bottomRight: <ResizeHandle></ResizeHandle>}}
+			>
 			{children}
 		</Rnd>
 	)
 }
+

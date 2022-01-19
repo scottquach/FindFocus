@@ -2,23 +2,13 @@ import { IconButton } from "@mui/material";
 import styled from "styled-components";
 import { MenuWrapper } from "../../styles/MenuHeaders";
 
-// export const MenuHeaderLayout = styled(GlobalHeaderLayout)`
-// 	margin-bottom: 0rem;
-// `
-
-// export const MenuDescription = styled.div`
-// 	margin-bottom: 1.5rem;
-// `
-
 export const Wrapper = styled(MenuWrapper)`
 	background-color: var(--color-background);
-	/* background-color: #ffffffc0; */
-	/* backdrop-filter: saturate(50%) blur(15px); */
 	width: 30rem;
-	height: 6rem;
+	height: 8rem;
 	border-radius: 16px;
 	margin-bottom: 1rem;
-
+	box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 `
 
 export const MenuHeader = styled.div`
@@ -48,8 +38,8 @@ export const ThemePalette = styled.div`
 	height: 35px;
 	width: 35px;
 	border-radius: 50%;
-	background-color: ${(props) => props.theme.colorOnPrimary};
-	border: 2px solid ${(props) => props.theme.colorPrimary};
+	background-color: ${(props) => props.theme.colorBackground};
+	border: 2px solid ${(props) => props.theme.colorOnBackground};
 	cursor: pointer;
 
     &:active {

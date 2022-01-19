@@ -68,7 +68,7 @@ export function WidgetPicker({ close }: any) {
 			<S.MenuHeader>
 				<S.MenuTitle>Widgets</S.MenuTitle>
 				<IconButton onClick={closePicker}>
-					<CloseIcon style={{ fill: "var(--color-on-background)" }}></CloseIcon>
+					<CloseIcon style={{ fill: "var(--color-button)" }}></CloseIcon>
 				</IconButton>
 			</S.MenuHeader>
 
@@ -86,10 +86,10 @@ export function WidgetPicker({ close }: any) {
 					<StickyNote2Outlined></StickyNote2Outlined>
 					<div>Note</div>
 				</S.Widget>
-				{/* <S.Widget onClick={() => create(WidgetType.Weather)}>
+				<S.Widget onClick={() => create(WidgetType.Weather)}>
 					<CloudOutlinedIcon></CloudOutlinedIcon>
 					<div>Weather</div>
-				</S.Widget> */}
+				</S.Widget>
 				<S.Widget onClick={() => create(WidgetType.Timer)}>
 					<AccessAlarmIcon></AccessAlarmIcon>
 					<div>Timer</div>
@@ -97,8 +97,8 @@ export function WidgetPicker({ close }: any) {
 			</S.Widgets>
 
 			<a className="text-sm opacity-70 ml-1 mt-1 cursor-pointer hover:underline" href="https://forms.gle/i9RJxQNyfVbYrM1M6" target="_blank" rel="noreferrer">
-				<span>Suggest new widgets</span>
-				<FontAwesomeIcon icon={faExternalLinkAlt} className="opacity-70 ml-1" size="xs"></FontAwesomeIcon>
+				<span className="text-on-background">Suggest new widgets</span>
+				<FontAwesomeIcon icon={faExternalLinkAlt} className="opacity-70 ml-1 text-on-background" size="xs"></FontAwesomeIcon>
 			</a>
 		</S.Wrapper>
 	)

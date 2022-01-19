@@ -36,8 +36,6 @@ const RefreshButton = styled(IconButton)`
 	grid-row: 2;
 	grid-column: 1;
 	opacity: 70%;
-	/* color: blue; */
-
 `
 export function QuoteWidget({ widgetId }: { widgetId: string }) {
 	// console.log('QUOTE WIDGET')
@@ -66,7 +64,7 @@ export function QuoteWidget({ widgetId }: { widgetId: string }) {
 					<Author>- {author}</Author>
 				</Quote>
 				<RefreshButton onClick={loadQuote} size="small">
-					<LoopIcon style={{fill: "var(--color-on-background)"}}></LoopIcon>
+					<LoopIcon style={{fill: "var(--color-button)"}}></LoopIcon>
 				</RefreshButton>
 			</Content>
 		</WidgetFrame>

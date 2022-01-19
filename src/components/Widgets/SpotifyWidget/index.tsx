@@ -1,4 +1,4 @@
-import { Dialog, IconButton, TextField, Tooltip } from "@mui/material";
+import { Dialog, getIconButtonUtilityClass, IconButton, TextField, Tooltip } from "@mui/material";
 import RestartAltIcon from '@mui/icons-material/RestartAlt';
 import SaveIcon from '@mui/icons-material/Save';
 import { useRecoilValue } from "recoil";
@@ -7,6 +7,7 @@ import useUpdateWidget from "../../../hooks/useUpdateWidget";
 import { widgetById } from "../../../stores/store";
 import { WidgetFrame } from "../../WidgetFrame";
 import { useEffect, useState } from "react";
+import SpotifySettings from "./SpotifySettings";
 // import { SpotifySettings } from "./SpotifySettings";
 
 const SpotifyFrame = styled.iframe`
@@ -19,8 +20,7 @@ const Content = styled.div`
 	display: flex;
 	flex-direction: column;
 	margin: .25rem;
-	margin-bottom: .5rem;
-	gap: .5rem;
+	/* gap: .25rem; */
 	width: 100%;
 	height: 100%:
 `
@@ -28,6 +28,8 @@ const Content = styled.div`
 const WidgetActions = styled.div`
 	display: flex;
 	align-items: center;
+	justify-content: flex-end;
+	margin-right: .25rem;
 `
 
 export function SpotifyWidget({ widgetId }: { widgetId: string }) {
@@ -36,20 +38,14 @@ export function SpotifyWidget({ widgetId }: { widgetId: string }) {
 	// console.log('Spotify widget', widgetId, widget);
 	const { data } = widget;
 
-	const [link, setLink] = useState('');
-	const handleLinkChange = (e: any) => setLink(e.target.value);
+	const [link, setLink] = useState(data.link ?? '');
 
-
-	const updateLink = () => {
-		// console.log(link);
+	const updateLink = (link: string) => {
 		const tokens = link.split('/')
 		const id = tokens[tokens.length - 1];
 		// console.log(id);
+		setLink(link);
 		updateWidget(widgetId, { link: `https://open.spotify.com/embed/playlist/${id}` });
-	}
-
-	const resetLink = () => {
-		updateWidget(widgetId, { link: 'https://open.spotify.com/embed/playlist/0vvXsWCC9xrXsKd4FyS8kM' });
 	}
 
 	return (
@@ -57,19 +53,8 @@ export function SpotifyWidget({ widgetId }: { widgetId: string }) {
 			<Content>
 				{data?.link && <SpotifyFrame src={data.link} frameBorder="0" width="100%" height="100%" allow="autoplay; encrypted-media;"></SpotifyFrame>}
 				{!data?.link && <div>Click the settings to enter a Spotify playlist</div>}
-				{/* <SpotifyFrame src={data.link} frameBorder="0"></SpotifyFrame> */}
 				<WidgetActions>
-					<TextField id="outlined-basic" value={link} onChange={handleLinkChange} placeholder="Your Spotify playlist URL" size="small" variant="outlined" />
-					<Tooltip title="Save URL">
-						<IconButton onClick={updateLink}>
-							<SaveIcon></SaveIcon>
-						</IconButton>
-					</Tooltip>
-					<Tooltip title="Reset">
-						<IconButton onClick={resetLink}>
-							<RestartAltIcon></RestartAltIcon>
-						</IconButton>
-					</Tooltip>
+					<SpotifySettings updateLink={updateLink} currentLink={link}></SpotifySettings>
 				</WidgetActions>
 			</Content>
 		</WidgetFrame>
