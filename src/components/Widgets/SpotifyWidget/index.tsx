@@ -14,6 +14,7 @@ const SpotifyFrame = styled.iframe`
 	width: 100%;
 	height: 100%;
 	border-radius: 8px;
+	min-height: 175px;
 `
 
 const Content = styled.div`
