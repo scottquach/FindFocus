@@ -1,6 +1,5 @@
 import { Box, ClickAwayListener, Divider, IconButton, Popper, Slider, Tooltip, Zoom } from "@mui/material"
 import FullscreenIcon from '@mui/icons-material/Fullscreen';
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import VolumeUpIcon from '@mui/icons-material/VolumeUp';
 import VolumeDownIcon from '@mui/icons-material/VolumeDown';
 import HideSourceIcon from '@mui/icons-material/HideSource';
@@ -25,14 +24,19 @@ const UtilityBarLayout = styled.div`
 		align-items: flex-start;
 		gap: .5rem;
 		position: absolute;
-		top: 1rem;
-		right: 1rem;
+		top: 0rem;
+		right: 0rem;
 	`
 
 const Frame = styled.div`
-	border-radius: 8px;
+	border-radius: 0 0 8px 8px;
 	background-color: var(--color-background);
 	box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+	padding: .10rem .25rem;
+`
+
+const MenuFrame = styled(Frame)`
+	border-radius: 8px;
 `
 
 export function UtilityBar() {
@@ -57,11 +61,11 @@ export function UtilityBar() {
 
 	return (
 		<UtilityBarLayout>
-			<GridToggle></GridToggle>
 			<VolumeSlider></VolumeSlider>
 			<Frame className="flex">
+				<GridToggle></GridToggle>
 				<Tooltip title="Toggle fullscreen">
-					<IconButton onClick={triggerFullscreen} style={{ fill: "var(--color-on-background)" }}>
+					<IconButton onClick={triggerFullscreen} style={{ fill: "var(--color-on-background)" }} size="small">
 						<FullscreenIcon style={{ fill: "var(--color-on-background)" }}></FullscreenIcon>
 					</IconButton>
 				</Tooltip>
@@ -89,16 +93,16 @@ function GridToggle() {
 	}
 
 	return (
-		<Frame>
+		// <Frame>
 
 			<Tooltip title="Hide widgets">
-				<IconButton onClick={onGridToggle}>
+				<IconButton onClick={onGridToggle} size="small">
 					{state && <WidgetsIcon style={{ fill: "var(--color-on-background)" }}></WidgetsIcon>}
 					{!state && <HideSourceIcon style={{ fill: "var(--color-on-background)" }}></HideSourceIcon>}
 					{!state && <GridToggleDescription>Hiding widgets</GridToggleDescription>}
 				</IconButton>
 			</Tooltip>
-		</Frame>
+		// </Frame>
 	)
 }
 
@@ -135,7 +139,7 @@ function VolumeSlider() {
 		<ClickAwayListener onClickAway={() => setToggle(false)}>
 			<Frame>
 				<VolumeMenu active={toggle}>
-					<IconButton onClick={() => setToggle(!toggle)}>
+					<IconButton onClick={() => setToggle(!toggle)} size="small">
 						{/* <IconButton onClick={() => toggleVolume()}> */}
 						{volume >= 60 && <VolumeUpIcon style={{ fill: "var(--color-on-background)" }}></VolumeUpIcon>}
 						{volume > 25 && volume < 60 && <VolumeDownIcon style={{ fill: "var(--color-on-background)" }}></VolumeDownIcon>}
@@ -163,12 +167,12 @@ function Profile() {
 	}
 	return (
 		<div>
-			<IconButton onClick={onSelect}>
+			<IconButton onClick={onSelect} size="small">
 				<HelpIcon style={{ fill: "var(--color-on-background)" }}></HelpIcon>
 			</IconButton>
 			<Popper id={id} open={open} anchorEl={anchorEl}>
 				<ClickAwayListener onClickAway={() => setAnchorEl(null)}>
-					<Frame className="mt-2 mr-2 p-3 font-semibold">
+					<MenuFrame className="mt-2 mr-2 p-3 font-semibold">
 						<div className="cursor-pointer mb-1 hover:text-blue-600">About us</div>
 						<a className="flex gap-1 my-1 items-center cursor-pointer hover:text-blue-600" href="https://discord.gg/Nad9p7Np" target="_blank" rel="noreferrer">
 							<FontAwesomeIcon icon={faDiscord}></FontAwesomeIcon>
@@ -183,7 +187,7 @@ function Profile() {
 							<FontAwesomeIcon className="cursor-pointer" icon={faEnvelope}></FontAwesomeIcon>
 
 						</div>
-					</Frame>
+					</MenuFrame>
 				</ClickAwayListener>
 			</Popper>
 		</div>

@@ -45,36 +45,3 @@ export const Widget = styled(Card)`
     /* fill: var(--color-on-primary); */
 `;
 
-// export const SectionTitle = styled.div`
-//     font-size: 14px;
-//     font-weight: 500;
-//     margin-bottom: 0.5rem;
-//     opacity: 0.75;
-// `;
-
-// export const Categories = styled.div`
-//     display: flex;
-//     flex-direction: column;
-//     justify-content: flex-start;
-// `;
-// export const WidgetCategory = styled.div`
-//     display: flex;
-//     flex-direction: column;
-//     /* padding: 1rem; */
-//     border-radius: 8px;
-//     margin-bottom: 1rem;
-// `;
-
-// export const WidgetCategoryHeader = styled.div`
-//     font-size: 20px;
-//     font-weight: 500;
-//     margin-bottom: 0.5rem;
-// `;
-
-// export const WidgetCategoryList = styled.div`
-//     display: grid;
-//     width: 100%;
-//     grid-template-columns: repeat(auto-fill, 12rem);
-//     grid-gap: 1.25rem;
-//     margin-bottom: 1.25rem;
-// `;

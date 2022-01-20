@@ -10,7 +10,8 @@ body {
     /* background-color: var(--background-color); */
     /* font-family: 'Raleway', sans-serif; */
     /* font-family: 'Work Sans', sans-serif; */
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Outfit', sans-serif;
+    /* font-family: 'Montserrat', sans-serif; */
     overflow: hidden;
 }
 
@@ -39,5 +40,6 @@ body {
     --color-background: #fafafa;
     --color-on-background: #212121;
 
-    --widget-border-radius: 16px;
+
+    --widget-border-radius: 12px;
 }

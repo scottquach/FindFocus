@@ -9,8 +9,6 @@ const HeaderWrapper = styled.div`
 	justify-contents: space-between;
 	align-items: center;
 	width: 100%;
-	/* background-color: var(--color-primary); */
-	/* fill: var(--color-on-primary); */
 	border-top-left-radius: var(--widget-border-radius);
 	border-top-right-radius: var(--widget-border-radius);
 	padding: .15rem .5rem;
