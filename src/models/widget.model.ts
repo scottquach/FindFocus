@@ -46,6 +46,7 @@ export function createWidget(type: WidgetType, data?: any): Widget {
         case WidgetType.Quote:
             return baseWidget;
         case WidgetType.Weather:
+            baseWidget.data = data ?? { weatherType: 'weatherMinimal' };
             return baseWidget;
         case WidgetType.Ambient:
             return baseWidget;
