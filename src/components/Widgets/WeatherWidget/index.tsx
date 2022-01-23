@@ -1,8 +1,8 @@
 import Axios from 'axios';
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import useCurrentLocation from '../../../hooks/useCurrentLocation'
-import { WidgetFrame } from '../../WidgetFrame'
+import useCurrentLocation from '../../../hooks/useCurrentLocation';
+import { WidgetFrame } from '../../WidgetFrame';
 
 const Content = styled.div`
 	display: flex;
@@ -22,6 +22,7 @@ const TempForecastContent = styled.div`
 	justify-content: center;
 	width: 100%;
 	height: 100%;
+	margin: 0rem 0rem 1rem 0rem
 `
 
 export default function WeatherWidget({ widgetId }: { widgetId: string }) {
@@ -34,33 +35,34 @@ export default function WeatherWidget({ widgetId }: { widgetId: string }) {
 	const [weather, setWeather] = useState<any>({});
 	const [place, setPlace] = useState<any>({});
 
-	// console.log(`Location ${JSON.stringify(location)} | city ${JSON.stringify(place)} | navigator ${JSON.stringify(navigator)} else ${error}`)
-
-	const params = {
-		lat: location?.latitude,
-		lon: location?.longitude,
-		units: "imperial",
-		appid: process.env.REACT_APP_WEATHER_API_KEY,
-	}
-
 	useEffect(() => {
 		//Axios.get("http://api.openweathermap.org/data/2.5/weather", { params }) // ?lat=${location?.latitude}&lon=${location?.longitude}&appid=${API_KEY}
+		let params = {
+			lat: location?.latitude,
+			lon: location?.longitude,
+			units: "",
+			appid: process.env.REACT_APP_WEATHER_API_KEY,
+		};
+
+		params.units = (location?.countryCode === "USA") ? "imperial" : "metric";
+
+		setPlace({
+			city: location?.locality,
+			country: location?.country,
+			countryCode: location?.countryCode,
+			region: location?.region,
+			regionCode: location?.regionCode,
+		});
+
 		Axios.get("http://api.openweathermap.org/data/2.5/weather", { params }) // https://openweathermap.org/current
 			.then((response: any) => {
 				let data = response.data;
-				console.log(data);
 				setWeather({
 					...data.main,
 					...data.weather[0],
 					...data.wind,
-					iconLink: `http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`
+					iconLinkWeatherApp: `http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`,
 				});
-				setPlace({
-					city: data.name,
-					country: data.sys.country,
-				});
-
-				console.log(place, weather);
 			});
 
 		// `https://api.weather.gov/points/47.8115879,-122.2973026`
@@ -86,19 +88,20 @@ export default function WeatherWidget({ widgetId }: { widgetId: string }) {
 	return (
 		<WidgetFrame widgetId={widgetId}>
 			<Content>
+				<div className="text-on-background font-semibold">{place.city}</div>
 				<TempForecastContent>
-					<div className="text-5xl font-semibold ml-4">{Math.round(weather.temp)}°</div>
+					<div className="text-5xl text-on-background font-semibold ml-4">{Math.round(weather.temp)}°</div>
 					<div className="flex flex-col justify-center">
 						<img 
-							src={weather.iconLink}
+							src={weather.iconLinkWeatherApp}
 							alt={weather.main}
 							width="auto"
 							height="auto"
 						/>
-						<div className="text-base italic font-light hover:font-bold">{weather.main}</div>
+						<i className={weather.iconLinkOwfont}></i>
+						<div className="text-base text-on-background italic font-light hover:font-bold">{weather.main}</div>
 					</div>
 				</TempForecastContent>
-				<div className="font-semibold">{place.city}</div>
 			</Content>
 		</WidgetFrame>
 	)
