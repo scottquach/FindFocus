@@ -91,7 +91,7 @@ export default function WeatherWidget({ widgetId }: { widgetId: string }) {
 	return (
 		<WidgetFrame widgetId={widgetId}>
 			<Content>
-				<div className="text-on-background font-semibold">{place.city}</div>
+				<div className="text-on-background font-semibold mt-4">{place.city}</div>
 				<TempForecastContent>
 					<div className="text-5xl text-on-background font-semibold ml-4">{weather.temp}</div>
 					<div className="flex flex-col justify-center">
