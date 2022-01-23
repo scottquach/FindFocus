@@ -57,10 +57,13 @@ export default function WeatherWidget({ widgetId }: { widgetId: string }) {
 		Axios.get("http://api.openweathermap.org/data/2.5/weather", { params }) // https://openweathermap.org/current
 			.then((response: any) => {
 				let data = response.data;
+				console.log(data)
 				setWeather({
-					...data.main,
-					...data.weather[0],
-					...data.wind,
+					// ...data.main,
+					// ...data.weather[0],
+					// ...data.wind,
+					main: data.weather[0].main,
+					temp: `${Math.round(data.main.temp)} ${(location?.countryCode === "USA") ? "°F" : "°C"}`,
 					iconLinkWeatherApp: `http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`,
 				});
 			});
@@ -90,7 +93,7 @@ export default function WeatherWidget({ widgetId }: { widgetId: string }) {
 			<Content>
 				<div className="text-on-background font-semibold">{place.city}</div>
 				<TempForecastContent>
-					<div className="text-5xl text-on-background font-semibold ml-4">{Math.round(weather.temp)}°</div>
+					<div className="text-5xl text-on-background font-semibold ml-4">{weather.temp}</div>
 					<div className="flex flex-col justify-center">
 						<img 
 							src={weather.iconLinkWeatherApp}
@@ -98,7 +101,6 @@ export default function WeatherWidget({ widgetId }: { widgetId: string }) {
 							width="auto"
 							height="auto"
 						/>
-						<i className={weather.iconLinkOwfont}></i>
 						<div className="text-base text-on-background italic font-light hover:font-bold">{weather.main}</div>
 					</div>
 				</TempForecastContent>
