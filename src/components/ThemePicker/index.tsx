@@ -1,9 +1,8 @@
 import CloseIcon from '@mui/icons-material/Close';
 import { Button, IconButton, Popover, Tooltip } from '@mui/material';
 import { useTheme } from '@mui/system';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Input, InputSmall } from '../../styles/Input';
-import { SketchPicker } from 'react-color';
 
 import * as S from './styles';
 import usePopover from '../../hooks/usePopover';
@@ -133,41 +132,38 @@ export function ThemePicker({ close }: any) {
 	const theme = useTheme();
 	const [neutralColor, setNeutralColor] = useState('#212121');
 
-	const [primary] = useState(() => {
-		return document.documentElement.style.getPropertyValue('--color-primary');
-
-	});
-	const [background] = useState(() => {
-		return document.documentElement.style.getPropertyValue('--color-background');
-	});
-
 	const onClose = () => {
 		close();
 	}
 
-	const setTheme = (setTheme: Theme) => {
-		console.log('setting theme', setTheme)
-		document.documentElement.style.setProperty('--color-primary', setTheme.colorPrimary);
-		document.documentElement.style.setProperty('--color-on-primary', setTheme.colorOnPrimary);
-		document.documentElement.style.setProperty('--color-secondary', setTheme.colorSecondary);
-		document.documentElement.style.setProperty('--color-on-secondary', setTheme.colorOnSecondary);
-		document.documentElement.style.setProperty('--color-background', setTheme.colorBackground);
-		document.documentElement.style.setProperty('--color-on-background', setTheme.colorOnBackground);
-		document.documentElement.style.setProperty('--color-button', setTheme.colorButton);
+	const [primary, setPrimary] = useState(getComputedStyle(document.documentElement).getPropertyValue('--color-on-background'));
+	const [background, setBackground] = useState(getComputedStyle(document.documentElement).getPropertyValue('--color-background'));
 
-		theme.palette.mode = setTheme.mode;
-		theme.palette.primary.main = setTheme.colorPrimary;
-	}
+	// const setTheme = (setTheme: Theme) => {
+	// 	console.log('setting theme', setTheme)
+	// 	document.documentElement.style.setProperty('--color-primary', setTheme.colorPrimary);
+	// 	document.documentElement.style.setProperty('--color-on-primary', setTheme.colorOnPrimary);
+	// 	document.documentElement.style.setProperty('--color-secondary', setTheme.colorSecondary);
+	// 	document.documentElement.style.setProperty('--color-on-secondary', setTheme.colorOnSecondary);
+	// 	document.documentElement.style.setProperty('--color-background', setTheme.colorBackground);
+	// 	document.documentElement.style.setProperty('--color-on-background', setTheme.colorOnBackground);
+	// 	document.documentElement.style.setProperty('--color-button', setTheme.colorButton);
 
-	const setPrimary = (color: string) => {
+	// 	theme.palette.mode = setTheme.mode;
+	// 	theme.palette.primary.main = setTheme.colorPrimary;
+	// }
+
+	const handleSetPrimary = (color: string) => {
 		document.documentElement.style.setProperty('--color-on-background', color);
 		document.documentElement.style.setProperty('--color-button', color);
+		setPrimary(color);
 
 		theme.palette.primary.main = color;
 	}
 
-	const setBackground = (palette: Palette) => {
+	const handleSetBackground = (palette: Palette) => {
 		document.documentElement.style.setProperty('--color-background', palette.color);
+		setBackground(palette.color)
 		theme.palette.mode = palette.mode;
 
 		if (palette.mode === 'light') {
@@ -191,25 +187,30 @@ export function ThemePicker({ close }: any) {
 			</S.MenuHeader>
 
 			<S.NeutralHeaders className="" color={neutralColor}>Primary and accents</S.NeutralHeaders>
-			{/* <S.Themes>
-				{primaryColors.map((color) => <S.ColorPalette key={color} mainColor={color} onClick={() => setPrimary(color)}></S.ColorPalette>)}
-			</S.Themes> */}
-			<ColorSelection onChange={handleColorChange}></ColorSelection>
+			<S.Themes>
+				{primaryColors.map((color) => <S.ColorPalette key={color} mainColor={color} onClick={() => handleSetPrimary(color)}></S.ColorPalette>)}
+			</S.Themes>
+			<ColorSelection originalColor={primary} onChange={handleColorChange}></ColorSelection>
 			<S.NeutralHeaders className="" color={neutralColor}>Background</S.NeutralHeaders>
 
-			{/* <S.Themes>
-				{backgroundColors.map((palette) => <S.ColorPalette key={palette.color} mainColor={palette.color} onClick={() => setBackground(palette)}></S.ColorPalette>)}
-			</S.Themes> */}
-			<ColorSelection onChange={handleColorChange}></ColorSelection>
+			<S.Themes>
+				{backgroundColors.map((palette) => <S.ColorPalette key={palette.color} mainColor={palette.color} onClick={() => handleSetBackground(palette)}></S.ColorPalette>)}
+			</S.Themes>
+			<ColorSelection originalColor={background} onChange={handleColorChange}></ColorSelection>
 
-			<S.NeutralHeaders className="" color={neutralColor}>Presets</S.NeutralHeaders>
+			{/* <S.NeutralHeaders className="" color={neutralColor}>Presets</S.NeutralHeaders> */}
 		</S.Wrapper>
 	)
 }
 
-function ColorSelection({ onChange }: { onChange: (color: string) => void }) {
+function ColorSelection({ originalColor, onChange }: { originalColor: string, onChange: (color: string) => void }) {
+	console.log('ORIGINAL', originalColor)
 	const [open, anchorEl, handlePopoverOpen, handlePopoverClose] = usePopover();
-	const [color, setColor] = useState('#3D4853')
+	const [color, setColor] = useState(originalColor)
+
+	useEffect(() => {
+		setColor(originalColor);
+	}, [originalColor])
 
 	const handleChangeComplete = (color: any) => {
 		// console.log('complete', color);
@@ -232,9 +233,8 @@ function ColorSelection({ onChange }: { onChange: (color: string) => void }) {
 
 	return (
 		<div className="flex gap-2 items-center w-fit mb-4">
-			<S.ColorChip color="#000000" onClick={handlePopoverOpen}></S.ColorChip>
-			{/* <Input></Input> */}
-			<InputSmall className="w-24" value={color} onChange={handleRawChange}></InputSmall>
+			<S.ColorChip color={color} onClick={handlePopoverOpen}></S.ColorChip>
+			<InputSmall className="w-24" readOnly={true} value={color} onChange={handleRawChange} onClick={handlePopoverOpen}></InputSmall>
 			<Popover
 				open={open}
 				anchorEl={anchorEl}
@@ -245,13 +245,14 @@ function ColorSelection({ onChange }: { onChange: (color: string) => void }) {
 					horizontal: 'right',
 				}}
 			>
-				<SketchPicker
+				<S.ColorPicker
 					color={color}
 					onChange={handlePickerChange}
 					onChangeComplete={handleChangeComplete}
 					presetColors={[]}
+				// disableAlpha={true}
 				/>
-				<div className="flex justify-center mt-4 mb-1">
+				<div className="flex justify-center mt-2 mb-1">
 					<Button onClick={handleOnSave}>Save</Button>
 				</div>
 			</Popover>

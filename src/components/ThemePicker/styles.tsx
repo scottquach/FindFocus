@@ -1,6 +1,7 @@
 import { IconButton } from "@mui/material";
 import styled from "styled-components";
 import { MenuWrapper } from "../../styles/MenuHeaders";
+import { SketchPicker } from 'react-color';
 
 export const Wrapper = styled(MenuWrapper)`
 	background-color: var(--color-background);
@@ -68,7 +69,11 @@ export const ColorChip = styled.div<{
 	background-color: ${props => props.color};
 	border-radius: 6px;
 	/* padding: 8px; */
-    outline: 2px solid ${props => props.color};
-	border: 2px solid var(--color-background);
+    outline: 1px solid ${props => props.color};
+	border: 3px solid var(--color-background);
 	cursor: pointer;
+`
+
+export const ColorPicker = styled(SketchPicker)`
+	box-shadow: none !important;
 `
