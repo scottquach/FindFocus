@@ -1,8 +1,12 @@
 import CloseIcon from '@mui/icons-material/Close';
-import { IconButton, Tooltip } from '@mui/material';
+import { Button, IconButton, Popover, Tooltip } from '@mui/material';
 import { useTheme } from '@mui/system';
 import { useState } from 'react';
+import { Input, InputSmall } from '../../styles/Input';
+import { SketchPicker } from 'react-color';
+
 import * as S from './styles';
+import usePopover from '../../hooks/usePopover';
 
 interface Theme {
 	mode: 'light' | 'dark';
@@ -129,6 +133,14 @@ export function ThemePicker({ close }: any) {
 	const theme = useTheme();
 	const [neutralColor, setNeutralColor] = useState('#212121');
 
+	const [primary] = useState(() => {
+		return document.documentElement.style.getPropertyValue('--color-primary');
+
+	});
+	const [background] = useState(() => {
+		return document.documentElement.style.getPropertyValue('--color-background');
+	});
+
 	const onClose = () => {
 		close();
 	}
@@ -165,6 +177,10 @@ export function ThemePicker({ close }: any) {
 		}
 	}
 
+	const handleColorChange = (color: string) => {
+
+	}
+
 	return (
 		<S.Wrapper>
 			<S.MenuHeader>
@@ -175,14 +191,70 @@ export function ThemePicker({ close }: any) {
 			</S.MenuHeader>
 
 			<S.NeutralHeaders className="" color={neutralColor}>Primary and accents</S.NeutralHeaders>
-			<S.Themes>
+			{/* <S.Themes>
 				{primaryColors.map((color) => <S.ColorPalette key={color} mainColor={color} onClick={() => setPrimary(color)}></S.ColorPalette>)}
-			</S.Themes>
+			</S.Themes> */}
+			<ColorSelection onChange={handleColorChange}></ColorSelection>
 			<S.NeutralHeaders className="" color={neutralColor}>Background</S.NeutralHeaders>
 
-			<S.Themes>
+			{/* <S.Themes>
 				{backgroundColors.map((palette) => <S.ColorPalette key={palette.color} mainColor={palette.color} onClick={() => setBackground(palette)}></S.ColorPalette>)}
-			</S.Themes>
+			</S.Themes> */}
+			<ColorSelection onChange={handleColorChange}></ColorSelection>
+
+			<S.NeutralHeaders className="" color={neutralColor}>Presets</S.NeutralHeaders>
 		</S.Wrapper>
+	)
+}
+
+function ColorSelection({ onChange }: { onChange: (color: string) => void }) {
+	const [open, anchorEl, handlePopoverOpen, handlePopoverClose] = usePopover();
+	const [color, setColor] = useState('#3D4853')
+
+	const handleChangeComplete = (color: any) => {
+		// console.log('complete', color);
+	}
+
+	const handlePickerChange = (color: any) => {
+		console.log('change', color);
+		setColor(color.hex);
+	}
+
+	const handleRawChange = (event: any) => {
+		setColor(event.target.value);
+	}
+
+	const handleOnSave = () => {
+		onChange(color);
+		handlePopoverClose();
+	}
+
+
+	return (
+		<div className="flex gap-2 items-center w-fit mb-4">
+			<S.ColorChip color="#000000" onClick={handlePopoverOpen}></S.ColorChip>
+			{/* <Input></Input> */}
+			<InputSmall className="w-24" value={color} onChange={handleRawChange}></InputSmall>
+			<Popover
+				open={open}
+				anchorEl={anchorEl}
+				onClose={handlePopoverClose}
+				transitionDuration={200}
+				anchorOrigin={{
+					vertical: 'bottom',
+					horizontal: 'right',
+				}}
+			>
+				<SketchPicker
+					color={color}
+					onChange={handlePickerChange}
+					onChangeComplete={handleChangeComplete}
+					presetColors={[]}
+				/>
+				<div className="flex justify-center mt-4 mb-1">
+					<Button onClick={handleOnSave}>Save</Button>
+				</div>
+			</Popover>
+		</div>
 	)
 }
