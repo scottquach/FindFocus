@@ -1,8 +1,10 @@
 import CloseIcon from '@mui/icons-material/Close';
-import { Button, IconButton, Popover, Tooltip } from '@mui/material';
+import { Button, IconButton, Popover, ToggleButton, ToggleButtonGroup, Tooltip } from '@mui/material';
 import { useTheme } from '@mui/system';
 import { useEffect, useState } from 'react';
 import { Input, InputSmall } from '../../styles/Input';
+import LightModeIcon from '@mui/icons-material/LightMode';
+import DarkModeIcon from '@mui/icons-material/DarkMode';
 
 import * as S from './styles';
 import usePopover from '../../hooks/usePopover';
@@ -138,6 +140,7 @@ export function ThemePicker({ close }: any) {
 
 	const [primary, setPrimary] = useState(getComputedStyle(document.documentElement).getPropertyValue('--color-on-background'));
 	const [background, setBackground] = useState(getComputedStyle(document.documentElement).getPropertyValue('--color-background'));
+	const [mode, setMode] = useState('light');
 
 	// const setTheme = (setTheme: Theme) => {
 	// 	console.log('setting theme', setTheme)
@@ -161,20 +164,25 @@ export function ThemePicker({ close }: any) {
 		theme.palette.primary.main = color;
 	}
 
-	const handleSetBackground = (palette: Palette) => {
-		document.documentElement.style.setProperty('--color-background', palette.color);
-		setBackground(palette.color)
-		theme.palette.mode = palette.mode;
+	const handleSetBackground = (color: string) => {
+		document.documentElement.style.setProperty('--color-background', color);
+		setBackground(color)
+		// theme.palette.mode = palette.mode;
 
-		if (palette.mode === 'light') {
-			setNeutralColor('#212121');
-		} else {
-			setNeutralColor('#fafafa');
-		}
+		// if (palette.mode === 'light') {
+		// 	setNeutralColor('#212121');
+		// } else {
+		// 	setNeutralColor('#fafafa');
+		// }
 	}
 
 	const handleColorChange = (color: string) => {
 
+	}
+
+	const handleModeChange = (event: any) => {
+		setMode(event.target.value);
+		theme.palette.mode = event.target.value;
 	}
 
 	return (
@@ -190,13 +198,26 @@ export function ThemePicker({ close }: any) {
 			<S.Themes>
 				{primaryColors.map((color) => <S.ColorPalette key={color} mainColor={color} onClick={() => handleSetPrimary(color)}></S.ColorPalette>)}
 			</S.Themes>
-			<ColorSelection originalColor={primary} onChange={handleColorChange}></ColorSelection>
+			<ColorSelection originalColor={primary} onChange={handleSetPrimary}></ColorSelection>
 			<S.NeutralHeaders className="" color={neutralColor}>Background</S.NeutralHeaders>
 
 			<S.Themes>
-				{backgroundColors.map((palette) => <S.ColorPalette key={palette.color} mainColor={palette.color} onClick={() => handleSetBackground(palette)}></S.ColorPalette>)}
+				{backgroundColors.map((palette) => <S.ColorPalette key={palette.color} mainColor={palette.color} onClick={() => handleSetBackground(palette.color)}></S.ColorPalette>)}
 			</S.Themes>
-			<ColorSelection originalColor={background} onChange={handleColorChange}></ColorSelection>
+			<ColorSelection originalColor={background} onChange={handleSetBackground}></ColorSelection>
+
+			<S.NeutralHeaders className="" color={neutralColor}>Color mode</S.NeutralHeaders>
+			<div>Helps determine how automated color should be generated</div>
+			<ToggleButtonGroup value={mode} onChange={handleModeChange}>
+				<ToggleButton value="light">
+					<LightModeIcon></LightModeIcon>
+					<span className="ml-2">Light</span>
+				</ToggleButton>
+				<ToggleButton value="dark">
+					<DarkModeIcon></DarkModeIcon>
+					<span className="ml-2">Dark</span>
+				</ToggleButton>
+			</ToggleButtonGroup>
 
 			{/* <S.NeutralHeaders className="" color={neutralColor}>Presets</S.NeutralHeaders> */}
 		</S.Wrapper>
@@ -250,7 +271,7 @@ function ColorSelection({ originalColor, onChange }: { originalColor: string, on
 					onChange={handlePickerChange}
 					onChangeComplete={handleChangeComplete}
 					presetColors={[]}
-				// disableAlpha={true}
+					disableAlpha={true}
 				/>
 				<div className="flex justify-center mt-2 mb-1">
 					<Button onClick={handleOnSave}>Save</Button>
