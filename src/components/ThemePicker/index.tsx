@@ -8,6 +8,8 @@ import DarkModeIcon from '@mui/icons-material/DarkMode';
 
 import * as S from './styles';
 import usePopover from '../../hooks/usePopover';
+import { createThemePalette, isHexLight } from '../../models/theme.model';
+import useLocalStorage from '../../hooks/useLocalStorage';
 
 interface Theme {
 	mode: 'light' | 'dark';
@@ -129,29 +131,7 @@ const backgroundColors: Palette[] = [
 		color: '#F4E1E3'
 	},
 ]
-const hexToRgb = (hex: any) => {
-	// Expand shorthand form (e.g. "03F") to full form (e.g. "0033FF")
-	var shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
-	hex = hex.replace(shorthandRegex, function (m: any, r: any, g: any, b: any) {
-		return r + r + g + g + b + b;
-	});
 
-	var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-	return result ? {
-		r: parseInt(result[1], 16),
-		g: parseInt(result[2], 16),
-		b: parseInt(result[3], 16)
-	} : null;
-}
-
-const isLightMode = (hex: any) => {
-	const rgb = hexToRgb(hex);
-	if (!rgb) return false;
-	const { r, g, b } = rgb;
-
-	// console.log(r * 0.299 + g * 0.587 + b * 0.114)
-	return (r * 0.299 + g * 0.587 + b * 0.114) > 210
-}
 
 export function ThemePicker({ close }: any) {
 	const theme = useTheme();
@@ -159,14 +139,16 @@ export function ThemePicker({ close }: any) {
 	const [neutralText, setNeutralText] = useState('#212121');
 	const [primary, setPrimary] = useState(getComputedStyle(document.documentElement).getPropertyValue('--color-on-background'));
 	const [background, setBackground] = useState(getComputedStyle(document.documentElement).getPropertyValue('--color-background'));
+	const [themePalette, setThemePalette] = useLocalStorage('themePalette', { primary: '#212121', background: '#fafafa' })
 
 	const onClose = () => {
 		close();
 	}
 
 	useEffect(() => {
-		console.log('background');
-		const value = isLightMode(background);
+		// console.log('background', background);
+		const value = isHexLight(background);
+		// console.log(value);
 		if (value) {
 			setNeutralColor('#616161');
 			setNeutralText('#fafafa')
@@ -176,6 +158,12 @@ export function ThemePicker({ close }: any) {
 		}
 
 	}, [background])
+
+	useEffect(() => {
+		const palette = createThemePalette(primary, background)
+		setThemePalette(palette)
+
+	}, [primary, background])
 
 
 	// const setTheme = (setTheme: Theme) => {
@@ -199,6 +187,11 @@ export function ThemePicker({ close }: any) {
 		setPrimary(color);
 
 		theme.palette.primary.main = color;
+		if (isHexLight(color)) {
+			theme.palette.mode = 'dark';
+		} else {
+			theme.palette.mode = 'light';
+		}
 	}
 
 	const handleSetBackground = (color: string) => {
@@ -222,20 +215,6 @@ export function ThemePicker({ close }: any) {
 					<CloseIcon style={{ fill: "var(--color-on-background)" }}></CloseIcon>
 				</IconButton>
 			</S.MenuHeader>
-
-			{/* <S.NeutralHeaders className="" color={neutralColor}>Color mode</S.NeutralHeaders>
-			<div>Helps determine how automated color should be generated</div>
-			<ToggleButtonGroup value={mode} onChange={handleModeChange}>
-				<ToggleButton value="light">
-					<LightModeIcon></LightModeIcon>
-					<span className="ml-2">Light</span>
-				</ToggleButton>
-				<ToggleButton value="dark">
-					<DarkModeIcon></DarkModeIcon>
-					<span className="ml-2">Dark</span>
-				</ToggleButton>
-			</ToggleButtonGroup> */}
-
 			<S.NeutralHeaders className="" color={neutralColor}>Primary</S.NeutralHeaders>
 			<S.NeutralBackground color={neutralColor}>
 				<S.Themes>
@@ -284,7 +263,7 @@ function ColorSelection({ originalColor, onChange }: { originalColor: string, on
 
 
 	return (
-		<div className="flex gap-2 items-center w-fit ">
+		<div className="flex gap-2 items-center w-fit">
 			<S.ColorChip color={color} onClick={handlePopoverOpen}></S.ColorChip>
 			<InputSmall className="w-24" readOnly={true} value={color} onChange={handleRawChange} onClick={handlePopoverOpen}></InputSmall>
 			<Popover
@@ -305,7 +284,7 @@ function ColorSelection({ originalColor, onChange }: { originalColor: string, on
 					disableAlpha={true}
 				/>
 				<div className="flex justify-center mt-2 mb-1">
-					<Button onClick={handleOnSave}>Save</Button>
+					<Button onClick={handleOnSave} style={{ 'color': '#212121' }}>Save</Button>
 				</div>
 			</Popover>
 		</div>
