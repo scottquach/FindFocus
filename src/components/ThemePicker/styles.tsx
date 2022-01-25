@@ -49,6 +49,7 @@ export const NeutralBackground = styled.div`
 	padding: 1rem;
 	border-radius: 8px;
 	margin-bottom: .75rem;
+	opacity: .9;
 `
 
 export const ColorPalette = styled.div<{

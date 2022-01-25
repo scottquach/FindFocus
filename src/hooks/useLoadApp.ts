@@ -13,6 +13,7 @@ export default function useLoadApp() {
     const [savedLayout] = useLocalStorage('layout', {});
     const [background] = useLocalStorage('background', Rooms['cafe'][0]);
     const [favorites] = useLocalStorage('favorites', []);
+    const [themePalette] = useLocalStorage('themePalette', { primary: '#212121', background: '#fafafa' });
 
     const setLayout = useSetRecoilState(layoutState);
     const setWidgets = useSetRecoilState(activeWidgetsState);
@@ -22,6 +23,10 @@ export default function useLoadApp() {
     if (localStorage.getItem('grid-layout')) {
         localStorage.clear();
     }
+
+    document.documentElement.style.setProperty('--color-on-background', themePalette.primary);
+    document.documentElement.style.setProperty('--color-button', themePalette.primary);
+    document.documentElement.style.setProperty('--color-background', themePalette.background);
 
     useEffect(() => {
         setLayout((old) => savedLayout);
