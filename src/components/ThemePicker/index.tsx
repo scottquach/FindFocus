@@ -236,7 +236,7 @@ export function ThemePicker({ close }: any) {
 				</ToggleButton>
 			</ToggleButtonGroup> */}
 
-			<S.NeutralHeaders className="" color={neutralColor}>Primary and accents</S.NeutralHeaders>
+			<S.NeutralHeaders className="" color={neutralColor}>Primary</S.NeutralHeaders>
 			<S.NeutralBackground color={neutralColor}>
 				<S.Themes>
 					{primaryColors.map((color) => <S.ColorPalette key={color} mainColor={color} onClick={() => handleSetPrimary(color)}></S.ColorPalette>)}
@@ -269,7 +269,7 @@ function ColorSelection({ originalColor, onChange }: { originalColor: string, on
 	}
 
 	const handlePickerChange = (color: any) => {
-		console.log('change', color);
+		// console.log('change', color);
 		setColor(color.hex);
 	}
 
