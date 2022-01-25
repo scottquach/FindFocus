@@ -129,18 +129,54 @@ const backgroundColors: Palette[] = [
 		color: '#F4E1E3'
 	},
 ]
+const hexToRgb = (hex: any) => {
+	// Expand shorthand form (e.g. "03F") to full form (e.g. "0033FF")
+	var shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
+	hex = hex.replace(shorthandRegex, function (m: any, r: any, g: any, b: any) {
+		return r + r + g + g + b + b;
+	});
+
+	var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+	return result ? {
+		r: parseInt(result[1], 16),
+		g: parseInt(result[2], 16),
+		b: parseInt(result[3], 16)
+	} : null;
+}
+
+const isLightMode = (hex: any) => {
+	const rgb = hexToRgb(hex);
+	if (!rgb) return false;
+	const { r, g, b } = rgb;
+
+	// console.log(r * 0.299 + g * 0.587 + b * 0.114)
+	return (r * 0.299 + g * 0.587 + b * 0.114) > 210
+}
 
 export function ThemePicker({ close }: any) {
 	const theme = useTheme();
 	const [neutralColor, setNeutralColor] = useState('#212121');
+	const [neutralText, setNeutralText] = useState('#212121');
+	const [primary, setPrimary] = useState(getComputedStyle(document.documentElement).getPropertyValue('--color-on-background'));
+	const [background, setBackground] = useState(getComputedStyle(document.documentElement).getPropertyValue('--color-background'));
 
 	const onClose = () => {
 		close();
 	}
 
-	const [primary, setPrimary] = useState(getComputedStyle(document.documentElement).getPropertyValue('--color-on-background'));
-	const [background, setBackground] = useState(getComputedStyle(document.documentElement).getPropertyValue('--color-background'));
-	const [mode, setMode] = useState('light');
+	useEffect(() => {
+		console.log('background');
+		const value = isLightMode(background);
+		if (value) {
+			setNeutralColor('#616161');
+			setNeutralText('#fafafa')
+		} else {
+			setNeutralColor('#f5f5f5');
+			setNeutralText('#212121')
+		}
+
+	}, [background])
+
 
 	// const setTheme = (setTheme: Theme) => {
 	// 	console.log('setting theme', setTheme)
@@ -156,6 +192,7 @@ export function ThemePicker({ close }: any) {
 	// 	theme.palette.primary.main = setTheme.colorPrimary;
 	// }
 
+
 	const handleSetPrimary = (color: string) => {
 		document.documentElement.style.setProperty('--color-on-background', color);
 		document.documentElement.style.setProperty('--color-button', color);
@@ -167,13 +204,6 @@ export function ThemePicker({ close }: any) {
 	const handleSetBackground = (color: string) => {
 		document.documentElement.style.setProperty('--color-background', color);
 		setBackground(color)
-		// theme.palette.mode = palette.mode;
-
-		// if (palette.mode === 'light') {
-		// 	setNeutralColor('#212121');
-		// } else {
-		// 	setNeutralColor('#fafafa');
-		// }
 	}
 
 	const handleColorChange = (color: string) => {
@@ -181,7 +211,6 @@ export function ThemePicker({ close }: any) {
 	}
 
 	const handleModeChange = (event: any) => {
-		setMode(event.target.value);
 		theme.palette.mode = event.target.value;
 	}
 
@@ -194,19 +223,7 @@ export function ThemePicker({ close }: any) {
 				</IconButton>
 			</S.MenuHeader>
 
-			<S.NeutralHeaders className="" color={neutralColor}>Primary and accents</S.NeutralHeaders>
-			<S.Themes>
-				{primaryColors.map((color) => <S.ColorPalette key={color} mainColor={color} onClick={() => handleSetPrimary(color)}></S.ColorPalette>)}
-			</S.Themes>
-			<ColorSelection originalColor={primary} onChange={handleSetPrimary}></ColorSelection>
-			<S.NeutralHeaders className="" color={neutralColor}>Background</S.NeutralHeaders>
-
-			<S.Themes>
-				{backgroundColors.map((palette) => <S.ColorPalette key={palette.color} mainColor={palette.color} onClick={() => handleSetBackground(palette.color)}></S.ColorPalette>)}
-			</S.Themes>
-			<ColorSelection originalColor={background} onChange={handleSetBackground}></ColorSelection>
-
-			<S.NeutralHeaders className="" color={neutralColor}>Color mode</S.NeutralHeaders>
+			{/* <S.NeutralHeaders className="" color={neutralColor}>Color mode</S.NeutralHeaders>
 			<div>Helps determine how automated color should be generated</div>
 			<ToggleButtonGroup value={mode} onChange={handleModeChange}>
 				<ToggleButton value="light">
@@ -217,15 +234,29 @@ export function ThemePicker({ close }: any) {
 					<DarkModeIcon></DarkModeIcon>
 					<span className="ml-2">Dark</span>
 				</ToggleButton>
-			</ToggleButtonGroup>
+			</ToggleButtonGroup> */}
 
-			{/* <S.NeutralHeaders className="" color={neutralColor}>Presets</S.NeutralHeaders> */}
+			<S.NeutralHeaders className="" color={neutralColor}>Primary and accents</S.NeutralHeaders>
+			<S.NeutralBackground color={neutralColor}>
+				<S.Themes>
+					{primaryColors.map((color) => <S.ColorPalette key={color} mainColor={color} onClick={() => handleSetPrimary(color)}></S.ColorPalette>)}
+				</S.Themes>
+				<ColorSelection originalColor={primary} onChange={handleSetPrimary}></ColorSelection>
+			</S.NeutralBackground>
+
+			<S.NeutralHeaders className="" color={neutralColor}>Background</S.NeutralHeaders>
+			<S.NeutralBackground color={neutralColor}>
+				<S.Themes>
+					{backgroundColors.map((palette) => <S.ColorPalette key={palette.color} mainColor={palette.color} onClick={() => handleSetBackground(palette.color)}></S.ColorPalette>)}
+				</S.Themes>
+				<ColorSelection originalColor={background} onChange={handleSetBackground}></ColorSelection>
+			</S.NeutralBackground>
 		</S.Wrapper>
 	)
 }
 
 function ColorSelection({ originalColor, onChange }: { originalColor: string, onChange: (color: string) => void }) {
-	console.log('ORIGINAL', originalColor)
+	// console.log('ORIGINAL', originalColor)
 	const [open, anchorEl, handlePopoverOpen, handlePopoverClose] = usePopover();
 	const [color, setColor] = useState(originalColor)
 
@@ -253,7 +284,7 @@ function ColorSelection({ originalColor, onChange }: { originalColor: string, on
 
 
 	return (
-		<div className="flex gap-2 items-center w-fit mb-4">
+		<div className="flex gap-2 items-center w-fit ">
 			<S.ColorChip color={color} onClick={handlePopoverOpen}></S.ColorChip>
 			<InputSmall className="w-24" readOnly={true} value={color} onChange={handleRawChange} onClick={handlePopoverOpen}></InputSmall>
 			<Popover

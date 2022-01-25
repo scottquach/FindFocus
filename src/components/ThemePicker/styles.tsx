@@ -42,7 +42,13 @@ export const Themes = styled.div`
 export const NeutralHeaders = styled.div`
 	margin-bottom: .5rem;
 	color: ${(props) => props.color}
+`
 
+export const NeutralBackground = styled.div`
+	background-color: ${props => props.color};
+	padding: 1rem;
+	border-radius: 8px;
+	margin-bottom: .75rem;
 `
 
 export const ColorPalette = styled.div<{
@@ -69,8 +75,8 @@ export const ColorChip = styled.div<{
 	background-color: ${props => props.color};
 	border-radius: 6px;
 	/* padding: 8px; */
-    outline: 1px solid ${props => props.color};
-	border: 3px solid var(--color-background);
+    /* outline: 1px solid ${props => props.color}; */
+	/* border: 3px solid var(--color-background); */
 	cursor: pointer;
 `
 
