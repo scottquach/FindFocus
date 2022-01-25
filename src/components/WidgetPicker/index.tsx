@@ -86,10 +86,7 @@ export function WidgetPicker({ close }: any) {
 					<StickyNote2Outlined></StickyNote2Outlined>
 					<div>Note</div>
 				</S.Widget>
-				<S.Widget onClick={() => create(WidgetType.Weather)}>
-					<CloudOutlinedIcon></CloudOutlinedIcon>
-					<div>Weather</div>
-				</S.Widget>
+				<WeatherWidget></WeatherWidget>
 				<S.Widget onClick={() => create(WidgetType.Timer)}>
 					<AccessAlarmIcon></AccessAlarmIcon>
 					<div>Timer</div>
@@ -140,6 +137,47 @@ function ClockWidget() {
 			>
 				<MenuItem onClick={() => create('clockOne')}>Clock V1</MenuItem>
 				<MenuItem onClick={() => create('clockTwo')}>Clock V2</MenuItem>
+			</Menu>
+		</div>
+	)
+}
+
+function WeatherWidget() {
+	const addWidget = useAddWidget();
+	const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+	const open = Boolean(anchorEl);
+
+	const handleClick = (event: any) => {
+		setAnchorEl(event.currentTarget);
+	};
+	const handleClose = () => {
+		setAnchorEl(null);
+	};
+
+	const create = (weatherType: string) => {
+		logEvent(analytics, `create_${weatherType}`)
+		const newWidget = createWidget(WidgetType.Weather, { weatherType: weatherType });
+		addWidget(newWidget);
+		handleClose();
+	}
+
+	return (
+		<div>
+			<S.Widget onClick={handleClick}>
+				<AccessTimeIcon></AccessTimeIcon>
+				<div>Weather</div>
+			</S.Widget>
+			<Menu
+				id="basic-menu"
+				anchorEl={anchorEl}
+				open={open}
+				onClose={handleClose}
+				MenuListProps={{
+					'aria-labelledby': 'basic-button',
+				}}
+			>
+				<MenuItem onClick={() => create('weatherMinimal')}>Minimal Weather</MenuItem>
+				<MenuItem onClick={() => create('weatherNerdy')}>Nerdy Weather</MenuItem>
 			</Menu>
 		</div>
 	)

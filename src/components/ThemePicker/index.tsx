@@ -1,8 +1,13 @@
 import CloseIcon from '@mui/icons-material/Close';
-import { IconButton, Tooltip } from '@mui/material';
+import { Button, IconButton, Popover, ToggleButton, ToggleButtonGroup, Tooltip } from '@mui/material';
 import { useTheme } from '@mui/system';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { Input, InputSmall } from '../../styles/Input';
+import LightModeIcon from '@mui/icons-material/LightMode';
+import DarkModeIcon from '@mui/icons-material/DarkMode';
+
 import * as S from './styles';
+import usePopover from '../../hooks/usePopover';
 
 interface Theme {
 	mode: 'light' | 'dark';
@@ -124,45 +129,89 @@ const backgroundColors: Palette[] = [
 		color: '#F4E1E3'
 	},
 ]
+const hexToRgb = (hex: any) => {
+	// Expand shorthand form (e.g. "03F") to full form (e.g. "0033FF")
+	var shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
+	hex = hex.replace(shorthandRegex, function (m: any, r: any, g: any, b: any) {
+		return r + r + g + g + b + b;
+	});
+
+	var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+	return result ? {
+		r: parseInt(result[1], 16),
+		g: parseInt(result[2], 16),
+		b: parseInt(result[3], 16)
+	} : null;
+}
+
+const isLightMode = (hex: any) => {
+	const rgb = hexToRgb(hex);
+	if (!rgb) return false;
+	const { r, g, b } = rgb;
+
+	// console.log(r * 0.299 + g * 0.587 + b * 0.114)
+	return (r * 0.299 + g * 0.587 + b * 0.114) > 210
+}
 
 export function ThemePicker({ close }: any) {
 	const theme = useTheme();
 	const [neutralColor, setNeutralColor] = useState('#212121');
+	const [neutralText, setNeutralText] = useState('#212121');
+	const [primary, setPrimary] = useState(getComputedStyle(document.documentElement).getPropertyValue('--color-on-background'));
+	const [background, setBackground] = useState(getComputedStyle(document.documentElement).getPropertyValue('--color-background'));
 
 	const onClose = () => {
 		close();
 	}
 
-	const setTheme = (setTheme: Theme) => {
-		console.log('setting theme', setTheme)
-		document.documentElement.style.setProperty('--color-primary', setTheme.colorPrimary);
-		document.documentElement.style.setProperty('--color-on-primary', setTheme.colorOnPrimary);
-		document.documentElement.style.setProperty('--color-secondary', setTheme.colorSecondary);
-		document.documentElement.style.setProperty('--color-on-secondary', setTheme.colorOnSecondary);
-		document.documentElement.style.setProperty('--color-background', setTheme.colorBackground);
-		document.documentElement.style.setProperty('--color-on-background', setTheme.colorOnBackground);
-		document.documentElement.style.setProperty('--color-button', setTheme.colorButton);
+	useEffect(() => {
+		console.log('background');
+		const value = isLightMode(background);
+		if (value) {
+			setNeutralColor('#616161');
+			setNeutralText('#fafafa')
+		} else {
+			setNeutralColor('#f5f5f5');
+			setNeutralText('#212121')
+		}
 
-		theme.palette.mode = setTheme.mode;
-		theme.palette.primary.main = setTheme.colorPrimary;
-	}
+	}, [background])
 
-	const setPrimary = (color: string) => {
+
+	// const setTheme = (setTheme: Theme) => {
+	// 	console.log('setting theme', setTheme)
+	// 	document.documentElement.style.setProperty('--color-primary', setTheme.colorPrimary);
+	// 	document.documentElement.style.setProperty('--color-on-primary', setTheme.colorOnPrimary);
+	// 	document.documentElement.style.setProperty('--color-secondary', setTheme.colorSecondary);
+	// 	document.documentElement.style.setProperty('--color-on-secondary', setTheme.colorOnSecondary);
+	// 	document.documentElement.style.setProperty('--color-background', setTheme.colorBackground);
+	// 	document.documentElement.style.setProperty('--color-on-background', setTheme.colorOnBackground);
+	// 	document.documentElement.style.setProperty('--color-button', setTheme.colorButton);
+
+	// 	theme.palette.mode = setTheme.mode;
+	// 	theme.palette.primary.main = setTheme.colorPrimary;
+	// }
+
+
+	const handleSetPrimary = (color: string) => {
 		document.documentElement.style.setProperty('--color-on-background', color);
 		document.documentElement.style.setProperty('--color-button', color);
+		setPrimary(color);
 
 		theme.palette.primary.main = color;
 	}
 
-	const setBackground = (palette: Palette) => {
-		document.documentElement.style.setProperty('--color-background', palette.color);
-		theme.palette.mode = palette.mode;
+	const handleSetBackground = (color: string) => {
+		document.documentElement.style.setProperty('--color-background', color);
+		setBackground(color)
+	}
 
-		if (palette.mode === 'light') {
-			setNeutralColor('#212121');
-		} else {
-			setNeutralColor('#fafafa');
-		}
+	const handleColorChange = (color: string) => {
+
+	}
+
+	const handleModeChange = (event: any) => {
+		theme.palette.mode = event.target.value;
 	}
 
 	return (
@@ -174,15 +223,91 @@ export function ThemePicker({ close }: any) {
 				</IconButton>
 			</S.MenuHeader>
 
-			<S.NeutralHeaders className="" color={neutralColor}>Primary and accents</S.NeutralHeaders>
-			<S.Themes>
-				{primaryColors.map((color) => <S.ColorPalette key={color} mainColor={color} onClick={() => setPrimary(color)}></S.ColorPalette>)}
-			</S.Themes>
-			<S.NeutralHeaders className="" color={neutralColor}>Background</S.NeutralHeaders>
+			{/* <S.NeutralHeaders className="" color={neutralColor}>Color mode</S.NeutralHeaders>
+			<div>Helps determine how automated color should be generated</div>
+			<ToggleButtonGroup value={mode} onChange={handleModeChange}>
+				<ToggleButton value="light">
+					<LightModeIcon></LightModeIcon>
+					<span className="ml-2">Light</span>
+				</ToggleButton>
+				<ToggleButton value="dark">
+					<DarkModeIcon></DarkModeIcon>
+					<span className="ml-2">Dark</span>
+				</ToggleButton>
+			</ToggleButtonGroup> */}
 
-			<S.Themes>
-				{backgroundColors.map((palette) => <S.ColorPalette key={palette.color} mainColor={palette.color} onClick={() => setBackground(palette)}></S.ColorPalette>)}
-			</S.Themes>
+			<S.NeutralHeaders className="" color={neutralColor}>Primary</S.NeutralHeaders>
+			<S.NeutralBackground color={neutralColor}>
+				<S.Themes>
+					{primaryColors.map((color) => <S.ColorPalette key={color} mainColor={color} onClick={() => handleSetPrimary(color)}></S.ColorPalette>)}
+				</S.Themes>
+				<ColorSelection originalColor={primary} onChange={handleSetPrimary}></ColorSelection>
+			</S.NeutralBackground>
+
+			<S.NeutralHeaders className="" color={neutralColor}>Background</S.NeutralHeaders>
+			<S.NeutralBackground color={neutralColor}>
+				<S.Themes>
+					{backgroundColors.map((palette) => <S.ColorPalette key={palette.color} mainColor={palette.color} onClick={() => handleSetBackground(palette.color)}></S.ColorPalette>)}
+				</S.Themes>
+				<ColorSelection originalColor={background} onChange={handleSetBackground}></ColorSelection>
+			</S.NeutralBackground>
 		</S.Wrapper>
+	)
+}
+
+function ColorSelection({ originalColor, onChange }: { originalColor: string, onChange: (color: string) => void }) {
+	// console.log('ORIGINAL', originalColor)
+	const [open, anchorEl, handlePopoverOpen, handlePopoverClose] = usePopover();
+	const [color, setColor] = useState(originalColor)
+
+	useEffect(() => {
+		setColor(originalColor);
+	}, [originalColor])
+
+	const handleChangeComplete = (color: any) => {
+		// console.log('complete', color);
+	}
+
+	const handlePickerChange = (color: any) => {
+		// console.log('change', color);
+		setColor(color.hex);
+	}
+
+	const handleRawChange = (event: any) => {
+		setColor(event.target.value);
+	}
+
+	const handleOnSave = () => {
+		onChange(color);
+		handlePopoverClose();
+	}
+
+
+	return (
+		<div className="flex gap-2 items-center w-fit ">
+			<S.ColorChip color={color} onClick={handlePopoverOpen}></S.ColorChip>
+			<InputSmall className="w-24" readOnly={true} value={color} onChange={handleRawChange} onClick={handlePopoverOpen}></InputSmall>
+			<Popover
+				open={open}
+				anchorEl={anchorEl}
+				onClose={handlePopoverClose}
+				transitionDuration={200}
+				anchorOrigin={{
+					vertical: 'bottom',
+					horizontal: 'right',
+				}}
+			>
+				<S.ColorPicker
+					color={color}
+					onChange={handlePickerChange}
+					onChangeComplete={handleChangeComplete}
+					presetColors={[]}
+					disableAlpha={true}
+				/>
+				<div className="flex justify-center mt-2 mb-1">
+					<Button onClick={handleOnSave}>Save</Button>
+				</div>
+			</Popover>
+		</div>
 	)
 }
