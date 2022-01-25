@@ -10,6 +10,14 @@ export function createThemePalette(primary: string, background: string) {
     };
 }
 
+export function createDefaultThemePalette(): { primary: string; background: string } {
+    // return {
+    //     primary: '#212121',
+    //     background: '#fafafa',
+    // };
+	return createThemePalette('#212121', '#fafafa')
+}
+
 function hexToRgb(hex: any) {
     // Expand shorthand form (e.g. "03F") to full form (e.g. "0033FF")
     var shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
