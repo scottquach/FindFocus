@@ -3,13 +3,13 @@ import { Button, IconButton, Popover, ToggleButton, ToggleButtonGroup, Tooltip }
 import { useTheme } from '@mui/system';
 import { useEffect, useState } from 'react';
 import { Input, InputSmall } from '../../styles/Input';
-import LightModeIcon from '@mui/icons-material/LightMode';
-import DarkModeIcon from '@mui/icons-material/DarkMode';
+import RestartAltIcon from '@mui/icons-material/RestartAlt';
 
 import * as S from './styles';
 import usePopover from '../../hooks/usePopover';
-import { createThemePalette, isHexLight } from '../../models/theme.model';
+import { createDefaultThemePalette, createThemePalette, isHexLight } from '../../models/theme.model';
 import useLocalStorage from '../../hooks/useLocalStorage';
+import { Button as ButtonCustom } from '../../styles/Button';
 
 interface Theme {
 	mode: 'light' | 'dark';
@@ -139,7 +139,7 @@ export function ThemePicker({ close }: any) {
 	const [neutralText, setNeutralText] = useState('#212121');
 	const [primary, setPrimary] = useState(getComputedStyle(document.documentElement).getPropertyValue('--color-on-background'));
 	const [background, setBackground] = useState(getComputedStyle(document.documentElement).getPropertyValue('--color-background'));
-	const [themePalette, setThemePalette] = useLocalStorage('themePalette', { primary: '#212121', background: '#fafafa' })
+	const [themePalette, setThemePalette] = useLocalStorage('themePalette', createDefaultThemePalette())
 
 	const onClose = () => {
 		close();
@@ -199,12 +199,10 @@ export function ThemePicker({ close }: any) {
 		setBackground(color)
 	}
 
-	const handleColorChange = (color: string) => {
-
-	}
-
-	const handleModeChange = (event: any) => {
-		theme.palette.mode = event.target.value;
+	const handleReset = () => {
+		const theme = createDefaultThemePalette();
+		handleSetPrimary(theme.primary);
+		handleSetBackground(theme.background);
 	}
 
 	return (
@@ -230,6 +228,14 @@ export function ThemePicker({ close }: any) {
 				</S.Themes>
 				<ColorSelection originalColor={background} onChange={handleSetBackground}></ColorSelection>
 			</S.NeutralBackground>
+
+
+			<div className="flex justify-start">
+				<ButtonCustom className="flex items-center gap-1 rounded py-1 px-3 cursor-pointer" onClick={handleReset}>
+					<RestartAltIcon></RestartAltIcon>
+					<span>Reset</span>
+				</ButtonCustom>
+			</div>
 		</S.Wrapper>
 	)
 }
