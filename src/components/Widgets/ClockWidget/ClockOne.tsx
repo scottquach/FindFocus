@@ -36,7 +36,7 @@ export default function ClockOne({ dt }: { dt: DateTime }) {
 	return (
 		<Content>
 			<TodayLabel>Today</TodayLabel>
-			<DayOfMonth>{dt.toFormat('MM')}</DayOfMonth>
+			<DayOfMonth>{dt.toFormat('dd')}</DayOfMonth>
 			<Month>{dt.toFormat('MMMM')}</Month>
 			<TimeSimple>{dt.toLocaleString(DateTime.TIME_SIMPLE)}</TimeSimple>
 		</Content>
