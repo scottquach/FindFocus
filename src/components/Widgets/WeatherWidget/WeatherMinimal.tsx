@@ -33,7 +33,7 @@ export default function WeatherMinimal() {
 			regionCode: location?.regionCode,
 		});
 
-		Axios.get("http://api.openweathermap.org/data/2.5/weather", { params }) // https://openweathermap.org/current
+		Axios.get("https://api.openweathermap.org/data/2.5/weather", { params }) // https://openweathermap.org/current
 			.then((response: any) => {
 				let data = response.data;
 				console.log(data)
@@ -43,7 +43,7 @@ export default function WeatherMinimal() {
 					// ...data.wind,
 					main: data.weather[0].main,
 					temp: `${Math.round(data.main.temp)}`,
-					iconLinkWeatherApp: `http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`,
+					iconLinkWeatherApp: `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`,
 				});
 			});
 
