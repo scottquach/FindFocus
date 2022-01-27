@@ -159,6 +159,14 @@ export function BackgroundPicker({ close }: any) {
 		setVolume(newValue as number);
 	};
 
+	const handleQuickMute = () => {
+		setVolume(0);
+	}
+
+	const handleQuickMax = () => {
+		setVolume(75);
+	}
+
 	const onClose = () => {
 		close();
 	}
@@ -218,9 +226,9 @@ export function BackgroundPicker({ close }: any) {
 
 			<S.ActionsContainer>
 				<Stack spacing={2} direction="row" sx={{ mb: 1, mt: 1, width: 300 }} alignItems="center">
-					<VolumeDown sx={{ fill: "var(--color-button)"}}/>
+					<VolumeDown className="cursor-pointer" sx={{ fill: "var(--color-button)"}} onClick={handleQuickMute}/>
 					<Slider aria-label="Volume" value={volume} onChange={handleVolumeChange} />
-					<VolumeUp sx={{ fill: "var(--color-button)"}} />
+					<VolumeUp className="cursor-pointer" sx={{ fill: "var(--color-button)"}} onClick={handleQuickMax}/>
 				</Stack>
 				<Favorites joinRoom={joinRoomById}></Favorites>
 
