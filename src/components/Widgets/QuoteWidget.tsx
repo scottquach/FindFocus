@@ -11,6 +11,8 @@ const Content = styled.div`
 	align-items: center;
 	height: 100%;
 	width: 100%;
+	min-height: 175px;
+	min-width: 250px;
 `
 
 const Quote = styled.div`
