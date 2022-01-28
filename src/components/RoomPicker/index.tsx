@@ -8,7 +8,7 @@ import { useRecoilState } from 'recoil';
 import { backgroundState, favoritesState, globalVolumeState } from '../../stores/store';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import { useEffect, useState } from 'react';
-import { CategoryId } from '../../models/category.enum';
+import { Categories, CategoryId } from '../../models/category.model';
 import { Room } from '../../models/room.interface';
 import { getRoomById, Rooms } from '../../models/rooms.model';
 import useSyncLocalStorage from '../../hooks/useSyncLocalStorage';
@@ -20,47 +20,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
 import { logEvent } from 'firebase/analytics';
 import { analytics } from '../../firebase';
-
-const categories = [
-	{
-		icon: '🎆',
-		name: 'New Years',
-		id: CategoryId.NewYears
-	},
-	{
-		icon: '🎅',
-		name: 'Christmas',
-		id: CategoryId.Christmas
-	},
-	{
-		icon: '☕',
-		name: 'Cafe',
-		id: CategoryId.Cafe
-	},
-	{
-		icon: '🌲',
-		name: 'Nature',
-		id: CategoryId.Nature
-	},
-	{
-		icon: '🏖️',
-		name: 'Beach',
-		id: CategoryId.Beach
-	},
-	{
-		icon: '🏙️',
-		name: 'City',
-		id: CategoryId.City
-	},
-	{
-		icon: '📺',
-		name: 'Animated',
-		id: CategoryId.Animated
-	}
-]
-const getCategoryById = (id: CategoryId) => {
-	return categories.find((category) => category.id === id);
-}
+import { Favorites } from './Favorites';
 
 
 
@@ -182,7 +142,7 @@ export function BackgroundPicker({ close }: any) {
 
 
 			<S.RoomList>
-				{categories.map((room, index) => (
+				{Categories.map((room, index) => (
 					<Tooltip key={index} title="Click to reshuffle">
 						<S.Room onClick={() => joinRoom(room.id)} active={room.id === activeCategory}>
 							<S.RoomIcon>{room.icon}</S.RoomIcon>
@@ -201,7 +161,7 @@ export function BackgroundPicker({ close }: any) {
 				activeCategory && room &&
 				<S.ActiveContainer>
 					<S.ActiveRoom>
-						<S.RoomIcon>{categories.find((cat) => cat.id === activeCategory)?.icon}</S.RoomIcon>
+						<S.RoomIcon className="animate-spin">{Categories.find((cat) => cat.id === activeCategory)?.icon}</S.RoomIcon>
 						<div>
 							<S.ActiveRoomName>{room?.name}</S.ActiveRoomName>
 							<S.ActiveRoomOriginal href={room.link} target="_blank">View original</S.ActiveRoomOriginal>
@@ -237,53 +197,3 @@ export function BackgroundPicker({ close }: any) {
 	);
 }
 
-export function Favorites({ joinRoom }: { joinRoom: (roomId: string) => boolean }) {
-	const [favorites] = useRecoilState(favoritesState);
-	const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-	const open = Boolean(anchorEl);
-	const handleClick = (event: any) => {
-		setAnchorEl(event.currentTarget);
-	};
-	const handleClose = (roomId: string) => {
-		joinRoom(roomId);
-		setAnchorEl(null);
-	};
-
-	const favoriteRooms = favorites?.map((roomId: string) => {
-		const room = getRoomById(roomId);
-		return room;
-	}).filter(Boolean);
-
-	return (
-		<div>
-			<S.FavoriteButton onClick={handleClick}>
-				<div>💖</div>
-				<S.RoomName>Favorites</S.RoomName>
-			</S.FavoriteButton>
-			<Menu
-				anchorEl={anchorEl}
-				open={open}
-				onClose={handleClose}
-				MenuListProps={{
-					'aria-labelledby': 'favorite-room',
-				}}
-			>
-				{favorites.length > 0 ?
-					favoriteRooms.map((room) => {
-						return (
-							<MenuItem key={room.id} onClick={(event) => handleClose(room.id)}>
-								<span className="mr-2">{getCategoryById(room.category)?.icon}</span>
-								<span>{room.name}</span>
-							</MenuItem>
-						)
-					}) :
-					<MenuItem onClick={() => setAnchorEl(null)}>
-						<span className="mr-2">😥</span>
-						<span>No favorites chosen</span>
-					</MenuItem>
-				}
-			</Menu>
-
-		</div>
-	)
-}

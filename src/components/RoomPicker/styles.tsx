@@ -94,18 +94,6 @@ export const ActionsContainer = styled.div`
 	margin-left: auto;
 `
 
-export const FavoriteButton = styled(Button)`
-	display: flex;
-	align-items: center;
-	gap: .25rem;
-	padding: .25rem .5rem;
-	margin-left: .5rem;
-	border-radius: 8px;
-	cursor: pointer;
-
-	/* box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.20) 0px 0px 0px 1px; */
-`
-
 
 
 
