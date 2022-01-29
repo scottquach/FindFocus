@@ -12,7 +12,7 @@ export const ActiveRoom = styled.div`
 	align-items: center;
 	justify-content: flex-start;
 	background-color: var(--color-surface);
-	border-radius: 8px;
+	border-radius: 0px 0px 8px 8px;
 	width: 100%;
 	height: 4rem;
 	/* cursor: default; */

@@ -1,7 +1,7 @@
 import { VolumeDown, VolumeUp } from '@mui/icons-material';
 import { IconButton, Slider, Stack, Tooltip } from '@mui/material';
 import { logEvent } from 'firebase/analytics';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
 import { analytics } from '../../../firebase';
 import { Categories, Category, CategoryId, getCategoryById } from '../../../models/category.model';
@@ -16,7 +16,11 @@ export function ActiveRoom({ category, room, iterateRoom }: { category: any, roo
 	const [favorites, setFavorites] = useRecoilState(favoritesState);
 	const [isFavorite, setIsFavorite] = useState(false);
 
-	console.log('CATEG', category);
+	// console.log('CATEG', category);
+
+	useEffect(() => {
+		setIsFavorite(favorites.includes(room.id));
+	}, [room])
 
 
 	const onFavoriteToggle = () => {
