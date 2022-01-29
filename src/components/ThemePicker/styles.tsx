@@ -6,6 +6,7 @@ import { SketchPicker } from 'react-color';
 export const Wrapper = styled(MenuWrapper)`
 	background-color: var(--color-background);
 	width: 40rem;
+	padding: 1rem;
 
     font-family: 'Outfit', sans-serif;
 	height: auto;
@@ -49,6 +50,7 @@ export const NeutralBackground = styled.div`
 	padding: 1rem;
 	border-radius: 8px;
 	margin-bottom: .75rem;
+	opacity: .9;
 `
 
 export const ColorPalette = styled.div<{

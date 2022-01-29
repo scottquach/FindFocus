@@ -15,6 +15,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faExternalLinkAlt } from "@fortawesome/free-solid-svg-icons";
 import { logEvent } from "firebase/analytics";
 import { analytics } from "../../firebase";
+import { MenuHeader, MenuHeaderLayout } from "../../styles/MenuHeaders";
 
 enum WidgetCategories {
 	Audio = 'audio',
@@ -66,12 +67,18 @@ export function WidgetPicker({ close }: any) {
 
 	return (
 		<S.Wrapper>
-			<S.MenuHeader>
-				<S.MenuTitle>Widgets</S.MenuTitle>
+			<MenuHeaderLayout>
+				<div>
+					<MenuHeader>Add a widget</MenuHeader>
+					<a className="text-sm opacity-70 cursor-pointer hover:underline " href="https://forms.gle/i9RJxQNyfVbYrM1M6" target="_blank" rel="noreferrer">
+						<span className="text-on-background">Suggest a new widgets</span>
+						<FontAwesomeIcon icon={faExternalLinkAlt} className="opacity-70 ml-1 text-on-background" size="xs"></FontAwesomeIcon>
+					</a>
+				</div>
 				<IconButton onClick={closePicker}>
-					<CloseIcon style={{ fill: "var(--color-button)" }}></CloseIcon>
+					<CloseIcon style={{ fill: "var(--color-primary)" }}></CloseIcon>
 				</IconButton>
-			</S.MenuHeader>
+			</MenuHeaderLayout>
 
 			<S.Widgets>
 				<ClockWidget ></ClockWidget>
@@ -98,10 +105,6 @@ export function WidgetPicker({ close }: any) {
 				</S.Widget>
 			</S.Widgets>
 
-			<a className="text-sm opacity-70 ml-1 mt-1 cursor-pointer hover:underline" href="https://forms.gle/i9RJxQNyfVbYrM1M6" target="_blank" rel="noreferrer">
-				<span className="text-on-background">Suggest new widgets</span>
-				<FontAwesomeIcon icon={faExternalLinkAlt} className="opacity-70 ml-1 text-on-background" size="xs"></FontAwesomeIcon>
-			</a>
 		</S.Wrapper>
 	)
 }

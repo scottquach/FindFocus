@@ -115,19 +115,19 @@ export default function TimerWidget({ widgetId }: { widgetId: string }) {
 							active ?
 								<div>
 									<IconButton onClick={pause} sx={{ padding: .25, }}>
-										<PauseIcon sx={{ fill: "var(--color-button)" }}></PauseIcon>
+										<PauseIcon sx={{ fill: "var(--color-primary)" }}></PauseIcon>
 									</IconButton>
 									<IconButton onClick={reset} sx={{ padding: .25 }}>
-										<StopIcon sx={{ fill: "var(--color-button)" }}></StopIcon>
+										<StopIcon sx={{ fill: "var(--color-primary)" }}></StopIcon>
 									</IconButton>
 								</div>
 								:
 								<div>
 									<IconButton onClick={start} sx={{ padding: 0 }}>
-										<PlayArrowIcon sx={{ fill: "var(--color-button)" }}></PlayArrowIcon>
+										<PlayArrowIcon sx={{ fill: "var(--color-primary)" }}></PlayArrowIcon>
 									</IconButton>
 									{data.time !== duration.toMillis() && <IconButton onClick={reset} sx={{ padding: 0 }}>
-										<RestartAltIcon sx={{ fill: "var(--color-button)" }}></RestartAltIcon>
+										<RestartAltIcon sx={{ fill: "var(--color-primary)" }}></RestartAltIcon>
 									</IconButton>}
 								</div>
 						}
@@ -175,8 +175,8 @@ function TimerSettings({ defaultMinutes, defaultSeconds, saveTime }: { defaultMi
 
 	return (
 		<div>
-			<IconButton onClick={handleClick} sx={{ padding: 0, fill: "var(--color-button)" }}>
-				<SettingsIcon sx={{ fill: "var(--color-button)" }}></SettingsIcon>
+			<IconButton onClick={handleClick} sx={{ padding: 0, fill: "var(--color-primary)" }}>
+				<SettingsIcon sx={{ fill: "var(--color-primary)" }}></SettingsIcon>
 			</IconButton>
 			<Popper id="timer-settings-popper" open={open} anchorEl={anchorEl} transition>
 				{({ TransitionProps }) => (
@@ -185,7 +185,7 @@ function TimerSettings({ defaultMinutes, defaultSeconds, saveTime }: { defaultMi
 							<div className="flex items-center justify-between mb-4">
 								<div className="font-bold text-on-background">Settings</div>
 								<IconButton sx={{ padding: .5 }} onClick={() => setAnchorEl(null)}>
-									<CloseIcon fontSize="small" sx={{ fill: "var(--color-button)" }}></CloseIcon>
+									<CloseIcon fontSize="small" sx={{ fill: "var(--color-primary)" }}></CloseIcon>
 								</IconButton>
 							</div>
 							<div className="flex gap-2 justify-start">
