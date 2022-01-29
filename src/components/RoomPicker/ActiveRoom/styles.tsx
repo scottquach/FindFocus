@@ -25,8 +25,10 @@ export const RoomIcon = styled.div`
 	justify-content: center;
 	width: 36px;
 	height: 36px;
+	border-radius: 32px;
 	margin: .5rem;
-
+	background-color: var(--color-primary);
+	margin-left: 1rem;
 `
 
 export const RoomMetaContainer = styled.div`

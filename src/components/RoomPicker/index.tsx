@@ -88,37 +88,44 @@ export function BackgroundPicker({ close }: any) {
 		}
 	}
 
+	const isCategoryActive = (id: CategoryId) => {
+		return id === activeCategory;
+	}
+
 	const onClose = () => {
 		close();
 	}
 
 	return (
 		<S.Wrapper>
-			<MenuHeaderLayout>
-				<MenuHeader>Rooms</MenuHeader>
-				<Favorites className="ml-auto" joinRoom={joinRoomById}></Favorites>
-				<IconButton onClick={onClose}>
-					<CloseIcon style={{ fill: "var(--color-on-background)" }}></CloseIcon>
-				</IconButton>
-			</MenuHeaderLayout>
+			<div className="p-4">
+				<MenuHeaderLayout>
+					<div>
+						<MenuHeader>Join a room</MenuHeader>
+						<a className="text-sm opacity-70 cursor-pointer hover:underline" href="https://forms.gle/6w91DeiLotXakNMA6" target="_blank" rel="noreferrer">
+							<span className="text-on-background">Suggest new rooms</span>
+							<FontAwesomeIcon icon={faExternalLinkAlt} className="opacity-70 ml-1 text-on-background" size="xs"></FontAwesomeIcon>
+						</a>
+					</div>
+					<Favorites className="ml-auto" joinRoom={joinRoomById}></Favorites>
+					<IconButton onClick={onClose}>
+						<CloseIcon style={{ fill: "var(--color-on-background)" }}></CloseIcon>
+					</IconButton>
+				</MenuHeaderLayout>
 
-
-			<S.RoomList>
-				{Categories.map((room, index) => (
-					<Tooltip key={index} title="Click to reshuffle">
-						<S.Room onClick={() => joinRoom(room.id)} active={room.id === activeCategory}>
-							<S.RoomIcon>{room.icon}</S.RoomIcon>
-							<S.RoomName>{room.name}</S.RoomName>
-						</S.Room>
-					</Tooltip>
-				))}
-			</S.RoomList>
-
-			<a className="text-sm opacity-70 ml-3 mt-1 cursor-pointer hover:underline" href="https://forms.gle/6w91DeiLotXakNMA6" target="_blank" rel="noreferrer">
-				<span className="text-on-background">Suggest new rooms</span>
-				<FontAwesomeIcon icon={faExternalLinkAlt} className="opacity-70 ml-1 text-on-background" size="xs"></FontAwesomeIcon>
-			</a>
-
+				<S.RoomList>
+					{Categories.map((category, index) => (
+						// <Tooltip key={index} title="Click to reshuffle">
+						<S.RoomWrapper key={index} active={isCategoryActive(category.id)}>
+							<S.Room onClick={() => joinRoom(category.id)} active={isCategoryActive(category.id)}>
+								<S.RoomIcon>{category.icon}</S.RoomIcon>
+								<S.RoomName>{category.name}</S.RoomName>
+							</S.Room>
+						</S.RoomWrapper>
+						// </Tooltip>
+					))}
+				</S.RoomList>
+			</div>
 
 			<ActiveRoom category={activeCategory as unknown as Category} room={room} iterateRoom={iterateRoom}></ActiveRoom>
 		</S.Wrapper>

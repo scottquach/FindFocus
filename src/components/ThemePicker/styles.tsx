@@ -6,6 +6,7 @@ import { SketchPicker } from 'react-color';
 export const Wrapper = styled(MenuWrapper)`
 	background-color: var(--color-background);
 	width: 40rem;
+	padding: 1rem;
 
     font-family: 'Outfit', sans-serif;
 	height: auto;

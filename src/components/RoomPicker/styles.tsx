@@ -16,38 +16,65 @@ export const Wrapper = styled(MenuWrapper)`
 
 export const RoomList = styled.div`
 	display: flex;
-	justify-content: center;
+	justify-content: flex-start;
 	flex-wrap: wrap;
-	gap: .75rem;
+	margin-bottom: 2rem;
+	/* gap: .25rem; */
 `
 
-export const Room = styled(Card)`
+export const RoomWrapper = styled.div<{ active: boolean }>`
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: ${({ active }) => active ? '.25rem' : '.5rem'};
+	width: 7rem;
+	height: 8rem;
+	transition: all 75ms;
+
+	&:hover {
+		padding: .25rem;
+	}
+`
+
+export const Room = styled.div<{ active: boolean }>`
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	width: 6rem;
-	background-color: var(--color-surface);
-	/* border: 2px solid var(--color-border); */
+	height: 100%;
+	width: 100%;
+	border: ${({ active }) => active ? '1px solid black' : ''};
+	box-shadow: ${({ active }) => active ? 'rgba(41, 41, 41, 0.2) 0px 2px 8px 0px' : ''};
 	border-radius: 8px;
+	/* background-color: var(--color-surface); */
 	padding: .5rem;
 	cursor: pointer;
+
+	transition: all 50ms;
+
+	&:hover {
+		box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+	}
+
+	&:active {
+		transform: scale(.96);
+	}
 `;
 
 export const RoomIcon = styled.div`
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	background-color: var(--color-secondary);
+	background-color: var(--color-primary);
 	border-radius: 32px;
-	width: 36px;
-	height: 36px;
+	width: 42px;
+	height: 42px;
 	padding: .75rem;
 	margin: 1rem;
 `;
 
 export const RoomName = styled.div`
-	font-weight: bold;
-	color: var(--color-on-surface);
+	font-weight: 500;
+	color: var(--color-primary);
 `;
 
 // export const ActiveContainer = styled.div`

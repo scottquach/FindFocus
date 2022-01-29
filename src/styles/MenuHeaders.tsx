@@ -1,11 +1,10 @@
 import styled from "styled-components";
 
 export const MenuWrapper = styled.div`
-	padding: 1rem;
+	/* padding: 1rem; */
 	display: flex;
 	flex-direction: column;
 `
-
 
 export const MenuHeader = styled.div`
 	font-size: 24px;
