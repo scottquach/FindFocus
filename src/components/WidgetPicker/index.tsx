@@ -6,6 +6,7 @@ import * as S from "./styles";
 import { WidgetType } from "../../models/widget-types.enum";
 import { QueueMusicOutlined, StickyNote2Outlined } from "@mui/icons-material";
 import CloudOutlinedIcon from '@mui/icons-material/CloudOutlined';
+import ListAltIcon from '@mui/icons-material/ListAlt';
 import AccessAlarmIcon from '@mui/icons-material/AccessAlarm';
 import useAddWidget from "../../hooks/useAddWidget";
 import { useState } from "react";
@@ -90,6 +91,10 @@ export function WidgetPicker({ close }: any) {
 				<S.Widget onClick={() => create(WidgetType.Timer)}>
 					<AccessAlarmIcon></AccessAlarmIcon>
 					<div>Timer</div>
+				</S.Widget>
+				<S.Widget onClick={() => create(WidgetType.TodosList)}>
+					<ListAltIcon></ListAltIcon>
+					<div>To-do list</div>
 				</S.Widget>
 			</S.Widgets>
 

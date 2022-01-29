@@ -33,10 +33,10 @@ export default function WeatherMinimal() {
 			regionCode: location?.regionCode,
 		});
 
-		Axios.get("http://api.openweathermap.org/data/2.5/weather", { params }) // https://openweathermap.org/current
+		Axios.get("https://api.openweathermap.org/data/2.5/weather", { params }) // https://openweathermap.org/current
 			.then((response: any) => {
 				let data = response.data;
-				console.log(data)
+				// console.log(data)
 				setWeather({
 					// ...data.main,
 					// ...data.weather[0],

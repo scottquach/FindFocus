@@ -28,6 +28,8 @@ export const MenuTitle = styled.div`
 
 export const Widgets = styled.div`
     display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
     gap: .5rem;
 `;
 

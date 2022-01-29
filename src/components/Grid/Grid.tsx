@@ -14,6 +14,7 @@ import WeatherWidget from "../Widgets/WeatherWidget";
 import TimerWidget from "../Widgets/TimerWidget";
 import { getMinSize } from "../../models/widget.model";
 import { ResizeHandle } from "./ResizeHandle";
+import TodolistWidget from "../Widgets/TodolistWidget";
 
 const Div = styled.div`
 	display: flex;
@@ -101,6 +102,10 @@ export function Grid() {
 						case WidgetType.Timer:
 							return <ResizeBox key={item.id} index={index} item={item} widgetType={type} updateSize={updateSize} updatePosition={updatePosition}>
 								<TimerWidget widgetId={item.id}></TimerWidget>
+							</ResizeBox>
+						case WidgetType.TodosList:
+							return <ResizeBox key={item.id} index={index} item={item} widgetType={type} updateSize={updateSize} updatePosition={updatePosition}>
+								<TodolistWidget widgetId={item.id}></TodolistWidget>
 							</ResizeBox>
 						// return <Div key={item.i}>
 						// 	<ClockWidget widgetId={item.i}></ClockWidget>
