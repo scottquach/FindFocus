@@ -11,10 +11,6 @@ export function createThemePalette(primary: string, background: string) {
 }
 
 export function createDefaultThemePalette(): { primary: string; background: string } {
-    // return {
-    //     primary: '#212121',
-    //     background: '#fafafa',
-    // };
 	return createThemePalette('#212121', '#fafafa')
 }
 

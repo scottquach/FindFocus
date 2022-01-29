@@ -10,6 +10,7 @@ import usePopover from '../../hooks/usePopover';
 import { createDefaultThemePalette, createThemePalette, isHexLight } from '../../models/theme.model';
 import useLocalStorage from '../../hooks/useLocalStorage';
 import { Button as ButtonCustom } from '../../styles/Button';
+import useApplyThemePalette from '../../hooks/useApplyThemePalette';
 
 interface Theme {
 	mode: 'light' | 'dark';
@@ -140,6 +141,7 @@ export function ThemePicker({ close }: any) {
 	const [primary, setPrimary] = useState(getComputedStyle(document.documentElement).getPropertyValue('--color-on-background'));
 	const [background, setBackground] = useState(getComputedStyle(document.documentElement).getPropertyValue('--color-background'));
 	const [themePalette, setThemePalette] = useLocalStorage('themePalette', createDefaultThemePalette())
+	const [setGlobalPalette] = useApplyThemePalette();
 
 	const onClose = () => {
 		close();
@@ -162,7 +164,6 @@ export function ThemePicker({ close }: any) {
 	useEffect(() => {
 		const palette = createThemePalette(primary, background)
 		setThemePalette(palette)
-
 	}, [primary, background])
 
 
@@ -184,36 +185,51 @@ export function ThemePicker({ close }: any) {
 	const handleSetPrimary = (color: string) => {
 		document.documentElement.style.setProperty('--color-on-background', color);
 		document.documentElement.style.setProperty('--color-button', color);
+		document.documentElement.style.setProperty('--color-primary', color);
 		setPrimary(color);
 
 		theme.palette.primary.main = color;
 		if (isHexLight(color)) {
-			theme.palette.mode = 'dark';
+			document.documentElement.style.setProperty('--color-on-primary', '#212121');
 		} else {
-			theme.palette.mode = 'light';
+			document.documentElement.style.setProperty('--color-on-primary', '#f5f5f5');
 		}
 	}
 
 	const handleSetBackground = (color: string) => {
 		document.documentElement.style.setProperty('--color-background', color);
 		setBackground(color)
+		if (isHexLight(color)) {
+			theme.palette.mode = 'light';
+			document.documentElement.style.setProperty('--color-border', '#212121');
+			document.documentElement.style.setProperty('--color-surface', '#212121');
+			document.documentElement.style.setProperty('--color-on-surface', '#f5f5f5');
+		} else {
+			document.documentElement.style.setProperty('--color-border', '#f5f5f5');
+			document.documentElement.style.setProperty('--color-surface', '#f5f5f5');
+			document.documentElement.style.setProperty('--color-on-surface', '#212121');
+			theme.palette.mode = 'dark';
+		}
 	}
 
 	const handleReset = () => {
 		const theme = createDefaultThemePalette();
-		handleSetPrimary(theme.primary);
-		handleSetBackground(theme.background);
+		setGlobalPalette(theme);
+		setPrimary(theme.primary);
+		setBackground(theme.background);
+		// handleSetPrimary(theme.primary);
+		// handleSetBackground(theme.background);
 	}
 
 	return (
 		<S.Wrapper>
 			<S.MenuHeader>
-				<S.MenuTitle>Themes</S.MenuTitle>
+				<S.MenuTitle>Theme</S.MenuTitle>
 				<IconButton onClick={onClose}>
 					<CloseIcon style={{ fill: "var(--color-on-background)" }}></CloseIcon>
 				</IconButton>
 			</S.MenuHeader>
-			<S.NeutralHeaders className="" color={neutralColor}>Primary</S.NeutralHeaders>
+			<S.NeutralHeaders className="" color={neutralColor}>Selected primary color</S.NeutralHeaders>
 			<S.NeutralBackground color={neutralColor}>
 				<S.Themes>
 					{primaryColors.map((color) => <S.ColorPalette key={color} mainColor={color} onClick={() => handleSetPrimary(color)}></S.ColorPalette>)}
@@ -221,7 +237,7 @@ export function ThemePicker({ close }: any) {
 				<ColorSelection originalColor={primary} onChange={handleSetPrimary}></ColorSelection>
 			</S.NeutralBackground>
 
-			<S.NeutralHeaders className="" color={neutralColor}>Background</S.NeutralHeaders>
+			<S.NeutralHeaders className="" color={neutralColor}>Selected background color</S.NeutralHeaders>
 			<S.NeutralBackground color={neutralColor}>
 				<S.Themes>
 					{backgroundColors.map((palette) => <S.ColorPalette key={palette.color} mainColor={palette.color} onClick={() => handleSetBackground(palette.color)}></S.ColorPalette>)}
@@ -233,7 +249,7 @@ export function ThemePicker({ close }: any) {
 			<div className="flex justify-start">
 				<ButtonCustom className="flex items-center gap-1 rounded py-1 px-3 cursor-pointer" onClick={handleReset}>
 					<RestartAltIcon></RestartAltIcon>
-					<span>Reset</span>
+					<span>Reset to default</span>
 				</ButtonCustom>
 			</div>
 		</S.Wrapper>

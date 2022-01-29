@@ -4,6 +4,7 @@ import { BackgroundType } from '../models/background-types.enum';
 import { Rooms } from '../models/rooms.model';
 import { createDefaultThemePalette } from '../models/theme.model';
 import { activeWidgetsState, backgroundState, favoritesState, layoutState } from '../stores/store';
+import useApplyThemePalette from './useApplyThemePalette';
 import useLocalStorage from './useLocalStorage';
 
 export default function useLoadApp() {
@@ -25,9 +26,8 @@ export default function useLoadApp() {
         localStorage.clear();
     }
 
-    document.documentElement.style.setProperty('--color-on-background', themePalette.primary);
-    document.documentElement.style.setProperty('--color-button', themePalette.primary);
-    document.documentElement.style.setProperty('--color-background', themePalette.background);
+    const [setTheme] = useApplyThemePalette();
+    setTheme(themePalette);
 
     useEffect(() => {
         setLayout((old) => savedLayout);

@@ -6,61 +6,19 @@ import { Button, IconButton, Menu, MenuItem, Slider, Stack, Tooltip } from '@mui
 import LinkIcon from '@mui/icons-material/Link';
 import { useRecoilState } from 'recoil';
 import { backgroundState, favoritesState, globalVolumeState } from '../../stores/store';
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import { useEffect, useState } from 'react';
-import { CategoryId } from '../../models/category.enum';
+import { Categories, Category, CategoryId } from '../../models/category.model';
 import { Room } from '../../models/room.interface';
 import { getRoomById, Rooms } from '../../models/rooms.model';
 import useSyncLocalStorage from '../../hooks/useSyncLocalStorage';
 import { VolumeDown, VolumeUp, SkipNext } from '@mui/icons-material';
-import FavoriteIcon from '@mui/icons-material/Favorite';
-import ShuffleIcon from '@mui/icons-material/Shuffle';
 import { MenuHeader, MenuHeaderLayout } from '../../styles/MenuHeaders';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
 import { logEvent } from 'firebase/analytics';
 import { analytics } from '../../firebase';
-
-const categories = [
-	{
-		icon: '🎆',
-		name: 'New Years',
-		id: CategoryId.NewYears
-	},
-	{
-		icon: '🎅',
-		name: 'Christmas',
-		id: CategoryId.Christmas
-	},
-	{
-		icon: '☕',
-		name: 'Cafe',
-		id: CategoryId.Cafe
-	},
-	{
-		icon: '🌲',
-		name: 'Nature',
-		id: CategoryId.Nature
-	},
-	{
-		icon: '🏖️',
-		name: 'Beach',
-		id: CategoryId.Beach
-	},
-	{
-		icon: '🏙️',
-		name: 'City',
-		id: CategoryId.City
-	},
-	{
-		icon: '📺',
-		name: 'Animated',
-		id: CategoryId.Animated
-	}
-]
-const getCategoryById = (id: CategoryId) => {
-	return categories.find((category) => category.id === id);
-}
+import { Favorites } from './Favorites';
+import { ActiveRoom } from './ActiveRoom';
 
 
 
@@ -83,9 +41,7 @@ const videoRooms: { [key: string]: string[] } = {
 
 export function BackgroundPicker({ close }: any) {
 	const [room, setRoom] = useRecoilState(backgroundState);
-	const [volume, setVolume] = useRecoilState(globalVolumeState);
 	const [favorites, setFavorites] = useRecoilState(favoritesState);
-	const [isFavorite, setIsFavorite] = useState(false);
 	useSyncLocalStorage('background', room);
 	useSyncLocalStorage('favorites', favorites);
 
@@ -94,7 +50,6 @@ export function BackgroundPicker({ close }: any) {
 	useEffect(() => {
 		if (room) {
 			setActiveCategory(room.category);
-			setIsFavorite(favorites.includes(room.id));
 		}
 	}, [room])
 
@@ -105,6 +60,7 @@ export function BackgroundPicker({ close }: any) {
 		setRoom((_) => newRoom);
 		logEvent(analytics, `category_join_${categoryId}`)
 	}
+
 	const joinRoomById = (roomId: string) => {
 		const newRoom = getRoomById(roomId);
 		if (newRoom) {
@@ -132,39 +88,8 @@ export function BackgroundPicker({ close }: any) {
 		}
 	}
 
-	const onFavoriteToggle = () => {
-		if (room) {
-			const newState = !isFavorite;
-			setIsFavorite(newState);
-			setFavorites((old) => {
-				const set = new Set(old);
-				if (newState) {
-					set.add(room.id);
-				} else {
-					set.delete(room.id);
-				}
-				return Array.from(set);
-			})
-
-			if (newState) {
-				logEvent(analytics, 'favorite_true');
-			} else {
-				logEvent(analytics, 'favorite_false');
-			}
-		}
-	}
-
-
-	const handleVolumeChange = (event: Event, newValue: number | number[]) => {
-		setVolume(newValue as number);
-	};
-
-	const handleQuickMute = () => {
-		setVolume(0);
-	}
-
-	const handleQuickMax = () => {
-		setVolume(75);
+	const isCategoryActive = (id: CategoryId) => {
+		return id === activeCategory;
 	}
 
 	const onClose = () => {
@@ -173,117 +98,38 @@ export function BackgroundPicker({ close }: any) {
 
 	return (
 		<S.Wrapper>
-			<MenuHeaderLayout>
-				<MenuHeader>Rooms</MenuHeader>
-				<IconButton onClick={onClose}>
-					<CloseIcon style={{ fill: "var(--color-on-background)" }}></CloseIcon>
-				</IconButton>
-			</MenuHeaderLayout>
+			<div className="p-4">
+				<MenuHeaderLayout>
+					<div>
+						<MenuHeader>Join a room</MenuHeader>
+						<a className="text-sm opacity-70 cursor-pointer hover:underline" href="https://forms.gle/6w91DeiLotXakNMA6" target="_blank" rel="noreferrer">
+							<span className="text-on-background">Suggest a new rooms</span>
+							<FontAwesomeIcon icon={faExternalLinkAlt} className="opacity-70 ml-1 text-on-background" size="xs"></FontAwesomeIcon>
+						</a>
+					</div>
+					<Favorites className="ml-auto mr-2" joinRoom={joinRoomById}></Favorites>
+					<IconButton onClick={onClose}>
+						<CloseIcon style={{ fill: "var(--color-on-background)" }}></CloseIcon>
+					</IconButton>
+				</MenuHeaderLayout>
 
+				<S.RoomList>
+					{Categories.map((category, index) => (
+						// <Tooltip key={index} title="Click to reshuffle">
+						<S.RoomWrapper key={index} active={isCategoryActive(category.id)}>
+							<S.Room onClick={() => joinRoom(category.id)} active={isCategoryActive(category.id)}>
+								<S.RoomIcon>{category.icon}</S.RoomIcon>
+								<S.RoomName>{category.name}</S.RoomName>
+							</S.Room>
+						</S.RoomWrapper>
+						// </Tooltip>
+					))}
+				</S.RoomList>
+			</div>
 
-			<S.RoomList>
-				{categories.map((room, index) => (
-					<Tooltip key={index} title="Click to reshuffle">
-						<S.Room onClick={() => joinRoom(room.id)} active={room.id === activeCategory}>
-							<S.RoomIcon>{room.icon}</S.RoomIcon>
-							<S.RoomName>{room.name}</S.RoomName>
-						</S.Room>
-					</Tooltip>
-				))}
-			</S.RoomList>
-
-			<a className="text-sm opacity-70 ml-3 mt-1 cursor-pointer hover:underline" href="https://forms.gle/6w91DeiLotXakNMA6" target="_blank" rel="noreferrer">
-				<span className="text-on-background">Suggest new rooms</span>
-				<FontAwesomeIcon icon={faExternalLinkAlt} className="opacity-70 ml-1 text-on-background" size="xs"></FontAwesomeIcon>
-			</a>
-
-			{
-				activeCategory && room &&
-				<S.ActiveContainer>
-					<S.ActiveRoom>
-						<S.RoomIcon>{categories.find((cat) => cat.id === activeCategory)?.icon}</S.RoomIcon>
-						<div>
-							<S.ActiveRoomName>{room?.name}</S.ActiveRoomName>
-							<S.ActiveRoomOriginal href={room.link} target="_blank">View original</S.ActiveRoomOriginal>
-						</div>
-						<div className="ml-auto mr-1">
-							<IconButton onClick={onFavoriteToggle}>
-								{isFavorite ?
-									<FavoriteIcon style={{ fill: "#fb7185" }}></FavoriteIcon> :
-									<FavoriteBorderIcon style={{ fill: "#fb7185" }}></FavoriteBorderIcon>
-								}
-							</IconButton>
-							<Tooltip title="Next room">
-								<IconButton onClick={iterateRoom}>
-									<ShuffleIcon style={{ fill: "var(--color-on-surface)" }}></ShuffleIcon>
-								</IconButton>
-							</Tooltip>
-						</div>
-					</S.ActiveRoom>
-
-				</S.ActiveContainer>
-			}
-
-			<S.ActionsContainer>
-				<Stack spacing={2} direction="row" sx={{ mb: 1, mt: 1, width: 300 }} alignItems="center">
-					<VolumeDown className="cursor-pointer" sx={{ fill: "var(--color-button)"}} onClick={handleQuickMute}/>
-					<Slider aria-label="Volume" value={volume} onChange={handleVolumeChange} />
-					<VolumeUp className="cursor-pointer" sx={{ fill: "var(--color-button)"}} onClick={handleQuickMax}/>
-				</Stack>
-				<Favorites joinRoom={joinRoomById}></Favorites>
-
-			</S.ActionsContainer>
+			<ActiveRoom category={activeCategory as unknown as Category} room={room} iterateRoom={iterateRoom}></ActiveRoom>
 		</S.Wrapper>
 	);
 }
 
-export function Favorites({ joinRoom }: { joinRoom: (roomId: string) => boolean }) {
-	const [favorites] = useRecoilState(favoritesState);
-	const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-	const open = Boolean(anchorEl);
-	const handleClick = (event: any) => {
-		setAnchorEl(event.currentTarget);
-	};
-	const handleClose = (roomId: string) => {
-		joinRoom(roomId);
-		setAnchorEl(null);
-	};
 
-	const favoriteRooms = favorites?.map((roomId: string) => {
-		const room = getRoomById(roomId);
-		return room;
-	}).filter(Boolean);
-
-	return (
-		<div>
-			<S.FavoriteButton onClick={handleClick}>
-				<div>💖</div>
-				<S.RoomName>Favorites</S.RoomName>
-			</S.FavoriteButton>
-			<Menu
-				anchorEl={anchorEl}
-				open={open}
-				onClose={handleClose}
-				MenuListProps={{
-					'aria-labelledby': 'favorite-room',
-				}}
-			>
-				{favorites.length > 0 ?
-					favoriteRooms.map((room) => {
-						return (
-							<MenuItem key={room.id} onClick={(event) => handleClose(room.id)}>
-								<span className="mr-2">{getCategoryById(room.category)?.icon}</span>
-								<span>{room.name}</span>
-							</MenuItem>
-						)
-					}) :
-					<MenuItem onClick={() => setAnchorEl(null)}>
-						<span className="mr-2">😥</span>
-						<span>No favorites chosen</span>
-					</MenuItem>
-				}
-			</Menu>
-
-		</div>
-	)
-}
