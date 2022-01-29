@@ -1,4 +1,6 @@
 import * as functions from 'firebase-functions';
+const axios = require('axios').default;
+
 const admin = require('firebase-admin');
 admin.initializeApp();
 
@@ -11,6 +13,12 @@ export const helloWorld = functions.https.onRequest((request, response) => {
 });
 
 export const getWeather = functions.https.onRequest(async (request, response) => {
-    // const res = await fetch('https://api.openweathermap.org/data/2.5/weather', {});
-    response.send('Start script test');
+    const params = request.body;
+    const apiKey = functions.config().openweather.key;
+    const res = await axios.get('https://api.openweathermap.org/data/2.5/weather', {
+        ...params,
+        appid: apiKey
+    });
+    // response.send(res.data);
+    response.send(request.body)
 });
