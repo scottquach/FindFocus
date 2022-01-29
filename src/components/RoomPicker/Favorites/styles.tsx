@@ -12,5 +12,5 @@ export const FavoriteButton = styled(Button)`
 `
 export const RoomName = styled.div`
 	font-weight: bold;
-	color: var(--color-on-surface);
+	color: var(--color-background);
 `;

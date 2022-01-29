@@ -103,11 +103,11 @@ export function BackgroundPicker({ close }: any) {
 					<div>
 						<MenuHeader>Join a room</MenuHeader>
 						<a className="text-sm opacity-70 cursor-pointer hover:underline" href="https://forms.gle/6w91DeiLotXakNMA6" target="_blank" rel="noreferrer">
-							<span className="text-on-background">Suggest new rooms</span>
+							<span className="text-on-background">Suggest a new rooms</span>
 							<FontAwesomeIcon icon={faExternalLinkAlt} className="opacity-70 ml-1 text-on-background" size="xs"></FontAwesomeIcon>
 						</a>
 					</div>
-					<Favorites className="ml-auto" joinRoom={joinRoomById}></Favorites>
+					<Favorites className="ml-auto mr-2" joinRoom={joinRoomById}></Favorites>
 					<IconButton onClick={onClose}>
 						<CloseIcon style={{ fill: "var(--color-on-background)" }}></CloseIcon>
 					</IconButton>

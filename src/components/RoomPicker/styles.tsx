@@ -42,7 +42,7 @@ export const Room = styled.div<{ active: boolean }>`
 	align-items: center;
 	height: 100%;
 	width: 100%;
-	border: ${({ active }) => active ? '1px solid black' : ''};
+	border: ${({ active }) => active ? '1px solid var(--color-border)' : ''};
 	box-shadow: ${({ active }) => active ? 'rgba(41, 41, 41, 0.2) 0px 2px 8px 0px' : ''};
 	border-radius: 8px;
 	/* background-color: var(--color-surface); */
@@ -64,17 +64,17 @@ export const RoomIcon = styled.div`
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	background-color: var(--color-primary);
+	background-color: var(--color-on-background);
 	border-radius: 32px;
-	width: 42px;
-	height: 42px;
+	width: 44px;
+	height: 44px;
 	padding: .75rem;
 	margin: 1rem;
 `;
 
 export const RoomName = styled.div`
 	font-weight: 500;
-	color: var(--color-primary);
+	color: var(--color-on-background);
 `;
 
 // export const ActiveContainer = styled.div`

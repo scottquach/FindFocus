@@ -48,7 +48,7 @@ export function ActiveRoom({ category, room, iterateRoom }: { category: any, roo
 	return (
 		<S.ActiveRoom>
 			<S.RoomMetaContainer>
-				<S.RoomIcon>{getCategoryById(category)?.icon}</S.RoomIcon>
+				<S.RoomIcon className="">{getCategoryById(category)?.icon}</S.RoomIcon>
 				<div className="flex-col justify-center items-start">
 					<S.ActiveRoomName>{room?.name}</S.ActiveRoomName>
 					<S.ActiveRoomOriginal href={room.link} target="_blank">View original</S.ActiveRoomOriginal>
@@ -63,7 +63,7 @@ export function ActiveRoom({ category, room, iterateRoom }: { category: any, roo
 				</Tooltip>
 				<Tooltip title="Next room">
 					<IconButton onClick={iterateRoom}>
-						<ShuffleIcon style={{ fill: "var(--color-on-surface)" }}></ShuffleIcon>
+						<ShuffleIcon style={{ fill: "var(--color-primary)" }}></ShuffleIcon>
 					</IconButton>
 				</Tooltip>
 			</S.RoomMetaContainer>
@@ -92,9 +92,9 @@ function VolumeRocker({ className }: any) {
 
 	return (
 		<Stack className={className} spacing={2} direction="row" sx={{ mb: 1, mt: 1, width: 200 }} alignItems="center">
-			<VolumeOffIcon className="cursor-pointer" sx={{ fill: "var(--color-button)" }} onClick={handleQuickMute} />
+			<VolumeOffIcon className="cursor-pointer" sx={{ fill: "var(--color-primary)" }} onClick={handleQuickMute} />
 			<Slider aria-label="Volume" size="small" value={volume} onChange={handleVolumeChange} />
-			<VolumeUp className="cursor-pointer" sx={{ fill: "var(--color-button)" }} onClick={handleQuickMax} />
+			<VolumeUp className="cursor-pointer" sx={{ fill: "var(--color-primary)" }} onClick={handleQuickMax} />
 		</Stack>
 	)
 
