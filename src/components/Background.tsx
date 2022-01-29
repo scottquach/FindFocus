@@ -68,7 +68,9 @@ export function Background() {
 	}, [0, room]);
 
 	const onStart = () => {
-		setLoading(false);
+		if (loading) {
+			setLoading(false);
+		}
 	}
 
 	// console.log('default', room)
@@ -77,7 +79,7 @@ export function Background() {
 	return (
 		<BackgroundWrapper>
 			{loading && <Loader></Loader>}
-			{room && <VideoBackground config={config} url={`${room.link}`} width="100%" height="100%" volume={volume / 100} muted={mute} loop={true} playsinline={true} playing={true} controls={false} onStart={onStart}  onPlay={onStart}/>}
+			{room && <VideoBackground config={config} url={`${room.link}`} width="100%" height="100%" volume={volume / 100} muted={mute} loop={true} playsinline={true} playing={true} controls={false} onStart={onStart} onProgress={onStart} onPlay={onStart} />}
 		</BackgroundWrapper>
 	)
 }

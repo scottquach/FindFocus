@@ -41,7 +41,7 @@ export function WidgetHeader({ widgetId, title, deleteWidget }: any) {
 			<HeaderActions>
 				<Tooltip title="Remove">
 					<IconButton size="small" onClick={onCloseClick} >
-						<RemoveIcon fontSize="inherit" style={{ fill: "var(--color-button)"}} />
+						<RemoveIcon fontSize="inherit" style={{ fill: "var(--color-primary)"}} />
 					</IconButton>
 				</Tooltip>
 			</HeaderActions>
