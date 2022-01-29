@@ -6,21 +6,19 @@ import { Button, IconButton, Menu, MenuItem, Slider, Stack, Tooltip } from '@mui
 import LinkIcon from '@mui/icons-material/Link';
 import { useRecoilState } from 'recoil';
 import { backgroundState, favoritesState, globalVolumeState } from '../../stores/store';
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import { useEffect, useState } from 'react';
-import { Categories, CategoryId } from '../../models/category.model';
+import { Categories, Category, CategoryId } from '../../models/category.model';
 import { Room } from '../../models/room.interface';
 import { getRoomById, Rooms } from '../../models/rooms.model';
 import useSyncLocalStorage from '../../hooks/useSyncLocalStorage';
 import { VolumeDown, VolumeUp, SkipNext } from '@mui/icons-material';
-import FavoriteIcon from '@mui/icons-material/Favorite';
-import ShuffleIcon from '@mui/icons-material/Shuffle';
 import { MenuHeader, MenuHeaderLayout } from '../../styles/MenuHeaders';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
 import { logEvent } from 'firebase/analytics';
 import { analytics } from '../../firebase';
 import { Favorites } from './Favorites';
+import { ActiveRoom } from './ActiveRoom';
 
 
 
@@ -43,9 +41,7 @@ const videoRooms: { [key: string]: string[] } = {
 
 export function BackgroundPicker({ close }: any) {
 	const [room, setRoom] = useRecoilState(backgroundState);
-	const [volume, setVolume] = useRecoilState(globalVolumeState);
 	const [favorites, setFavorites] = useRecoilState(favoritesState);
-	const [isFavorite, setIsFavorite] = useState(false);
 	useSyncLocalStorage('background', room);
 	useSyncLocalStorage('favorites', favorites);
 
@@ -54,7 +50,6 @@ export function BackgroundPicker({ close }: any) {
 	useEffect(() => {
 		if (room) {
 			setActiveCategory(room.category);
-			setIsFavorite(favorites.includes(room.id));
 		}
 	}, [room])
 
@@ -65,6 +60,7 @@ export function BackgroundPicker({ close }: any) {
 		setRoom((_) => newRoom);
 		logEvent(analytics, `category_join_${categoryId}`)
 	}
+
 	const joinRoomById = (roomId: string) => {
 		const newRoom = getRoomById(roomId);
 		if (newRoom) {
@@ -92,41 +88,6 @@ export function BackgroundPicker({ close }: any) {
 		}
 	}
 
-	const onFavoriteToggle = () => {
-		if (room) {
-			const newState = !isFavorite;
-			setIsFavorite(newState);
-			setFavorites((old) => {
-				const set = new Set(old);
-				if (newState) {
-					set.add(room.id);
-				} else {
-					set.delete(room.id);
-				}
-				return Array.from(set);
-			})
-
-			if (newState) {
-				logEvent(analytics, 'favorite_true');
-			} else {
-				logEvent(analytics, 'favorite_false');
-			}
-		}
-	}
-
-
-	const handleVolumeChange = (event: Event, newValue: number | number[]) => {
-		setVolume(newValue as number);
-	};
-
-	const handleQuickMute = () => {
-		setVolume(0);
-	}
-
-	const handleQuickMax = () => {
-		setVolume(75);
-	}
-
 	const onClose = () => {
 		close();
 	}
@@ -135,6 +96,7 @@ export function BackgroundPicker({ close }: any) {
 		<S.Wrapper>
 			<MenuHeaderLayout>
 				<MenuHeader>Rooms</MenuHeader>
+				<Favorites className="ml-auto" joinRoom={joinRoomById}></Favorites>
 				<IconButton onClick={onClose}>
 					<CloseIcon style={{ fill: "var(--color-on-background)" }}></CloseIcon>
 				</IconButton>
@@ -157,43 +119,10 @@ export function BackgroundPicker({ close }: any) {
 				<FontAwesomeIcon icon={faExternalLinkAlt} className="opacity-70 ml-1 text-on-background" size="xs"></FontAwesomeIcon>
 			</a>
 
-			{
-				activeCategory && room &&
-				<S.ActiveContainer>
-					<S.ActiveRoom>
-						<S.RoomIcon className="animate-spin">{Categories.find((cat) => cat.id === activeCategory)?.icon}</S.RoomIcon>
-						<div>
-							<S.ActiveRoomName>{room?.name}</S.ActiveRoomName>
-							<S.ActiveRoomOriginal href={room.link} target="_blank">View original</S.ActiveRoomOriginal>
-						</div>
-						<div className="ml-auto mr-1">
-							<IconButton onClick={onFavoriteToggle}>
-								{isFavorite ?
-									<FavoriteIcon style={{ fill: "#fb7185" }}></FavoriteIcon> :
-									<FavoriteBorderIcon style={{ fill: "#fb7185" }}></FavoriteBorderIcon>
-								}
-							</IconButton>
-							<Tooltip title="Next room">
-								<IconButton onClick={iterateRoom}>
-									<ShuffleIcon style={{ fill: "var(--color-on-surface)" }}></ShuffleIcon>
-								</IconButton>
-							</Tooltip>
-						</div>
-					</S.ActiveRoom>
 
-				</S.ActiveContainer>
-			}
-
-			<S.ActionsContainer>
-				<Stack spacing={2} direction="row" sx={{ mb: 1, mt: 1, width: 300 }} alignItems="center">
-					<VolumeDown className="cursor-pointer" sx={{ fill: "var(--color-button)"}} onClick={handleQuickMute}/>
-					<Slider aria-label="Volume" value={volume} onChange={handleVolumeChange} />
-					<VolumeUp className="cursor-pointer" sx={{ fill: "var(--color-button)"}} onClick={handleQuickMax}/>
-				</Stack>
-				<Favorites joinRoom={joinRoomById}></Favorites>
-
-			</S.ActionsContainer>
+			<ActiveRoom category={activeCategory as unknown as Category} room={room} iterateRoom={iterateRoom}></ActiveRoom>
 		</S.Wrapper>
 	);
 }
+
 

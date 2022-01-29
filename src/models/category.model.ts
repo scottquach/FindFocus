@@ -10,7 +10,13 @@ export enum CategoryId {
 	NewYears = 'newyears'
 }
 
-export const Categories = [
+export interface Category {
+	icon: string,
+	name: string,
+	id: CategoryId
+}
+
+export const Categories: Category[] = [
 	{
 		icon: '🎆',
 		name: 'New Years',
@@ -47,3 +53,7 @@ export const Categories = [
 		id: CategoryId.Animated
 	}
 ]
+
+export const getCategoryById = (id: CategoryId): Category | null => {
+	return Categories.find(cat => cat.id === id) ?? null;
+}

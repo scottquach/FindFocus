@@ -11,7 +11,7 @@ const getCategoryById = (id: CategoryId) => {
 	return Categories.find((category) => category.id === id);
 }
 
-export function Favorites({ joinRoom }: { joinRoom: (roomId: string) => boolean }) {
+export function Favorites({ joinRoom, className }: { joinRoom: (roomId: string) => boolean, className: string }) {
 	const [favorites] = useRecoilState(favoritesState);
 	const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 	const open = Boolean(anchorEl);
@@ -29,7 +29,7 @@ export function Favorites({ joinRoom }: { joinRoom: (roomId: string) => boolean 
 	}).filter(Boolean);
 
 	return (
-		<div>
+		<div className={className}>
 			<S.FavoriteButton onClick={handleClick}>
 				<div>💖</div>
 				<S.RoomName>Favorites</S.RoomName>
