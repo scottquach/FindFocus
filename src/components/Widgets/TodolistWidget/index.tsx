@@ -29,13 +29,19 @@ export default function TodolistWidget({ widgetId }: { widgetId: string }) {
 			} else if (changeObject.changeType == 'change') {
 				// Change the object in the list
 			}
+			console.log('New state', changeObject);
 			return Array.from(set);
 		});
 	};
 
+	const createTask = () => {
+		
+	};
+
 	return (
 		<WidgetFrame widgetId={widgetId}>
-			{ <TaskList todos={todos} onStoreChange={onStoreChange} /> }
+			<TaskList todos={todos} onStoreChange={onStoreChange} />
+			<button onClick={createTask}></button>
 		</WidgetFrame>
 	)
 }
