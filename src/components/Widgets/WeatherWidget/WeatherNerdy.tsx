@@ -44,7 +44,6 @@ export default function WeatherNerdy() {
 					iconLinkWeatherApp: `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`,
 				});
 			});
-            
 	}, [location])
 
 	return (

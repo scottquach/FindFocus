@@ -30,6 +30,7 @@ export const Widgets = styled.div`
     display: flex;
     gap: 0.5rem;
     margin-top: 1rem;
+    height: 4rem;
 `;
 
 export const Widget = styled(Button)`
@@ -39,8 +40,6 @@ export const Widget = styled(Button)`
     cursor: pointer;
     border-radius: 8px;
     padding: 0.5rem 0rem;
-    /* border: 1px solid white; */
-    border: 1px solid var(--color-border);
 	background-color: var(--color-background);
     color: var(--color-primary);
     transition: all 50ms;
@@ -53,5 +52,6 @@ export const Widget = styled(Button)`
 
     &:active {
         transform: scale(0.96);
+        border: 1px solid var(--color-border);
     }
 `;

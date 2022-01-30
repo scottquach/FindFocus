@@ -1,13 +1,18 @@
 export enum CategoryId {
-	Cafe = 'cafe',
-	Walk = 'walk',
-	Beach = 'beach',
-	City = 'city',
+	// Year round
 	Window = 'window',
-	Nature = 'nature',
-	Christmas = 'christmas',
 	Animated = 'animated',
-	NewYears = 'newyears'
+	City = 'city',
+	Beach = 'beach',
+	Nature = 'nature',
+	Cafe = 'cafe',
+	Pets = 'pets',
+	StudyWithMe = 'study_with_me',
+	WalkWithMe = 'walk_with_me',
+
+    // Timed
+	Holidays = 'holidays',
+	NewYears = 'new_years',
 }
 
 export interface Category {
@@ -18,29 +23,14 @@ export interface Category {
 
 export const Categories: Category[] = [
 	{
-		icon: '🎆',
-		name: 'New Years',
-		id: CategoryId.NewYears
+		icon: '📺',
+		name: 'Animated',
+		id: CategoryId.Animated
 	},
 	{
-		icon: '🎅',
-		name: 'Christmas',
-		id: CategoryId.Christmas
-	},
-	{
-		icon: '☕',
-		name: 'Cafe',
-		id: CategoryId.Cafe
-	},
-	{
-		icon: '🌲',
-		name: 'Nature',
-		id: CategoryId.Nature
-	},
-	{
-		icon: '🏖️',
-		name: 'Beach',
-		id: CategoryId.Beach
+		icon: '🪟',
+		name: 'Window',
+		id: CategoryId.Window,
 	},
 	{
 		icon: '🏙️',
@@ -48,10 +38,45 @@ export const Categories: Category[] = [
 		id: CategoryId.City
 	},
 	{
-		icon: '📺',
-		name: 'Animated',
-		id: CategoryId.Animated
-	}
+		icon: '🏖️',
+		name: 'Beach',
+		id: CategoryId.Beach
+	},
+	{
+		icon: '🌲',
+		name: 'Nature',
+		id: CategoryId.Nature
+	},
+	{
+		icon: '☕',
+		name: 'Cafe',
+		id: CategoryId.Cafe
+	},
+	{
+		icon: '🐶',
+		name: 'Pets',
+		id: CategoryId.Pets
+	},
+	{
+		icon: '🚶🏻‍♀️',
+		name: 'Walk with me',
+		id: CategoryId.WalkWithMe
+	},
+	{
+		icon: '📚',
+		name: 'Study with me',
+		id: CategoryId.StudyWithMe
+	},
+	// {
+	// 	icon: '🎅',
+	// 	name: 'Holidays',
+	// 	id: CategoryId.Holidays
+	// },
+	// {
+	// 	icon: '🎆',
+	// 	name: 'New Years',
+	// 	id: CategoryId.NewYears
+	// },
 ]
 
 export const getCategoryById = (id: CategoryId): Category | null => {
