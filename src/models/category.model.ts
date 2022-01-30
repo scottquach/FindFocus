@@ -24,7 +24,7 @@ export interface Category {
 export const Categories: Category[] = [
 	{
 		icon: '📺',
-		name: 'Animated',
+		name: 'Animated Lo-fi',
 		id: CategoryId.Animated
 	},
 	{
