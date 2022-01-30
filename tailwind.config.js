@@ -6,6 +6,7 @@ module.exports = {
         colors: {
             'on-background': 'var(--color-on-background)',
             'primary': 'var(--color-primary)',
+            'background': 'var(--color-background)',
             'interactive': 'var(--color-interactive)'
         },
         // fontSize: {

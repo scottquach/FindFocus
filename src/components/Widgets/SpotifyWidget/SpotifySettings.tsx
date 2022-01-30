@@ -42,7 +42,7 @@ export default function SpotifySettings({ updateLink, currentLink }: { updateLin
 	return (
 		<div>
 			<IconButton size="small" onClick={handleClick}>
-				<SettingsIcon sx={{ fill: "var(--color-button)"}}></SettingsIcon>
+				<SettingsIcon sx={{ fill: "var(--color-primary)"}}></SettingsIcon>
 			</IconButton>
 			<Popper open={open} anchorEl={anchorEl}>
 				<SettingsContainer>

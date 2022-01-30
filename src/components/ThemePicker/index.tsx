@@ -3,11 +3,14 @@ import { Button, IconButton, Popover, ToggleButton, ToggleButtonGroup, Tooltip }
 import { useTheme } from '@mui/system';
 import { useEffect, useState } from 'react';
 import { Input, InputSmall } from '../../styles/Input';
-import LightModeIcon from '@mui/icons-material/LightMode';
-import DarkModeIcon from '@mui/icons-material/DarkMode';
+import RestartAltIcon from '@mui/icons-material/RestartAlt';
 
 import * as S from './styles';
 import usePopover from '../../hooks/usePopover';
+import { createDefaultThemePalette, createThemePalette, isHexLight } from '../../models/theme.model';
+import useLocalStorage from '../../hooks/useLocalStorage';
+import { Button as ButtonCustom } from '../../styles/Button';
+import useApplyThemePalette from '../../hooks/useApplyThemePalette';
 
 interface Theme {
 	mode: 'light' | 'dark';
@@ -129,29 +132,7 @@ const backgroundColors: Palette[] = [
 		color: '#F4E1E3'
 	},
 ]
-const hexToRgb = (hex: any) => {
-	// Expand shorthand form (e.g. "03F") to full form (e.g. "0033FF")
-	var shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
-	hex = hex.replace(shorthandRegex, function (m: any, r: any, g: any, b: any) {
-		return r + r + g + g + b + b;
-	});
 
-	var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-	return result ? {
-		r: parseInt(result[1], 16),
-		g: parseInt(result[2], 16),
-		b: parseInt(result[3], 16)
-	} : null;
-}
-
-const isLightMode = (hex: any) => {
-	const rgb = hexToRgb(hex);
-	if (!rgb) return false;
-	const { r, g, b } = rgb;
-
-	// console.log(r * 0.299 + g * 0.587 + b * 0.114)
-	return (r * 0.299 + g * 0.587 + b * 0.114) > 210
-}
 
 export function ThemePicker({ close }: any) {
 	const theme = useTheme();
@@ -159,14 +140,17 @@ export function ThemePicker({ close }: any) {
 	const [neutralText, setNeutralText] = useState('#212121');
 	const [primary, setPrimary] = useState(getComputedStyle(document.documentElement).getPropertyValue('--color-on-background'));
 	const [background, setBackground] = useState(getComputedStyle(document.documentElement).getPropertyValue('--color-background'));
+	const [themePalette, setThemePalette] = useLocalStorage('themePalette', createDefaultThemePalette())
+	const [setGlobalPalette] = useApplyThemePalette();
 
 	const onClose = () => {
 		close();
 	}
 
 	useEffect(() => {
-		console.log('background');
-		const value = isLightMode(background);
+		// console.log('background', background);
+		const value = isHexLight(background);
+		// console.log(value);
 		if (value) {
 			setNeutralColor('#616161');
 			setNeutralText('#fafafa')
@@ -176,6 +160,11 @@ export function ThemePicker({ close }: any) {
 		}
 
 	}, [background])
+
+	useEffect(() => {
+		const palette = createThemePalette(primary, background)
+		setThemePalette(palette)
+	}, [primary, background])
 
 
 	// const setTheme = (setTheme: Theme) => {
@@ -196,47 +185,51 @@ export function ThemePicker({ close }: any) {
 	const handleSetPrimary = (color: string) => {
 		document.documentElement.style.setProperty('--color-on-background', color);
 		document.documentElement.style.setProperty('--color-button', color);
+		document.documentElement.style.setProperty('--color-primary', color);
 		setPrimary(color);
 
 		theme.palette.primary.main = color;
+		if (isHexLight(color)) {
+			document.documentElement.style.setProperty('--color-on-primary', '#212121');
+		} else {
+			document.documentElement.style.setProperty('--color-on-primary', '#f5f5f5');
+		}
 	}
 
 	const handleSetBackground = (color: string) => {
 		document.documentElement.style.setProperty('--color-background', color);
 		setBackground(color)
+		if (isHexLight(color)) {
+			theme.palette.mode = 'light';
+			document.documentElement.style.setProperty('--color-border', '#212121');
+			document.documentElement.style.setProperty('--color-surface', '#212121');
+			document.documentElement.style.setProperty('--color-on-surface', '#f5f5f5');
+		} else {
+			document.documentElement.style.setProperty('--color-border', '#f5f5f5');
+			document.documentElement.style.setProperty('--color-surface', '#f5f5f5');
+			document.documentElement.style.setProperty('--color-on-surface', '#212121');
+			theme.palette.mode = 'dark';
+		}
 	}
 
-	const handleColorChange = (color: string) => {
-
-	}
-
-	const handleModeChange = (event: any) => {
-		theme.palette.mode = event.target.value;
+	const handleReset = () => {
+		const theme = createDefaultThemePalette();
+		setGlobalPalette(theme);
+		setPrimary(theme.primary);
+		setBackground(theme.background);
+		// handleSetPrimary(theme.primary);
+		// handleSetBackground(theme.background);
 	}
 
 	return (
 		<S.Wrapper>
 			<S.MenuHeader>
-				<S.MenuTitle>Themes</S.MenuTitle>
+				<S.MenuTitle>Theme</S.MenuTitle>
 				<IconButton onClick={onClose}>
 					<CloseIcon style={{ fill: "var(--color-on-background)" }}></CloseIcon>
 				</IconButton>
 			</S.MenuHeader>
-
-			{/* <S.NeutralHeaders className="" color={neutralColor}>Color mode</S.NeutralHeaders>
-			<div>Helps determine how automated color should be generated</div>
-			<ToggleButtonGroup value={mode} onChange={handleModeChange}>
-				<ToggleButton value="light">
-					<LightModeIcon></LightModeIcon>
-					<span className="ml-2">Light</span>
-				</ToggleButton>
-				<ToggleButton value="dark">
-					<DarkModeIcon></DarkModeIcon>
-					<span className="ml-2">Dark</span>
-				</ToggleButton>
-			</ToggleButtonGroup> */}
-
-			<S.NeutralHeaders className="" color={neutralColor}>Primary</S.NeutralHeaders>
+			<S.NeutralHeaders className="" color={neutralColor}>Selected primary color</S.NeutralHeaders>
 			<S.NeutralBackground color={neutralColor}>
 				<S.Themes>
 					{primaryColors.map((color) => <S.ColorPalette key={color} mainColor={color} onClick={() => handleSetPrimary(color)}></S.ColorPalette>)}
@@ -244,13 +237,21 @@ export function ThemePicker({ close }: any) {
 				<ColorSelection originalColor={primary} onChange={handleSetPrimary}></ColorSelection>
 			</S.NeutralBackground>
 
-			<S.NeutralHeaders className="" color={neutralColor}>Background</S.NeutralHeaders>
+			<S.NeutralHeaders className="" color={neutralColor}>Selected background color</S.NeutralHeaders>
 			<S.NeutralBackground color={neutralColor}>
 				<S.Themes>
 					{backgroundColors.map((palette) => <S.ColorPalette key={palette.color} mainColor={palette.color} onClick={() => handleSetBackground(palette.color)}></S.ColorPalette>)}
 				</S.Themes>
 				<ColorSelection originalColor={background} onChange={handleSetBackground}></ColorSelection>
 			</S.NeutralBackground>
+
+
+			<div className="flex justify-start">
+				<ButtonCustom className="flex items-center gap-1 rounded py-1 px-3 cursor-pointer" onClick={handleReset}>
+					<RestartAltIcon></RestartAltIcon>
+					<span>Reset to default</span>
+				</ButtonCustom>
+			</div>
 		</S.Wrapper>
 	)
 }
@@ -284,7 +285,7 @@ function ColorSelection({ originalColor, onChange }: { originalColor: string, on
 
 
 	return (
-		<div className="flex gap-2 items-center w-fit ">
+		<div className="flex gap-2 items-center w-fit">
 			<S.ColorChip color={color} onClick={handlePopoverOpen}></S.ColorChip>
 			<InputSmall className="w-24" readOnly={true} value={color} onChange={handleRawChange} onClick={handlePopoverOpen}></InputSmall>
 			<Popover
@@ -305,7 +306,7 @@ function ColorSelection({ originalColor, onChange }: { originalColor: string, on
 					disableAlpha={true}
 				/>
 				<div className="flex justify-center mt-2 mb-1">
-					<Button onClick={handleOnSave}>Save</Button>
+					<Button onClick={handleOnSave} style={{ 'color': '#212121' }}>Save</Button>
 				</div>
 			</Popover>
 		</div>

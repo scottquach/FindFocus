@@ -1,4 +1,4 @@
-import { CategoryId } from './category.enum';
+import { CategoryId } from './category.model';
 
 
 export const Rooms = {

@@ -9,7 +9,7 @@ import { Loader } from "./Loader";
 
 
 const BackgroundWrapper = styled.div`
-	position: fixed;
+	position: absolute;
 	height: 100vh;
 	width: 100vw;
 	z-index: -1;
@@ -31,8 +31,8 @@ const ColorBackground = styled.div`
 
 const VideoBackground = styled(ReactPlayer)`
 	border: none;
-	width: 100vw;
-	height: 100vh;
+	/* width: 100vw;
+	height: 100vh; */
 	transform: scale(1.15);
 	z-index: 0;
 `
@@ -62,10 +62,15 @@ export function Background() {
 
 	useEffect(() => {
 		setLoading(true);
+		// setTimeout(() => {
+		// 	setLoading(false);
+		// }, 3000)
 	}, [0, room]);
 
 	const onStart = () => {
-		setLoading(false);
+		if (loading) {
+			setLoading(false);
+		}
 	}
 
 	// console.log('default', room)
@@ -74,7 +79,7 @@ export function Background() {
 	return (
 		<BackgroundWrapper>
 			{loading && <Loader></Loader>}
-			{room && <VideoBackground config={config} url={`${room.link}`} width="100%" height="100%" volume={volume / 100} muted={mute} loop={true} playsinline={true} playing={true} controls={false} onStart={onStart} />}
+			{room && <VideoBackground config={config} url={`${room.link}`} width="100%" height="100%" volume={volume / 100} muted={mute} loop={true} playsinline={true} playing={true} controls={false} onStart={onStart} onProgress={onStart} onPlay={onStart} />}
 		</BackgroundWrapper>
 	)
 }

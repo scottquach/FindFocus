@@ -125,15 +125,13 @@ function VolumeSlider() {
 		setVolume(newValue as number);
 	}
 
-	const toggleVolume = () => {
-		if (volume != 50) {
-			console.log('hi')
-			setVolume(50);
-		} else {
-			setVolume(0);
-			console.log('by');
-		}
-	}
+	// const handleQuickMute = () => {
+	// 	setVolume(0);
+	// }
+
+	// const handleQuickMax = () => {
+	// 	setVolume(75);
+	// }
 
 	return (
 		<ClickAwayListener onClickAway={() => setToggle(false)}>

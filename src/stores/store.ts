@@ -1,6 +1,6 @@
 import { atom, selector, selectorFamily } from 'recoil';
 import { BackgroundType } from '../models/background-types.enum';
-import { CategoryId } from '../models/category.enum';
+import { CategoryId } from '../models/category.model';
 import { Layout } from '../models/layout.interface';
 import { Room } from '../models/room.interface';
 import { Widget } from '../models/widget.interface';

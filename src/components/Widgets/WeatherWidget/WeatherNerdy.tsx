@@ -41,7 +41,7 @@ export default function WeatherNerdy() {
 					...data.wind,
 					main: data.weather[0].main,
 					temp: `${Math.round(data.main.temp)}`,
-					iconLinkWeatherApp: `http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`,
+					iconLinkWeatherApp: `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`,
 				});
 			});
             
