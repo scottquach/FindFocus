@@ -27,7 +27,7 @@ export const RoomWrapper = styled.div<{ active: boolean }>`
 	justify-content: center;
 	align-items: center;
 	padding: ${({ active }) => active ? '.25rem' : '.5rem'};
-	width: 7rem;
+	width: 9rem;
 	height: 8rem;
 	transition: all 75ms;
 
@@ -69,7 +69,7 @@ export const RoomIcon = styled.div`
 	width: 44px;
 	height: 44px;
 	padding: .75rem;
-	margin: 1rem;
+	margin: 1rem 1rem .5rem 1rem;
 `;
 
 export const RoomName = styled.div`

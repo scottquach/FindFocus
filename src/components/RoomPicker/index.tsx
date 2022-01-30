@@ -115,14 +115,14 @@ export function BackgroundPicker({ close }: any) {
 
 				<S.RoomList>
 					{Categories.map((category, index) => (
-						// <Tooltip key={index} title="Click to reshuffle">
+						<Tooltip key={index} title="Click to reshuffle">
 						<S.RoomWrapper key={index} active={isCategoryActive(category.id)}>
 							<S.Room onClick={() => joinRoom(category.id)} active={isCategoryActive(category.id)}>
 								<S.RoomIcon>{category.icon}</S.RoomIcon>
 								<S.RoomName>{category.name}</S.RoomName>
 							</S.Room>
 						</S.RoomWrapper>
-						// </Tooltip>
+						</Tooltip>
 					))}
 				</S.RoomList>
 			</div>
