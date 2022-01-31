@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useSetRecoilState } from 'recoil';
 import { Rooms } from '../models/rooms.model';
 import { createDefaultThemePalette } from '../models/theme.model';
-import { activeWidgetsState, backgroundState, favoritesState, layoutState, themeState } from '../stores/store';
+import { activeWidgetsState, backgroundState, favoritesState, layoutState, themePaletteState } from '../stores/store';
 import useApplyThemePalette from './useApplyThemePalette';
 import useLocalStorage from './useLocalStorage';
 

@@ -1,3 +1,5 @@
+import { createTheme } from '@mui/material';
+
 export interface ThemePalette {
     primary: string;
     background: string;
@@ -11,7 +13,35 @@ export function createThemePalette(primary: string, background: string) {
 }
 
 export function createDefaultThemePalette(): { primary: string; background: string } {
-	return createThemePalette('#212121', '#fafafa')
+    return createThemePalette('#212121', '#fafafa');
+}
+
+export function themePaletteToMuiTheme(palette: ThemePalette) {
+    if (isHexLight(palette.background)) {
+        return createTheme({
+            palette: {
+                mode: 'light',
+                primary: {
+                    main: palette.primary.trim(),
+                },
+                secondary: {
+                    main: palette.background.trim()
+                }
+            },
+        });
+    } else {
+        return createTheme({
+            palette: {
+                mode: 'dark',
+                primary: {
+                    main: palette.primary.trim(),
+                },
+                secondary: {
+                    main: palette.background.trim()
+                }
+            },
+        });
+    }
 }
 
 function hexToRgb(hex: any) {

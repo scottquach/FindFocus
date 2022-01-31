@@ -139,10 +139,10 @@ function VolumeSlider() {
 				<VolumeMenu active={toggle}>
 					<IconButton onClick={() => setToggle(!toggle)} size="small">
 						{/* <IconButton onClick={() => toggleVolume()}> */}
-						{volume >= 60 && <VolumeUpIcon style={{ fill: "var(--color-on-background)" }}></VolumeUpIcon>}
-						{volume > 25 && volume < 60 && <VolumeDownIcon style={{ fill: "var(--color-on-background)" }}></VolumeDownIcon>}
-						{volume > 0 && volume <= 25 && <VolumeMuteIcon style={{ fill: "var(--color-on-background)" }}></VolumeMuteIcon>}
-						{volume == 0 && <VolumeOffIcon style={{ fill: "var(--color-on-background)" }}></VolumeOffIcon>}
+						{volume >= 60 && <VolumeUpIcon color="primary"></VolumeUpIcon>}
+						{volume > 25 && volume < 60 && <VolumeDownIcon color="primary"></VolumeDownIcon>}
+						{volume > 0 && volume <= 25 && <VolumeMuteIcon color="primary"></VolumeMuteIcon>}
+						{volume == 0 && <VolumeOffIcon color="primary"></VolumeOffIcon>}
 					</IconButton>
 					{toggle && <Slider orientation="vertical" value={volume} onChange={handleVolumeChange}></Slider>}
 				</VolumeMenu>
