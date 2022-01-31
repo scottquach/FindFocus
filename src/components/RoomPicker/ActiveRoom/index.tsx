@@ -11,6 +11,7 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShuffleIcon from '@mui/icons-material/Shuffle';
 import VolumeOffIcon from '@mui/icons-material/VolumeOff';
 import * as S from './styles';
+import toast from 'react-hot-toast';
 
 export function ActiveRoom({ category, room, iterateRoom }: { category: any, room: any, iterateRoom: () => void }) {
 	const [favorites, setFavorites] = useRecoilState(favoritesState);
@@ -38,6 +39,7 @@ export function ActiveRoom({ category, room, iterateRoom }: { category: any, roo
 			})
 
 			if (newState) {
+				toast.success(`Favorite "${room.name}"`)
 				logEvent(analytics, 'favorite_true');
 			} else {
 				logEvent(analytics, 'favorite_false');

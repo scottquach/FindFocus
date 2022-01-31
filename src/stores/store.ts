@@ -40,13 +40,14 @@ export const widgetById = selectorFamily({
 
 export const backgroundState = atom({
     key: 'backgroundState',
-    default: {
-        id: 'LG9D9UtaDYw',
-        name: 'Study with Koya',
-        creator: 'BT21',
-        link: 'https://www.youtube.com/watch?v=LG9D9UtaDYw&ab_channel=BT21',
-        category: CategoryId.Animated,
-    } as Room | null,
+    default: null as Room | null
+    // default: {
+    //     id: 'LG9D9UtaDYw',
+    //     name: 'Study with Koya',
+    //     creator: 'BT21',
+    //     link: 'https://www.youtube.com/watch?v=LG9D9UtaDYw&ab_channel=BT21',
+    //     category: CategoryId.Animated,
+    // } as Room | null,
 });
 
 export const favoritesState = atom({

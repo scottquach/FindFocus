@@ -53,7 +53,7 @@ export const NeutralBackground = styled.div`
 	/* background-color: ${props => props.color}; */
 	/* padding: 1rem; */
 	border-radius: 8px;
-	margin-bottom: 1.5rem;
+	/* margin-bottom: 1.5rem; */
 	/* opacity: .9; */
 `
 
