@@ -1,10 +1,11 @@
-import { useTheme } from '@mui/material';
+import { useSetRecoilState } from 'recoil';
 import { isHexLight, ThemePalette } from '../models/theme.model';
+import { themeState } from '../stores/store';
 
 export default function useApplyThemePalette() {
-    const theme = useTheme();
-
-    const setTheme = ({ primary, background}: ThemePalette) => {
+    const setGlobalTheme = useSetRecoilState(themeState);
+    const setTheme = (palette: ThemePalette) => {
+        const { primary, background } = palette;
         document.documentElement.style.setProperty('--color-on-background', primary);
         document.documentElement.style.setProperty('--color-primary', primary);
         document.documentElement.style.setProperty('--color-background', background);
@@ -16,7 +17,6 @@ export default function useApplyThemePalette() {
         }
 
         if (isHexLight(background)) {
-            theme.palette.mode = 'light';
             document.documentElement.style.setProperty('--color-border', '#212121');
             document.documentElement.style.setProperty('--color-surface', '#212121');
             document.documentElement.style.setProperty('--color-on-surface', '#f5f5f5');
@@ -24,8 +24,8 @@ export default function useApplyThemePalette() {
             document.documentElement.style.setProperty('--color-border', '#f5f5f5');
             document.documentElement.style.setProperty('--color-surface', '#f5f5f5');
             document.documentElement.style.setProperty('--color-on-surface', '#212121');
-            theme.palette.mode = 'dark';
         }
+        setGlobalTheme(palette);
     };
 
     return [setTheme];

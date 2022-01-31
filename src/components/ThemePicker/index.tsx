@@ -1,6 +1,6 @@
 import CloseIcon from '@mui/icons-material/Close';
 import { Button, Divider, IconButton, Popover, ToggleButton, ToggleButtonGroup, Tooltip } from '@mui/material';
-import { useTheme } from '@mui/system';
+import { createTheme, useTheme } from '@mui/system';
 import { useEffect, useState } from 'react';
 import { Input, InputSmall } from '../../styles/Input';
 import RestartAltIcon from '@mui/icons-material/RestartAlt';
@@ -102,22 +102,20 @@ const backgroundColors: Palette[] = [
 
 
 export function ThemePicker({ close }: any) {
-	const theme = useTheme();
 	const [neutralColor, setNeutralColor] = useState('#212121');
 	const [neutralText, setNeutralText] = useState('#212121');
 	const [primary, setPrimary] = useState(getComputedStyle(document.documentElement).getPropertyValue('--color-on-background'));
 	const [background, setBackground] = useState(getComputedStyle(document.documentElement).getPropertyValue('--color-background'));
-	const [themePalette, setThemePalette] = useLocalStorage('themePalette', createDefaultThemePalette())
-	const [setGlobalPalette] = useApplyThemePalette();
+	const [themePalette, saveThemePalette] = useLocalStorage('themePalette', createDefaultThemePalette())
+
+	const [setTheme] = useApplyThemePalette();
 
 	const onClose = () => {
 		close();
 	}
 
 	useEffect(() => {
-		// console.log('background', background);
 		const value = isHexLight(background);
-		// console.log(value);
 		if (value) {
 			setNeutralColor('#212121');
 			setNeutralText('#fafafa')
@@ -129,43 +127,22 @@ export function ThemePicker({ close }: any) {
 	}, [background])
 
 	useEffect(() => {
+		console.log("SUBSCRIPTION FOR THEME CHANGE")
 		const palette = createThemePalette(primary, background)
-		setThemePalette(palette)
+		saveThemePalette(palette);
+		setTheme(palette);
 	}, [primary, background])
 
 	const handleSetPrimary = (color: string) => {
-		document.documentElement.style.setProperty('--color-on-background', color);
-		document.documentElement.style.setProperty('--color-button', color);
-		document.documentElement.style.setProperty('--color-primary', color);
 		setPrimary(color);
-
-		theme.palette.primary.main = color;
-		if (isHexLight(color)) {
-			document.documentElement.style.setProperty('--color-on-primary', '#212121');
-		} else {
-			document.documentElement.style.setProperty('--color-on-primary', '#f5f5f5');
-		}
 	}
 
 	const handleSetBackground = (color: string) => {
-		document.documentElement.style.setProperty('--color-background', color);
 		setBackground(color)
-		if (isHexLight(color)) {
-			theme.palette.mode = 'light';
-			document.documentElement.style.setProperty('--color-border', '#212121');
-			document.documentElement.style.setProperty('--color-surface', '#212121');
-			document.documentElement.style.setProperty('--color-on-surface', '#f5f5f5');
-		} else {
-			document.documentElement.style.setProperty('--color-border', '#f5f5f5');
-			document.documentElement.style.setProperty('--color-surface', '#f5f5f5');
-			document.documentElement.style.setProperty('--color-on-surface', '#212121');
-			theme.palette.mode = 'dark';
-		}
 	}
 
 	const handleReset = () => {
 		const theme = createDefaultThemePalette();
-		setGlobalPalette(theme);
 		setPrimary(theme.primary);
 		setBackground(theme.background);
 	}
