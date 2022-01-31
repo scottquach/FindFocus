@@ -65,7 +65,7 @@ export function ActiveRoom({ category, room, iterateRoom }: { category: any, roo
 				</Tooltip>
 				<Tooltip title="Next room">
 					<IconButton onClick={iterateRoom}>
-						<ShuffleIcon style={{ fill: "var(--color-primary)" }}></ShuffleIcon>
+						<ShuffleIcon color="primary"></ShuffleIcon>
 					</IconButton>
 				</Tooltip>
 			</S.RoomMetaContainer>
@@ -94,9 +94,9 @@ function VolumeRocker({ className }: any) {
 
 	return (
 		<Stack className={className} spacing={2} direction="row" sx={{ mb: 1, mt: 1, width: 200 }} alignItems="center">
-			<VolumeOffIcon className="cursor-pointer" sx={{ fill: "var(--color-primary)" }} onClick={handleQuickMute} />
+			<VolumeOffIcon className="cursor-pointer" color="primary" onClick={handleQuickMute} />
 			<Slider aria-label="Volume" size="small" value={volume} onChange={handleVolumeChange} />
-			<VolumeUp className="cursor-pointer" sx={{ fill: "var(--color-primary)" }} onClick={handleQuickMax} />
+			<VolumeUp className="cursor-pointer" color="primary" onClick={handleQuickMax} />
 		</Stack>
 	)
 

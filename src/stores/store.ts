@@ -48,8 +48,8 @@ export const favoritesState = atom({
     default: [] as string[],
 });
 
-export const themeState = atom({
-    key: 'themeState',
+export const themePaletteState = atom({
+    key: 'themePaletteState',
     default: createDefaultThemePalette() as ThemePalette
 })
 

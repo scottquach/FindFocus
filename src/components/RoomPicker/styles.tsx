@@ -42,7 +42,7 @@ export const Category = styled.div<{ active: boolean }>`
 	align-items: center;
 	height: 100%;
 	width: 100%;
-	border: ${({ active }) => active ? '1px solid var(--color-border)' : ''};
+	border: ${({ active }) => active ? '1px solid var(--color-primary-light)' : ''};
 	box-shadow: ${({ active }) => active ? 'rgba(41, 41, 41, 0.2) 0px 2px 8px 0px' : ''};
 	border-radius: 8px;
 	padding: .5rem;

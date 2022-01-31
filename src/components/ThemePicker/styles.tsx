@@ -46,7 +46,7 @@ export const NeutralHeaders = styled.div`
 	margin-bottom: .5rem;
 	font-weight: 500;
 	font-size: 18px;
-	color: ${(props) => props.color}
+	color: var(--color-on-background)
 `
 
 export const NeutralBackground = styled.div`
@@ -65,7 +65,7 @@ export const ColorPalette = styled.div<{
 	width: 30px;
 	border-radius: 50%;
 	background-color: ${(props) => props.mainColor};
-	border: 1px solid var(--color-border);
+	border: 1px solid var(--color-on-background);
 	cursor: pointer;
 
     &:active {

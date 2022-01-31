@@ -17,37 +17,20 @@ import { Toaster } from 'react-hot-toast';
 
 import { createTheme } from '@mui/material/styles';
 import { useRecoilState } from 'recoil';
-import { themeState } from './stores/store';
+import { themePaletteState } from './stores/store';
 import { useEffect, useState } from 'react';
-import { isHexLight } from './models/theme.model';
+import { isHexLight, themePaletteToMuiTheme } from './models/theme.model';
 function App() {
   useLoadApp();
 
   const [muiTheme, setMuiTheme] = useState<any>(themeOptions);
-  const [theme] = useRecoilState(themeState);
+  const [themePalette] = useRecoilState(themePaletteState);
 
   useEffect(() => {
-    console.log("THEME", theme);
-    if (isHexLight(theme.background)) {
-      setMuiTheme(createTheme({
-        palette: {
-          mode: 'light',
-          primary: {
-            main: theme.primary.trim()
-          }
-        }
-      }))
-    } else {
-      setMuiTheme(createTheme({
-        palette: {
-          mode: 'dark',
-          primary: {
-            main: theme.primary.trim()
-          }
-        }
-      }))
-    }
-  }, [theme]);
+    console.log("THEME", themePalette);
+    let newMuiTheme = themePaletteToMuiTheme(themePalette);
+    setMuiTheme(newMuiTheme);
+  }, [themePalette]);
 
   console.log('APP REBUILT');
 

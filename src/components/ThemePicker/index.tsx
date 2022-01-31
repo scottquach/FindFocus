@@ -102,8 +102,7 @@ const backgroundColors: Palette[] = [
 
 
 export function ThemePicker({ close }: any) {
-	const [neutralColor, setNeutralColor] = useState('#212121');
-	const [neutralText, setNeutralText] = useState('#212121');
+	// const [neutralColor, setNeutralColor] = useState('#212121');
 	const [primary, setPrimary] = useState(getComputedStyle(document.documentElement).getPropertyValue('--color-on-background'));
 	const [background, setBackground] = useState(getComputedStyle(document.documentElement).getPropertyValue('--color-background'));
 	const [themePalette, saveThemePalette] = useLocalStorage('themePalette', createDefaultThemePalette())
@@ -114,17 +113,15 @@ export function ThemePicker({ close }: any) {
 		close();
 	}
 
-	useEffect(() => {
-		const value = isHexLight(background);
-		if (value) {
-			setNeutralColor('#212121');
-			setNeutralText('#fafafa')
-		} else {
-			setNeutralColor('#f5f5f5');
-			setNeutralText('#212121')
-		}
+	// useEffect(() => {
+	// 	const value = isHexLight(background);
+	// 	if (value) {
+	// 		setNeutralColor('#212121');
+	// 	} else {
+	// 		setNeutralColor('#f5f5f5');
+	// 	}
 
-	}, [background])
+	// }, [background])
 
 	useEffect(() => {
 		console.log("SUBSCRIPTION FOR THEME CHANGE")
@@ -155,8 +152,8 @@ export function ThemePicker({ close }: any) {
 					<CloseIcon style={{ fill: "var(--color-on-background)" }}></CloseIcon>
 				</IconButton>
 			</S.MenuHeader>
-			<S.NeutralHeaders className="" color={neutralColor}>Selected primary color</S.NeutralHeaders>
-			<S.NeutralBackground color={neutralColor}>
+			<S.NeutralHeaders className="">Selected primary color</S.NeutralHeaders>
+			<S.NeutralBackground>
 				<S.Themes>
 					{primaryColors.map((color) => <S.ColorPalette key={color} mainColor={color} onClick={() => handleSetPrimary(color)}></S.ColorPalette>)}
 				</S.Themes>
@@ -167,8 +164,8 @@ export function ThemePicker({ close }: any) {
 				<Divider ></Divider>
 			</div>
 
-			<S.NeutralHeaders className="" color={neutralColor}>Selected background color</S.NeutralHeaders>
-			<S.NeutralBackground color={neutralColor}>
+			<S.NeutralHeaders className="">Selected background color</S.NeutralHeaders>
+			<S.NeutralBackground>
 				<S.Themes>
 					{backgroundColors.map((palette) => <S.ColorPalette key={palette.color} mainColor={palette.color} onClick={() => handleSetBackground(palette.color)}></S.ColorPalette>)}
 				</S.Themes>
@@ -179,7 +176,7 @@ export function ThemePicker({ close }: any) {
 				<Divider ></Divider>
 			</div>
 
-			<S.NeutralHeaders color={neutralColor}>Curated themes</S.NeutralHeaders>
+			<S.NeutralHeaders>Curated themes</S.NeutralHeaders>
 
 			<ThemePresets setPrimary={handleSetPrimary} setBackground={handleSetBackground}></ThemePresets>
 
