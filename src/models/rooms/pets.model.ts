@@ -23,10 +23,10 @@ export const PetsRooms = [
         category: CategoryId.Pets,
     },
     {
-        id: '1GX7qQPB9P8',
-        name: 'Catoro Cafe',
-        creator: 'CatoroCafe',
-        link: 'https://www.youtube.com/watch?v=1GX7qQPB9P8&ab_channel=CatoroCafe',
+        id: 'Z_JU4NE90gI',
+        name: 'Cat sleeping and raining sounds',
+        creator: '360Relaxingchannel',
+        link: 'https://www.youtube.com/watch?v=Z_JU4NE90gI&ab_channel=360Relaxingchannel',
         category: CategoryId.Pets,
     },
 ];

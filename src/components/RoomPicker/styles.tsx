@@ -14,7 +14,7 @@ export const Wrapper = styled(MenuWrapper)`
 	box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 `
 
-export const RoomList = styled.div`
+export const CategoryList = styled.div`
 	display: flex;
 	justify-content: flex-start;
 	flex-wrap: wrap;
@@ -22,7 +22,7 @@ export const RoomList = styled.div`
 	/* gap: .25rem; */
 `
 
-export const RoomWrapper = styled.div<{ active: boolean }>`
+export const CategoryWrapper = styled.div<{ active: boolean }>`
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -36,7 +36,7 @@ export const RoomWrapper = styled.div<{ active: boolean }>`
 	}
 `
 
-export const Room = styled.div<{ active: boolean }>`
+export const Category = styled.div<{ active: boolean }>`
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -59,7 +59,7 @@ export const Room = styled.div<{ active: boolean }>`
 	}
 `;
 
-export const RoomIcon = styled.div`
+export const CategoryIcon = styled.div`
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -71,7 +71,7 @@ export const RoomIcon = styled.div`
 	margin: 1rem 1rem .5rem 1rem;
 `;
 
-export const RoomName = styled.div`
+export const CategoryName = styled.div`
 	font-weight: 500;
 	color: var(--color-on-background);
 `;
