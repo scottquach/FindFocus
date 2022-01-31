@@ -30,7 +30,7 @@ const MenuLayout = styled.div`
 	border-top-right-radius: var(--widget-border-radius);
 	border-top-left-radius: var(--widget-border-radius);
 	background-color: var(--color-background);
-	color: var(--color-on-background);
+	color: var(--color-primary);
 	box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 `
 
@@ -48,8 +48,8 @@ const Item = styled.div`
 	display: flex;
 	flex-direction: row;
 	align-items: center;
-	color: var(--color-on-background);
-	fill: var(--color-on-background);
+	color: var(--color-primary);
+	fill: var(--color-primary);
 
 	div {
 		font-size: 14px;
@@ -108,7 +108,7 @@ export function MenuBar() {
 				<MenuItems>
 					<Item onClick={(e) => onMenuSelected(e, MenuId.WidgetPicker)}>
 						<IconButton size="small">
-							<WidgetsIcon style={{ fill: "var(--color-on-background)" }}></WidgetsIcon>
+							<WidgetsIcon color="primary"></WidgetsIcon>
 						</IconButton>
 						<Badge color="primary" variant="dot" invisible={showWidgetOnboard}>
 							<ItemTitle>Widgets</ItemTitle>
@@ -117,14 +117,14 @@ export function MenuBar() {
 					<Badge color="primary" badgeContent={<span>Try</span>} invisible={showRoomOnboard}>
 						<Item onClick={(e) => onMenuSelected(e, MenuId.BackgroundPicker)}>
 							<IconButton size="small">
-								<MeetingRoomIcon style={{ fill: "var(--color-on-background)" }}></MeetingRoomIcon>
+								<MeetingRoomIcon color="primary"></MeetingRoomIcon>
 							</IconButton>
 							<ItemTitle>Rooms</ItemTitle>
 						</Item>
 					</Badge>
 					<Item onClick={(e) => onMenuSelected(e, MenuId.ThemePicker)} >
 						<IconButton size="small">
-							<ColorLensTwoToneIcon style={{ fill: "var(--color-on-background)" }}></ColorLensTwoToneIcon>
+							<ColorLensTwoToneIcon color="primary"></ColorLensTwoToneIcon>
 						</IconButton>
 						<Badge color="primary" variant="dot" invisible={showThemeOnboard}>
 							<ItemTitle>Theme</ItemTitle>

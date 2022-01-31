@@ -68,27 +68,27 @@ export default function WeatherNerdy() {
 
     return (
         <Content>
-            <div className="text-on-background font-semibold my-2">{place.city}</div>
+            <div className="text-primary font-semibold my-2">{place.city}</div>
             <ForecastContent>
                 <div className="flex flex-col justify-center">
                     <div className="flex flex-col justify-center mx-2">
-                        <span className="text-xs text-on-background">Temperature</span>
-                        <div className="text-4xl text-on-background font-semibold">
-                            {weather.temp}<span className="text-xs text-on-background">{(location?.countryCode === "USA") ? "°F" : "°C"}</span>
+                        <span className="text-xs text-primary">Temperature</span>
+                        <div className="text-4xl text-primary font-semibold">
+                            {weather.temp}<span className="text-xs text-primary">{(location?.countryCode === "USA") ? "°F" : "°C"}</span>
                         </div>
                     </div>
                     <div className="flex flex-row justify-center">
                         <div className="flex flex-col justify-center mx-2">
-                            <span className="text-xs text-on-background">Max</span>
-                            <div className="text-1xl text-on-background font-semibold">{Math.round(weather.temp_max)}</div>
+                            <span className="text-xs text-primary">Max</span>
+                            <div className="text-1xl text-primary font-semibold">{Math.round(weather.temp_max)}</div>
                         </div>
                         <div className="flex flex-col justify-center mx-2">
-                            <span className="text-xs text-on-background">Feels like</span>
-                            <div className="text-1xl text-on-background font-semibold">{Math.round(weather.feels_like)}</div>
+                            <span className="text-xs text-primary">Feels like</span>
+                            <div className="text-1xl text-primary font-semibold">{Math.round(weather.feels_like)}</div>
                         </div>
                         <div className="flex flex-col justify-center mx-2">
-                            <span className="text-xs text-on-background">Min</span>
-                            <div className="text-1xl text-on-background font-semibold">{Math.round(weather.temp_min)}</div>
+                            <span className="text-xs text-primary">Min</span>
+                            <div className="text-1xl text-primary font-semibold">{Math.round(weather.temp_min)}</div>
                         </div>
                     </div>
                 </div>
@@ -99,10 +99,10 @@ export default function WeatherNerdy() {
                         width="65px"
                         height="65px"
                     />
-                    <div className="text-base text-on-background italic font-light hover:font-bold">{weather.main}</div>
+                    <div className="text-base text-primary italic font-light hover:font-bold">{weather.main}</div>
                 </div>
             </ForecastContent>
-            {/* <div className="text-xs text-on-background italic font-light">
+            {/* <div className="text-xs text-primary italic font-light">
                 *All units are according to the <span className="font-semibold">{params.units} </span>system
             </div> */}
         </Content>

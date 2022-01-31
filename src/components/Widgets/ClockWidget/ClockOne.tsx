@@ -28,7 +28,7 @@ const Content = styled.div`
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	color: var(--color-on-background);
+	color: var(--color-primary);
 `
 
 export default function ClockOne({ dt }: { dt: DateTime }) {

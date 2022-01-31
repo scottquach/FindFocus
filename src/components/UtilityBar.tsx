@@ -65,8 +65,8 @@ export function UtilityBar() {
 			<Frame className="flex">
 				<GridToggle></GridToggle>
 				<Tooltip title="Toggle fullscreen">
-					<IconButton onClick={triggerFullscreen} style={{ fill: "var(--color-on-background)" }} size="small">
-						<FullscreenIcon style={{ fill: "var(--color-on-background)" }}></FullscreenIcon>
+					<IconButton onClick={triggerFullscreen} color="primary" size="small">
+						<FullscreenIcon color="primary"></FullscreenIcon>
 					</IconButton>
 				</Tooltip>
 				<Profile></Profile>
@@ -97,8 +97,8 @@ function GridToggle() {
 
 			<Tooltip title="Hide widgets">
 				<IconButton onClick={onGridToggle} size="small">
-					{state && <WidgetsIcon style={{ fill: "var(--color-on-background)" }}></WidgetsIcon>}
-					{!state && <HideSourceIcon style={{ fill: "var(--color-on-background)" }}></HideSourceIcon>}
+					{state && <WidgetsIcon color="primary"></WidgetsIcon>}
+					{!state && <HideSourceIcon color="primary"></HideSourceIcon>}
 					{!state && <GridToggleDescription>Hiding widgets</GridToggleDescription>}
 				</IconButton>
 			</Tooltip>
@@ -166,7 +166,7 @@ function Profile() {
 	return (
 		<div>
 			<IconButton onClick={onSelect} size="small">
-				<HelpIcon style={{ fill: "var(--color-on-background)" }}></HelpIcon>
+				<HelpIcon color="primary"></HelpIcon>
 			</IconButton>
 			<Popper id={id} open={open} anchorEl={anchorEl}>
 				<ClickAwayListener onClickAway={() => setAnchorEl(null)}>

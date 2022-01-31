@@ -47,25 +47,25 @@ export default function SpotifySettings({ updateLink, currentLink }: { updateLin
 			<Popper open={open} anchorEl={anchorEl}>
 				<SettingsContainer>
 					<div className="flex items-center justify-between mb-4">
-						<div className="font-bold text-on-background">Settings</div>
+						<div className="font-bold text-primary">Settings</div>
 						<IconButton sx={{ padding: .5 }} onClick={() => setAnchorEl(null)}>
-							<CloseIcon fontSize="small" sx={{ fill: "var(--color-on-background)" }}></CloseIcon>
+							<CloseIcon fontSize="small" color="primary"></CloseIcon>
 						</IconButton>
 					</div>
 
 					<div className="w-full mt-1">
-						<div className="text-sm text-on-background opacity-75 font-semibold mb-1">Playlist URL</div>
+						<div className="text-sm text-primary opacity-75 font-semibold mb-1">Playlist URL</div>
 						<Input placeholder="Spotify playlist URL" type="text" value={link} onChange={handleLinkChange}></Input>
 					</div>
 					<div className="flex justify-end">
 						<Tooltip title="Save URL">
 							<IconButton onClick={saveCustomLink}>
-								<SaveIcon sx={{ fill: "var(--color-on-background)" }}></SaveIcon>
+								<SaveIcon color="primary"></SaveIcon>
 							</IconButton>
 						</Tooltip>
 						<Tooltip title="Reset">
 							<IconButton onClick={resetLink}>
-								<RestartAltIcon sx={{ fill: "var(--color-on-background)" }}></RestartAltIcon>
+								<RestartAltIcon color="primary"></RestartAltIcon>
 							</IconButton>
 						</Tooltip>
 					</div>

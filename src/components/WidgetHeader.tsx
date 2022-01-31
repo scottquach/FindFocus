@@ -20,7 +20,7 @@ const HeaderTitle = styled.div`
 	opacity: 70%;
 	font-size: 14px;
 	margin-left: .25rem;
-	color: var(--color-on-background);
+	color: var(--color-primary);
 `
 
 const HeaderActions = styled.div`

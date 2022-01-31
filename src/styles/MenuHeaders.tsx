@@ -9,7 +9,7 @@ export const MenuWrapper = styled.div`
 export const MenuHeader = styled.div`
 	font-size: 24px;
 	font-weight: 600;
-	color: var(--color-on-background);
+	color: var(--color-primary);
 	line-height: 1.25rem;
 	/* margin-bottom: 1rem; */
 `

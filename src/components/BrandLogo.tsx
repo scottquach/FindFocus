@@ -4,7 +4,7 @@ import styled from 'styled-components'
 const Frame = styled.div`
 	border-radius: 8px;
 	background-color: var(--color-background);
-	color: var(--color-on-background);
+	color: var(--color-primary);
 	position: absolute;
 	top: 1rem;
 	left: 1rem;

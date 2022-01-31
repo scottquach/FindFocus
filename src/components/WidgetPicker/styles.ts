@@ -12,20 +12,6 @@ export const Wrapper = styled.div`
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 `;
 
-// export const MenuHeader = styled.div`
-//     display: flex;
-//     justify-content: space-between;
-//     width: 100%;
-//     align-items: center;
-//     margin-bottom: 0.5rem;
-// `;
-
-// export const MenuTitle = styled.div`
-//     font-size: 18px;
-//     font-weight: bold;
-//     color: var(--color-on-background);
-// `;
-
 export const Widgets = styled.div`
     display: flex;
     gap: 0.5rem;
@@ -52,6 +38,6 @@ export const Widget = styled(Button)`
 
     &:active {
         transform: scale(0.96);
-        border: 1px solid var(--color-border);
+        border: 1px solid var(--color-primary-dark);
     }
 `;

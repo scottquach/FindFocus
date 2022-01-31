@@ -55,10 +55,10 @@ export default function WeatherMinimal() {
 
 	return (
 		<Content>
-			<div className="text-on-background font-semibold mt-2">{place.city}</div>
+			<div className="text-primary font-semibold mt-2">{place.city}</div>
 			<ForecastContent>
-				<div className="text-5xl text-on-background font-semibold ml-4">
-					{weather.temp}<span className="text-xs text-on-background">{(location?.countryCode === "USA") ? "°F" : "°C"}</span>
+				<div className="text-5xl text-primary font-semibold ml-4">
+					{weather.temp}<span className="text-xs text-primary">{(location?.countryCode === "USA") ? "°F" : "°C"}</span>
 				</div>
 				<div className="flex flex-col justify-center">
 					<img
@@ -67,7 +67,7 @@ export default function WeatherMinimal() {
 						width="65px"
 						height="65px"
 					/>
-					<div className="text-base text-on-background italic font-light hover:font-bold">{weather.main}</div>
+					<div className="text-base text-primary italic font-light hover:font-bold">{weather.main}</div>
 				</div>
 			</ForecastContent>
 		</Content>

@@ -63,7 +63,7 @@ export const CategoryIcon = styled.div`
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	background-color: var(--color-on-background);
+	background-color: var(--color-primary-light);
 	border-radius: 32px;
 	width: 44px;
 	height: 44px;
@@ -73,6 +73,6 @@ export const CategoryIcon = styled.div`
 
 export const CategoryName = styled.div`
 	font-weight: 500;
-	color: var(--color-on-background);
+	color: var(--color-primary);
 `;
 

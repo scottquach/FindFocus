@@ -149,7 +149,7 @@ export function ThemePicker({ close }: any) {
 			<S.MenuHeader>
 				<S.MenuTitle>Theme</S.MenuTitle>
 				<IconButton onClick={onClose}>
-					<CloseIcon style={{ fill: "var(--color-on-background)" }}></CloseIcon>
+					<CloseIcon style={{ fill: "var(--color-primary)" }}></CloseIcon>
 				</IconButton>
 			</S.MenuHeader>
 			<S.NeutralHeaders className="">Selected primary color</S.NeutralHeaders>
