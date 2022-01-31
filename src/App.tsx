@@ -12,6 +12,7 @@ import OnBoarding from './components/OnBoarding';
 // import { themeOptions } from './styles/MuiThemeOptions';
 import { ThemeProvider } from '@mui/material/styles';
 import { themeOptions } from './styles/MuiThemeOptions';
+import { Toaster } from 'react-hot-toast';
 
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
   return (
     <div className="App">
       <ThemeProvider theme={themeOptions}>
+        <Toaster />
         <BrandLogo></BrandLogo>
         <Grid></Grid>
         <UtilityBar></UtilityBar>

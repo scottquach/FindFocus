@@ -6,6 +6,7 @@ import YouTube, { PlayerVars } from 'react-youtube';
 import { useEffect, useState } from "react";
 import ReactPlayer from 'react-player'
 import { Loader } from "./Loader";
+import toast from "react-hot-toast";
 
 
 const BackgroundWrapper = styled.div`
@@ -61,10 +62,10 @@ export function Background() {
 	}, [volume]);
 
 	useEffect(() => {
-		setLoading(true);
-		// setTimeout(() => {
-		// 	setLoading(false);
-		// }, 3000)
+		if (room) {
+			setLoading(true);
+			toast.success(`Joined "${room?.name}"`)
+		}
 	}, [0, room]);
 
 	const onStart = () => {

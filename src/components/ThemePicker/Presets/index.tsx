@@ -1,3 +1,4 @@
+import toast from "react-hot-toast";
 import { Button } from "../../../styles/Button";
 import { ColorPalette } from "../styles";
 import * as S from "./styles";
@@ -30,7 +31,7 @@ const Presets = [
 	{
 		name: 'Cherry',
 		creator: 'Developer',
-		primary: '#FF87B4',
+		primary: '#FD7AAA',
 		background: '#FCFDFD'
 	}
 ]
@@ -40,6 +41,7 @@ export function ThemePresets({ setPrimary, setBackground }: any) {
 	const handleClick = (preset: Preset) => {
 		setPrimary(preset.primary);
 		setBackground(preset.background);
+		toast.success('Theme applied!')
 	}
 
 	return (

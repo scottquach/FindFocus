@@ -1,5 +1,5 @@
 import CloseIcon from '@mui/icons-material/Close';
-import { Button, IconButton, Popover, ToggleButton, ToggleButtonGroup, Tooltip } from '@mui/material';
+import { Button, Divider, IconButton, Popover, ToggleButton, ToggleButtonGroup, Tooltip } from '@mui/material';
 import { useTheme } from '@mui/system';
 import { useEffect, useState } from 'react';
 import { Input, InputSmall } from '../../styles/Input';
@@ -186,6 +186,10 @@ export function ThemePicker({ close }: any) {
 				<ColorSelection originalColor={primary} onChange={handleSetPrimary}></ColorSelection>
 			</S.NeutralBackground>
 
+			<div className="my-4">
+				<Divider ></Divider>
+			</div>
+
 			<S.NeutralHeaders className="" color={neutralColor}>Selected background color</S.NeutralHeaders>
 			<S.NeutralBackground color={neutralColor}>
 				<S.Themes>
@@ -193,6 +197,10 @@ export function ThemePicker({ close }: any) {
 				</S.Themes>
 				<ColorSelection originalColor={background} onChange={handleSetBackground}></ColorSelection>
 			</S.NeutralBackground>
+
+			<div className="my-4">
+				<Divider ></Divider>
+			</div>
 
 			<S.NeutralHeaders color={neutralColor}>Curated themes</S.NeutralHeaders>
 
