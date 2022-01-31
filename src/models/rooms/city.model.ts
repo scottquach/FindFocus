@@ -9,6 +9,13 @@ export const CityRooms = [
 		category: CategoryId.City,
 	},
 	{
+		id: 'ebAKJA3nSFw',
+		name: 'City Sounds',
+		creator: 'PureRelaxingVibes',
+		link: 'https://www.youtube.com/watch?v=ebAKJA3nSFw&ab_channel=PureRelaxingVibes',
+		category: CategoryId.City,
+	},
+	{
 		id: 'unfmzc0opk4',
 		name: 'New York City ambience',
 		creator: 'Nomadic Ambience',
@@ -16,10 +23,10 @@ export const CityRooms = [
 		category: CategoryId.City,
 	},
 	{
-		id: 'hBGbt2CRDpA',
-		name: 'Luxury Tokyo Hotel',
-		creator: 'Ambient Renders',
-		link: 'https://www.youtube.com/watch?v=hBGbt2CRDpA',
+		id: 'ntGy5Hl_Rd0',
+		name: 'New York open window',
+		creator: 'BriannaPeters',
+		link: 'https://www.youtube.com/watch?v=ntGy5Hl_Rd0&t=1s&ab_channel=BriannaPeters',
 		category: CategoryId.City,
 	},
 ]
