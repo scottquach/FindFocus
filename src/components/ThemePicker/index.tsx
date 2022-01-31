@@ -119,7 +119,7 @@ export function ThemePicker({ close }: any) {
 		const value = isHexLight(background);
 		// console.log(value);
 		if (value) {
-			setNeutralColor('#616161');
+			setNeutralColor('#212121');
 			setNeutralText('#fafafa')
 		} else {
 			setNeutralColor('#f5f5f5');
@@ -198,7 +198,7 @@ export function ThemePicker({ close }: any) {
 
 			<ThemePresets setPrimary={handleSetPrimary} setBackground={handleSetBackground}></ThemePresets>
 
-			<div className="flex justify-start mt-4">
+			<div className="flex justify-start mt-8">
 				<ButtonCustom className="flex items-center gap-1 rounded py-1 px-3 cursor-pointer" onClick={handleReset}>
 					<RestartAltIcon></RestartAltIcon>
 					<span>Reset to default</span>

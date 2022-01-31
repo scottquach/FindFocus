@@ -19,13 +19,13 @@ const Presets = [
 		name: 'Simply Light',
 		creator: 'Developer',
 		primary: '#212121',
-		background: '#FCFDFD'
+		background: '#FAFAFA'
 	},
 	{
 		name: 'Earthy',
 		creator: 'Developer',
 		primary: '#6D4C41',
-		background: '#E0C9A6'
+		background: '#FFF2DF'
 	},
 	{
 		name: 'Cherry',

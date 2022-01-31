@@ -41,7 +41,7 @@ export const PresetPrimary = styled.div<{
 	flex: 1;
 	border-radius: 4px;
 	margin-bottom: .25rem;
-	border: 2px solid var(--color-border);
+	border: 1px solid var(--color-border);
 	background-color: ${(props) => props.color};
 	cursor: pointer;
 `
@@ -53,6 +53,6 @@ export const PresetBackground = styled.div<{
 	flex: 1;
 	border-radius: 4px;
 	background-color: ${(props) => props.color};
-	border: 2px solid var(--color-border);
+	border: 1px solid var(--color-border);
 	cursor: pointer;
 `
