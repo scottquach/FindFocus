@@ -26,7 +26,7 @@ export const PetsRooms = [
         id: '1GX7qQPB9P8',
         name: 'Catoro Cafe',
         creator: 'CatoroCafe',
-        link: 'https://www.youtube.com/watch?v=1GX7qQPB9P8&t=39304s&ab_channel=CatoroCafe',
+        link: 'https://www.youtube.com/watch?v=1GX7qQPB9P8&ab_channel=CatoroCafe',
         category: CategoryId.Pets,
     },
 ];

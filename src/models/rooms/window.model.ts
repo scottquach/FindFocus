@@ -8,13 +8,20 @@ export const WindowRooms = [
         link: 'https://www.youtube.com/watch?v=DRbRIXMmHtY&t=857s&ab_channel=NomadicAmbience',
         category: CategoryId.Window,
     },
-    {
-        id: 'kAM7wnaF6KM',
-        name: 'Downtown Los Angeles',
-        creator: 'OpticStream360',
-        link: 'https://www.youtube.com/watch?v=kAM7wnaF6KM&ab_channel=OpticStream360',
-        category: CategoryId.Window,
-    },
+	{
+		id: 'zHD5kgHjKj4',
+		name: 'Ocean Window',
+		creator: 'TheSilentWatcher',
+		link: 'https://www.youtube.com/watch?v=zHD5kgHjKj4&ab_channel=TheSilentWatcher',
+		category: CategoryId.Window,
+	},
+	{
+		id: 'hBGbt2CRDpA',
+		name: 'Luxury Tokyo Hotel',
+		creator: 'Ambient Renders',
+		link: 'https://www.youtube.com/watch?v=hBGbt2CRDpA',
+		category: CategoryId.Window,
+	},
     {
         id: '7V_2dAcCgQU',
         name: 'Mountain View',
@@ -34,6 +41,13 @@ export const WindowRooms = [
         name: 'Relaxing rain window view',
         creator: 'OpticStream360',
         link: 'https://www.youtube.com/watch?v=WdFmdsTdxjY&ab_channel=OpticStream360',
+        category: CategoryId.Window,
+    },
+    {
+        id: 'vUvhhaWgV3M',
+        name: 'Mountains & Aurora Borealis',
+        creator: 'RelaxationWindows4KNature',
+        link: 'https://www.youtube.com/watch?v=vUvhhaWgV3M&ab_channel=RelaxationWindows4KNature',
         category: CategoryId.Window,
     },
 ];
