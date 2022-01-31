@@ -36,9 +36,8 @@ export const RoomIcon = styled.div`
 	width: 36px;
 	height: 36px;
 	border-radius: 32px;
-	margin: .5rem;
+	margin: .5rem .75rem .5rem 1rem;
 	background-color: var(--color-primary);
-	margin-left: 1rem;
 	animation: ${rotate} 5s linear infinite;
 `
 

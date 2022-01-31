@@ -34,14 +34,21 @@ export function BackgroundPicker({ close }: any) {
 		}
 	}, [room])
 
-	const joinRoom = (categoryId: CategoryId) => {
-		const filteredRooms = Rooms[categoryId].filter(x => x.id !== room?.id);
-		const newRoom = filteredRooms[Math.floor(Math.random() * filteredRooms.length)];
-		if (newRoom) {
+	const joinCategory = (categoryId: CategoryId) => {
+		const activeRoomIndex = Rooms[categoryId].findIndex(x => x.id == room?.id);
+		// console.log('INDEXX', activeRoomIndex);
+		// console.log(Rooms[categoryId].length);
+		if ((activeRoomIndex + 1) < Rooms[categoryId].length) {
+			// console.log('next room');
+			const newRoom = Rooms[categoryId][(activeRoomIndex + 1)];
+			// console.log(newRoom);
 			setActiveCategory(newRoom.category);
 			setRoom((_) => newRoom);
 			logEvent(analytics, `category_join_${categoryId}`)
 		}
+		// const newRoom = activeRoom[Math.floor(Math.random() * activeRoom.length)];
+		// if (newRoom) {
+		// }
 	}
 
 	const joinRoomById = (roomId: string) => {
@@ -84,7 +91,7 @@ export function BackgroundPicker({ close }: any) {
 			<div className="p-4">
 				<MenuHeaderLayout>
 					<div>
-						<MenuHeader>Join a room</MenuHeader>
+						<MenuHeader>Join a room by category</MenuHeader>
 						<a className="text-sm opacity-70 cursor-pointer hover:underline" href="https://forms.gle/6w91DeiLotXakNMA6" target="_blank" rel="noreferrer">
 							<span className="text-on-background">Suggest a new rooms</span>
 							<FontAwesomeIcon icon={faExternalLinkAlt} className="opacity-70 ml-1 text-on-background" size="xs"></FontAwesomeIcon>
@@ -96,18 +103,18 @@ export function BackgroundPicker({ close }: any) {
 					</IconButton>
 				</MenuHeaderLayout>
 
-				<S.RoomList>
+				<S.CategoryList>
 					{Categories.map((category, index) => (
 						<Tooltip key={index} title="Click to reshuffle">
-							<S.RoomWrapper key={index} active={isCategoryActive(category.id)}>
-								<S.Room onClick={() => joinRoom(category.id)} active={isCategoryActive(category.id)}>
-									<S.RoomIcon>{category.icon}</S.RoomIcon>
-									<S.RoomName>{category.name}</S.RoomName>
-								</S.Room>
-							</S.RoomWrapper>
+							<S.CategoryWrapper key={index} active={isCategoryActive(category.id)}>
+								<S.Category onClick={() => joinCategory(category.id)} active={isCategoryActive(category.id)}>
+									<S.CategoryIcon>{category.icon}</S.CategoryIcon>
+									<S.CategoryName>{category.name}</S.CategoryName>
+								</S.Category>
+							</S.CategoryWrapper>
 						</Tooltip>
 					))}
-				</S.RoomList>
+				</S.CategoryList>
 			</div>
 
 			<ActiveRoom category={activeCategory as unknown as Category} room={room} iterateRoom={iterateRoom}></ActiveRoom>
