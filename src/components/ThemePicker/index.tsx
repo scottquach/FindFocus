@@ -198,12 +198,12 @@ export function ThemePicker({ close }: any) {
 
 			<ThemePresets setPrimary={handleSetPrimary} setBackground={handleSetBackground}></ThemePresets>
 
-			{/* <div className="flex justify-start mt-4">
+			<div className="flex justify-start mt-4">
 				<ButtonCustom className="flex items-center gap-1 rounded py-1 px-3 cursor-pointer" onClick={handleReset}>
 					<RestartAltIcon></RestartAltIcon>
 					<span>Reset to default</span>
 				</ButtonCustom>
-			</div> */}
+			</div>
 		</S.Wrapper>
 	)
 }
