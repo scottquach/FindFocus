@@ -11,6 +11,7 @@ import { createDefaultThemePalette, createThemePalette, isHexLight } from '../..
 import useLocalStorage from '../../hooks/useLocalStorage';
 import { Button as ButtonCustom } from '../../styles/Button';
 import useApplyThemePalette from '../../hooks/useApplyThemePalette';
+import { ThemePresets } from './Presets';
 
 interface Theme {
 	mode: 'light' | 'dark';
@@ -26,40 +27,6 @@ interface Theme {
 interface Palette {
 	mode: 'light' | 'dark',
 	color: string
-}
-
-
-const lightTheme: Theme = {
-	mode: 'light',
-	colorPrimary: '#212121',
-	colorOnPrimary: '#fafafa',
-	colorSecondary: '#474554',
-	colorOnSecondary: '#212121',
-	colorBackground: '#fafafa',
-	colorOnBackground: '#212121',
-	colorButton: '#616161'
-}
-
-const pinkTheme: Theme = {
-	mode: 'light',
-	colorPrimary: '#f06292',
-	colorOnPrimary: '#212121',
-	colorSecondary: '#e57373',
-	colorOnSecondary: '#212121',
-	colorBackground: '#ffcdd2',
-	colorOnBackground: '#212121',
-	colorButton: '#616161'
-}
-
-const darkTheme: Theme = {
-	mode: 'dark',
-	colorPrimary: '#fafafa',
-	colorOnPrimary: '#212121',
-	colorSecondary: '#9e9e9e',
-	colorOnSecondary: '#212121',
-	colorBackground: '#212121',
-	colorOnBackground: '#ffffff',
-	colorButton: '#eeeeee'
 }
 
 const primaryColors = [
@@ -166,22 +133,6 @@ export function ThemePicker({ close }: any) {
 		setThemePalette(palette)
 	}, [primary, background])
 
-
-	// const setTheme = (setTheme: Theme) => {
-	// 	console.log('setting theme', setTheme)
-	// 	document.documentElement.style.setProperty('--color-primary', setTheme.colorPrimary);
-	// 	document.documentElement.style.setProperty('--color-on-primary', setTheme.colorOnPrimary);
-	// 	document.documentElement.style.setProperty('--color-secondary', setTheme.colorSecondary);
-	// 	document.documentElement.style.setProperty('--color-on-secondary', setTheme.colorOnSecondary);
-	// 	document.documentElement.style.setProperty('--color-background', setTheme.colorBackground);
-	// 	document.documentElement.style.setProperty('--color-on-background', setTheme.colorOnBackground);
-	// 	document.documentElement.style.setProperty('--color-button', setTheme.colorButton);
-
-	// 	theme.palette.mode = setTheme.mode;
-	// 	theme.palette.primary.main = setTheme.colorPrimary;
-	// }
-
-
 	const handleSetPrimary = (color: string) => {
 		document.documentElement.style.setProperty('--color-on-background', color);
 		document.documentElement.style.setProperty('--color-button', color);
@@ -217,8 +168,6 @@ export function ThemePicker({ close }: any) {
 		setGlobalPalette(theme);
 		setPrimary(theme.primary);
 		setBackground(theme.background);
-		// handleSetPrimary(theme.primary);
-		// handleSetBackground(theme.background);
 	}
 
 	return (
@@ -245,13 +194,16 @@ export function ThemePicker({ close }: any) {
 				<ColorSelection originalColor={background} onChange={handleSetBackground}></ColorSelection>
 			</S.NeutralBackground>
 
+			<S.NeutralHeaders color={neutralColor}>Curated themes</S.NeutralHeaders>
 
-			<div className="flex justify-start">
+			<ThemePresets setPrimary={handleSetPrimary} setBackground={handleSetBackground}></ThemePresets>
+
+			{/* <div className="flex justify-start mt-4">
 				<ButtonCustom className="flex items-center gap-1 rounded py-1 px-3 cursor-pointer" onClick={handleReset}>
 					<RestartAltIcon></RestartAltIcon>
 					<span>Reset to default</span>
 				</ButtonCustom>
-			</div>
+			</div> */}
 		</S.Wrapper>
 	)
 }
