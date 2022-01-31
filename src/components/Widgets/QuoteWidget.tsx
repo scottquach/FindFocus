@@ -20,7 +20,7 @@ const Quote = styled.div`
 	grid-column: 1;
 	text-align: center;
 	font-size: 18px;
-	color: var(--color-on-background);
+	color: var(--color-primary);
 	padding: .25rem 1rem;
 `
 
@@ -28,7 +28,7 @@ const Author = styled.div`
 	text-align: center;
 	font-weight: 600;
 	margin-top: .5rem;
-	color: var(--color-on-background);
+	color: var(--color-primary);
 `
 
 const RefreshButton = styled(IconButton)`

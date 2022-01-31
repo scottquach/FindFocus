@@ -30,7 +30,7 @@ export const MenuHeader = styled.div`
 export const MenuTitle = styled.div`
     font-size: 24px;
     font-weight: bold;
-	color: var(--color-on-background);
+	color: var(--color-primary);
 `;
 
 export const Themes = styled.div`

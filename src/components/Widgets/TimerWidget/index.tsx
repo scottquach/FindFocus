@@ -96,38 +96,38 @@ export default function TimerWidget({ widgetId }: { widgetId: string }) {
 		<WidgetFrame widgetId={widgetId}>
 			<Content>
 				<Display>
-					<Box className="flex-col items-center justify-center w-12" sx={{ color: 'var(--color-on-background)' }}>
+					<Box className="flex-col items-center justify-center w-12" color="primary">
 						{duration.toMillis() !== 0 ?
-							<CircularProgress className="mt-2" variant="determinate" thickness={22} size={42} value={progress()} sx={{ color: 'var(--color-on-background)' }} /> :
+							<CircularProgress className="mt-2" variant="determinate" thickness={22} size={42} value={progress()} color="primary" /> :
 							<CheckCircleIcon fontSize="large" color="inherit"></CheckCircleIcon>
 						}
 					</Box>
 					<div className="flex-col items-center justify-center">
-						<div className="text-3xl text-on-background font-bold flex gap-2 leading-7">
+						<div className="text-3xl text-primary font-bold flex gap-2 leading-7">
 							<span >{formatMinutes()}</span>
 							<span>:</span>
 							<span className="w-10 text-left">{formatSeconds()}</span>
 						</div>
-						<div className="text-sm font-semibold text-on-background opacity-70">Time remaining</div>
+						<div className="text-sm font-semibold text-primary opacity-70">Time remaining</div>
 					</div>
 					<div className="ml-auto flex gap-2">
 						{
 							active ?
 								<div>
 									<IconButton onClick={pause} sx={{ padding: .25, }}>
-										<PauseIcon sx={{ fill: "var(--color-primary)" }}></PauseIcon>
+										<PauseIcon color="primary"></PauseIcon>
 									</IconButton>
 									<IconButton onClick={reset} sx={{ padding: .25 }}>
-										<StopIcon sx={{ fill: "var(--color-primary)" }}></StopIcon>
+										<StopIcon color="primary"></StopIcon>
 									</IconButton>
 								</div>
 								:
 								<div>
 									<IconButton onClick={start} sx={{ padding: 0 }}>
-										<PlayArrowIcon sx={{ fill: "var(--color-primary)" }}></PlayArrowIcon>
+										<PlayArrowIcon color="primary"></PlayArrowIcon>
 									</IconButton>
 									{data.time !== duration.toMillis() && <IconButton onClick={reset} sx={{ padding: 0 }}>
-										<RestartAltIcon sx={{ fill: "var(--color-primary)" }}></RestartAltIcon>
+										<RestartAltIcon color="primary"></RestartAltIcon>
 									</IconButton>}
 								</div>
 						}
@@ -176,30 +176,30 @@ function TimerSettings({ defaultMinutes, defaultSeconds, saveTime }: { defaultMi
 	return (
 		<div>
 			<IconButton onClick={handleClick} sx={{ padding: 0, fill: "var(--color-primary)" }}>
-				<SettingsIcon sx={{ fill: "var(--color-primary)" }}></SettingsIcon>
+				<SettingsIcon color="primary"></SettingsIcon>
 			</IconButton>
 			<Popper id="timer-settings-popper" open={open} anchorEl={anchorEl} transition>
 				{({ TransitionProps }) => (
 					<Zoom {...TransitionProps} timeout={100}>
 						<SettingsContainer>
 							<div className="flex items-center justify-between mb-4">
-								<div className="font-bold text-on-background">Settings</div>
+								<div className="font-bold text-primary">Settings</div>
 								<IconButton sx={{ padding: .5 }} onClick={() => setAnchorEl(null)}>
 									<CloseIcon fontSize="small" sx={{ fill: "var(--color-primary)" }}></CloseIcon>
 								</IconButton>
 							</div>
 							<div className="flex gap-2 justify-start">
 								<div className="w-32">
-									<div className="text-on-background">Minutes</div>
+									<div className="text-primary">Minutes</div>
 									<Input placeholder="Minutes" type="number" min={0} value={minutes} onChange={handleMinuteChange} required></Input>
 								</div>
 								<div className="w-32">
-									<div className="text-on-background">Seconds</div>
+									<div className="text-primary">Seconds</div>
 									<Input placeholder="Seconds" type="number" min={0} max={59} value={seconds} onChange={handleSecondChange} required></Input>
 								</div>
 							</div>
 							<div className="flex justify-center mt-2">
-								<Button onClick={handleSave} disabled={!changed} sx={{ color: 'var(--color-on-background)' }}>Save</Button>
+								<Button onClick={handleSave} disabled={!changed} color="primary">Save</Button>
 							</div>
 						</SettingsContainer>
 					</Zoom>
