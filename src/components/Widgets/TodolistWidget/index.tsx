@@ -18,19 +18,30 @@ export default function TodolistWidget({ widgetId }: { widgetId: string }) {
 		console.log('Todos', todos);
 	}, [todos])
 
-	const onStoreChange = (changeObject: { changeType: string, task: Task }) => {
+	const onStoreChange = (changeObject: { changeType: string, task: Task, fieldChanged: string, fieldValue?: any }) => {
 		setTodos((old) => {
-			const set = new Set(old);
-			const newTask = changeObject.task;
-			if (changeObject.changeType == 'add') {
-				set.add(newTask);
-			} else if (changeObject.changeType == 'delete') {
-				set.delete(newTask);
-			} else if (changeObject.changeType == 'change') {
-				// Change the object in the list
+			// let changedArray: Array<Task> = [];
+			const { task, changeType } = changeObject;
+			if (changeType == 'delete') {
+				let set = new Set(old);
+				set.forEach((storedTask) => {
+					if (storedTask.id == task.id) {
+						set.delete(task);
+					}
+				});
+				return Array.from(set);
+			} else if (changeType == 'change') {
+				const { fieldChanged, fieldValue } = changeObject;
+				const res = old.map(obj => {
+					if (obj.id === task.id) {
+						return task;
+					}
+					return obj;
+				});
+				return res;
 			}
 			console.log('New state', changeObject);
-			return Array.from(set);
+			return [];
 		});
 	};
 
@@ -47,7 +58,7 @@ export default function TodolistWidget({ widgetId }: { widgetId: string }) {
 	return (
 		<WidgetFrame widgetId={widgetId}>
 			<TaskList todos={todos} onStoreChange={onStoreChange} />
-			<button onClick={handleCreateTask}>Create Task</button>
+			<button onClick={handleCreateTask} >Create Task</button>
 		</WidgetFrame>
 	)
 }

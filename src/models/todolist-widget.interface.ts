@@ -11,12 +11,13 @@ export interface Task {
     title: string;
     created: string;
     reminders: Array<Date>;
-    done: Boolean;
+    done: boolean | undefined; // Undefined so that there's no error with the checkbox type
     subtasks: Array<string>;
     dueDate: Date | null;
     repeat: Date | null;
     file: File | null;
     notes: string;
+    // [key: string]: any
 }
 
 export function createTask() : Task {

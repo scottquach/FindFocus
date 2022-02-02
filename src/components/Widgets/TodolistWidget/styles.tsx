@@ -29,5 +29,12 @@ export const Note = styled.textarea`
 	outline: none;
 	background-color: var(--color-background);
 	color: var(--color-on-background);
+	margin-top: 1.5rem;
 `
 
+export const TaskInstance = styled.div`
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+`
