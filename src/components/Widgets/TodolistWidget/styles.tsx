@@ -2,14 +2,6 @@ import styled from "styled-components"
 
 export const test = {}
 
-export const WeatherContent = styled.div`
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	flex: 1;
-	padding: 1rem;
-`
-
 export const Content = styled.div`
 	display: flex;
 	flex-direction: column;
@@ -22,8 +14,6 @@ export const Content = styled.div`
 `
 
 export const Note = styled.textarea`
-	width: 100%;
-	height: 100%;
 	resize: none;
 	border: none;
 	outline: none;

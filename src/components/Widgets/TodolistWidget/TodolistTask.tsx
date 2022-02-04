@@ -56,7 +56,7 @@ export default function TodolistTask({ onChange, task }: { onChange: any, task: 
 
 	return (
 		<TaskInstance>
-			<Checkbox checked={done} onChange={handleDoneChange} />
+			<Checkbox checked={done} onChange={handleDoneChange} color='primary' />
 			<Note placeholder='An idea...' value={title} onChange={handleTitleChange}></Note>
 			<IconButton onClick={deleteTask} aria-label="delete">
 				<DeleteIcon />
