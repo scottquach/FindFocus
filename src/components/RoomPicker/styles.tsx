@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { Button } from "../../styles/Button";
-import { Card } from "../../styles/HoverCard";
+import { CardButton } from "../../styles/CardButton";
 import { MenuWrapper } from "../../styles/MenuHeaders";
 
 export const Wrapper = styled(MenuWrapper)`
@@ -19,7 +19,7 @@ export const CategoryList = styled.div`
 	justify-content: flex-start;
 	flex-wrap: wrap;
 	margin-bottom: 2rem;
-	/* gap: .25rem; */
+	gap: .25rem;
 `
 
 export const CategoryWrapper = styled.div<{ active: boolean }>`
@@ -27,8 +27,6 @@ export const CategoryWrapper = styled.div<{ active: boolean }>`
 	justify-content: center;
 	align-items: center;
 	padding: ${({ active }) => active ? '.25rem' : '.5rem'};
-	width: 9rem;
-	height: 8rem;
 	transition: all 75ms;
 
 	&:hover {
@@ -36,27 +34,30 @@ export const CategoryWrapper = styled.div<{ active: boolean }>`
 	}
 `
 
-export const Category = styled.div<{ active: boolean }>`
+export const Category = styled(CardButton)<{ active: boolean }>`
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	height: 100%;
-	width: 100%;
+	width: 9rem;
+	height: 8rem;
 	border: ${({ active }) => active ? '1px solid var(--color-primary-light)' : ''};
-	box-shadow: ${({ active }) => active ? 'rgba(41, 41, 41, 0.2) 0px 2px 8px 0px' : ''};
+	box-shadow: ${({ active }) => active ? 'var(--color-primary-shadow) 0px 4px 12px' : ''};
 	border-radius: 8px;
 	padding: .5rem;
 	cursor: pointer;
 
-	transition: all 50ms;
+    /* transition: all 50ms ease-in;
 
 	&:hover {
-		box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+		transform: translateY(-2px);
+		box-shadow: var(--color-primary-shadow) 0px 4px 12px;
+        border: 1px solid var(--color-primary-light);
 	}
 
 	&:active {
 		transform: scale(.96);
-	}
+        border: 1px solid var(--color-primary-dark); */
+	/* } */
 `;
 
 export const CategoryIcon = styled.div`

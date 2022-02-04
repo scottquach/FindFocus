@@ -59,7 +59,6 @@ export const NeutralBackground = styled.div`
 
 export const ColorPalette = styled.div<{
 	mainColor: string,
-	// borderColor?: string
 }>`
 	height: 30px;
 	width: 30px;
@@ -68,9 +67,9 @@ export const ColorPalette = styled.div<{
 	border: 1px solid var(--color-on-background);
 	cursor: pointer;
 
-    &:active {
+    /* &:active {
         transform: scale(.95);
-    }
+    } */
 `
 
 export const ColorChip = styled.div<{

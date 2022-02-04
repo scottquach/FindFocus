@@ -33,6 +33,13 @@ const Presets = [
 		creator: 'Developer',
 		primary: '#FD7AAA',
 		background: '#FCFDFD'
+	},
+	{
+		name: 'Cherry',
+		creator: 'Developer',
+		primary: '#FD7AAA',
+		background: '#FCFDFD'
+
 	}
 ]
 
