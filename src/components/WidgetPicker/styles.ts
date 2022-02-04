@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { Button } from '../../styles/Button';
+import { CardButton } from '../../styles/CardButton';
 
 export const Wrapper = styled.div`
     /* display: grid;
@@ -19,7 +20,7 @@ export const Widgets = styled.div`
     height: 4rem;
 `;
 
-export const Widget = styled(Button)`
+export const Widget = styled(CardButton)`
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -28,16 +29,17 @@ export const Widget = styled(Button)`
     padding: 0.5rem 0rem;
 	background-color: var(--color-background);
     color: var(--color-primary);
-    transition: all 50ms;
+    /* transition: all 50ms ease-in; */
     width: 4.5rem;
 
-    &:hover {
-        box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
-        /* transform: scale(0.98); */
+    /* &:hover {
+		box-shadow: var(--color-primary-shadow) 0px 4px 12px;
+		transform: translateY(-4px);
+        border: 1px solid var(--color-primary-light);
     }
 
     &:active {
         transform: scale(0.96);
         border: 1px solid var(--color-primary-dark);
-    }
+    } */
 `;

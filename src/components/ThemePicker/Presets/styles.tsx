@@ -1,6 +1,7 @@
 import styled from "styled-components";
+import { CardButton } from "../../../styles/CardButton";
 
-export const Preset = styled.div`
+export const Preset = styled(CardButton)`
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -14,16 +15,6 @@ export const Preset = styled.div`
 	gap: .5rem;
 	padding-bottom: .5rem;
 
-	transition: all 50ms;
-
-	&:hover {
-		box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
-	}
-
-	&:active {
-		/* border: 1px solid var(--color-border);
-		transform: scale(.96); */
-	}
 `
 
 export const PresetName = styled.div`

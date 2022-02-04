@@ -102,12 +102,12 @@ export function BackgroundPicker({ close }: any) {
 				<S.CategoryList>
 					{Categories.map((category, index) => (
 						<Tooltip key={index} title="Click to reshuffle">
-							<S.CategoryWrapper key={index} active={isCategoryActive(category.id)}>
-								<S.Category onClick={() => joinCategory(category.id)} active={isCategoryActive(category.id)}>
+							{/* <S.CategoryWrapper  active={isCategoryActive(category.id)}> */}
+								<S.Category key={index} onClick={() => joinCategory(category.id)} active={isCategoryActive(category.id)}>
 									<S.CategoryIcon>{category.icon}</S.CategoryIcon>
 									<S.CategoryName>{category.name}</S.CategoryName>
 								</S.Category>
-							</S.CategoryWrapper>
+							{/* </S.CategoryWrapper> */}
 						</Tooltip>
 					))}
 				</S.CategoryList>

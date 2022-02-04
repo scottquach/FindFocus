@@ -1,3 +1,4 @@
+import { alpha, hexToRgb } from '@mui/material';
 import { useSetRecoilState } from 'recoil';
 import { isHexLight, ThemePalette, themePaletteToMuiTheme } from '../models/theme.model';
 import { themePaletteState } from '../stores/store';
@@ -12,6 +13,11 @@ export default function useApplyThemePalette() {
         document.documentElement.style.setProperty('--color-on-background', primary);
         document.documentElement.style.setProperty('--color-primary', primary);
         document.documentElement.style.setProperty('--color-background', background);
+
+        const primaryRgb = alpha(primary, .5);
+        console.log("RGB", primaryRgb);
+
+        document.documentElement.style.setProperty('--color-primary-shadow', alpha(primary, .2));
 
         // if (isHexLight(primary)) {
         //     document.documentElement.style.setProperty('--color-on-primary', '#212121');

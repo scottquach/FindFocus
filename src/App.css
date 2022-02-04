@@ -28,6 +28,7 @@ body {
     --color-on-primary: #fafafa;
     --color-primary-dark: blue;
     --color-primary-light: blue;
+    --color-primary-shadow: '';
 
     --color-background: #fafafa;
     --color-border: #212121;
