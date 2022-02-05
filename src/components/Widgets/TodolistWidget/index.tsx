@@ -13,10 +13,10 @@ import { Task, createTask } from "../../../models/todolist-widget.interface";
 import TodolistTask from "./TodolistTask"
 
 export default function TodolistWidget({ widgetId }: { widgetId: string }) {
-	const [todos, setTodos] = useLocalStorage('todos-widget-store', todosState);
+	const [todos, setTodos] = useRecoilState(todosState);
+	useSyncLocalStorage('todos-widget-store', todos);
 
 	useEffect(() => {
-		useSyncLocalStorage('todos-widget-store', todos);
 		console.log('Todos', todos);
 	}, [todos])
 
