@@ -6,8 +6,8 @@ export const Preset = styled(CardButton)`
 	flex-direction: column;
 	align-items: center;
 	justify-content: space-between;
-	width: 10rem;
-	height: 8rem;
+	width: 7rem;
+	height: 7rem;
 	/* border: 1px solid var(--color-border); */
 	border-radius: 8px;
 	padding-top: .5rem;

@@ -17,13 +17,31 @@ const Presets = [
 		background: '#2E3440'
 	},
 	{
+		name: 'Purple Rain',
+		creator: 'Developer',
+		primary: '#e0aaff',
+		background: '#10002b'
+	},
+	{
+		name: 'Purple Rain',
+		creator: 'Developer',
+		primary: '#FE5F55',
+		background: '#053c5e'
+	},
+	{
+		name: 'Copper',
+		creator: 'Developer',
+		primary: '#E3B23C',
+		background: '#455A64'
+	},
+	{
 		name: 'Simply Light',
 		creator: 'Developer',
 		primary: '#212121',
 		background: '#FAFAFA'
 	},
 	{
-		name: 'Earthy',
+		name: 'Earth',
 		creator: 'Developer',
 		primary: '#6D4C41',
 		background: '#FFF2DF'
@@ -31,16 +49,21 @@ const Presets = [
 	{
 		name: 'Cherry',
 		creator: 'Developer',
-		primary: '#FD7AAA',
-		background: '#FCFDFD'
+		primary: '#fc619a',
+		background: '#f8edeb'
 	},
 	{
-		name: 'Cherry',
+		name: 'Sea',
 		creator: 'Developer',
-		primary: '#FD7AAA',
-		background: '#FCFDFD'
-
-	}
+		primary: '#2E80F2',
+		background: '#E5F9FD'
+	},
+	{
+		name: 'Evergreen',
+		creator: 'Developer',
+		primary: '#1b4332',
+		background: '#d8f3dc'
+	},
 ]
 
 export function ThemePresets({ setPrimary, setBackground }: any) {
@@ -52,7 +75,7 @@ export function ThemePresets({ setPrimary, setBackground }: any) {
 	}
 
 	return (
-		<div className="flex gap-4">
+		<div className="flex flex-wrap gap-4">
 			{
 				Presets.map((preset, index) => {
 					return (
@@ -62,7 +85,7 @@ export function ThemePresets({ setPrimary, setBackground }: any) {
 								<div className="opacity-75 text-center text-sm text-primary">{preset.creator}</div>
 							</div>
 							<div className="w-full px-2">
-								<div className="flex-col px-10">
+								<div className="flex-col px-6">
 									<S.PresetPrimary  color={preset.primary}></S.PresetPrimary>
 									<S.PresetBackground color={preset.background}></S.PresetBackground>
 								</div>

@@ -52,7 +52,7 @@ export const ActiveRoomName = styled.div`
 	font-size: 16px;
 	margin-right: 1.25rem;
 	line-height: .75rem;
-	color: var(--color-primary-dark);
+	color: var(--color-primary);
 `
 
 export const ActiveRoomOriginal = styled.a`
@@ -60,7 +60,7 @@ export const ActiveRoomOriginal = styled.a`
 	opacity: .75;
 	text-decoration: none;
 	/* color: inherit; */
-	color: var(--color-primary);
+	color: var(--color-primary-light);
 	/* line-height: 1rem; */
 
 	&:hover {
