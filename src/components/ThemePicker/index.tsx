@@ -12,6 +12,7 @@ import useLocalStorage from '../../hooks/useLocalStorage';
 import { Button as ButtonCustom } from '../../styles/Button';
 import useApplyThemePalette from '../../hooks/useApplyThemePalette';
 import { ThemePresets } from './Presets';
+import useIsMount from '../../hooks/useIsMount';
 
 interface Theme {
 	mode: 'light' | 'dark';
@@ -106,6 +107,7 @@ export function ThemePicker({ close }: any) {
 	const [primary, setPrimary] = useState(getComputedStyle(document.documentElement).getPropertyValue('--color-on-background'));
 	const [background, setBackground] = useState(getComputedStyle(document.documentElement).getPropertyValue('--color-background'));
 	const [themePalette, saveThemePalette] = useLocalStorage('themePalette', createDefaultThemePalette())
+	const isMount = useIsMount();
 
 	const [setTheme] = useApplyThemePalette();
 
@@ -113,21 +115,13 @@ export function ThemePicker({ close }: any) {
 		close();
 	}
 
-	// useEffect(() => {
-	// 	const value = isHexLight(background);
-	// 	if (value) {
-	// 		setNeutralColor('#212121');
-	// 	} else {
-	// 		setNeutralColor('#f5f5f5');
-	// 	}
-
-	// }, [background])
-
 	useEffect(() => {
-		console.log("SUBSCRIPTION FOR THEME CHANGE")
-		const palette = createThemePalette(primary, background)
-		saveThemePalette(palette);
-		setTheme(palette);
+		if (!isMount) {
+			console.log("SUBSCRIPTION FOR THEME CHANGE")
+			const palette = createThemePalette(primary, background)
+			saveThemePalette(palette);
+			setTheme(palette);
+		}
 	}, [primary, background])
 
 	const handleSetPrimary = (color: string) => {

@@ -7,7 +7,7 @@ export const Wrapper = styled(MenuWrapper)`
 	display: flex;
 	flex-direction: column;
 	background-color: var(--color-background);
-	width: 40rem;
+	width: 45rem;
 	height: 100%;
 	padding: 1rem;
 
