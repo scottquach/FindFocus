@@ -13,7 +13,7 @@ export const ActiveRoom = styled.div`
 	justify-content: flex-start;
 	/* background-color: var(--color-surface); */
 	border-radius: 0px 0px 8px 8px;
-	border-top: 1px solid var(--color-border);
+	border-top: 1px solid var(--color-on-background);
 	width: 100%;
 	height: 4rem;
 	/* cursor: default; */
@@ -36,9 +36,8 @@ export const RoomIcon = styled.div`
 	width: 36px;
 	height: 36px;
 	border-radius: 32px;
-	margin: .5rem;
-	background-color: var(--color-primary);
-	margin-left: 1rem;
+	margin: .5rem .75rem .5rem 1rem;
+	background-color: var(--color-primary-light);
 	animation: ${rotate} 5s linear infinite;
 `
 
@@ -61,7 +60,7 @@ export const ActiveRoomOriginal = styled.a`
 	opacity: .75;
 	text-decoration: none;
 	/* color: inherit; */
-	color: var(--color-primary);
+	color: var(--color-primary-light);
 	/* line-height: 1rem; */
 
 	&:hover {

@@ -16,6 +16,13 @@ export const NatureRooms = [
             category: CategoryId.Nature,
         },
         {
+            id: 'ipf7ifVSeDU',
+            name: 'Relaxing meadow',
+            creator: 'CalmedByNature',
+            link: 'https://www.youtube.com/watch?v=ipf7ifVSeDU&ab_channel=CalmedByNature',
+            category: CategoryId.Nature,
+        },
+        {
             id: 'qRTVg8HHzUo',
             name: 'Mount Shuksan',
             creator: 'Nature Soundscapes',

@@ -1,6 +1,6 @@
 import CloseIcon from '@mui/icons-material/Close';
-import { Button, IconButton, Popover, ToggleButton, ToggleButtonGroup, Tooltip } from '@mui/material';
-import { useTheme } from '@mui/system';
+import { Button, Divider, IconButton, Popover, ToggleButton, ToggleButtonGroup, Tooltip } from '@mui/material';
+import { createTheme, useTheme } from '@mui/system';
 import { useEffect, useState } from 'react';
 import { Input, InputSmall } from '../../styles/Input';
 import RestartAltIcon from '@mui/icons-material/RestartAlt';
@@ -11,6 +11,8 @@ import { createDefaultThemePalette, createThemePalette, isHexLight } from '../..
 import useLocalStorage from '../../hooks/useLocalStorage';
 import { Button as ButtonCustom } from '../../styles/Button';
 import useApplyThemePalette from '../../hooks/useApplyThemePalette';
+import { ThemePresets } from './Presets';
+import useIsMount from '../../hooks/useIsMount';
 
 interface Theme {
 	mode: 'light' | 'dark';
@@ -26,40 +28,6 @@ interface Theme {
 interface Palette {
 	mode: 'light' | 'dark',
 	color: string
-}
-
-
-const lightTheme: Theme = {
-	mode: 'light',
-	colorPrimary: '#212121',
-	colorOnPrimary: '#fafafa',
-	colorSecondary: '#474554',
-	colorOnSecondary: '#212121',
-	colorBackground: '#fafafa',
-	colorOnBackground: '#212121',
-	colorButton: '#616161'
-}
-
-const pinkTheme: Theme = {
-	mode: 'light',
-	colorPrimary: '#f06292',
-	colorOnPrimary: '#212121',
-	colorSecondary: '#e57373',
-	colorOnSecondary: '#212121',
-	colorBackground: '#ffcdd2',
-	colorOnBackground: '#212121',
-	colorButton: '#616161'
-}
-
-const darkTheme: Theme = {
-	mode: 'dark',
-	colorPrimary: '#fafafa',
-	colorOnPrimary: '#212121',
-	colorSecondary: '#9e9e9e',
-	colorOnSecondary: '#212121',
-	colorBackground: '#212121',
-	colorOnBackground: '#ffffff',
-	colorButton: '#eeeeee'
 }
 
 const primaryColors = [
@@ -135,90 +103,39 @@ const backgroundColors: Palette[] = [
 
 
 export function ThemePicker({ close }: any) {
-	const theme = useTheme();
-	const [neutralColor, setNeutralColor] = useState('#212121');
-	const [neutralText, setNeutralText] = useState('#212121');
+	// const [neutralColor, setNeutralColor] = useState('#212121');
 	const [primary, setPrimary] = useState(getComputedStyle(document.documentElement).getPropertyValue('--color-on-background'));
 	const [background, setBackground] = useState(getComputedStyle(document.documentElement).getPropertyValue('--color-background'));
-	const [themePalette, setThemePalette] = useLocalStorage('themePalette', createDefaultThemePalette())
-	const [setGlobalPalette] = useApplyThemePalette();
+	const [themePalette, saveThemePalette] = useLocalStorage('themePalette', createDefaultThemePalette())
+	const isMount = useIsMount();
+
+	const [setTheme] = useApplyThemePalette();
 
 	const onClose = () => {
 		close();
 	}
 
 	useEffect(() => {
-		// console.log('background', background);
-		const value = isHexLight(background);
-		// console.log(value);
-		if (value) {
-			setNeutralColor('#616161');
-			setNeutralText('#fafafa')
-		} else {
-			setNeutralColor('#f5f5f5');
-			setNeutralText('#212121')
+		if (!isMount) {
+			console.log("SUBSCRIPTION FOR THEME CHANGE")
+			const palette = createThemePalette(primary, background)
+			saveThemePalette(palette);
+			setTheme(palette);
 		}
-
-	}, [background])
-
-	useEffect(() => {
-		const palette = createThemePalette(primary, background)
-		setThemePalette(palette)
 	}, [primary, background])
 
-
-	// const setTheme = (setTheme: Theme) => {
-	// 	console.log('setting theme', setTheme)
-	// 	document.documentElement.style.setProperty('--color-primary', setTheme.colorPrimary);
-	// 	document.documentElement.style.setProperty('--color-on-primary', setTheme.colorOnPrimary);
-	// 	document.documentElement.style.setProperty('--color-secondary', setTheme.colorSecondary);
-	// 	document.documentElement.style.setProperty('--color-on-secondary', setTheme.colorOnSecondary);
-	// 	document.documentElement.style.setProperty('--color-background', setTheme.colorBackground);
-	// 	document.documentElement.style.setProperty('--color-on-background', setTheme.colorOnBackground);
-	// 	document.documentElement.style.setProperty('--color-button', setTheme.colorButton);
-
-	// 	theme.palette.mode = setTheme.mode;
-	// 	theme.palette.primary.main = setTheme.colorPrimary;
-	// }
-
-
 	const handleSetPrimary = (color: string) => {
-		document.documentElement.style.setProperty('--color-on-background', color);
-		document.documentElement.style.setProperty('--color-button', color);
-		document.documentElement.style.setProperty('--color-primary', color);
 		setPrimary(color);
-
-		theme.palette.primary.main = color;
-		if (isHexLight(color)) {
-			document.documentElement.style.setProperty('--color-on-primary', '#212121');
-		} else {
-			document.documentElement.style.setProperty('--color-on-primary', '#f5f5f5');
-		}
 	}
 
 	const handleSetBackground = (color: string) => {
-		document.documentElement.style.setProperty('--color-background', color);
 		setBackground(color)
-		if (isHexLight(color)) {
-			theme.palette.mode = 'light';
-			document.documentElement.style.setProperty('--color-border', '#212121');
-			document.documentElement.style.setProperty('--color-surface', '#212121');
-			document.documentElement.style.setProperty('--color-on-surface', '#f5f5f5');
-		} else {
-			document.documentElement.style.setProperty('--color-border', '#f5f5f5');
-			document.documentElement.style.setProperty('--color-surface', '#f5f5f5');
-			document.documentElement.style.setProperty('--color-on-surface', '#212121');
-			theme.palette.mode = 'dark';
-		}
 	}
 
 	const handleReset = () => {
 		const theme = createDefaultThemePalette();
-		setGlobalPalette(theme);
 		setPrimary(theme.primary);
 		setBackground(theme.background);
-		// handleSetPrimary(theme.primary);
-		// handleSetBackground(theme.background);
 	}
 
 	return (
@@ -226,27 +143,38 @@ export function ThemePicker({ close }: any) {
 			<S.MenuHeader>
 				<S.MenuTitle>Theme</S.MenuTitle>
 				<IconButton onClick={onClose}>
-					<CloseIcon style={{ fill: "var(--color-on-background)" }}></CloseIcon>
+					<CloseIcon style={{ fill: "var(--color-primary)" }}></CloseIcon>
 				</IconButton>
 			</S.MenuHeader>
-			<S.NeutralHeaders className="" color={neutralColor}>Selected primary color</S.NeutralHeaders>
-			<S.NeutralBackground color={neutralColor}>
+			<S.NeutralHeaders className="">Selected primary color</S.NeutralHeaders>
+			<S.NeutralBackground>
 				<S.Themes>
 					{primaryColors.map((color) => <S.ColorPalette key={color} mainColor={color} onClick={() => handleSetPrimary(color)}></S.ColorPalette>)}
 				</S.Themes>
 				<ColorSelection originalColor={primary} onChange={handleSetPrimary}></ColorSelection>
 			</S.NeutralBackground>
 
-			<S.NeutralHeaders className="" color={neutralColor}>Selected background color</S.NeutralHeaders>
-			<S.NeutralBackground color={neutralColor}>
+			<div className="my-4">
+				<Divider ></Divider>
+			</div>
+
+			<S.NeutralHeaders className="">Selected background color</S.NeutralHeaders>
+			<S.NeutralBackground>
 				<S.Themes>
 					{backgroundColors.map((palette) => <S.ColorPalette key={palette.color} mainColor={palette.color} onClick={() => handleSetBackground(palette.color)}></S.ColorPalette>)}
 				</S.Themes>
 				<ColorSelection originalColor={background} onChange={handleSetBackground}></ColorSelection>
 			</S.NeutralBackground>
 
+			<div className="my-4">
+				<Divider ></Divider>
+			</div>
 
-			<div className="flex justify-start">
+			<S.NeutralHeaders>Curated themes</S.NeutralHeaders>
+
+			<ThemePresets setPrimary={handleSetPrimary} setBackground={handleSetBackground}></ThemePresets>
+
+			<div className="flex justify-start mt-8">
 				<ButtonCustom className="flex items-center gap-1 rounded py-1 px-3 cursor-pointer" onClick={handleReset}>
 					<RestartAltIcon></RestartAltIcon>
 					<span>Reset to default</span>

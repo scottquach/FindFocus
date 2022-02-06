@@ -1,9 +1,8 @@
 import { useEffect } from 'react';
 import { useSetRecoilState } from 'recoil';
-import { BackgroundType } from '../models/background-types.enum';
 import { Rooms } from '../models/rooms.model';
 import { createDefaultThemePalette } from '../models/theme.model';
-import { activeWidgetsState, backgroundState, favoritesState, layoutState } from '../stores/store';
+import { activeWidgetsState, backgroundState, favoritesState, layoutState, themePaletteState } from '../stores/store';
 import useApplyThemePalette from './useApplyThemePalette';
 import useLocalStorage from './useLocalStorage';
 
@@ -21,18 +20,19 @@ export default function useLoadApp() {
     const setWidgets = useSetRecoilState(activeWidgetsState);
     const setBackground = useSetRecoilState(backgroundState);
     const setFavorites = useSetRecoilState(favoritesState);
+    const [setTheme] = useApplyThemePalette();
 
     if (localStorage.getItem('grid-layout')) {
         localStorage.clear();
     }
 
-    const [setTheme] = useApplyThemePalette();
-    setTheme(themePalette);
-
     useEffect(() => {
+        console.log("SET APP")
+        setTheme(themePalette);
         setLayout((old) => savedLayout);
         setWidgets((old) => savedWidgets);
         setBackground((old) => background);
         setFavorites(favorites);
-    });
+        // setThemeState(themePalette);
+    }, [0]);
 }

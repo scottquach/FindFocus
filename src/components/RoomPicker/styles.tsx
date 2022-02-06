@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { Button } from "../../styles/Button";
-import { Card } from "../../styles/HoverCard";
+import { CardButton } from "../../styles/CardButton";
 import { MenuWrapper } from "../../styles/MenuHeaders";
 
 export const Wrapper = styled(MenuWrapper)`
@@ -14,21 +14,19 @@ export const Wrapper = styled(MenuWrapper)`
 	box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 `
 
-export const RoomList = styled.div`
+export const CategoryList = styled.div`
 	display: flex;
 	justify-content: flex-start;
 	flex-wrap: wrap;
 	margin-bottom: 2rem;
-	/* gap: .25rem; */
+	gap: .25rem;
 `
 
-export const RoomWrapper = styled.div<{ active: boolean }>`
+export const CategoryWrapper = styled.div<{ active: boolean }>`
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	padding: ${({ active }) => active ? '.25rem' : '.5rem'};
-	width: 9rem;
-	height: 8rem;
 	transition: all 75ms;
 
 	&:hover {
@@ -36,35 +34,37 @@ export const RoomWrapper = styled.div<{ active: boolean }>`
 	}
 `
 
-export const Room = styled.div<{ active: boolean }>`
+export const Category = styled(CardButton)<{ active: boolean }>`
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	height: 100%;
-	width: 100%;
-	border: ${({ active }) => active ? '1px solid var(--color-border)' : ''};
-	box-shadow: ${({ active }) => active ? 'rgba(41, 41, 41, 0.2) 0px 2px 8px 0px' : ''};
+	width: 9rem;
+	height: 8rem;
+	border: ${({ active }) => active ? '1px solid var(--color-primary-light)' : ''};
+	box-shadow: ${({ active }) => active ? 'var(--color-primary-shadow) 0px 4px 12px' : ''};
 	border-radius: 8px;
-	/* background-color: var(--color-surface); */
 	padding: .5rem;
 	cursor: pointer;
 
-	transition: all 50ms;
+    /* transition: all 50ms ease-in;
 
 	&:hover {
-		box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+		transform: translateY(-2px);
+		box-shadow: var(--color-primary-shadow) 0px 4px 12px;
+        border: 1px solid var(--color-primary-light);
 	}
 
 	&:active {
 		transform: scale(.96);
-	}
+        border: 1px solid var(--color-primary-dark); */
+	/* } */
 `;
 
-export const RoomIcon = styled.div`
+export const CategoryIcon = styled.div`
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	background-color: var(--color-on-background);
+	background-color: var(--color-primary-light);
 	border-radius: 32px;
 	width: 44px;
 	height: 44px;
@@ -72,55 +72,8 @@ export const RoomIcon = styled.div`
 	margin: 1rem 1rem .5rem 1rem;
 `;
 
-export const RoomName = styled.div`
+export const CategoryName = styled.div`
 	font-weight: 500;
-	color: var(--color-on-background);
+	color: var(--color-primary);
 `;
-
-// export const ActiveContainer = styled.div`
-// 	display: flex;
-// 	justify-content: center;
-// 	margin-top: 1.5rem;
-// `
-
-// export const ActiveRoom = styled.div`
-// 	display: flex;
-// 	align-items: center;
-// 	justify-content: flex-start;
-// 	background-color: var(--color-surface);
-// 	border-radius: 8px;
-// 	width: 30rem;
-// 	height: 4rem;
-// 	cursor: default;
-// 	box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.20) 0px 0px 0px 1px;
-// `
-
-// export const ActiveRoomName = styled.div`
-// 	font-weight: bold;
-// 	font-size: 18px;
-// 	margin-right: 1.25rem;
-// `
-
-// export const ActiveRoomOriginal = styled.a`
-// 	font-size: 14px;
-// 	opacity: .75;
-// 	text-decoration: none;
-// 	color: inherit;
-
-// 	&:hover {
-// 		text-decoration: underline;
-// 	}
-// `
-
-// export const ActionsContainer = styled.div`
-// 	display: flex;
-// 	justify-content: center;
-// 	align-items: center;
-// 	margin-top: .75rem;
-// 	margin-right: auto;
-// 	margin-left: auto;
-// `
-
-
-
 

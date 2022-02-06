@@ -71,8 +71,8 @@ export function WidgetPicker({ close }: any) {
 				<div>
 					<MenuHeader>Add a widget</MenuHeader>
 					<a className="text-sm opacity-70 cursor-pointer hover:underline " href="https://forms.gle/i9RJxQNyfVbYrM1M6" target="_blank" rel="noreferrer">
-						<span className="text-on-background">Suggest a new widgets</span>
-						<FontAwesomeIcon icon={faExternalLinkAlt} className="opacity-70 ml-1 text-on-background" size="xs"></FontAwesomeIcon>
+						<span className="text-primary">Suggest a new widgets</span>
+						<FontAwesomeIcon icon={faExternalLinkAlt} className="opacity-70 ml-1 text-primary" size="xs"></FontAwesomeIcon>
 					</a>
 				</div>
 				<IconButton onClick={closePicker}>

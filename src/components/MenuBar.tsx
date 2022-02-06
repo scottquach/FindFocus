@@ -1,4 +1,4 @@
-import { Box, ClickAwayListener, IconButton, Popper, Zoom } from "@mui/material"
+import { Badge, Box, ClickAwayListener, IconButton, Popper, Zoom } from "@mui/material"
 import ColorLensTwoToneIcon from '@mui/icons-material/ColorLensTwoTone';
 import MeetingRoomIcon from '@mui/icons-material/MeetingRoom';
 import WidgetsIcon from '@mui/icons-material/Widgets';
@@ -12,6 +12,7 @@ import { BackgroundPicker } from "./RoomPicker";
 import { ThemePicker } from "./ThemePicker";
 import { analytics } from "../firebase";
 import { logEvent } from "firebase/analytics";
+import useLocalStorage from "../hooks/useLocalStorage";
 
 const PositionContainer = styled.div`
 	display: flex;
@@ -29,7 +30,7 @@ const MenuLayout = styled.div`
 	border-top-right-radius: var(--widget-border-radius);
 	border-top-left-radius: var(--widget-border-radius);
 	background-color: var(--color-background);
-	color: var(--color-on-background);
+	color: var(--color-primary);
 	box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 `
 
@@ -47,8 +48,8 @@ const Item = styled.div`
 	display: flex;
 	flex-direction: row;
 	align-items: center;
-	color: var(--color-on-background);
-	fill: var(--color-on-background);
+	color: var(--color-primary);
+	fill: var(--color-primary);
 
 	div {
 		font-size: 14px;
@@ -65,11 +66,16 @@ enum MenuId {
 
 export function MenuBar() {
 	const [menu, setMenu] = useState<MenuId | null>(null);
-
 	const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+	const [onboarding, setOnboarding] = useLocalStorage('onboarding', {});
 
 	const open = Boolean(anchorEl);
 	const id = open ? 'transition-popper' : undefined;
+
+
+	const showRoomOnboard = onboarding[MenuId.BackgroundPicker];
+	const showWidgetOnboard = onboarding[MenuId.WidgetPicker];
+	const showThemeOnboard = onboarding[MenuId.ThemePicker];
 
 	const onMenuSelected = (event: React.MouseEvent<HTMLElement>, selectedMenu: MenuId) => {
 		if (menu === selectedMenu) {
@@ -78,6 +84,12 @@ export function MenuBar() {
 			logEvent(analytics, selectedMenu);
 			setAnchorEl(event.currentTarget);
 			setMenu(selectedMenu);
+			if (!onboarding[selectedMenu]) {
+				setOnboarding({
+					...onboarding,
+					[selectedMenu]: true
+				});
+			}
 		}
 	}
 
@@ -96,21 +108,27 @@ export function MenuBar() {
 				<MenuItems>
 					<Item onClick={(e) => onMenuSelected(e, MenuId.WidgetPicker)}>
 						<IconButton size="small">
-							<WidgetsIcon style={{ fill: "var(--color-on-background)" }}></WidgetsIcon>
+							<WidgetsIcon color="primary"></WidgetsIcon>
 						</IconButton>
-						<ItemTitle>Widgets</ItemTitle>
+						<Badge color="primary" variant="dot" invisible={showWidgetOnboard}>
+							<ItemTitle>Widgets</ItemTitle>
+						</Badge>
 					</Item>
-					<Item onClick={(e) => onMenuSelected(e, MenuId.BackgroundPicker)}>
-						<IconButton size="small">
-							<MeetingRoomIcon style={{ fill: "var(--color-on-background)" }}></MeetingRoomIcon>
-						</IconButton>
-						<ItemTitle>Rooms</ItemTitle>
-					</Item>
+					<Badge color="primary" badgeContent={<span>Try</span>} invisible={showRoomOnboard}>
+						<Item onClick={(e) => onMenuSelected(e, MenuId.BackgroundPicker)}>
+							<IconButton size="small">
+								<MeetingRoomIcon color="primary"></MeetingRoomIcon>
+							</IconButton>
+							<ItemTitle>Rooms</ItemTitle>
+						</Item>
+					</Badge>
 					<Item onClick={(e) => onMenuSelected(e, MenuId.ThemePicker)} >
 						<IconButton size="small">
-							<ColorLensTwoToneIcon style={{ fill: "var(--color-on-background)" }}></ColorLensTwoToneIcon>
+							<ColorLensTwoToneIcon color="primary"></ColorLensTwoToneIcon>
 						</IconButton>
-						<ItemTitle>Theme</ItemTitle>
+						<Badge color="primary" variant="dot" invisible={showThemeOnboard}>
+							<ItemTitle>Theme</ItemTitle>
+						</Badge>
 					</Item>
 				</MenuItems>
 

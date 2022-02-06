@@ -11,6 +11,7 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShuffleIcon from '@mui/icons-material/Shuffle';
 import VolumeOffIcon from '@mui/icons-material/VolumeOff';
 import * as S from './styles';
+import toast from 'react-hot-toast';
 
 export function ActiveRoom({ category, room, iterateRoom }: { category: any, room: any, iterateRoom: () => void }) {
 	const [favorites, setFavorites] = useRecoilState(favoritesState);
@@ -38,6 +39,7 @@ export function ActiveRoom({ category, room, iterateRoom }: { category: any, roo
 			})
 
 			if (newState) {
+				toast.success(`Favorite "${room.name}"`)
 				logEvent(analytics, 'favorite_true');
 			} else {
 				logEvent(analytics, 'favorite_false');
@@ -63,7 +65,7 @@ export function ActiveRoom({ category, room, iterateRoom }: { category: any, roo
 				</Tooltip>
 				<Tooltip title="Next room">
 					<IconButton onClick={iterateRoom}>
-						<ShuffleIcon style={{ fill: "var(--color-primary)" }}></ShuffleIcon>
+						<ShuffleIcon color="primary"></ShuffleIcon>
 					</IconButton>
 				</Tooltip>
 			</S.RoomMetaContainer>
@@ -92,9 +94,9 @@ function VolumeRocker({ className }: any) {
 
 	return (
 		<Stack className={className} spacing={2} direction="row" sx={{ mb: 1, mt: 1, width: 200 }} alignItems="center">
-			<VolumeOffIcon className="cursor-pointer" sx={{ fill: "var(--color-primary)" }} onClick={handleQuickMute} />
+			<VolumeOffIcon className="cursor-pointer" color="primary" onClick={handleQuickMute} />
 			<Slider aria-label="Volume" size="small" value={volume} onChange={handleVolumeChange} />
-			<VolumeUp className="cursor-pointer" sx={{ fill: "var(--color-primary)" }} onClick={handleQuickMax} />
+			<VolumeUp className="cursor-pointer" color="primary" onClick={handleQuickMax} />
 		</Stack>
 	)
 

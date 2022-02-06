@@ -1,8 +1,8 @@
 import { atom, selector, selectorFamily } from 'recoil';
-import { BackgroundType } from '../models/background-types.enum';
-import { CategoryId } from '../models/category.model';
 import { Layout } from '../models/layout.interface';
 import { Room } from '../models/room.interface';
+import { ThemePalette } from '../models/theme.model';
+import { createDefaultThemePalette } from '../models/theme.model';
 import { Widget } from '../models/widget.interface';
 import { Task } from '../models/todolist-widget.interface';
 import { Type } from 'typescript';
@@ -42,19 +42,18 @@ export const widgetById = selectorFamily({
 
 export const backgroundState = atom({
     key: 'backgroundState',
-    default: {
-        id: 'LG9D9UtaDYw',
-        name: 'Study with Koya',
-        creator: 'BT21',
-        link: 'https://www.youtube.com/watch?v=LG9D9UtaDYw&ab_channel=BT21',
-        category: CategoryId.Animated,
-    } as Room | null,
+    default: null as Room | null
 });
 
 export const favoritesState = atom({
     key: 'favoritesState',
     default: [] as string[],
 });
+
+export const themePaletteState = atom({
+    key: 'themePaletteState',
+    default: createDefaultThemePalette() as ThemePalette
+})
 
 export const globalConfigState = atom({
     key: 'globalConfigState',

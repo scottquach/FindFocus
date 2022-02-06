@@ -23,13 +23,6 @@ export const CafeRooms = [
         category: CategoryId.Cafe,
     },
     {
-        id: 'ql32tlC7eqw',
-        name: 'Patio',
-        creator: "Ozz's study corner",
-        link: 'https://www.youtube.com/watch?v=ql32tlC7eqw&ab_channel=ozz%27sstudycorner%F0%9F%93%9A%E2%98%95%EF%B8%8F',
-        category: CategoryId.Cafe,
-    },
-    {
         id: '7sg-dfYLGRQ',
         name: 'Vancouver Starbucks',
         creator: '평범남B',
@@ -50,11 +43,11 @@ export const CafeRooms = [
         link: 'https://www.youtube.com/watch?v=qMHbh6XmgwM&ab_channel=Jun%27sCafeStroll',
         category: CategoryId.Cafe,
     },
-    {
-        id: 'LUcdunOITak',
-        name: 'Study with me in Gangnam',
-        creator: 'K-study',
-        link: 'https://www.youtube.com/watch?v=LUcdunOITak&ab_channel=K-Study%EC%BC%80%EC%9D%B4%EC%8A%A4%ED%84%B0%EB%94%94',
-        category: CategoryId.Cafe,
-    },
+    // {
+    //     id: 'LUcdunOITak',
+    //     name: 'Study with me in Gangnam',
+    //     creator: 'K-study',
+    //     link: 'https://www.youtube.com/watch?v=LUcdunOITak&ab_channel=K-Study%EC%BC%80%EC%9D%B4%EC%8A%A4%ED%84%B0%EB%94%94',
+    //     category: CategoryId.Cafe,
+    // },
 ];

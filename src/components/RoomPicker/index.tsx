@@ -19,6 +19,7 @@ import { logEvent } from 'firebase/analytics';
 import { analytics } from '../../firebase';
 import { Favorites } from './Favorites';
 import { ActiveRoom } from './ActiveRoom';
+import toast from 'react-hot-toast';
 
 export function BackgroundPicker({ close }: any) {
 	const [room, setRoom] = useRecoilState(backgroundState);
@@ -34,13 +35,14 @@ export function BackgroundPicker({ close }: any) {
 		}
 	}, [room])
 
-	const joinRoom = (categoryId: CategoryId) => {
-		const filteredRooms = Rooms[categoryId].filter(x => x.id !== room?.id);
-		const newRoom = filteredRooms[Math.floor(Math.random() * filteredRooms.length)];
-		if (newRoom) {
+	const joinCategory = (categoryId: CategoryId) => {
+		const activeRoomIndex = Rooms[categoryId].findIndex(x => x.id == room?.id);
+		if ((activeRoomIndex + 1) < Rooms[categoryId].length) {
+			const newRoom = Rooms[categoryId][(activeRoomIndex + 1)];
 			setActiveCategory(newRoom.category);
 			setRoom((_) => newRoom);
 			logEvent(analytics, `category_join_${categoryId}`)
+			// toast.success(`Joined "${newRoom?.name}"`)
 		}
 	}
 
@@ -49,6 +51,7 @@ export function BackgroundPicker({ close }: any) {
 		if (newRoom) {
 			setActiveCategory(newRoom.category);
 			setRoom((_) => newRoom);
+			// toast.success(`Joined "${newRoom?.name}"`)
 			return true;
 		} else {
 			return false;
@@ -84,30 +87,30 @@ export function BackgroundPicker({ close }: any) {
 			<div className="p-4">
 				<MenuHeaderLayout>
 					<div>
-						<MenuHeader>Join a room</MenuHeader>
+						<MenuHeader>Join rooms by category</MenuHeader>
 						<a className="text-sm opacity-70 cursor-pointer hover:underline" href="https://forms.gle/6w91DeiLotXakNMA6" target="_blank" rel="noreferrer">
-							<span className="text-on-background">Suggest a new rooms</span>
-							<FontAwesomeIcon icon={faExternalLinkAlt} className="opacity-70 ml-1 text-on-background" size="xs"></FontAwesomeIcon>
+							<span className="text-primary">Suggest a new rooms</span>
+							<FontAwesomeIcon icon={faExternalLinkAlt} className="opacity-70 ml-1 text-primary" size="xs"></FontAwesomeIcon>
 						</a>
 					</div>
 					<Favorites className="ml-auto mr-2" joinRoom={joinRoomById}></Favorites>
 					<IconButton onClick={onClose}>
-						<CloseIcon style={{ fill: "var(--color-on-background)" }}></CloseIcon>
+						<CloseIcon style={{ fill: "var(--color-primary)" }}></CloseIcon>
 					</IconButton>
 				</MenuHeaderLayout>
 
-				<S.RoomList>
+				<S.CategoryList>
 					{Categories.map((category, index) => (
 						<Tooltip key={index} title="Click to reshuffle">
-							<S.RoomWrapper key={index} active={isCategoryActive(category.id)}>
-								<S.Room onClick={() => joinRoom(category.id)} active={isCategoryActive(category.id)}>
-									<S.RoomIcon>{category.icon}</S.RoomIcon>
-									<S.RoomName>{category.name}</S.RoomName>
-								</S.Room>
-							</S.RoomWrapper>
+							{/* <S.CategoryWrapper  active={isCategoryActive(category.id)}> */}
+								<S.Category key={index} onClick={() => joinCategory(category.id)} active={isCategoryActive(category.id)}>
+									<S.CategoryIcon>{category.icon}</S.CategoryIcon>
+									<S.CategoryName>{category.name}</S.CategoryName>
+								</S.Category>
+							{/* </S.CategoryWrapper> */}
 						</Tooltip>
 					))}
-				</S.RoomList>
+				</S.CategoryList>
 			</div>
 
 			<ActiveRoom category={activeCategory as unknown as Category} room={room} iterateRoom={iterateRoom}></ActiveRoom>
