@@ -28,3 +28,8 @@ export const TaskInstance = styled.div`
 	align-items: center;
 	justify-content: center;
 `
+
+export const Button = styled.button`
+	background-color: var(--color-background);
+	color: var(--color-on-background);
+`

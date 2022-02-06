@@ -8,7 +8,7 @@ import useLocalStorage from '../../../hooks/useLocalStorage';
 import { WidgetSettings } from "../../WidgetSettings";
 import { widgetById, todosState } from "../../../stores/store";
 import useSyncLocalStorage from "../../../hooks/useSyncLocalStorage";
-import { Content } from "./styles";
+import { Content, Button } from "./styles";
 import { Task, createTask } from "../../../models/todolist-widget.interface";
 import TodolistTask from "./TodolistTask"
 
@@ -72,7 +72,7 @@ function TaskList(props:any) {
 	return (
 		<Content>
 			{ listItems }
-			<button onClick={handleCreateTask}>Create Task</button>
+			<Button onClick={handleCreateTask}>Create Task</Button>
 		</Content>
 	)
 }
