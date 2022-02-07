@@ -7,6 +7,7 @@ import { WidgetType } from "../../models/widget-types.enum";
 import { QueueMusicOutlined, StickyNote2Outlined } from "@mui/icons-material";
 import CloudOutlinedIcon from '@mui/icons-material/CloudOutlined';
 import AccessAlarmIcon from '@mui/icons-material/AccessAlarm';
+import ThermostatIcon from '@mui/icons-material/Thermostat';
 import useAddWidget from "../../hooks/useAddWidget";
 import { useState } from "react";
 import { createWidget } from "../../models/widget.model";
@@ -167,7 +168,7 @@ function WeatherWidget() {
 	return (
 		<div>
 			<S.Widget onClick={handleClick}>
-				<AccessTimeIcon></AccessTimeIcon>
+				<ThermostatIcon></ThermostatIcon>
 				<div>Weather</div>
 			</S.Widget>
 			<Menu
