@@ -97,7 +97,12 @@ export const getMinSize = (type: WidgetType) => {
                 minHeight: '100px',
                 minWidth: '325px',
             };
-
+        case WidgetType.TodosList:
+            return {
+                minHeight: '130px',
+                minWidth: '200px',
+            };
+    
         default:
             return null;
     }

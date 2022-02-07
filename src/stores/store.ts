@@ -4,7 +4,7 @@ import { Room } from '../models/room.interface';
 import { ThemePalette } from '../models/theme.model';
 import { createDefaultThemePalette } from '../models/theme.model';
 import { Widget } from '../models/widget.interface';
-import { Task } from '../models/todolist-widget.interface';
+import { Task } from '../models/todolist-widget.model';
 import { Type } from 'typescript';
 
 export const layoutState = atom({

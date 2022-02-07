@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 import Checkbox from '@mui/material/Checkbox';
-import { Task } from '../../../models/todolist-widget.interface';
+import { Task } from '../../../models/todolist-widget.model';
 import { Note, TaskInstance } from "./styles";
 
 export default function TodolistTask({ onChange, task }: { onChange: any, task: Task }) {
@@ -22,8 +22,6 @@ export default function TodolistTask({ onChange, task }: { onChange: any, task: 
 		onChange(
 			{
 				changeType: "change",
-				fieldChanged: "done",
-				fieldValue: checked,
 				task: clone,
 			}
 		)
@@ -37,8 +35,6 @@ export default function TodolistTask({ onChange, task }: { onChange: any, task: 
 		onChange(
 			{
 				changeType: "change",
-				fieldChanged: "title",
-				fieldValue: value,
 				task: clone,
 			}
 		)
@@ -48,7 +44,6 @@ export default function TodolistTask({ onChange, task }: { onChange: any, task: 
 		onChange(
 			{
 				changeType: "delete",
-				fieldChanged: "NOT USED",
 				task: task,
 			}
 		)

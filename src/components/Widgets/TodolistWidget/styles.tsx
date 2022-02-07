@@ -17,6 +17,7 @@ export const Note = styled.textarea`
 	resize: none;
 	border: none;
 	outline: none;
+	width: 100%;
 	background-color: var(--color-background);
 	color: var(--color-on-background);
 	margin-top: 1.5rem;
@@ -26,6 +27,7 @@ export const TaskInstance = styled.div`
 	display: flex;
 	flex-direction: row;
 	align-items: center;
+	width: 100%;
 	justify-content: center;
 `
 

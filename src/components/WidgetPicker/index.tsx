@@ -101,7 +101,7 @@ export function WidgetPicker({ close }: any) {
 				</S.Widget>
 				<S.Widget onClick={() => create(WidgetType.TodosList)}>
 					<ListAltIcon></ListAltIcon>
-					<div>To-do list</div>
+					<div>To-dos</div>
 				</S.Widget>
 			</S.Widgets>
 

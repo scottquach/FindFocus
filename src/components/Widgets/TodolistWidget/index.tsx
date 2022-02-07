@@ -9,7 +9,7 @@ import { WidgetSettings } from "../../WidgetSettings";
 import { widgetById, todosState } from "../../../stores/store";
 import useSyncLocalStorage from "../../../hooks/useSyncLocalStorage";
 import { Content, Button } from "./styles";
-import { Task, createTask } from "../../../models/todolist-widget.interface";
+import { Task, createTask } from "../../../models/todolist-widget.model";
 import TodolistTask from "./TodolistTask"
 
 export default function TodolistWidget({ widgetId }: { widgetId: string }) {
@@ -17,10 +17,10 @@ export default function TodolistWidget({ widgetId }: { widgetId: string }) {
 	useSyncLocalStorage('todos-widget-store', todos);
 
 	useEffect(() => {
-		console.log('Todos', todos);
+		// console.log('Todos', todos);
 	}, [todos])
 
-	const onStoreChange = (changeObject: { changeType: string, task: Task, fieldChanged: string, fieldValue?: any }) => {
+	const onStoreChange = (changeObject: { changeType: string, task: Task}) => {
 		setTodos((old : Array<Task>) => {
 			// let changedArray: Array<Task> = [];
 			const { task, changeType } = changeObject;
@@ -33,7 +33,6 @@ export default function TodolistWidget({ widgetId }: { widgetId: string }) {
 				});
 				return Array.from(set);
 			} else if (changeType == 'change') {
-				const { fieldChanged, fieldValue } = changeObject;
 				const res = old.map((obj : Task) => {
 					if (obj.id === task.id) {
 						return task;
@@ -42,7 +41,6 @@ export default function TodolistWidget({ widgetId }: { widgetId: string }) {
 				});
 				return res;
 			}
-			console.log('New state', changeObject);
 			return [];
 		});
 	};
@@ -50,10 +48,11 @@ export default function TodolistWidget({ widgetId }: { widgetId: string }) {
 	const handleCreateTask = () => {
 		const newTask = createTask();
 		setTodos((old : Array<Task>) => {
-			const set = new Set(old);
-			set.add(newTask);
+			const arr = new Array(...old);
+			console.log(arr)
+			arr.push(newTask);
 			console.log('New task created', newTask);
-			return Array.from(set);
+			return arr;
 		});
 	};
 
