@@ -23,7 +23,7 @@ const Presets = [
 		background: '#10002b'
 	},
 	{
-		name: 'Purple Rain',
+		name: 'Deep Sea',
 		creator: 'Developer',
 		primary: '#FE5F55',
 		background: '#053c5e'
@@ -50,7 +50,7 @@ const Presets = [
 		name: 'Cherry',
 		creator: 'Developer',
 		primary: '#fc619a',
-		background: '#f8edeb'
+		background: '#fff7f5'
 	},
 	{
 		name: 'Sea',

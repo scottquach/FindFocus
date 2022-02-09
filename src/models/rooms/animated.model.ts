@@ -9,6 +9,13 @@ export const AnimatedRooms = [
     //     category: CategoryId.Animated,
     // },
     {
+        id: '-5KAN9_CzSA',
+        name: 'Coffee shop radio',
+        creator: 'STEEZYASFUCK',
+        link: 'https://www.youtube.com/watch?v=-5KAN9_CzSA&ab_channel=STEEZYASFUCK',
+        category: CategoryId.Animated,
+    },
+    {
         id: 'DbuebKNKQsQ',
         name: 'A Peaceful Place',
         creator: 'The Jazz Hop Cafe',
@@ -23,13 +30,6 @@ export const AnimatedRooms = [
         category: CategoryId.Animated,
     },
 
-    {
-        id: '-5KAN9_CzSA',
-        name: 'Coffee shop radio',
-        creator: 'STEEZYASFUCK',
-        link: 'https://www.youtube.com/watch?v=-5KAN9_CzSA&ab_channel=STEEZYASFUCK',
-        category: CategoryId.Animated,
-    },
     {
         id: '5wRWniH7rt8',
         name: 'Cherry Blossom',

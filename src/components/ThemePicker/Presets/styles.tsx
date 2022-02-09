@@ -6,7 +6,7 @@ export const Preset = styled(CardButton)`
 	flex-direction: column;
 	align-items: center;
 	justify-content: space-between;
-	width: 7rem;
+	width: 7.75rem;
 	height: 7rem;
 	/* border: 1px solid var(--color-border); */
 	border-radius: 8px;
@@ -28,7 +28,7 @@ export const PresetName = styled.div`
 export const PresetPrimary = styled.div<{
 	color: string
 }>`
-	height: 1.5rem;
+	height: 1.25rem;
 	flex: 1;
 	border-radius: 4px;
 	margin-bottom: .25rem;
@@ -40,7 +40,7 @@ export const PresetPrimary = styled.div<{
 export const PresetBackground = styled.div<{
 	color: string
 }>`
-	height: 1.5rem;
+	height: 1.25rem;
 	flex: 1;
 	border-radius: 4px;
 	background-color: ${(props) => props.color};
