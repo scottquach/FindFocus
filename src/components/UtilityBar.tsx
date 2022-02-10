@@ -14,7 +14,7 @@ import { logEvent } from "firebase/analytics";
 import { analytics } from "../firebase";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faDiscord, faInstagram, faTiktok } from "@fortawesome/free-brands-svg-icons";
-import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
+import { faEnvelope, faInfoCircle, faQuestionCircle } from "@fortawesome/free-solid-svg-icons";
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import HelpIcon from '@mui/icons-material/Help';
 
@@ -37,6 +37,10 @@ const Frame = styled.div`
 
 const MenuFrame = styled(Frame)`
 	border-radius: 8px;
+`
+
+const InfoMenuFrame = styled(MenuFrame)`
+	padding: .75rem .75rem;
 `
 
 export function UtilityBar() {
@@ -95,13 +99,13 @@ function GridToggle() {
 	return (
 		// <Frame>
 
-			<Tooltip title="Hide widgets">
-				<IconButton onClick={onGridToggle} size="small">
-					{state && <WidgetsIcon color="primary"></WidgetsIcon>}
-					{!state && <HideSourceIcon color="primary"></HideSourceIcon>}
-					{!state && <GridToggleDescription>Hiding widgets</GridToggleDescription>}
-				</IconButton>
-			</Tooltip>
+		<Tooltip title="Hide widgets">
+			<IconButton onClick={onGridToggle} size="small">
+				{state && <WidgetsIcon color="primary"></WidgetsIcon>}
+				{!state && <HideSourceIcon color="primary"></HideSourceIcon>}
+				{!state && <GridToggleDescription>Hiding widgets</GridToggleDescription>}
+			</IconButton>
+		</Tooltip>
 		// </Frame>
 	)
 }
@@ -170,14 +174,19 @@ function Profile() {
 			</IconButton>
 			<Popper id={id} open={open} anchorEl={anchorEl}>
 				<ClickAwayListener onClickAway={() => setAnchorEl(null)}>
-					<MenuFrame className="mt-2 mr-2 p-3 font-semibold">
-						<div className="cursor-pointer mb-1 hover:text-blue-600">About us</div>
-						<a className="flex gap-1 my-1 items-center cursor-pointer hover:text-blue-600" href="https://discord.gg/Nad9p7Np" target="_blank" rel="noreferrer">
+					<InfoMenuFrame className="mt-2 mr-2 p-3 font-semibold">
+						<div className="flex gap-2 items-center">
+							<FontAwesomeIcon icon={faInfoCircle} />
+							<div className="cursor-pointer mb-1 hover:text-blue-600">About us</div>
+						</div>
+						<a className="flex gap-2 my-1 items-center cursor-pointer hover:text-blue-600" href="https://discord.gg/Nad9p7Np" target="_blank" rel="noreferrer">
 							<FontAwesomeIcon icon={faDiscord}></FontAwesomeIcon>
 							<span>Discord</span>
-
 						</a>
-						<div className="cursor-pointer my-1 hover:text-blue-600">Help and FAQ</div>
+						<div className="flex gap-2 items-center">
+							<FontAwesomeIcon icon={faQuestionCircle}></FontAwesomeIcon>
+							<div className="cursor-pointer my-1 hover:text-blue-600">Help and FAQ</div>
+						</div>
 						<Divider sx={{ margin: '.5rem 0' }}></Divider>
 						<div className="flex justify-around my-1">
 							<FontAwesomeIcon className="cursor-pointer" icon={faInstagram}></FontAwesomeIcon>
@@ -185,7 +194,7 @@ function Profile() {
 							<FontAwesomeIcon className="cursor-pointer" icon={faEnvelope}></FontAwesomeIcon>
 
 						</div>
-					</MenuFrame>
+					</InfoMenuFrame>
 				</ClickAwayListener>
 			</Popper>
 		</div>
