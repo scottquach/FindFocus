@@ -14,7 +14,7 @@ import { logEvent } from "firebase/analytics";
 import { analytics } from "../firebase";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faDiscord, faInstagram, faTiktok } from "@fortawesome/free-brands-svg-icons";
-import { faEnvelope, faInfoCircle, faQuestionCircle } from "@fortawesome/free-solid-svg-icons";
+import { faBan, faEnvelope, faInfoCircle, faQuestionCircle } from "@fortawesome/free-solid-svg-icons";
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import HelpIcon from '@mui/icons-material/Help';
 
@@ -167,6 +167,12 @@ function Profile() {
 			setAnchorEl(event.currentTarget);
 		}
 	}
+
+	const onResetSettings = () => {
+		localStorage.clear();
+		window.location.reload();
+	}
+
 	return (
 		<div>
 			<IconButton onClick={onSelect} size="small">
@@ -179,7 +185,7 @@ function Profile() {
 							<FontAwesomeIcon icon={faInfoCircle} />
 							<div className="cursor-pointer mb-1 hover:text-blue-600">About us</div>
 						</div>
-						<a className="flex gap-2 my-1 items-center cursor-pointer hover:text-blue-600" href="https://discord.gg/Nad9p7Np" target="_blank" rel="noreferrer">
+						<a className="flex gap-2 my-1 items-center cursor-pointer hover:text-blue-600" href="https://discord.gg/bqKXjKhk" target="_blank" rel="noreferrer">
 							<FontAwesomeIcon icon={faDiscord}></FontAwesomeIcon>
 							<span>Discord</span>
 						</a>
@@ -187,12 +193,15 @@ function Profile() {
 							<FontAwesomeIcon icon={faQuestionCircle}></FontAwesomeIcon>
 							<div className="cursor-pointer my-1 hover:text-blue-600">Help and FAQ</div>
 						</div>
+						<div className="flex gap-2 items-center">
+							<FontAwesomeIcon icon={faBan}></FontAwesomeIcon>
+							<div className="cursor-pointer my-1 hover:text-blue-600" onClick={onResetSettings}>Reset settings</div>
+						</div>
 						<Divider sx={{ margin: '.5rem 0' }}></Divider>
 						<div className="flex justify-around my-1">
 							<FontAwesomeIcon className="cursor-pointer" icon={faInstagram}></FontAwesomeIcon>
 							<FontAwesomeIcon className="cursor-pointer" icon={faTiktok}></FontAwesomeIcon>
 							<FontAwesomeIcon className="cursor-pointer" icon={faEnvelope}></FontAwesomeIcon>
-
 						</div>
 					</InfoMenuFrame>
 				</ClickAwayListener>
