@@ -4,6 +4,8 @@ import { Room } from '../models/room.interface';
 import { ThemePalette } from '../models/theme.model';
 import { createDefaultThemePalette } from '../models/theme.model';
 import { Widget } from '../models/widget.interface';
+import { Task } from '../models/todolist-widget.model';
+import { Type } from 'typescript';
 
 export const layoutState = atom({
     key: 'layout',
@@ -69,4 +71,9 @@ export const globalGridVisibleState = atom({
 export const globalVolumeState = atom({
     key: 'globalVolumeState',
     default: 0,
+});
+
+export const todosState = atom({
+    key: 'todos',
+    default: [] as Array<Task>,
 });

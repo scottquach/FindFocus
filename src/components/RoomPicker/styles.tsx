@@ -42,7 +42,7 @@ export const Category = styled(CardButton)<{ active: boolean }>`
 	height: 8rem;
 	border: ${({ active }) => active ? '1px solid var(--color-primary-light)' : ''};
 	box-shadow: ${({ active }) => active ? 'var(--color-primary-shadow) 0px 4px 12px' : ''};
-	border-radius: 8px;
+	border-radius: 12px;
 	padding: .5rem;
 	cursor: pointer;
 

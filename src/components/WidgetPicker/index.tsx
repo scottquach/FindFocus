@@ -6,7 +6,9 @@ import * as S from "./styles";
 import { WidgetType } from "../../models/widget-types.enum";
 import { QueueMusicOutlined, StickyNote2Outlined } from "@mui/icons-material";
 import CloudOutlinedIcon from '@mui/icons-material/CloudOutlined';
+import ListAltIcon from '@mui/icons-material/ListAlt';
 import AccessAlarmIcon from '@mui/icons-material/AccessAlarm';
+import ThermostatIcon from '@mui/icons-material/Thermostat';
 import useAddWidget from "../../hooks/useAddWidget";
 import { useState } from "react";
 import { createWidget } from "../../models/widget.model";
@@ -98,6 +100,10 @@ export function WidgetPicker({ close }: any) {
 					<AccessAlarmIcon></AccessAlarmIcon>
 					<div>Timer</div>
 				</S.Widget>
+				<S.Widget onClick={() => create(WidgetType.TodosList)}>
+					<ListAltIcon></ListAltIcon>
+					<div>To-dos</div>
+				</S.Widget>
 			</S.Widgets>
 
 		</S.Wrapper>
@@ -167,7 +173,7 @@ function WeatherWidget() {
 	return (
 		<div>
 			<S.Widget onClick={handleClick}>
-				<AccessTimeIcon></AccessTimeIcon>
+				<ThermostatIcon></ThermostatIcon>
 				<div>Weather</div>
 			</S.Widget>
 			<Menu

@@ -7,6 +7,6 @@ export enum WidgetType {
 	Ambient = 'ambient',
 	Quote = 'quote',
 	Clock = 'clock',
-	Timer = 'timer'
-
+	Timer = 'timer',
+	TodosList = 'todoslist',
 }

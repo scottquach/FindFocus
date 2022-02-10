@@ -36,3 +36,12 @@ export const getRoomById = (roomId: string) => {
     const room = allRooms.find((room) => room.id === roomId);
     return room ?? null;
 };
+
+export const getRandomRoom = () => {
+    const x = [CategoryId.Animated, CategoryId.Cafe, CategoryId.StudyWithMe, CategoryId.Nature];
+    const randCat = x[Math.floor(Math.random() * x.length)] as any;
+    const rooms = (Rooms as any)[randCat] as any;
+
+    const randRoom = rooms[Math.floor(Math.random() * rooms.length)];
+    return randRoom;
+};

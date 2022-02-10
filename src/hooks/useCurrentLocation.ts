@@ -24,7 +24,7 @@ export default function useCurrentLocation(options = {}) {
 
         Axios.get("http://api.positionstack.com/v1/reverse", { params })
 			.then((response: any) => {
-                console.log(response)
+                // console.log(response)
                 let data = response.data.data[0];
                 // let { country, country_code, region, region_code, locality } = response.data.data[0];
 				setValue({

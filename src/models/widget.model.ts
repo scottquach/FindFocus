@@ -30,6 +30,8 @@ export const getTitle = (type: WidgetType) => {
             return 'Clock';
         case WidgetType.Timer:
             return 'Timer';
+        case WidgetType.TodosList:
+            return 'To-do List';
         default:
             return 'Widget';
     }
@@ -40,7 +42,7 @@ export function createWidget(type: WidgetType, data?: any): Widget {
     switch (type) {
         case WidgetType.Spotify:
             baseWidget.data = {
-                link: 'https://open.spotify.com/embed/playlist/0vvXsWCC9xrXsKd4FyS8kM',
+                link: 'https://open.spotify.com/embed/playlist/2s9R059mmdc8kz6lrUqZZd',
             };
             return baseWidget;
         case WidgetType.Quote:
@@ -60,6 +62,8 @@ export function createWidget(type: WidgetType, data?: any): Widget {
                 minutes: 1,
                 seconds: 0,
             };
+            return baseWidget;
+        case WidgetType.TodosList:
             return baseWidget;
         default:
             return base(type);
@@ -93,7 +97,12 @@ export const getMinSize = (type: WidgetType) => {
                 minHeight: '100px',
                 minWidth: '325px',
             };
-
+        case WidgetType.TodosList:
+            return {
+                minHeight: '130px',
+                minWidth: '200px',
+            };
+    
         default:
             return null;
     }

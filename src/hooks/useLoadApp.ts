@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useSetRecoilState } from 'recoil';
-import { Rooms } from '../models/rooms.model';
+import { getRandomRoom, Rooms } from '../models/rooms.model';
 import { createDefaultThemePalette } from '../models/theme.model';
 import { activeWidgetsState, backgroundState, favoritesState, layoutState, themePaletteState } from '../stores/store';
 import useApplyThemePalette from './useApplyThemePalette';
@@ -12,7 +12,7 @@ export default function useLoadApp() {
     // Initial load of central state
     const [savedWidgets] = useLocalStorage('active-widgets', []);
     const [savedLayout] = useLocalStorage('layout', {});
-    const [background] = useLocalStorage('background', Rooms['cafe'][0]);
+    const [background] = useLocalStorage('background', getRandomRoom());
     const [favorites] = useLocalStorage('favorites', []);
     const [themePalette] = useLocalStorage('themePalette', createDefaultThemePalette());
 
