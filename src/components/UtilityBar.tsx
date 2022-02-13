@@ -180,7 +180,7 @@ function Profile() {
 			</IconButton>
 			<Popper id={id} open={open} anchorEl={anchorEl}>
 				<ClickAwayListener onClickAway={() => setAnchorEl(null)}>
-					<InfoMenuFrame className="mt-2 mr-2 p-3 font-semibold">
+					<InfoMenuFrame className="mt-2 mr-2 p-3 font-semibold text-primary">
 						<div className="flex gap-2 items-center">
 							<FontAwesomeIcon icon={faInfoCircle} />
 							<div className="cursor-pointer mb-1 hover:text-blue-600">About us</div>
