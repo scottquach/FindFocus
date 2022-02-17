@@ -1,46 +1,31 @@
-# Getting Started with Create React App
+<p align="center">
+<img src="src/assets/logo.png" alt="FindFocus" height="69" />
+</p>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<h1 align="center">
+✨ Study rooms for the modern age ✨ <br/>
+</h1>
+<p align="center">Create digital study rooms customizable with a variety of live backgrounds, resizable widgets, and a fully featured theming system.
+</p>
 
-## Available Scripts
+<img width="100%" src="demo.gif" />
 
-In the project directory, you can run:
+# FindFocus
 
-### `npm start`
+FindFocus is a open-source platform for building customizable digital study rooms.
+- <a href="" target="_blank">Website</a>
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Features
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+-   <b>Live room backgrounds</b><br />
+    Select live backgrounds from a list of curated categories to create different study environments 📺.
 
-### `npm test`
+-   <b>Widgets</b><br />
+    Add, resize, and arrange from a selection of widgets to create a study room that tailors to your needs.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+-   <b>Dynamic themes</b><br />
+    Choose from a variety of preset themes or pick your own colors to create your own🎨. This includes both dark and light mode themes across the site!
 
-### `npm run build`
+## License
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+Available under MIT license
