@@ -3,15 +3,15 @@
 </p>
 
 <h1 align="center">
-✨ FindFocus ✨ <br/>
+✨ Study rooms for the modern age ✨ <br/>
 </h1>
-<h3 align="center">Study rooms for the modern age</h3>
 <p align="center">Create digital study rooms customizable with a variety of live backgrounds, resizable widgets, and a fully featured theming system.
 </p>
 
 # FindFocus
 
 FindFocus is a open-source platform for building customizable digital study rooms.
+- <a href="" target="_blank">Website</a>
 
 ## Features
 
