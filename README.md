@@ -9,6 +9,8 @@
 <p align="center">Create digital study rooms customizable with a variety of live backgrounds, resizable widgets, and a fully featured theming system.
 </p>
 
+<img width="100%" src="demo.gif" />
+
 # FindFocus
 
 FindFocus is a open-source platform for building customizable digital study rooms.
