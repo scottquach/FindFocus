@@ -28,4 +28,4 @@ FindFocus is a open-source platform for building customizable digital study room
 
 ## License
 
-Available under <a href="https://www.gnu.org/licenses/gpl-3.0.en.html" target="_blank">GNU GPLv3</a>
+Available under MIT license
