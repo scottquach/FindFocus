@@ -72,9 +72,9 @@ View `components/Widgets/StickyNoteWidget` as a decent simple example.
 
 #### Connecting your widget to the platform
 
-1. You can define default widget attributes such as a friendly title, initial data configs, and min size within the `widget.model.ts` file.
-2. Within `Grid.tsx` add your custom widget to the switch statement starting on line 81;
-3. Add your widget to the widget picker menu in `components/WidgetPicker`. Simply follow the given format to add your custom button, name, and onClick handler
+1. You can define default widget attributes such as a friendly title, initial data configs, and min size within the `widget.model.ts` file. This tells the platform how to create and your widget.
+2. Within `Grid.tsx` add your custom widget to the switch statement starting on line 81. This tells the grid what component to display based on a WidgetType
+3. Add your widget to the widget picker menu in `components/WidgetPicker`. Simply follow the given format to add your custom button, name, and onClick handler. This will add the ability for the end user to add the widget to the grid via the widget picker menu. 
 
 ## License
 
