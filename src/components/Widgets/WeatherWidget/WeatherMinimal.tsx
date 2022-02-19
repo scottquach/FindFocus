@@ -17,6 +17,10 @@ export default function WeatherMinimal() {
 	const [place, setPlace] = useState<any>({});
 
 	useEffect(() => {
+		console.error('Error getting location', error);
+	}, [error])
+
+	useEffect(() => {
 		if (location?.latitude && location.longitude) {
 			let params = {
 				lat: location?.latitude,
