@@ -14,7 +14,7 @@
 
 FindFocus is a open-source platform for building customizable digital study rooms.
 
-- <a href="" target="_blank">Website</a>
+- <a href="https://findfocus.studio/" target="_blank">Website</a>
 
 ## Features
 
