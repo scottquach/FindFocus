@@ -26,6 +26,30 @@ export const getWeather = functions.https.onCall(async (data, context) => {
     // response.send(request.body)
 });
 
+export const getLocationDetails = functions.https.onCall(async (data, context) => {
+    // const params = data;
+    // const response = await axios.get('http://api.positionstack.com/v1/reverse', { params });
+    // console.log('location details response', response);
+
+    return 'hi';
+    // return response.data.data[0];
+});
+
+export const getLocationDetailsApi = functions.https.onRequest(async (request, response) => {
+    const params = request.body;
+    try {
+        const res = await axios.get('http://api.positionstack.com/v1/reverse', { params });
+        console.log('location details response', res);
+
+        // response.send("hi")
+
+        // return "hi";
+        response.send(res.data.data[0]);
+        // return response.data.data[0];
+    } catch (e: any) {
+        console.error(e.response.data);
+    }
+});
 
 export const getWeatherApi = functions.https.onRequest(async (request, response) => {
     const params = request.body;

@@ -64,6 +64,12 @@ const Presets = [
 		primary: '#1b4332',
 		background: '#d8f3dc'
 	},
+	{
+		name: 'Minimal',
+		creator: 'Developer',
+		primary: '#7E7F9A',
+		background: '#fff7f5'
+	},
 ]
 
 export function ThemePresets({ setPrimary, setBackground }: any) {
